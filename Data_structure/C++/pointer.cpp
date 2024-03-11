@@ -16,6 +16,7 @@ struct what {
 int main() {
     string str = "123";
     string *str_mem = &str;
+
     cout << "str_mem 주소 값 : " << str_mem << endl;
     cout << "str_mem 포인터 변수의 주소 : " 
     << &str_mem << endl;
