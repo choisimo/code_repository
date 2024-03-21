@@ -1,0 +1,13 @@
+# ninja log v5
+7	972	7322774820197552	CMakeFiles/code_repository.dir/Data_structure/C++/selection/insertion_sort.cpp.obj	e4d4009d560a670b
+27	1011	7322774820633928	CMakeFiles/code_repository.dir/Data_structure/C++/selection/selection_sort.cpp.obj	5a697e548fa4dbbc
+33	990	7322774820348648	CMakeFiles/code_repository.dir/Data_structure/C++/pibonacci.cpp.obj	18ac4780194c9cc0
+20	998	7322774820505596	CMakeFiles/code_repository.dir/Data_structure/C++/selection/quick_sort.cpp.obj	417f22b314000145
+1	1000	7322774820515688	CMakeFiles/code_repository.dir/Data_structure/C++/Array.cpp.obj	b5d57b6ba5ae4cc
+13	1017	7322774820689871	CMakeFiles/code_repository.dir/Data_structure/C++/selection/bubble_sort.cpp.obj	46a61ca92222465b
+41	1032	7322774820865223	CMakeFiles/code_repository.dir/Data_structure/C++/pointer2.cpp.obj	24970211251d8b95
+61	1040	7322774820951688	CMakeFiles/code_repository.dir/Data_structure/C++/stack.cpp.obj	a9888ce2b8d7caa2
+51	1048	7322774821030611	CMakeFiles/code_repository.dir/Data_structure/C++/pointer.cpp.obj	6b223b72afb06975
+1	440	7326106269625224	CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj	cf96520dfbd989f2
+5	415	7326107585571038	CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj	d6e5a388f36c7375
+446	597	7326106271155116	new_target.exe	430ce0dc59ebf23
