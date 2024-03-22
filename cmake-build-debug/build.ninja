@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/workspace/github/code_repository/cmake-build-debug/
+cmake_ninja_workdir = C$:/WorkSpace/git/code_repository/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target new_target
 
@@ -49,44 +49,56 @@ cmake_ninja_workdir = C$:/workspace/github/code_repository/cmake-build-debug/
 
 build cmake_object_order_depends_target_new_target: phony || CMakeFiles/new_target.dir
 
-build CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/sum.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/sum.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\sum.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++
 
-build CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/testfile.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/testfile.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\testfile.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++
 
-build CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/pointer.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/pointer.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\pointer.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++
 
-build CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/dynamic.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/work1/dynamic.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\work1\dynamic.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\work1
 
-build CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/delete.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/work1/delete.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\work1\delete.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\work1
 
-build CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/stack.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/work1/stack.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\work1\stack.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\work1
 
-build CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_prefix_calculate.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/infix_prefix_calculate.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_prefix_calculate.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/infix_prefix_calculate.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\infix_prefix_calculate.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\new_target.dir
+  OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
+
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/rectangle.cpp || cmake_object_order_depends_target_new_target
+  DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\rectangle.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\new_target.dir
+  OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
+
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/annotation.cpp || cmake_object_order_depends_target_new_target
+  DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\annotation.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
@@ -99,7 +111,7 @@ build CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_prefix_calculate.
 #############################################
 # Link the executable new_target.exe
 
-build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_prefix_calculate.cpp.obj
+build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_prefix_calculate.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\new_target.dir
@@ -109,12 +121,111 @@ build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_tar
   TARGET_IMPLIB = libnew_target.dll.a
   TARGET_PDB = new_target.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target Data_structure_C++_stack_rectangle
+
+
+#############################################
+# Order-only phony target for Data_structure_C++_stack_rectangle
+
+build cmake_object_order_depends_target_Data_structure_C++_stack_rectangle: phony || CMakeFiles/Data_structure_C++_stack_rectangle.dir
+
+build CMakeFiles/Data_structure_C++_stack_rectangle.dir/Data_structure/C++/stack/rectangle.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_rectangle_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/rectangle.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_rectangle
+  DEP_FILE = CMakeFiles\Data_structure_C++_stack_rectangle.dir\Data_structure\C++\stack\rectangle.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_rectangle.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_stack_rectangle.dir\Data_structure\C++\stack
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Data_structure_C++_stack_rectangle
+
+
+#############################################
+# Link the executable Data_structure_C++_stack_rectangle.exe
+
+build Data_structure_C++_stack_rectangle.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_stack_rectangle_Debug CMakeFiles/Data_structure_C++_stack_rectangle.dir/Data_structure/C++/stack/rectangle.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_rectangle.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Data_structure_C++_stack_rectangle.exe
+  TARGET_IMPLIB = libData_structure_C++_stack_rectangle.dll.a
+  TARGET_PDB = Data_structure_C++_stack_rectangle.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Data_structure_C++_stack_annotation
+
+
+#############################################
+# Order-only phony target for Data_structure_C++_stack_annotation
+
+build cmake_object_order_depends_target_Data_structure_C++_stack_annotation: phony || CMakeFiles/Data_structure_C++_stack_annotation.dir
+
+build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/annotation.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/annotation.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
+  DEP_FILE = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\stack\annotation.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\stack
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Data_structure_C++_stack_annotation
+
+
+#############################################
+# Link the executable Data_structure_C++_stack_annotation.exe
+
+build Data_structure_C++_stack_annotation.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_stack_annotation_Debug CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/annotation.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Data_structure_C++_stack_annotation.exe
+  TARGET_IMPLIB = libData_structure_C++_stack_annotation.dll.a
+  TARGET_PDB = Data_structure_C++_stack_annotation.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target Data_structure_C++_testfile
+
+
+#############################################
+# Order-only phony target for Data_structure_C++_testfile
+
+build cmake_object_order_depends_target_Data_structure_C++_testfile: phony || CMakeFiles/Data_structure_C++_testfile.dir
+
+build CMakeFiles/Data_structure_C++_testfile.dir/Data_structure/C++/testfile.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_testfile_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/testfile.cpp || cmake_object_order_depends_target_Data_structure_C++_testfile
+  DEP_FILE = CMakeFiles\Data_structure_C++_testfile.dir\Data_structure\C++\testfile.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_testfile.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_testfile.dir\Data_structure\C++
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Data_structure_C++_testfile
+
+
+#############################################
+# Link the executable Data_structure_C++_testfile.exe
+
+build Data_structure_C++_testfile.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_testfile_Debug CMakeFiles/Data_structure_C++_testfile.dir/Data_structure/C++/testfile.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_testfile.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Data_structure_C++_testfile.exe
+  TARGET_IMPLIB = libData_structure_C++_testfile.dll.a
+  TARGET_PDB = Data_structure_C++_testfile.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\workspace\github\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\WorkSpace\git\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -125,7 +236,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\workspace\github\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\workspace\github\code_repository -BC:\workspace\github\code_repository\cmake-build-debug"
+  COMMAND = cmd.exe /C "cd /D C:\WorkSpace\git\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\WorkSpace\git\code_repository -BC:\WorkSpace\git\code_repository\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -135,6 +246,12 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build Data_structure_C++_stack_annotation: phony Data_structure_C++_stack_annotation.exe
+
+build Data_structure_C++_stack_rectangle: phony Data_structure_C++_stack_rectangle.exe
+
+build Data_structure_C++_testfile: phony Data_structure_C++_testfile.exe
+
 build new_target: phony new_target.exe
 
 # =============================================================================
@@ -143,9 +260,9 @@ build new_target: phony new_target.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/workspace/github/code_repository/cmake-build-debug
+# Folder: C:/WorkSpace/git/code_repository/cmake-build-debug
 
-build all: phony new_target.exe
+build all: phony new_target.exe Data_structure_C++_stack_rectangle.exe Data_structure_C++_stack_annotation.exe Data_structure_C++_testfile.exe
 
 # =============================================================================
 # Unknown Build Time Dependencies.
@@ -159,14 +276,14 @@ build all: phony new_target.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/workspace/github/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/WorkSpace/git/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/workspace/github/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/WorkSpace/git/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake: phony
 
 
 #############################################
