@@ -1,6 +1,15 @@
 //
 // Created by csimo on 3/21/2024.
 //
+
+
+/**
+ * infix
+ * stack 이 비었을 경우, 연산자 추가
+ * stack 이 비어있지 않을 경우, 연산자 우선순위 비교 후 수행
+ * 우선순위가 더 큰게 위에
+ *
+ * */
 #include <iostream>
 #include <stdexcept>
 
@@ -61,26 +70,60 @@ public:
 
 class calculator{
 private:
+    string postfix;
+    string infix;
     stack<char> stack1;
 public:
-    explicit calculator(int capacity): stack1(capacity){}
-    int Op_priority(char &op){
+    calculator(int capacity): stack1(capacity){}
+    int Op_priority(char op){
         switch(op) {
             case '*' :
-            case '/' : return 1;
+            case '/' : return 3;
             case '+' :
             case '-' : return 2;
-            default  : return 3;
+            default  : return 1;
         }
+    }
+    void infixToPostfix(string &infix){
+        for (int i = 0; i < infix.length(); i++){
+            if ('0' <= infix[i] && infix[i] <= '9'){
+                postfix += infix[i];
+            }
+            else if (infix[i] == '('){
+                stack1.push(infix[i]);
+            }
+            else if(infix[i] == ')'){
+                while(!stack1.isEmpty() && stackMatch(stack1.peek(), infix[i])){
+                    postfix += stack1.pop();
+                }
+                stack1.pop();
+            }
+            else {
+                while(!stack1.isEmpty() && checkOpp(infix[i])) {
+                    postfix += stack1.pop();
+                }
+                stack1.push(infix[i]);
+            }
+        }
+        while(!stack1.isEmpty()){
+            postfix += stack1.pop();
+        }
+        cout << " infix to prefix : " << postfix << endl;
+    }
+    bool stackMatch(char start, char end){
+        return (start == '(' && end == ')');
+    }
+    bool checkOpp(char &ch){
+        if (Op_priority(stack1.peek()) <= Op_priority(ch)) {
+            return true;
+        }
+        return false;
     }
 };
 int main(){
-    std::string Str;
-    calculator c(100);
-    std::getline(std::cin,Str);
-    std::cout << Str << std::endl;
-    for (int i = 0; i < Str.length(); i++){
-        std::cout << Str[i] << ", ";
-    }
+    calculator calc(100);
+    string infix;
+    getline(std::cin,infix);
+    calc.infixToPostfix(infix);
     return 0;
 }

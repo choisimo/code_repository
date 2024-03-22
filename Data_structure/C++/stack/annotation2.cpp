@@ -53,15 +53,6 @@ public:
         }
         return arr[top];
     }
-
-    T getTop(){
-        if(this->top == -1){
-            throw std::out_of_range("stack is empty");
-        }
-        //std::cout << " getTop 호출 : " << arr[this->top] << std::endl;
-        return arr[this->top];
-    }
-
 };
 
 class check{
@@ -123,7 +114,7 @@ public:
                     stack1.push(Str[i]);
                 }
                 else if ((Str[i] == ')' || Str[i] == '}' || Str[i] == ']')
-                         &&!stack1.empty() && checkBracket(stack1.getTop(), Str[i]))
+                         &&!stack1.empty() && checkBracket(stack1.peek(), Str[i]))
                 {
                     //std::cout << Str[i] << " 종료 " << std::endl;
                     stack1.pop();bracket_count++;
