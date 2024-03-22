@@ -1,13 +1,12 @@
 //
-// Created by csimo on 3/21/2024.
+// Created by csimo on 3/22/2024.
 //
 /**
- * line_count, bracket_count (괄호 짝 수)
- * 주석 종류 //, /**./
- * 라인 구분 \n
- * 주석 내부 bracket 무시, 주석 외부 bracket 매칭 체크 -> 안되면 오류
- *
- */
+ * (), {}, [] 짝이 맞는지 확인
+ * 큰 따옴표 사이에 대한 문자열은 무시
+ * 주석에 대한 무시 처리
+ * -> " 하나만 있는 경우에도 line_count++ 처리로 수정하기
+ * */
 
 #include <iostream>
 #include<stdexcept>
@@ -24,7 +23,7 @@ public:
     }
 
     ~stack(){
-        std::cout << "stack 동적할당 메모리 해제" << std::endl;
+        //std::cout << "stack 동적할당 메모리 해제" << std::endl;
         delete[] arr;
     }
 
@@ -59,7 +58,7 @@ public:
         if(this->top == -1){
             throw std::out_of_range("stack is empty");
         }
-        std::cout << " getTop 호출 : " << arr[this->top] << std::endl;
+        //std::cout << " getTop 호출 : " << arr[this->top] << std::endl;
         return arr[this->top];
     }
 
@@ -78,39 +77,39 @@ public:
         for (int i = 0; i < Str.length(); i++) {
             // 주석 /*
             if(!in_literal_line && !in_annotation_line && Str[i] == '/' && Str[i+1] == '*' && i < Str.length() - 1){
-                std::cout << "/* 시작" << std::endl;
+                //std::cout << "/* 시작" << std::endl;
                 in_annotation_line = true;
                 ++i;
                 continue;
             }
             // 주석 */
             if(in_annotation_line && Str[i] == '*' && Str[i+1] == '/' && i < Str.length() - 1){
-                std::cout << "*/ 끝" << std::endl;
+                //std::cout << "*/ 끝" << std::endl;
                 in_annotation_line = false;
                 ++i;
                 continue;
             }
 
             if(!in_literal_line && !in_annotation_line && Str[i] == '"' && i < Str.length() - 1){
-                std::cout << "literal, " << Str[i] << " 시작 " << std::endl;
+                //std::cout << "literal, " << Str[i] << " 시작 " << std::endl;
                 in_literal_line = true;
                 continue;
             }
             if(in_literal_line && Str[i] == '"' && i < Str.length() - 1){
-                std::cout << "literal end, " << Str[i] << " " << std::endl;
+                //std::cout << "literal, " << Str[i] << " 끝 " << std::endl;
                 in_literal_line = false;
                 continue;
             }
 
             if(Str[i] == '\n'){
-                std::cout << " 줄 바꿈 카운트 1증가" << std::endl;
+                //std::cout << " 줄 바꿈 카운트 1증가" << std::endl;
                 line_count++;
             }
 
             if (!in_annotation_line && !in_literal_line){
                 // 주석 //은 \n 나올 때까지
                 if(Str[i] == '/' && Str[i+1] == '/'){
-                    std::cout << "// 만남" << std::endl;
+                    //std::cout << "// 만남" << std::endl;
                     while(Str[i] != '\n' && i < Str.length()){
                         ++i;
                     }
@@ -120,17 +119,18 @@ public:
 
                 if (Str[i] == '(' || Str[i] == '{' || Str[i] == '[')
                 {
-                    std::cout << Str[i] << " 시작 " << std::endl;
+                    //std::cout << Str[i] << " 시작 " << std::endl;
                     stack1.push(Str[i]);
                 }
                 else if ((Str[i] == ')' || Str[i] == '}' || Str[i] == ']')
-                &&!stack1.empty() && checkBracket(stack1.getTop(), Str[i]))
+                         &&!stack1.empty() && checkBracket(stack1.getTop(), Str[i]))
                 {
-                    std::cout << Str[i] << " 종료 " << std::endl;
+                    //std::cout << Str[i] << " 종료 " << std::endl;
                     stack1.pop();bracket_count++;
                 }
                 else if (Str[i] == ')' || Str[i] == '}' || Str[i] == ']'){
-                    std::cout << "stack not match" << std::endl;
+                    //std::cout << "stack not match" << std::endl;
+                    line_count++;
                     printErrorResult();
                     return;
                 }
