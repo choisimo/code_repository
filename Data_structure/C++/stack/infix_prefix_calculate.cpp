@@ -60,6 +60,6 @@ public:
 
 int main(){
     myStack stack1(100);
-    
+
     return 0;
 }
