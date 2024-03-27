@@ -6,6 +6,7 @@
 using namespace std;
 
 int main(){
-    cout << "what";
-    return 0;
+    printf("first");
+    printf("second"//)
+    );
 }

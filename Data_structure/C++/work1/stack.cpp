@@ -7,6 +7,8 @@
 using namespace std;
 
 int main(){
-    stack<int> mystack;
-
+    int n1 = 5; int n2 = 4;
+    if (n1 > 1 || n2 < 2){
+        cout << "1" << endl;
+    }
 }

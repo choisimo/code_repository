@@ -113,7 +113,7 @@ CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=C:/workspace/github/code_repository/cmak
 CMAKE_GNUtoMS:BOOL=OFF
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/code_repository
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/Project
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/Program Files/JetBrains/CLion 2023.3.4/bin/mingw/bin/ld.exe
@@ -250,15 +250,6 @@ Project_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=C:/workspace/github/code_repository
-
-//Value Computed by CMake
-code_repository_BINARY_DIR:STATIC=C:/workspace/github/code_repository/cmake-build-debug
-
-//Value Computed by CMake
-code_repository_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-code_repository_SOURCE_DIR:STATIC=C:/workspace/github/code_repository
 
 
 ########################
