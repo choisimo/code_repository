@@ -109,6 +109,18 @@ build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj: CX
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/homework4_5.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/homework4_5.cpp || cmake_object_order_depends_target_new_target
+  DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\homework4_5.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\new_target.dir
+  OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
+
+build CMakeFiles/new_target.dir/Data_structure/C++/work1/pointer_test.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/pointer_test.cpp || cmake_object_order_depends_target_new_target
+  DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\work1\pointer_test.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\new_target.dir
+  OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\work1
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target new_target
@@ -117,7 +129,7 @@ build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj: CX
 #############################################
 # Link the executable new_target.exe
 
-build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj
+build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/homework4_5.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/pointer_test.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\new_target.dir
@@ -175,6 +187,12 @@ build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stac
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\stack
 
+build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/single_linked_list.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/single_linked_list.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
+  DEP_FILE = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\single_linked_list.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Data_structure_C++_stack_annotation
@@ -183,7 +201,7 @@ build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stac
 #############################################
 # Link the executable Data_structure_C++_stack_annotation.exe
 
-build Data_structure_C++_stack_annotation.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_stack_annotation_Debug CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/annotation.cpp.obj
+build Data_structure_C++_stack_annotation.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_stack_annotation_Debug CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/annotation.cpp.obj CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/single_linked_list.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir

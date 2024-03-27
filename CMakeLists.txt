@@ -8,11 +8,14 @@ add_executable(new_target Data_structure/C++/sum.cpp
         Data_structure/C++/stack/rectangle.cpp
         Data_structure/C++/stack/annotation.cpp
         Data_structure/C++/stack/annotation2.cpp
+        Data_structure/C++/stack/homework4_5.cpp
+        Data_structure/C++/work1/pointer_test.cpp
 )
 
 add_executable(Data_structure_C++_stack_rectangle Data_structure/C++/stack/rectangle.cpp
 )
 add_executable(Data_structure_C++_stack_annotation Data_structure/C++/stack/annotation.cpp
+        Data_structure/C++/single_linked_list.cpp
 )
 add_executable(Data_structure_C++_testfile Data_structure/C++/testfile.cpp
 )
