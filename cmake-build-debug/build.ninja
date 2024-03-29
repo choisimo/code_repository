@@ -109,6 +109,12 @@ build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj: CX
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/stack_test.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/stack_test.cpp || cmake_object_order_depends_target_new_target
+  DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\stack_test.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\new_target.dir
+  OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target new_target
@@ -117,7 +123,7 @@ build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj: CX
 #############################################
 # Link the executable new_target.exe
 
-build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj
+build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_target.dir/Data_structure/C++/sum.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/testfile.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj CMakeFiles/new_target.dir/Data_structure/C++/stack/stack_test.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\new_target.dir
@@ -292,6 +298,39 @@ build Data_structure_C++_stack_infix_postfix_calculate.exe: CXX_EXECUTABLE_LINKE
   TARGET_IMPLIB = libData_structure_C++_stack_infix_postfix_calculate.dll.a
   TARGET_PDB = Data_structure_C++_stack_infix_postfix_calculate.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target Data_structure_C++_stack_stack_test
+
+
+#############################################
+# Order-only phony target for Data_structure_C++_stack_stack_test
+
+build cmake_object_order_depends_target_Data_structure_C++_stack_stack_test: phony || CMakeFiles/Data_structure_C++_stack_stack_test.dir
+
+build CMakeFiles/Data_structure_C++_stack_stack_test.dir/Data_structure/C++/stack/stack_test.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_stack_test_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/stack_test.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_stack_test
+  DEP_FILE = CMakeFiles\Data_structure_C++_stack_stack_test.dir\Data_structure\C++\stack\stack_test.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_stack_test.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_stack_stack_test.dir\Data_structure\C++\stack
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Data_structure_C++_stack_stack_test
+
+
+#############################################
+# Link the executable Data_structure_C++_stack_stack_test.exe
+
+build Data_structure_C++_stack_stack_test.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_stack_stack_test_Debug CMakeFiles/Data_structure_C++_stack_stack_test.dir/Data_structure/C++/stack/stack_test.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_stack_test.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Data_structure_C++_stack_stack_test.exe
+  TARGET_IMPLIB = libData_structure_C++_stack_stack_test.dll.a
+  TARGET_PDB = Data_structure_C++_stack_stack_test.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -326,6 +365,8 @@ build Data_structure_C++_stack_infix_postfix_calculate: phony Data_structure_C++
 
 build Data_structure_C++_stack_rectangle: phony Data_structure_C++_stack_rectangle.exe
 
+build Data_structure_C++_stack_stack_test: phony Data_structure_C++_stack_stack_test.exe
+
 build Data_structure_C++_testfile: phony Data_structure_C++_testfile.exe
 
 build new_target: phony new_target.exe
@@ -338,7 +379,7 @@ build new_target: phony new_target.exe
 #############################################
 # Folder: C:/WorkSpace/git/code_repository/cmake-build-debug
 
-build all: phony new_target.exe Data_structure_C++_stack_rectangle.exe Data_structure_C++_stack_annotation.exe Data_structure_C++_testfile.exe Data_structure_C++_stack_annotation2.exe Data_structure_C++_stack_infix_postfix_calculate.exe
+build all: phony new_target.exe Data_structure_C++_stack_rectangle.exe Data_structure_C++_stack_annotation.exe Data_structure_C++_testfile.exe Data_structure_C++_stack_annotation2.exe Data_structure_C++_stack_infix_postfix_calculate.exe Data_structure_C++_stack_stack_test.exe
 
 # =============================================================================
 # Unknown Build Time Dependencies.

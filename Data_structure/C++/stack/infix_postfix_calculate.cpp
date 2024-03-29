@@ -1,5 +1,5 @@
 //
-// Created by csimo on 3/21/2024.
+// Created by csimo on 3/29/2024.
 //
 
 
@@ -12,11 +12,11 @@
  * */
 #include <iostream>
 #include <stdexcept>
+#include <cstring>
 
 using namespace std;
-template<typename T>
 
-class stack{
+template<typename T> class stack{
 private:
     T *arr;
     int capacity;
@@ -41,7 +41,11 @@ public:
 
     bool push(T item){
         if (isFull()) {
-            return false;
+            T *newarr = new T[capacity *2];
+            memcpy(newarr, arr, capacity * sizeof(T));
+            delete[] arr;
+            arr = newarr;
+            capacity *= 2;
         }
         //값을 넣기 전에 미리 배열 크기 늘리기
         arr[++top] = item;
@@ -73,8 +77,10 @@ private:
     string postfix;
     string infix;
     stack<char> stack1;
+    stack<double> stack2;
+    bool isError = false;
 public:
-    calculator(int capacity): stack1(capacity){}
+    calculator(int capacity): stack1(capacity), stack2(capacity){}
     int Op_priority(char op){
         switch(op) {
             case '*' :
@@ -84,23 +90,39 @@ public:
             default  : return 1;
         }
     }
-    void infixToPostfix(string &infix){
+    void infixToPostfix(const string &infix){
         for (int i = 0; i < infix.length(); i++){
-            if ('0' <= infix[i] && infix[i] <= '9'){
-                postfix += infix[i];
+            if (infix[i] == ' '){
+                continue;
             }
-            else if (infix[i] == '('){
+            if (infix[i] == '/' && infix[i+2] == '0'){
+                cout << "Error : zero division error\n"<< endl;
+                isError = true;
+                return;
+            }
+            if (('0' <= infix[i] && infix[i] <= '9') || infix[i] == '.'){
+                string num;
+                while(('0' <= infix[i] && infix[i] <= '9') || infix[i] == '.'){
+                    num += infix[i];
+                    i++;
+                }
+                i--;
+                postfix += num + " ";
+            }
+            else if (infix[i] == '(' && !stack1.isFull()){
                 stack1.push(infix[i]);
             }
             else if(infix[i] == ')'){
-                while(!stack1.isEmpty() && stackMatch(stack1.peek(), infix[i])){
+                while(!stack1.isEmpty() && stack1.peek() != '('){
                     postfix += stack1.pop();
                 }
-                stack1.pop();
+                if (!stack1.isEmpty()) stack1.pop();
+                continue;
             }
             else {
                 while(!stack1.isEmpty() && checkOpp(infix[i])) {
                     postfix += stack1.pop();
+                    postfix += " ";
                 }
                 stack1.push(infix[i]);
             }
@@ -108,22 +130,67 @@ public:
         while(!stack1.isEmpty()){
             postfix += stack1.pop();
         }
-        cout << " infix to prefix : " << postfix << endl;
+        //cout << postfix << endl;
     }
-    bool stackMatch(char start, char end){
-        return (start == '(' && end == ')');
-    }
-    bool checkOpp(char &ch){
-        if (Op_priority(stack1.peek()) <= Op_priority(ch)) {
+
+    bool checkOpp(const char &ch){
+        if (Op_priority(ch) <= Op_priority(stack1.peek())) {
             return true;
         }
         return false;
     }
+
+    void postfixResult() {
+        double postfix_calc_result = 0;
+        string temp;
+        if (isError == true){
+            return;
+        }
+        for (char c : postfix){
+            // 숫자이거나 소수점 이라면...
+            if (isdigit(c) || c == '.'){
+                temp += c;
+            }
+            // 공백이라면
+            else if (c == ' ') {
+                if (!temp.empty() && !stack2.isFull()) {
+                    stack2.push(stod(temp));
+                    temp.clear();
+                }
+            } else {
+                if(stack2.isEmpty()){
+                    cout << "stack is empty! : " << c << endl;
+                    return;
+                }
+                double val2 = stack2.pop();
+                double val1 = stack2.pop();
+                switch(c) {
+                    case '+' : stack2.push(val1 + val2); break;
+                    case '-' : stack2.push(val1 - val2); break;
+                    case '*' : stack2.push(val1 * val2); break;
+                    case '/' :
+                        if (val2 == 0){
+                            cout << "Error : zero division error\n";
+                            return;
+                        }
+                        stack2.push(val1 / val2); break;
+                }
+            }
+        }
+        if (!temp.empty()){
+            stack2.push(stod(temp));
+        }
+        postfix_calc_result = stack2.pop();
+        cout << fixed;
+        cout.precision(2);
+        cout << postfix_calc_result << endl;
+    }
 };
-int main(){
+int main() {
     calculator calc(100);
     string infix;
-    getline(std::cin,infix);
+    getline(std::cin, infix);
     calc.infixToPostfix(infix);
+    calc.postfixResult();
     return 0;
 }

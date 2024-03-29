@@ -7,10 +7,12 @@ add_executable(new_target Data_structure/C++/sum.cpp
         Data_structure/C++/stack/infix_postfix_calculate.cpp
         Data_structure/C++/stack/rectangle.cpp
         Data_structure/C++/stack/annotation.cpp
-        Data_structure/C++/stack/annotation2.cpp)
+        Data_structure/C++/stack/annotation2.cpp
+        Data_structure/C++/stack/stack_test.cpp)
 
 add_executable(Data_structure_C++_stack_rectangle Data_structure/C++/stack/rectangle.cpp)
 add_executable(Data_structure_C++_stack_annotation Data_structure/C++/stack/annotation.cpp)
 add_executable(Data_structure_C++_testfile Data_structure/C++/testfile.cpp)
 add_executable(Data_structure_C++_stack_annotation2 Data_structure/C++/stack/annotation2.cpp)
 add_executable(Data_structure_C++_stack_infix_postfix_calculate Data_structure/C++/stack/infix_postfix_calculate.cpp)
+add_executable(Data_structure_C++_stack_stack_test Data_structure/C++/stack/stack_test.cpp)

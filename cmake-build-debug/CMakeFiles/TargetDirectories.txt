@@ -4,5 +4,6 @@ C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_testfile.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_annotation2.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_stack_test.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -10,9 +10,8 @@
 
 #include <iostream>
 #include<stdexcept>
-template <typename T>
-
-class stack{
+#include <cstring>
+template <typename T> class stack{
 private:
     T* arr;
     int capacity;
@@ -35,7 +34,11 @@ public:
     }
     bool push(T item){
         if(full()){
-            return false;
+            T *newArr = new T[capacity * 2];
+            memcpy(newArr, arr, capacity * sizeof(T));
+            delete[] arr;
+            arr = newArr;
+            capacity *= 2;
         }
         arr[++top] = item;
         return true;
