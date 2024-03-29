@@ -80,11 +80,7 @@ private:
     stack<double> stack2;
     bool isError = false;
 public:
-<<<<<<< HEAD
     calculator(int capacity): stack1(capacity), stack2(capacity){}
-=======
-    calculator(int capacity): stack1(capacity) {}
->>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df
     int Op_priority(char op){
         switch(op) {
             case '*' :
