@@ -3,7 +3,11 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Data_structure/C++/stack/annotation.cpp" charset="x-windows-949" />
     <file url="file://$PROJECT_DIR$/Data_structure/C++/stack/annotation2.cpp" charset="x-windows-949" />
+<<<<<<< HEAD
     <file url="file://$PROJECT_DIR$/Data_structure/C++/stack/stack_test.cpp" charset="x-windows-949" />
     <file url="PROJECT" charset="UTF-8" />
+=======
+    <file url="PROJECT" charset="x-windows-949" />
+>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df
   </component>
 </project>

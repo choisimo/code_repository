@@ -8,12 +8,12 @@
 27	308	7327260055187341	CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj	c31cd7e801fba0db
 12	313	7327260055247414	CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj	86c3839b97b47cba
 5	331	7327260055420479	CMakeFiles/new_target.dir/Data_structure/C++/pointer.cpp.obj	a20375c4be076360
-18	333	7327260055440501	CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_prefix_calculate.cpp.obj	9c5d79c5f78a9077
 2	206	7327959121061971	CMakeFiles/Data_structure_C++_stack_rectangle.dir/Data_structure/C++/stack/rectangle.cpp.obj	9f0624e852198110
 206	259	7327959121567059	Data_structure_C++_stack_rectangle.exe	83c1aa03a5b656e2
 230	282	7327993976380246	Data_structure_C++_stack_annotation.exe	a3dcfd86f2437384
 2	218	7328001837049568	CMakeFiles/Data_structure_C++_stack_annotation2.dir/Data_structure/C++/stack/annotation2.cpp.obj	a49283916b77f654
 218	271	7328001837567636	Data_structure_C++_stack_annotation2.exe	dd01d1c360738ee9
+<<<<<<< HEAD
 2	237	7334115417573366	CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj	71f5b9363be44211
 238	295	7334115418128584	Data_structure_C++_stack_infix_postfix_calculate.exe	325e372fa5d4e3ba
 0	256	7329826634961073	CMakeFiles/Data_structure_C++_testfile.dir/Data_structure/C++/testfile.cpp.obj	813f5e8b8ed4a02d
@@ -94,3 +94,7 @@
 273	333	7334162533353113	Data_structure_C++_stack_infix_postfix_calculate.exe	325e372fa5d4e3ba
 1	278	7334176787542471	CMakeFiles/Data_structure_C++_stack_annotation2.dir/Data_structure/C++/stack/annotation2.cpp.obj	a49283916b77f654
 278	346	7334176788176304	Data_structure_C++_stack_annotation2.exe	dd01d1c360738ee9
+=======
+2	214	7328122129096874	CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj	71f5b9363be44211
+214	264	7328122129575197	Data_structure_C++_stack_infix_postfix_calculate.exe	325e372fa5d4e3ba
+>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df
