@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Data_structure_C++_stack_annotation2.exe"
+			"path" : "Data_structure_C++_stack_rectangle.exe"
 		},
 		{
-			"path" : "Data_structure_C++_stack_annotation2.pdb"
+			"path" : "Data_structure_C++_stack_rectangle.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,11 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_annotation2-Debug-0d994694a1a248b74a0f.json
-				"line" : 16,
-========
-				"line" : 22,
->>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_annotation2-Debug-6f7827629fdc411de755.json
+				"line" : 14,
 				"parent" : 0
 			}
 		]
@@ -52,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "Data_structure_C++_stack_annotation2::@6890427a1f51a3e7e1df",
+	"id" : "Data_structure_C++_stack_rectangle::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -72,8 +68,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Data_structure_C++_stack_annotation2",
-	"nameOnDisk" : "Data_structure_C++_stack_annotation2.exe",
+	"name" : "Data_structure_C++_stack_rectangle",
+	"nameOnDisk" : "Data_structure_C++_stack_rectangle.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -94,7 +90,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/stack/annotation2.cpp",
+			"path" : "Data_structure/C++/stack/rectangle.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

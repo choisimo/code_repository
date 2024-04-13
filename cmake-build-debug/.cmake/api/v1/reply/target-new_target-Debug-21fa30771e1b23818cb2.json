@@ -54,12 +54,8 @@
 				7,
 				8,
 				9,
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/target-new_target-Debug-2c3a24a58928cedb0619.json
-				10
-========
 				10,
 				11
->>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df:cmake-build-debug/.cmake/api/v1/reply/target-new_target-Debug-ba66c18bbd7de0d60034.json
 			]
 		}
 	],
@@ -106,12 +102,8 @@
 				7,
 				8,
 				9,
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/target-new_target-Debug-2c3a24a58928cedb0619.json
-				10
-========
 				10,
 				11
->>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df:cmake-build-debug/.cmake/api/v1/reply/target-new_target-Debug-ba66c18bbd7de0d60034.json
 			]
 		}
 	],
@@ -120,19 +112,19 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/sum.cpp",
+			"path" : "Data_structure/C++/others/sum.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/testfile.cpp",
+			"path" : "Data_structure/C++/others/testfile.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/pointer.cpp",
+			"path" : "Data_structure/C++/others/pointer.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -180,17 +172,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/target-new_target-Debug-2c3a24a58928cedb0619.json
 			"path" : "Data_structure/C++/stack/stack_test.cpp",
-========
-			"path" : "Data_structure/C++/stack/homework4_5.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/work1/pointer_test.cpp",
->>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df:cmake-build-debug/.cmake/api/v1/reply/target-new_target-Debug-ba66c18bbd7de0d60034.json
+			"path" : "Data_structure/C++/stack/homework_3.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

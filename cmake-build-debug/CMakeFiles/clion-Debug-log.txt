@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.3.4/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\workspace\github\code_repository -B C:\workspace\github\code_repository\cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.3.4/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\WorkSpace\git\code_repository -B C:\WorkSpace\git\code_repository\cmake-build-debug
 CMake Warning (dev) in CMakeLists.txt:
   No project() command is present.  The top-level CMakeLists.txt file must
   contain a literal, direct call to the project() command.  Add a line of
@@ -18,6 +18,36 @@ CMake Warning (dev) in CMakeLists.txt:
   both commands.
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done (0.1s)
+CMake Warning (dev) at CMakeLists.txt:23 (add_executable):
+  Policy CMP0002 is not set: Logical target names must be globally unique.
+  Run "cmake --help-policy CMP0002" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:25 (add_executable):
+  Policy CMP0002 is not set: Logical target names must be globally unique.
+  Run "cmake --help-policy CMP0002" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:28 (add_executable):
+  Policy CMP0002 is not set: Logical target names must be globally unique.
+  Run "cmake --help-policy CMP0002" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:30 (add_executable):
+  Policy CMP0002 is not set: Logical target names must be globally unique.
+  Run "cmake --help-policy CMP0002" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Warning (dev) at CMakeLists.txt:32 (add_executable):
+  Policy CMP0002 is not set: Logical target names must be globally unique.
+  Run "cmake --help-policy CMP0002" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Configuring done (0.2s)
 -- Generating done (0.0s)
--- Build files have been written to: C:/workspace/github/code_repository/cmake-build-debug
+-- Build files have been written to: C:/WorkSpace/git/code_repository/cmake-build-debug

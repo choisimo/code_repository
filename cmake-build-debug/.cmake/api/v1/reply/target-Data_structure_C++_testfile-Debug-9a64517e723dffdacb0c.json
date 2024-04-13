@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Data_structure_C++_stack_rectangle.exe"
+			"path" : "Data_structure_C++_testfile.exe"
 		},
 		{
-			"path" : "Data_structure_C++_stack_rectangle.pdb"
+			"path" : "Data_structure_C++_testfile.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,11 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_rectangle-Debug-a31cc6c2b578baaaf2c6.json
-				"line" : 13,
-========
-				"line" : 15,
->>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_rectangle-Debug-800c39f230d63aba941a.json
+				"line" : 18,
 				"parent" : 0
 			}
 		]
@@ -52,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "Data_structure_C++_stack_rectangle::@6890427a1f51a3e7e1df",
+	"id" : "Data_structure_C++_testfile::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -72,8 +68,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Data_structure_C++_stack_rectangle",
-	"nameOnDisk" : "Data_structure_C++_stack_rectangle.exe",
+	"name" : "Data_structure_C++_testfile",
+	"nameOnDisk" : "Data_structure_C++_testfile.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -94,7 +90,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/stack/rectangle.cpp",
+			"path" : "Data_structure/C++/others/testfile.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

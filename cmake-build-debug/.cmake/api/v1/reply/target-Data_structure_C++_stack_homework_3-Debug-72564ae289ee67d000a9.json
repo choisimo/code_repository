@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Data_structure_C++_stack_infix_postfix_calculate.exe"
+			"path" : "Data_structure_C++_stack_homework_3.exe"
 		},
 		{
-			"path" : "Data_structure_C++_stack_infix_postfix_calculate.pdb"
+			"path" : "Data_structure_C++_stack_homework_3.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,11 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_infix_postfix_calculate-Debug-d86e8ad7b74e9940188a.json
-				"line" : 17,
-========
-				"line" : 24,
->>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_infix_postfix_calculate-Debug-aa0a95b6a76211c79b46.json
+				"line" : 37,
 				"parent" : 0
 			}
 		]
@@ -52,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "Data_structure_C++_stack_infix_postfix_calculate::@6890427a1f51a3e7e1df",
+	"id" : "Data_structure_C++_stack_homework_3::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -72,8 +68,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Data_structure_C++_stack_infix_postfix_calculate",
-	"nameOnDisk" : "Data_structure_C++_stack_infix_postfix_calculate.exe",
+	"name" : "Data_structure_C++_stack_homework_3",
+	"nameOnDisk" : "Data_structure_C++_stack_homework_3.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -94,7 +90,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/stack/infix_postfix_calculate.cpp",
+			"path" : "Data_structure/C++/stack/homework_3.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -27,11 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_infix_postfix_calculate-Debug-d86e8ad7b74e9940188a.json
-				"line" : 17,
-========
-				"line" : 24,
->>>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df:cmake-build-debug/.cmake/api/v1/reply/target-Data_structure_C++_stack_infix_postfix_calculate-Debug-aa0a95b6a76211c79b46.json
+				"line" : 20,
 				"parent" : 0
 			}
 		]

@@ -3,11 +3,12 @@
 //
 #include <iostream>
 using namespace std;
-class Stack {
+template<typename T> class Stack {
 private:
-    int *array;
+    T *array;
     int capacity;
     int top;
+    int multiplier;
 private:
     bool isFull() const {
         return top == capacity - 1;
@@ -16,8 +17,8 @@ private:
         return top <= capacity / 2;
     }
     void increaseCapacity() {
-        int newCapacity = capacity * 2;
-        int *newArray = new int[newCapacity];
+        int newCapacity = capacity * multiplier;
+        T *newArray = new T[newCapacity];
         for (int i=0; i<capacity; i++)
             newArray[i] = array[i];
         delete[] array;
@@ -25,8 +26,8 @@ private:
         capacity = newCapacity;
     }
     void decreaseCapacity() {
-        int newCapacity = capacity / 2 + 1;
-        int *newArray = new int[newCapacity];
+        int newCapacity = capacity / multiplier + 1;
+        T *newArray = new T[newCapacity];
         for (int i=0; i < newCapacity; i++)
             newArray[i] = array[i];
         delete[] array;
@@ -34,23 +35,22 @@ private:
         capacity = newCapacity;
     }
 public:
-    Stack(int capacity) : capacity(capacity), top(-1) {
-        array = new int[capacity];
+    explicit Stack(int capacity, int multiple) : capacity(capacity), top(-1), multiplier(multiple) {
+        array = new T[capacity];
     }
-
     ~Stack() {
         delete[] array;
     }
     bool isEmpty() const {
         return top == -1;
     }
-    void push(int item) {
+    void push(T item) {
         if (this->isFull()) {
             this->increaseCapacity();
         }
         array[++top] = item;
     }
-    int pop() {
+    T pop() {
         if (this->isEmpty()) {
             throw std::out_of_range("Stack underflow");
         } else if (this->isHalf()) {
@@ -58,7 +58,7 @@ public:
         }
         return array[top--];
     }
-    int peak() {
+    T peak() {
         if (isEmpty()) {
             throw std::out_of_range("Stack underflow");
         }
@@ -70,34 +70,25 @@ public:
     int getCapacity() const {
         return capacity;
     }
-    bool contains(int item) const {
-        if(!isEmpty()){
-            if(item == *(array + top))
-            {
-                cout << "contains true" << endl;
+    bool contains(int item) const{
+        int i = 0;
+        while (i < top){
+            if(array[i] == item){
                 return true;
             }
-            else {
-                cout << "*array : " << *array << endl;
-                cout << "*(array+top) : " << *(array + top) << endl;
-                cout << "*(array+top-1) : " << *(array + top -1) << endl;
-                array[*(array + top)] = array[*(array + top -1)];
-                cout << "contains ~ing" << endl;
-                contains(item);
-            }
-        } else {
-            cout << "contains false" << endl;
-            return false;
+            i++;
         }
+        return false;
     }
 };
 
-int main(){
-    Stack stack(10);
-    for (int i = 0; i < 10; i++) {
+int main (int argc, char* argv[]) {
+    Stack<int> stack(5, 3); // capacity = 5이며, multiplier = 3임.
+    for (int i=0; i < 10; i++)
         stack.push(i);
-        //cout <<  i << "insert, stack peek : " <<  stack.peak() << endl;
-    }
-    stack.contains(5);
-    stack.contains(11);
+    std::cout << stack.getCapacity() << std::endl; // 15가 출력되어야 함.
+    for (int i=0; i < 10; i++)
+        stack.push(i + 10);
+
+    std::cout << stack.getCapacity() << std::endl; // 45가 출력되어야 함.
 }
