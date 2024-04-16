@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Data_structure_C++_stack_homework_3.exe"
+			"path" : "Data_structure_C++_stack_annotation.exe"
 		},
 		{
-			"path" : "Data_structure_C++_stack_homework_3.pdb"
+			"path" : "Data_structure_C++_stack_annotation.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,7 +27,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 37,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 19,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 29,
 				"parent" : 0
 			}
 		]
@@ -44,11 +56,13 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1,
+				2
 			]
 		}
 	],
-	"id" : "Data_structure_C++_stack_homework_3::@6890427a1f51a3e7e1df",
+	"id" : "Data_structure_C++_stack_annotation::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -68,8 +82,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Data_structure_C++_stack_homework_3",
-	"nameOnDisk" : "Data_structure_C++_stack_homework_3.exe",
+	"name" : "Data_structure_C++_stack_annotation",
+	"nameOnDisk" : "Data_structure_C++_stack_annotation.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -81,7 +95,9 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0
+				0,
+				1,
+				2
 			]
 		}
 	],
@@ -90,7 +106,19 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/stack/homework_3.cpp",
+			"path" : "Data_structure/C++/stack/annotation.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "Data_structure/C++/stack/homework4_5.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 3,
+			"compileGroupIndex" : 0,
+			"path" : "Data_structure/C++/others/single_linked_list.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

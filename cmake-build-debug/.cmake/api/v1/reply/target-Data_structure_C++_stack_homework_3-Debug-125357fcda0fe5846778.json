@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Data_structure_C++_stack_stack_test.exe"
+			"path" : "Data_structure_C++_stack_homework_3.exe"
 		},
 		{
-			"path" : "Data_structure_C++_stack_stack_test.pdb"
+			"path" : "Data_structure_C++_stack_homework_3.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,7 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 21,
+				"line" : 41,
 				"parent" : 0
 			}
 		]
@@ -48,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "Data_structure_C++_stack_stack_test::@6890427a1f51a3e7e1df",
+	"id" : "Data_structure_C++_stack_homework_3::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -68,8 +68,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "Data_structure_C++_stack_stack_test",
-	"nameOnDisk" : "Data_structure_C++_stack_stack_test.exe",
+	"name" : "Data_structure_C++_stack_homework_3",
+	"nameOnDisk" : "Data_structure_C++_stack_homework_3.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -90,7 +90,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C++/stack/stack_test.cpp",
+			"path" : "Data_structure/C++/stack/homework_3.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
