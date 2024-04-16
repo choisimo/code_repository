@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/new_target.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_rectangle.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_annotation.dir
@@ -6,15 +5,7 @@ C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_annotation2.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_stack_test.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_homework4_5.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_homework_3.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-=======
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/new_target.dir
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_rectangle.dir
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_annotation.dir
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_testfile.dir
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_annotation2.dir
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/workspace/github/code_repository/cmake-build-debug/CMakeFiles/rebuild_cache.dir
->>>>>>> 02ba23de23675eff808656d85b5206d607f0b4df
