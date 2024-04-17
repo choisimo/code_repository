@@ -1,62 +1,58 @@
 //
-// Created by csimo on 3/24/2024.
+// Created by csimo on 3/17/2024.
 //
 #include <iostream>
+#include <vector>
+#include <queue>
 
 using namespace std;
-template <typename T>
 
-class stack{
+class process{
 private:
-    T* arr;
-    int capacity;
-    int top;
+    vector<int> lifes;
+    vector<int> delete_orders;
+    queue<int> orders;
 public:
-    explicit stack(int capacity): capacity(capacity), top(-1){
-        arr = new T[capacity];
+    process(int N, int K, int D) : lifes(N, D){
+        circulate(N, K, D);
     }
+    void circulate(int N, int K, int D) {
 
-    ~stack(){
-        //std::cout << "stack 동적할당 메모리 해제" << std::endl;
-        delete[] arr;
-    }
+        for(int i = 0; i < N; ++i) {
+            orders.push(i);
+        }
 
-    bool empty() const{
-        return top == -1;
-    }
-    bool full() const{
-        return top == capacity -1;
-    }
-    bool push(T item){
-        if(full()){
-            return false;
+        while (!orders.empty()) {
+            for(int i = 0; i < K - 1; ++i) {
+                orders.push(orders.front());
+                orders.pop();
+            }
+
+            int current = orders.front();
+            orders.pop();
+            lifes[current]--;
+
+            if (lifes[current] > 0) {
+                orders.push(current);
+            } else {
+                delete_orders.push_back(current + 1);
+            }
         }
-        arr[++top] = item;
-        return true;
-    }
-    T pop(){
-        if(empty()){
-            throw std::out_of_range("stack underflow");
+
+        cout << "<";
+        for (size_t i = 0; i < delete_orders.size(); i++) {
+            cout << delete_orders[i];
+            if (i < delete_orders.size() - 1) cout << ", ";
         }
-        return arr[top--];
-    }
-    T peek(){
-        if (empty())
-        {
-            throw std::out_of_range("stack underflow");
-        }
-        return arr[top];
+        cout << ">" << endl;
     }
 };
 
-int main(){
-    stack<int> stack1(10);
-    for (int i = 0; i < 10; i++){
-        stack1.push(i);
-    }
-    stack1.push(55);
-    for(int i = 0; i < 10; i++){
-        cout << i <<  "번 : " << stack1.pop() << endl;
-    }
+
+
+int main() {
+    int N, K, D;
+    cin >> N >> K >> D;
+    process proc(N, K, D);
     return 0;
 }

@@ -7,5 +7,10 @@ C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_stack_test.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_homework4_5.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_stack_homework_3.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_homework2_litmus2.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_homework2_litmus2_test.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_homework2_litmus2_test2.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_homework2_test3.dir
+C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/WorkSpace/git/code_repository/cmake-build-debug/CMakeFiles/rebuild_cache.dir

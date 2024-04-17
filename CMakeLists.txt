@@ -11,7 +11,11 @@ add_executable(new_target Data_structure/C++/others/sum.cpp
         Data_structure/C++/stack/annotation2.cpp
         Data_structure/C++/stack/stack_test.cpp
         Data_structure/C++/stack/homework_3.cpp
-        Data_structure/C++/homework2/litmus1.cpp)
+        Data_structure/C++/homework2/litmus1.cpp
+        Data_structure/C++/homework2/litmus2.cpp
+        Data_structure/C++/homework2/litmus2_test.cpp
+        Data_structure/C++/homework2/litmus2_test2.cpp
+        Data_structure/C++/homework2/test3.cpp)
 
 add_executable(Data_structure_C++_stack_rectangle Data_structure/C++/stack/rectangle.cpp)
 add_executable(Data_structure_C++_stack_annotation Data_structure/C++/stack/annotation.cpp)
@@ -39,3 +43,8 @@ add_executable(Data_structure_C++_stack_infix_postfix_calculate Data_structure/C
 
 add_executable(Data_structure_C++_stack_homework4_5 Data_structure/C++/stack/homework4_5.cpp)
 add_executable(Data_structure_C++_stack_homework_3 Data_structure/C++/stack/homework_3.cpp)
+add_executable(Data_structure_C++_homework2_litmus2 Data_structure/C++/homework2/litmus2.cpp)
+add_executable(Data_structure_C++_homework2_litmus2_test Data_structure/C++/homework2/litmus2_test.cpp)
+add_executable(Data_structure_C++_homework2_litmus2_test2 Data_structure/C++/homework2/litmus2_test2.cpp)
+add_executable(Data_structure_C++_homework2_test3 Data_structure/C++/homework2/test3.cpp)
+add_executable(Data_structure_C++_homework2_inheritage_Stack_queue Data_structure/C++/homework2/inheritage_Stack_queue.cpp)

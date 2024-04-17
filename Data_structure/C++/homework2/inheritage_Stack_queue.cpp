@@ -152,3 +152,54 @@ public:
     };
     ~Queue(){};
 };
+
+
+#include <iostream>
+
+int main() {
+    std::cout << "Testing Stack:\n";
+
+    Stack stack(5); // 5의 용량을 가진 스택 생성
+
+    // 스택에 요소 추가
+    stack.add(1);
+    stack.add(2);
+    stack.add(3);
+    stack.add(4);
+    stack.add(5);
+
+    // 스택 요소 출력
+    stack.printElements();
+
+    // 스택에서 요소 제거 및 출력
+    std::cout << "Removed: " << stack.remove() << std::endl;
+    stack.printElements();
+
+    // 스택에 요소 추가 및 출력으로 용량 변경 확인
+    stack.add(6);
+    stack.printElements();
+
+    std::cout << "\nTesting Queue:\n";
+
+    Queue queue(5); // 5의 용량을 가진 큐 생성
+
+    // 큐에 요소 추가
+    queue.add(1);
+    queue.add(2);
+    queue.add(3);
+    queue.add(4);
+    queue.add(5);
+
+    // 큐 요소 출력
+    queue.printElements();
+
+    // 큐에서 요소 제거 및 출력
+    std::cout << "Removed: " << queue.remove() << std::endl;
+    queue.printElements();
+
+    // 큐에 요소 추가 및 출력으로 용량 변경 확인
+    queue.add(6);
+    queue.printElements();
+
+    return 0;
+}
