@@ -1,0 +1,173 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_homework2_inheritage_Stack_queue::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_homework2_inheritage_Stack_queue-Debug-a0ed8a0914cccf0e6833.json",
+					"name" : "Data_structure_C++_homework2_inheritage_Stack_queue",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_homework2_litmus2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_homework2_litmus2-Debug-9ccbd95d2ca35e3a2ed8.json",
+					"name" : "Data_structure_C++_homework2_litmus2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_homework2_litmus2_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_homework2_litmus2_test-Debug-be5803230ef999a472c0.json",
+					"name" : "Data_structure_C++_homework2_litmus2_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_homework2_litmus2_test2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_homework2_litmus2_test2-Debug-d8179e1688189aa00949.json",
+					"name" : "Data_structure_C++_homework2_litmus2_test2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_homework2_test3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_homework2_test3-Debug-1206d3ee21925c44079e.json",
+					"name" : "Data_structure_C++_homework2_test3",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_stack_annotation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_stack_annotation-Debug-9398e19caab324fd74a1.json",
+					"name" : "Data_structure_C++_stack_annotation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_stack_annotation2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_stack_annotation2-Debug-c7c00ec916c4bfe313e0.json",
+					"name" : "Data_structure_C++_stack_annotation2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_stack_homework4_5::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_stack_homework4_5-Debug-df5264cb87a5747d255b.json",
+					"name" : "Data_structure_C++_stack_homework4_5",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_stack_homework_3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_stack_homework_3-Debug-d6d490a711d1d63f09de.json",
+					"name" : "Data_structure_C++_stack_homework_3",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_stack_infix_postfix_calculate::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_stack_infix_postfix_calculate-Debug-cd93e68d8b33c5974b10.json",
+					"name" : "Data_structure_C++_stack_infix_postfix_calculate",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_stack_rectangle::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_stack_rectangle-Debug-1486f4f39f66bb0eb8ba.json",
+					"name" : "Data_structure_C++_stack_rectangle",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_stack_stack_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_stack_stack_test-Debug-d5d73ee63998277cbb61.json",
+					"name" : "Data_structure_C++_stack_stack_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Data_structure_C++_testfile::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Data_structure_C++_testfile-Debug-c638de9f8a7fc121391d.json",
+					"name" : "Data_structure_C++_testfile",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "new_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-new_target-Debug-c15d40c9311f44425093.json",
+					"name" : "new_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/workspace/github/code_repository/cmake-build-debug",
+		"source" : "C:/workspace/github/code_repository"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

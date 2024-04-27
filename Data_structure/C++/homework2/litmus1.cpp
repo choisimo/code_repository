@@ -41,4 +41,6 @@ int main(int argc, char* argv[]){
     }
     circulate cir(n1, n2);
     cir.printResult();
+
+    return 0;
 }

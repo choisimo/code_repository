@@ -47,4 +47,14 @@ add_executable(Data_structure_C++_homework2_litmus2 Data_structure/C++/homework2
 add_executable(Data_structure_C++_homework2_litmus2_test Data_structure/C++/homework2/litmus2_test.cpp)
 add_executable(Data_structure_C++_homework2_litmus2_test2 Data_structure/C++/homework2/litmus2_test2.cpp)
 add_executable(Data_structure_C++_homework2_test3 Data_structure/C++/homework2/test3.cpp)
-add_executable(Data_structure_C++_homework2_inheritage_Stack_queue Data_structure/C++/homework2/inheritage_Stack_queue.cpp)
+add_executable(Data_structure_C++_homework2_inheritage_Stack_queue Data_structure/C++/homework2/inheritage_Stack_queue.cpp
+        Data_structure/C++/0427/struct_wallet.cpp
+        Data_structure/C++/0427/array.cpp
+        Data_structure/C++/0427/stack.h
+        Data_structure/C++/0427/stack_exam1.cpp
+        Data_structure/C++/0427/queue.h
+        Data_structure/C++/0427/Node.h
+        Data_structure/C++/0427/linkedList.cpp
+        Data_structure/C++/0427/linkedList2.cpp
+        Data_structure/C++/0427/doubleLinkedList.cpp
+        Data_structure/C++/0427/doubleNode.h)

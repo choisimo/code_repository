@@ -2,6 +2,7 @@
 2	230	7327993975883238	CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/annotation.cpp.obj	cdaa7d3c5653616c
 623	936	7350074674151199	CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2_test2.cpp.obj	18a53c04a8cc6a34
 224	276	7350073895278175	Data_structure_C++_stack_rectangle.exe	83c1aa03a5b656e2
+0	609	7358871400719880	CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/struct_wallet.cpp.obj	6bf4b3f06e88b8e2
 35	664	7350074671409522	CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj	63e0700479d4a9b9
 2	285	7350128508013805	CMakeFiles/Data_structure_C++_homework2_test3.dir/Data_structure/C++/homework2/test3.cpp.obj	a5bdeb23cae43b03
 31	640	7350074671124303	CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj	4116521e32dcb2db
@@ -41,3 +42,5 @@
 47	649	7350074671174304	CMakeFiles/new_target.dir/Data_structure/C++/stack/homework_3.cpp.obj	eb163a4de15d6898
 634	990	7350074674671186	CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2_test.cpp.obj	e2cf12d93f6b3b22
 3	322	7350100400268049	CMakeFiles/new_target.dir/Data_structure/C++/homework2/test3.cpp.obj	2b9396c0d20aad6d
+16	610	7358871400719880	CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/array.cpp.obj	d541bec7db62cf82
+10	614	7358871400771596	CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/homework2/inheritage_Stack_queue.cpp.obj	25140552ab31b357
