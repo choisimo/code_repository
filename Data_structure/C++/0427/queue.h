@@ -5,6 +5,8 @@
 #define QUEUE_H
 
 
+#include <stdexcept>
+
 template<typename T>
 class Queue{
 private:

@@ -57,4 +57,14 @@ add_executable(Data_structure_C++_homework2_inheritage_Stack_queue Data_structur
         Data_structure/C++/0427/linkedList.cpp
         Data_structure/C++/0427/linkedList2.cpp
         Data_structure/C++/0427/doubleLinkedList.cpp
-        Data_structure/C++/0427/doubleNode.h)
+        Data_structure/C++/0427/doubleNode.h
+        Data_structure/C++/0428/doubleLinkedList.cpp
+        Data_structure/C++/0428/checkMatch.cpp
+        Data_structure/C++/0427/infixtopostfix.cpp
+        Data_structure/C++/0428/linkedList.cpp
+        Data_structure/C/linux/0429/ac_create.c
+        Data_structure/C/linux/0429/account.h
+        Data_structure/C/linux/0429/ac_query.c
+        Data_structure/C/linux/0429/ac_update.c)
+add_executable(Data_structure_C_linux_0429_ac_create Data_structure/C/linux/0429/ac_create.c)
+add_executable(Data_structure_C_linux_0429_ac_query Data_structure/C/linux/0429/ac_query.c)

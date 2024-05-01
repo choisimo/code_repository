@@ -38,7 +38,7 @@ public:
         array[++top] = item;
     }
 
-    void pop(){
+    T pop(){
         if (this->isEmpty()){
             throw std::out_of_range("Stack underflow");
         } else if (this->isHalf() && capacity > 1) {
