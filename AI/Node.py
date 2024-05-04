@@ -10,7 +10,6 @@ class Node:
         self.h = 0  # 현재 셀부터 목표 지점까지의 추정
 
         self.in_wall = (x_pos, y_pos) in wall_cells
-        print("current pos : [", self.x_pos, self.y_pos, "]", " is wall? => ", self.in_wall)
         self.neighbours = set()  # 인접 노드들
         self.previous = None  # 이전 노드
         self.open_list = []
