@@ -55,10 +55,23 @@ class Astar:
 
     def get_neighbors(self, cell: Tuple[int, int]) -> List[Tuple[int, int]]:
         x, y = cell
+        neighbors = []
+        valid_neighbors = []
         directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
 
-        neighbors = [(x + dx, y + dy) for dx, dy in directions]
-        valid_neighbors = [(nx, ny) for nx, ny in neighbors if 0 <= nx < self.width and 0 <= ny < self.height and (nx, ny) not in self.walls]
+        for d in directions:
+            dx, dy = d
+            neighbor_x = x + dx
+            neighbor_y = y + dy
+            neighbors.append((neighbor_x, neighbor_y))
+
+        for neighbor in neighbors:
+            neighbor_x, neighbor_y = neighbor
+
+            if 0 <= neighbor_x < self.width and 0 <= neighbor_y < self.height:
+                if (neighbor_x, neighbor_y) not in self.walls:
+                    valid_neighbors.append((neighbor_x, neighbor_y))
+
         return valid_neighbors
 
     def reversePath(self, current: Tuple[int, int]) -> Set[Tuple[int, int]]:
