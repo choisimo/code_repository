@@ -31,6 +31,7 @@ class A_star:
     # 블록 주변의 유효한 블록들을 열린 목록에 추가하고,
     # 각 블록의 g, h 값을 계산하여 설정한다.
     def add_open_list(self, block_index):
+        # block_index == start position
         block = self.screen.blocks[block_index]
         x = block.x
         y = block.y
