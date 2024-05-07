@@ -14,11 +14,10 @@ WHITE = (255, 255, 255)
 
 class Block():
 
-    def __init__(self, screen, x, y, block):
+    def __init__(self, screen, x, y, cell_size):
         self.screen = screen
         self.x = x
         self.y = y
-        self.block = block
         self.location_x = x * self.block
         self.location_y = y * self.block
 

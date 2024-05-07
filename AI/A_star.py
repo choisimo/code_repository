@@ -6,7 +6,7 @@ import math
 import heapq
 import tkinter as tk
 from Node import Node
-from A_star_algorithmn import solve_aStar
+from AstarAlgorithmn2 import solve_aStar
 from typing import List, Tuple, Callable
 
 
@@ -74,10 +74,8 @@ class matrix:
                 if (row, col) in self.g_wall_cells:
                     pygame.draw.rect(self.screen, (128, 128, 128), rect)
                 if (col, row) == self.start_pos:
-                    print("start pos : ", self.start_pos)
                     pygame.draw.rect(self.screen, (0, 255, 0), rect)
                 if (col, row) == self.goal_pos:
-                    print("goal pos : ", self.goal_pos)
                     pygame.draw.rect(self.screen, (255, 0, 0), rect)
                 if (row, col) in self.trace_set:
                     pygame.draw.rect(self.screen, (150, 255, 0), rect)
@@ -123,14 +121,11 @@ class matrix:
                             goal_pos = self.goal_pos
                             wall_cells = self.g_wall_cells
                             current_heuristic = self.Heuristic
+                            cell_size = self.cell_size
 
                             matrix = self.create_maze_matrix(self.width, self.height, wall_cells)
-                            solver = solve_aStar()
-                            result = solver.a_star(matrix, start_pos, goal_pos, current_heuristic)
-                            self.path = set(result[0])
-                            print("Path:", result[0])
-                            print("Path length:", result[1])
-                            self.draw_grid()
+                            solver = solve_aStar(self, start_pos, goal_pos, current_heuristic, wall_cells, matrix)
+                            solver.add_open_list(start_pos)
 
                 self.handle_mouse_events(event)
                 self.manager.process_events(event)
@@ -147,8 +142,8 @@ class matrix:
 
         for row, col in g_wall_cells:
             if 0 <= row < height and 0 <= col < width:
-                matrix[row][col] = False
-
+                matrix[col][row] = False
+        print(matrix)
         return matrix
 
 
@@ -171,6 +166,7 @@ class matrix:
                     self.g_wall_cells.remove((row, col))
                 else:
                     self.g_wall_cells.add((row, col))
+                    print("new wall add : [", col, ", ", row, "]")
                     self.prev_dragging_pos = (row, col)
                 self.draw_grid()
         elif event.type == pygame.MOUSEBUTTONUP:
