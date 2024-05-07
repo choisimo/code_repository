@@ -49,7 +49,12 @@ class A_star:
                     if self.is_ok(x_temp, y_temp, x_plus, y_plus):
                         if temp_index in self.open_list:
                             old_father = self.screen.blocks[block_index].father
-
+                            '''
+                                def set_father(self, father, direction):
+                                self.father = father
+                                if direction != -1:
+                                    self.father_direction = direction
+                            '''
                             self.screen.blocks[temp_index].set_father(block_index, -1)
                             new_g = self.cal_g(temp_index, x_plus, y_plus)
                             if new_g < self.screen.blocks[temp_index].g:
@@ -60,7 +65,7 @@ class A_star:
                                 self.screen.blocks[temp_index].set_father(old_father, -1)
                         else:
                             self.open_list.append(temp_index)
-                            self.screen.blocks[temp_index].set_open()
+                            self.screen.blocks[temp_index].set_open() # 색상 변경
 
                             direction = self.cal_direction(x_plus, y_plus)
                             self.screen.blocks[temp_index].set_father(block_index, direction)

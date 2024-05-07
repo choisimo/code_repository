@@ -1,0 +1,151 @@
+import argparse
+import pygame
+import pygame_gui
+import random
+import math
+import heapq
+import tkinter as tk
+from a2 import Astar
+from typing import List, Tuple, Callable
+
+class matrix:
+    def __init__(self, width, height, inc_obstacle_ratio):
+        self.width, self.height = width, height
+        self.inc_obstacle_ratio = inc_obstacle_ratio
+        self.g_wall_cells = set()
+        self.start_pos = (random.randint(0, width - 1), random.randint(0, height - 1))
+        self.goal_pos = (random.randint(0, width - 1), random.randint(0, height - 1))
+        self.first_start_pos = self.start_pos
+        self.first_goal_pos = self.goal_pos
+        self.prev_dragging_pos = (self.start_pos[0], self.start_pos[1])
+        self.is_dragging = False
+        self.dragging_target = None
+        self.trace_set = set()
+        self.screen_size = 600
+        self.cell_size = self.screen_size // max(self.width, self.height)
+        self.Heuristic = 'Manhattan'
+        self.path = set()
+        pygame.init()
+        self.manager = pygame_gui.UIManager((800, 650))
+        self.screen = pygame.display.set_mode((self.screen_size + 100, self.screen_size + 50))
+        pygame.display.set_caption("M x N matrix A star-algorithmn")
+
+        self.astar = None
+        self.mybuttons()
+        self.reset_game()
+
+    Coord = Tuple[int, int]
+
+    def reset_game(self):
+        self.g_wall_cells = set()
+        self.trace_set = set()
+        self.path = set()
+
+    def mybuttons(self):
+        self.btn_random_walls = pygame_gui.elements.UIButton(
+            relative_rect=pygame.Rect((250, self.screen_size), (100, 50)),
+            text='Random walls',
+            manager=self.manager)
+        self.btn_reset = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((400, self.screen_size), (100, 50)),
+                                                      text="Reset",
+                                                      manager=self.manager)
+        self.btn_star = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((550, self.screen_size), (100, 50)),
+                                                     text="Solve A*", manager=self.manager)
+        self.btn_manhattan = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((700, self.screen_size), (100, 50)),
+                                                     text="Manhattan", manager=self.manager)
+        self.btn_euclidean = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((700, self.screen_size + 60), (100, 50)),
+                                                     text="Euclidean", manager=self.manager)
+
+
+    def draw_grid(self):
+        self.screen.fill((255, 255, 255))
+        for x in range(0, self.screen_size, self.cell_size):
+            pygame.draw.line(self.screen, (200, 200, 200), (x, 0), (x, self.screen_size))
+        for y in range(0, self.screen_size, self.cell_size):
+            pygame.draw.line(self.screen, (200, 200, 200), (0, y), (self.screen_size, y))
+
+    def draw_cells(self):
+        for cell in self.g_wall_cells:
+            pygame.draw.rect(self.screen, (0, 0, 0), pygame.Rect(cell[0] * self.cell_size, cell[1] * self.cell_size, self.cell_size, self.cell_size))
+        pygame.draw.rect(self.screen, (0, 255, 0), pygame.Rect(self.start_pos[0] * self.cell_size, self.start_pos[1] * self.cell_size, self.cell_size, self.cell_size))
+        pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(self.goal_pos[0] * self.cell_size, self.goal_pos[1] * self.cell_size, self.cell_size, self.cell_size))
+        for cell in self.path:
+            pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(cell[0] * self.cell_size, cell[1] * self.cell_size, self.cell_size, self.cell_size))
+
+            # Display f, g, h values
+            f_value = self.astar.f_scores[cell]
+            g_value = self.astar.g_scores[cell]
+            h_value = self.astar.cell_h(cell)
+            font = pygame.font.Font(None, 22)
+            f_text = font.render(f"f:{f_value}", True, (255, 255, 255))
+            g_text = font.render(f"g:{g_value}", True, (255, 255, 255))
+            h_text = font.render(f"h:{h_value}", True, (255, 255, 255))
+
+            self.screen.blit(f_text, (cell[0] * self.cell_size, cell[1] * self.cell_size))
+            self.screen.blit(g_text, (cell[0] * self.cell_size, cell[1] * self.cell_size + 15))
+            self.screen.blit(h_text, (cell[0] * self.cell_size, cell[1] * self.cell_size + 30))
+
+    def random_walls(self):
+        self.g_wall_cells = {(random.randint(0, self.width - 1), random.randint(0, self.height - 1)) for _ in range(int(self.width * self.height * self.inc_obstacle_ratio))}
+        if self.start_pos in self.g_wall_cells:
+            self.g_wall_cells.remove(self.start_pos)
+        if self.goal_pos in self.g_wall_cells:
+            self.g_wall_cells.remove(self.goal_pos)
+
+    def solve_astar(self):
+        self.astar = Astar(self.width, self.height, self.g_wall_cells, self.start_pos, self.goal_pos, self.Heuristic)
+        self.path = self.astar.get_aStar_path()
+
+    def handle_mouse_event(self, event):
+        x, y = event.pos
+        cell_x = x // self.cell_size
+        cell_y = y // self.cell_size
+        cell = (cell_x, cell_y)
+        if cell in self.g_wall_cells:
+            self.g_wall_cells.remove(cell)
+        else:
+            self.g_wall_cells.add(cell)
+
+    def main(self):
+        is_running = True
+        clock = pygame.time.Clock()
+
+        while is_running:
+            time_delta = clock.tick(60) / 1000.0
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    is_running = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    self.handle_mouse_event(event)
+                if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                    if event.ui_element == self.btn_random_walls:
+                        self.random_walls()
+                    elif event.ui_element == self.btn_reset:
+                        self.reset_game()
+                    elif event.ui_element == self.btn_star:
+                        self.solve_astar()
+                    elif event.ui_element == self.btn_manhattan:
+                        self.Heuristic = 'Manhattan'
+                    elif event.ui_element == self.btn_euclidean:
+                        self.Heuristic = 'Euclidean'
+
+                self.manager.process_events(event)
+
+            self.draw_grid()
+            self.draw_cells()
+            self.manager.update(time_delta)
+            self.manager.draw_ui(self.screen)
+
+            pygame.display.update()
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="A* Pathfinding")
+    parser = argparse.ArgumentParser(description="A* Pathfinding")
+    parser.add_argument("width", type=int, help="Width of the grid")
+    parser.add_argument("height", type=int, help="Height of the grid")
+    parser.add_argument("obstacle_ratio", type=float, help="Ratio of obstacles")
+    args = parser.parse_args()
+
+    game = matrix(args.width, args.height, args.obstacle_ratio)
+    game.main()

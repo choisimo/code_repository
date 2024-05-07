@@ -1,3 +1,6 @@
+import math
+
+
 class Node:
     def __init__(self, block, x_location, y_location, cell_size):
         self.blocks = []
@@ -10,21 +13,26 @@ class Node:
 
 class solve_aStar:
     def __init__(self, block, start_pos, goal_pos, heuristic_type, wall, matrix):
-        self.open_list = []
-        self.closed_list = set(start_pos)
-        self.current = start_pos
-        self.parent = set()
-        self.g_stack = set(0)
+
         self.start_pos = start_pos
         self.goal_pos = goal_pos
-        self.matrix = matrix
-        self.block = block
-        self.wall = wall
-        print("wall List : ", wall)
-        self.heuristic_type = heuristic_type
 
         self.diagonal_cost = 14
         self.Horizontal_cost = 10
+
+        self.open_list = []
+        self.closed_list = set(start_pos)
+        self.current = start_pos
+
+        self.parent = set()
+        self.g_stack = [0]
+        self.heuristic_type = heuristic_type
+        self.h_stack = [self.cell_h(start_pos)]
+
+        self.matrix = matrix
+        self.block = block
+        self.wall = wall
+
 
         # def list
         self.add_open_list(start_pos)
@@ -50,12 +58,13 @@ class solve_aStar:
         print("start_pos = ", self.start_pos, "goal_pos = ", self.goal_pos)
         x_pos = block_pos[0]
         y_pos = block_pos[1]
+        # 8방향 탐색, 현재 pos, 대각선 pos 제외
         for x_plus in [-1, 0, 1]:
             for y_plus in [-1, 0, 1]:
                 if not (x_plus == 0 and y_plus == 0):
                     if x_plus != 0 and y_plus != 0:
                         continue
-
+                    # 이웃 좌표
                     x_forward = x_pos + x_plus
                     y_forward = y_pos + y_plus
 
@@ -65,18 +74,37 @@ class solve_aStar:
 
                     # 해당 위치의 validation check
                     if self.checkValidPath(x_forward, y_forward, x_plus, y_plus):
+                        if forward_path == self.goal_pos:
+                            print("end search, reached goal_pos")
+                            break
                         # open_list 에 있는 경로인지 체크
                         if forward_path in self.open_list:
                             print("already in open_list : ", x_forward, ",", y_forward)
-                            self.parent.add(current_path)
-                            if self.cell_g(x_plus, y_plus) < self.g_stack[0]:
-                                forward = self.cal_direction(x_plus, y_plus)
-                                self.parent.add(current_path)
-
+                            # 이웃 노드의 부모 pos 를 현재 pos 로 지정 후 현재 위치를 forward_path 로 지정
+                            self.setParent(current_path)
+                            current_path = forward_path
+                            # 새로운 경로 g 비용이 현재 저장된 비용보다 작을 경우에만 적용
+                            current_g = self.cell_g(x_plus, y_plus)
+                            if current_g < self.g_stack[-1]:
+                                forward_direction = self.cal_direction(x_plus, y_plus)
+                                self.parent.add((current_path, forward_direction))
+                            else:
+                                print("new_g value is not smaller than parent_g value : ", self.parent.pop())
                         else:
+                            print("not in open_list : ", forward_path)
                             self.open_list.append(forward_path)
+                            new_direction = self.cal_direction(x_plus, y_plus)
+                            self.parent.add((current_path, new_direction))
 
-    def setParent(self, start_pos):
+                            g_val = self.cell_g(x_plus, y_plus)
+                            h_val = self.cell_h(forward_path)
+
+                            self.g_stack.append(g_val)
+                            self.h_stack.append(h_val)
+
+    def setParent(self, current_pos):
+        print("parent pos add : ", current_pos)
+        self.parent.add(current_pos)
 
     # 부모 g 값을 기반으로 g 값 계산하기 (수평 +10, 대각선 +14)
     def cell_g(self, x_plus, y_plus):
@@ -84,6 +112,17 @@ class solve_aStar:
             return self.Horizontal_cost + self.g_stack[-1]
         else:
             return self.diagonal_cost + self.g_stack[-1]
+
+    def cell_h(self, forward_path):
+        x_forward = forward_path[0]
+        y_forward = forward_path[1]
+
+        if self.heuristic_type == "Manhattan":
+            print("heuristic type : ", self.heuristic_type)
+            return self.heuristic_manhattan(x_forward, y_forward)
+        elif self.heuristic_type == "Euclidean":
+            print("heuristic type : ", self.heuristic_type)
+            return self.heuristic_euclidean(x_forward, y_forward)
 
     def checkValidPath(self, x_forward, y_forward, x_plus, y_plus):
         position = (x_forward, y_forward)
@@ -109,19 +148,9 @@ class solve_aStar:
         print("valid: ", x_forward, ",", y_forward)
         return True
 
+    def heuristic_euclidean(self, x_pos, y_pos):
+        return math.sqrt((self.goal_pos[0] - x_pos) ** 2 + (self.goal_pos[1] - y_pos) ** 2) * self.Horizontal_cost
 
+    def heuristic_manhattan(self, x_pos, y_pos):
+        return (abs(self.goal_pos[0] - x_pos) + abs(self.goal_pos[1] - y_pos)) * self.Horizontal_cost
 
-    def heuristic(self, pos: Coord, goal: Coord, heuristic_type: str) -> int:
-        if heuristic_type == "Manhattan":
-            return self.heuristic_manhattan(pos, goal)
-        elif heuristic_type == "Euclidean":
-            return self.heuristic_euclidean(pos, goal)
-        return 0
-
-    def heuristic_euclidean(self, pos: Coord, goal: Coord):
-        (x1, y1), (x2, y2) = pos, goal
-        return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2)
-
-    def heuristic_manhattan(self, pos: Coord, goal: Coord):
-        (x1, y1), (x2, y2) = pos, goal
-        return abs(x1 - x2) + abs(y1 - y2)
