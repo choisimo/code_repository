@@ -158,9 +158,9 @@ if __name__ == "__main__":
     print("python 파일이름.py width height obstacle_ratio 입력하여 실행")
     print("예시 : python test.py 30 30 0.3")
     parser = argparse.ArgumentParser(description="A* Pathfinding")
-    parser.add_argument("--width", type=int, help="Width (N)")
-    parser.add_argument("--height", type=int, help="Height (M)")
-    parser.add_argument("--obstacle_ratio", type=float, help="Ratio of obstacles")
+    parser.add_argument("width", type=int, help="Width (N)")
+    parser.add_argument("height", type=int, help="Height (M)")
+    parser.add_argument("obstacle_ratio", type=float, help="Ratio of obstacles")
     args = parser.parse_args()
 
     game = matrix(args.width, args.height, args.obstacle_ratio)
