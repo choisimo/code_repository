@@ -128,11 +128,21 @@ class DoubleLinkedList:
                     indexList.append(current_index)
                 current_index += 1
                 node = node.next
-            return indexList
+        return indexList
 
     def __getitem__(self, item: int) -> int:
-        current_node = self.head
-        return current_node.data
+        if self.head is None:
+            raise Exception("empty list")
+
+        currentNode = self.head
+        currentIndex = 0
+        while currentNode is not None:
+            if currentIndex == item:
+                return currentNode.data
+            currentNode = currentNode.next
+            currentIndex += 1
+
+
 
     def size(self):
         size = 0
