@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/WorkSpace/git/code_repository/cmake-build-debug/
+cmake_ninja_workdir = C$:/workspace/github/code_repository/cmake-build-debug/
 # =============================================================================
 # Object build statements for EXECUTABLE target new_target
 
@@ -49,109 +49,109 @@ cmake_ninja_workdir = C$:/WorkSpace/git/code_repository/cmake-build-debug/
 
 build cmake_object_order_depends_target_new_target: phony || CMakeFiles/new_target.dir
 
-build CMakeFiles/new_target.dir/Data_structure/C++/others/sum.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/others/sum.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/others/sum.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/others/sum.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\others\sum.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\others
 
-build CMakeFiles/new_target.dir/Data_structure/C++/others/testfile.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/others/testfile.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/others/testfile.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/others/testfile.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\others\testfile.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\others
 
-build CMakeFiles/new_target.dir/Data_structure/C++/others/pointer.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/others/pointer.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/others/pointer.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/others/pointer.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\others\pointer.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\others
 
-build CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/work1/dynamic.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/work1/dynamic.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/dynamic.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\work1\dynamic.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\work1
 
-build CMakeFiles/new_target.dir/Data_structure/C++/homework2/inheritage_Stack_queue.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/inheritage_Stack_queue.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/homework2/inheritage_Stack_queue.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/inheritage_Stack_queue.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\homework2\inheritage_Stack_queue.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\homework2
 
-build CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/work1/delete.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/work1/delete.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/delete.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\work1\delete.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\work1
 
-build CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/work1/stack.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/work1/stack.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/stack.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\work1\stack.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\work1
 
-build CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/infix_postfix_calculate.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/infix_postfix_calculate.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\infix_postfix_calculate.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
-build CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/rectangle.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/rectangle.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/rectangle.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\rectangle.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
-build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/annotation.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/annotation.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\annotation.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
-build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/annotation2.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/annotation2.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/annotation2.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\annotation2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
-build CMakeFiles/new_target.dir/Data_structure/C++/stack/stack_test.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/stack_test.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/stack_test.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/stack_test.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\stack_test.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
-build CMakeFiles/new_target.dir/Data_structure/C++/stack/homework_3.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/homework_3.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/stack/homework_3.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/homework_3.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\stack\homework_3.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\stack
 
-build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus1.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/litmus1.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus1.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/litmus1.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\homework2\litmus1.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\homework2
 
-build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/litmus2.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/litmus2.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\homework2\litmus2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\homework2
 
-build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2_test.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/litmus2_test.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2_test.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/litmus2_test.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\homework2\litmus2_test.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\homework2
 
-build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2_test2.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/litmus2_test2.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/homework2/litmus2_test2.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/litmus2_test2.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\homework2\litmus2_test2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
   OBJECT_FILE_DIR = CMakeFiles\new_target.dir\Data_structure\C++\homework2
 
-build CMakeFiles/new_target.dir/Data_structure/C++/homework2/test3.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/test3.cpp || cmake_object_order_depends_target_new_target
+build CMakeFiles/new_target.dir/Data_structure/C++/homework2/test3.cpp.obj: CXX_COMPILER__new_target_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/test3.cpp || cmake_object_order_depends_target_new_target
   DEP_FILE = CMakeFiles\new_target.dir\Data_structure\C++\homework2\test3.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\new_target.dir
@@ -184,7 +184,7 @@ build new_target.exe: CXX_EXECUTABLE_LINKER__new_target_Debug CMakeFiles/new_tar
 
 build cmake_object_order_depends_target_Data_structure_C++_stack_rectangle: phony || CMakeFiles/Data_structure_C++_stack_rectangle.dir
 
-build CMakeFiles/Data_structure_C++_stack_rectangle.dir/Data_structure/C++/stack/rectangle.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_rectangle_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/rectangle.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_rectangle
+build CMakeFiles/Data_structure_C++_stack_rectangle.dir/Data_structure/C++/stack/rectangle.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_rectangle_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/rectangle.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_rectangle
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_rectangle.dir\Data_structure\C++\stack\rectangle.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_rectangle.dir
@@ -217,19 +217,19 @@ build Data_structure_C++_stack_rectangle.exe: CXX_EXECUTABLE_LINKER__Data_struct
 
 build cmake_object_order_depends_target_Data_structure_C++_stack_annotation: phony || CMakeFiles/Data_structure_C++_stack_annotation.dir
 
-build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/annotation.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/annotation.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
+build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/annotation.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/annotation.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\stack\annotation.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\stack
 
-build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/homework4_5.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/homework4_5.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
+build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/stack/homework4_5.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/homework4_5.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\stack\homework4_5.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\stack
 
-build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/others/single_linked_list.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/others/single_linked_list.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
+build CMakeFiles/Data_structure_C++_stack_annotation.dir/Data_structure/C++/others/single_linked_list.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/others/single_linked_list.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_annotation.dir\Data_structure\C++\others\single_linked_list.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation.dir
@@ -262,13 +262,13 @@ build Data_structure_C++_stack_annotation.exe: CXX_EXECUTABLE_LINKER__Data_struc
 
 build cmake_object_order_depends_target_Data_structure_C++_testfile: phony || CMakeFiles/Data_structure_C++_testfile.dir
 
-build CMakeFiles/Data_structure_C++_testfile.dir/Data_structure/C++/work1/testfile.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_testfile_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/work1/testfile.cpp || cmake_object_order_depends_target_Data_structure_C++_testfile
+build CMakeFiles/Data_structure_C++_testfile.dir/Data_structure/C++/work1/testfile.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_testfile_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/work1/testfile.cpp || cmake_object_order_depends_target_Data_structure_C++_testfile
   DEP_FILE = CMakeFiles\Data_structure_C++_testfile.dir\Data_structure\C++\work1\testfile.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_testfile.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_testfile.dir\Data_structure\C++\work1
 
-build CMakeFiles/Data_structure_C++_testfile.dir/Data_structure/C++/others/testfile.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_testfile_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/others/testfile.cpp || cmake_object_order_depends_target_Data_structure_C++_testfile
+build CMakeFiles/Data_structure_C++_testfile.dir/Data_structure/C++/others/testfile.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_testfile_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/others/testfile.cpp || cmake_object_order_depends_target_Data_structure_C++_testfile
   DEP_FILE = CMakeFiles\Data_structure_C++_testfile.dir\Data_structure\C++\others\testfile.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_testfile.dir
@@ -301,7 +301,7 @@ build Data_structure_C++_testfile.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2
 
 build cmake_object_order_depends_target_Data_structure_C++_stack_annotation2: phony || CMakeFiles/Data_structure_C++_stack_annotation2.dir
 
-build CMakeFiles/Data_structure_C++_stack_annotation2.dir/Data_structure/C++/stack/annotation2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation2_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/annotation2.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation2
+build CMakeFiles/Data_structure_C++_stack_annotation2.dir/Data_structure/C++/stack/annotation2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_annotation2_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/annotation2.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_annotation2
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_annotation2.dir\Data_structure\C++\stack\annotation2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_annotation2.dir
@@ -334,7 +334,7 @@ build Data_structure_C++_stack_annotation2.exe: CXX_EXECUTABLE_LINKER__Data_stru
 
 build cmake_object_order_depends_target_Data_structure_C++_stack_infix_postfix_calculate: phony || CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir
 
-build CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_infix_postfix_calculate_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/infix_postfix_calculate.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_infix_postfix_calculate
+build CMakeFiles/Data_structure_C++_stack_infix_postfix_calculate.dir/Data_structure/C++/stack/infix_postfix_calculate.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_infix_postfix_calculate_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/infix_postfix_calculate.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_infix_postfix_calculate
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_infix_postfix_calculate.dir\Data_structure\C++\stack\infix_postfix_calculate.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_infix_postfix_calculate.dir
@@ -367,7 +367,7 @@ build Data_structure_C++_stack_infix_postfix_calculate.exe: CXX_EXECUTABLE_LINKE
 
 build cmake_object_order_depends_target_Data_structure_C++_stack_stack_test: phony || CMakeFiles/Data_structure_C++_stack_stack_test.dir
 
-build CMakeFiles/Data_structure_C++_stack_stack_test.dir/Data_structure/C++/stack/stack_test.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_stack_test_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/stack_test.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_stack_test
+build CMakeFiles/Data_structure_C++_stack_stack_test.dir/Data_structure/C++/stack/stack_test.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_stack_test_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/stack_test.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_stack_test
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_stack_test.dir\Data_structure\C++\stack\stack_test.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_stack_test.dir
@@ -400,7 +400,7 @@ build Data_structure_C++_stack_stack_test.exe: CXX_EXECUTABLE_LINKER__Data_struc
 
 build cmake_object_order_depends_target_Data_structure_C++_stack_homework4_5: phony || CMakeFiles/Data_structure_C++_stack_homework4_5.dir
 
-build CMakeFiles/Data_structure_C++_stack_homework4_5.dir/Data_structure/C++/stack/homework4_5.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_homework4_5_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/homework4_5.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_homework4_5
+build CMakeFiles/Data_structure_C++_stack_homework4_5.dir/Data_structure/C++/stack/homework4_5.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_homework4_5_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/homework4_5.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_homework4_5
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_homework4_5.dir\Data_structure\C++\stack\homework4_5.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_homework4_5.dir
@@ -433,7 +433,7 @@ build Data_structure_C++_stack_homework4_5.exe: CXX_EXECUTABLE_LINKER__Data_stru
 
 build cmake_object_order_depends_target_Data_structure_C++_stack_homework_3: phony || CMakeFiles/Data_structure_C++_stack_homework_3.dir
 
-build CMakeFiles/Data_structure_C++_stack_homework_3.dir/Data_structure/C++/stack/homework_3.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_homework_3_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/stack/homework_3.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_homework_3
+build CMakeFiles/Data_structure_C++_stack_homework_3.dir/Data_structure/C++/stack/homework_3.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_stack_homework_3_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/stack/homework_3.cpp || cmake_object_order_depends_target_Data_structure_C++_stack_homework_3
   DEP_FILE = CMakeFiles\Data_structure_C++_stack_homework_3.dir\Data_structure\C++\stack\homework_3.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_stack_homework_3.dir
@@ -466,7 +466,7 @@ build Data_structure_C++_stack_homework_3.exe: CXX_EXECUTABLE_LINKER__Data_struc
 
 build cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2: phony || CMakeFiles/Data_structure_C++_homework2_litmus2.dir
 
-build CMakeFiles/Data_structure_C++_homework2_litmus2.dir/Data_structure/C++/homework2/litmus2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_litmus2_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/litmus2.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2
+build CMakeFiles/Data_structure_C++_homework2_litmus2.dir/Data_structure/C++/homework2/litmus2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_litmus2_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/litmus2.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_litmus2.dir\Data_structure\C++\homework2\litmus2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_litmus2.dir
@@ -499,7 +499,7 @@ build Data_structure_C++_homework2_litmus2.exe: CXX_EXECUTABLE_LINKER__Data_stru
 
 build cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2_test: phony || CMakeFiles/Data_structure_C++_homework2_litmus2_test.dir
 
-build CMakeFiles/Data_structure_C++_homework2_litmus2_test.dir/Data_structure/C++/homework2/litmus2_test.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_litmus2_test_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/litmus2_test.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2_test
+build CMakeFiles/Data_structure_C++_homework2_litmus2_test.dir/Data_structure/C++/homework2/litmus2_test.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_litmus2_test_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/litmus2_test.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2_test
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_litmus2_test.dir\Data_structure\C++\homework2\litmus2_test.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_litmus2_test.dir
@@ -532,7 +532,7 @@ build Data_structure_C++_homework2_litmus2_test.exe: CXX_EXECUTABLE_LINKER__Data
 
 build cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2_test2: phony || CMakeFiles/Data_structure_C++_homework2_litmus2_test2.dir
 
-build CMakeFiles/Data_structure_C++_homework2_litmus2_test2.dir/Data_structure/C++/homework2/litmus2_test2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_litmus2_test2_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/litmus2_test2.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2_test2
+build CMakeFiles/Data_structure_C++_homework2_litmus2_test2.dir/Data_structure/C++/homework2/litmus2_test2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_litmus2_test2_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/litmus2_test2.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_litmus2_test2
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_litmus2_test2.dir\Data_structure\C++\homework2\litmus2_test2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_litmus2_test2.dir
@@ -565,7 +565,7 @@ build Data_structure_C++_homework2_litmus2_test2.exe: CXX_EXECUTABLE_LINKER__Dat
 
 build cmake_object_order_depends_target_Data_structure_C++_homework2_test3: phony || CMakeFiles/Data_structure_C++_homework2_test3.dir
 
-build CMakeFiles/Data_structure_C++_homework2_test3.dir/Data_structure/C++/homework2/test3.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_test3_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/test3.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_test3
+build CMakeFiles/Data_structure_C++_homework2_test3.dir/Data_structure/C++/homework2/test3.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_test3_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/test3.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_test3
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_test3.dir\Data_structure\C++\homework2\test3.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_test3.dir
@@ -598,113 +598,161 @@ build Data_structure_C++_homework2_test3.exe: CXX_EXECUTABLE_LINKER__Data_struct
 
 build cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue: phony || CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/homework2/inheritage_Stack_queue.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/homework2/inheritage_Stack_queue.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/homework2/inheritage_Stack_queue.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/homework2/inheritage_Stack_queue.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\homework2\inheritage_Stack_queue.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\homework2
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/struct_wallet.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0427/struct_wallet.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/struct_wallet.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0427/struct_wallet.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427\struct_wallet.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/array.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0427/array.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/array.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0427/array.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427\array.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/stack_exam1.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0427/stack_exam1.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/stack_exam1.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0427/stack_exam1.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427\stack_exam1.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0427/linkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0427/linkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427\linkedList.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0427/linkedList2.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList2.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0427/linkedList2.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427\linkedList2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/doubleLinkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0427/doubleLinkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/doubleLinkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0427/doubleLinkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427\doubleLinkedList.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/doubleLinkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0428/doubleLinkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/doubleLinkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0428/doubleLinkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0428\doubleLinkedList.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0428
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/checkMatch.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0428/checkMatch.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/checkMatch.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0428/checkMatch.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0428\checkMatch.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0428
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/infixtopostfix.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0427/infixtopostfix.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/infixtopostfix.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0427/infixtopostfix.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427\infixtopostfix.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0427
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/linkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0428/linkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/linkedList.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0428/linkedList.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0428\linkedList.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0428
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_create.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C/linux/0429/ac_create.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_create.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C/linux/0429/ac_create.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C\linux\0429\ac_create.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C\linux\0429
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_query.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C/linux/0429/ac_query.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_query.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C/linux/0429/ac_query.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C\linux\0429\ac_query.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C\linux\0429
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_update.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C/linux/0429/ac_update.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_update.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C/linux/0429/ac_update.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C\linux\0429\ac_update.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C\linux\0429
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/stack_new_change.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0513/stack_new_change.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/stack_new_change.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0513/stack_new_change.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513\stack_new_change.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/double_linked_list_new.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0513/double_linked_list_new.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/double_linked_list_new.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0513/double_linked_list_new.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513\double_linked_list_new.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_9.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0513/problem_9.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_9.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0513/problem_9.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513\problem_9.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513
 
-build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_10.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C++/0513/problem_10.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_10.cpp.obj: CXX_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C++/0513/problem_10.cpp || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
   DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513\problem_10.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Data_structure\C++\0513
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ac_create.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/ac_create.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ac_create.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/finalTermAlternative/client.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/finalTermAlternative/client.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\finalTermAlternative\client.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\finalTermAlternative
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/finalTermAlternative/server.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/finalTermAlternative/server.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\finalTermAlternative\server.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\finalTermAlternative
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch10/main1/main10.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/ch10/main1/main10.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch10\main1\main10.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch10\main1
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch10/main1-2/main10-2.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/ch10/main1-2/main10-2.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch10\main1-2\main10-2.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch10\main1-2
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch11/hw/ac_create.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/ch11/hw/ac_create.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch11\hw\ac_create.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch11\hw
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch11/hw/ac_query.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/ch11/hw/ac_query.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch11\hw\ac_query.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch11\hw
+
+build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch11/hw/ac_update.c.obj: C_COMPILER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_unscanned_Debug C$:/workspace/github/code_repository/Linux/ch11/hw/ac_update.c || cmake_object_order_depends_target_Data_structure_C++_homework2_inheritage_Stack_queue
+  DEP_FILE = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch11\hw\ac_update.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir\Linux\ch11\hw
 
 
 # =============================================================================
@@ -714,7 +762,7 @@ build CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_st
 #############################################
 # Link the executable Data_structure_C++_homework2_inheritage_Stack_queue.exe
 
-build Data_structure_C++_homework2_inheritage_Stack_queue.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_Debug CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/homework2/inheritage_Stack_queue.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/struct_wallet.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/array.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/stack_exam1.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList2.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/doubleLinkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/doubleLinkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/checkMatch.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/infixtopostfix.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/linkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_create.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_query.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_update.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/stack_new_change.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/double_linked_list_new.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_9.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_10.cpp.obj
+build Data_structure_C++_homework2_inheritage_Stack_queue.exe: CXX_EXECUTABLE_LINKER__Data_structure_C.2b.2b_homework2_inheritage_Stack_queue_Debug CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/homework2/inheritage_Stack_queue.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/struct_wallet.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/array.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/stack_exam1.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/linkedList2.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/doubleLinkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/doubleLinkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/checkMatch.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0427/infixtopostfix.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0428/linkedList.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_create.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_query.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C/linux/0429/ac_update.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/stack_new_change.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/double_linked_list_new.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_9.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Data_structure/C++/0513/problem_10.cpp.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ac_create.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/finalTermAlternative/client.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/finalTermAlternative/server.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch10/main1/main10.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch10/main1-2/main10-2.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch11/hw/ac_create.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch11/hw/ac_query.c.obj CMakeFiles/Data_structure_C++_homework2_inheritage_Stack_queue.dir/Linux/ch11/hw/ac_update.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Data_structure_C++_homework2_inheritage_Stack_queue.dir
@@ -733,7 +781,7 @@ build Data_structure_C++_homework2_inheritage_Stack_queue.exe: CXX_EXECUTABLE_LI
 
 build cmake_object_order_depends_target_Data_structure_C_linux_0429_ac_create: phony || CMakeFiles/Data_structure_C_linux_0429_ac_create.dir
 
-build CMakeFiles/Data_structure_C_linux_0429_ac_create.dir/Data_structure/C/linux/0429/ac_create.c.obj: C_COMPILER__Data_structure_C_linux_0429_ac_create_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C/linux/0429/ac_create.c || cmake_object_order_depends_target_Data_structure_C_linux_0429_ac_create
+build CMakeFiles/Data_structure_C_linux_0429_ac_create.dir/Data_structure/C/linux/0429/ac_create.c.obj: C_COMPILER__Data_structure_C_linux_0429_ac_create_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C/linux/0429/ac_create.c || cmake_object_order_depends_target_Data_structure_C_linux_0429_ac_create
   DEP_FILE = CMakeFiles\Data_structure_C_linux_0429_ac_create.dir\Data_structure\C\linux\0429\ac_create.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C_linux_0429_ac_create.dir
@@ -766,7 +814,7 @@ build Data_structure_C_linux_0429_ac_create.exe: C_EXECUTABLE_LINKER__Data_struc
 
 build cmake_object_order_depends_target_Data_structure_C_linux_0429_ac_query: phony || CMakeFiles/Data_structure_C_linux_0429_ac_query.dir
 
-build CMakeFiles/Data_structure_C_linux_0429_ac_query.dir/Data_structure/C/linux/0429/ac_query.c.obj: C_COMPILER__Data_structure_C_linux_0429_ac_query_unscanned_Debug C$:/WorkSpace/git/code_repository/Data_structure/C/linux/0429/ac_query.c || cmake_object_order_depends_target_Data_structure_C_linux_0429_ac_query
+build CMakeFiles/Data_structure_C_linux_0429_ac_query.dir/Data_structure/C/linux/0429/ac_query.c.obj: C_COMPILER__Data_structure_C_linux_0429_ac_query_unscanned_Debug C$:/workspace/github/code_repository/Data_structure/C/linux/0429/ac_query.c || cmake_object_order_depends_target_Data_structure_C_linux_0429_ac_query
   DEP_FILE = CMakeFiles\Data_structure_C_linux_0429_ac_query.dir\Data_structure\C\linux\0429\ac_query.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Data_structure_C_linux_0429_ac_query.dir
@@ -795,7 +843,7 @@ build Data_structure_C_linux_0429_ac_query.exe: C_EXECUTABLE_LINKER__Data_struct
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\WorkSpace\git\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\workspace\github\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -806,7 +854,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\WorkSpace\git\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\WorkSpace\git\code_repository -BC:\WorkSpace\git\code_repository\cmake-build-debug"
+  COMMAND = cmd.exe /C "cd /D C:\workspace\github\code_repository\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -SC:\workspace\github\code_repository -BC:\workspace\github\code_repository\cmake-build-debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -854,7 +902,7 @@ build new_target: phony new_target.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/WorkSpace/git/code_repository/cmake-build-debug
+# Folder: C:/workspace/github/code_repository/cmake-build-debug
 
 build all: phony new_target.exe Data_structure_C++_stack_rectangle.exe Data_structure_C++_stack_annotation.exe Data_structure_C++_testfile.exe Data_structure_C++_stack_annotation2.exe Data_structure_C++_stack_infix_postfix_calculate.exe Data_structure_C++_stack_stack_test.exe Data_structure_C++_stack_homework4_5.exe Data_structure_C++_stack_homework_3.exe Data_structure_C++_homework2_litmus2.exe Data_structure_C++_homework2_litmus2_test.exe Data_structure_C++_homework2_litmus2_test2.exe Data_structure_C++_homework2_test3.exe Data_structure_C++_homework2_inheritage_Stack_queue.exe Data_structure_C_linux_0429_ac_create.exe Data_structure_C_linux_0429_ac_query.exe
 
@@ -870,14 +918,14 @@ build all: phony new_target.exe Data_structure_C++_stack_rectangle.exe Data_stru
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/WorkSpace/git/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/workspace/github/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/WorkSpace/git/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-Initialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2023.3.4/bin/cmake/win/x64/share/cmake-3.27/Modules/Platform/WindowsPaths.cmake C$:/workspace/github/code_repository/CMakeLists.txt CMakeCache.txt CMakeFiles/3.27.8/CMakeCCompiler.cmake CMakeFiles/3.27.8/CMakeCXXCompiler.cmake CMakeFiles/3.27.8/CMakeRCCompiler.cmake CMakeFiles/3.27.8/CMakeSystem.cmake: phony
 
 
 #############################################

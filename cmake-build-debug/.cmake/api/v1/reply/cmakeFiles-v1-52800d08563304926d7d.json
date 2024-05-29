@@ -154,8 +154,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/WorkSpace/git/code_repository/cmake-build-debug",
-		"source" : "C:/WorkSpace/git/code_repository"
+		"build" : "C:/workspace/github/code_repository/cmake-build-debug",
+		"source" : "C:/workspace/github/code_repository"
 	},
 	"version" : 
 	{

@@ -69,6 +69,16 @@ add_executable(Data_structure_C++_homework2_inheritage_Stack_queue Data_structur
         Data_structure/C++/0513/stack_new_change.cpp
         Data_structure/C++/0513/double_linked_list_new.cpp
         Data_structure/C++/0513/problem_9.cpp
-        Data_structure/C++/0513/problem_10.cpp)
+        Data_structure/C++/0513/problem_10.cpp
+        Linux/ac_create.c
+        Linux/finalTermAlternative/client.c
+        Linux/finalTermAlternative/server.c
+        Linux/ch10/main1/main10.c
+        Linux/ch10/main1/account.h
+        Linux/ch10/main1-2/account.h
+        Linux/ch10/main1-2/main10-2.c
+        Linux/ch11/hw/ac_create.c
+        Linux/ch11/hw/ac_query.c
+        Linux/ch11/hw/ac_update.c)
 add_executable(Data_structure_C_linux_0429_ac_create Data_structure/C/linux/0429/ac_create.c)
 add_executable(Data_structure_C_linux_0429_ac_query Data_structure/C/linux/0429/ac_query.c)
