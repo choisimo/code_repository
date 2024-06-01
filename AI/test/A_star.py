@@ -2,13 +2,8 @@ import argparse
 import pygame
 import pygame_gui
 import random
-import math
-import heapq
-import tkinter as tk
-from Node import Node
 from a2 import Astar
-from typing import List, Tuple, Callable
-
+from typing import List, Tuple
 
 
 class matrix:
