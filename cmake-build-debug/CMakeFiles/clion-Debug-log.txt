@@ -60,6 +60,6 @@ CMake Warning (dev) at CMakeLists.txt:40 (add_executable):
   command to set the policy and suppress this warning.
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done (0.0s)
+-- Configuring done (0.2s)
 -- Generating done (0.0s)
 -- Build files have been written to: C:/WorkSpace/git/code_repository/cmake-build-debug
