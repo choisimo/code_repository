@@ -6,7 +6,7 @@
 #include <signal.h>
 
 void intHandler();
-
+char* filename;
 /* Save account information */
 int main(int argc, char *argv[])
 {
@@ -18,6 +18,9 @@ int main(int argc, char *argv[])
       fprintf(stderr, "사용법 : %s file\n", argv[0]);
       exit(1);
    }
+
+   filename = argv[1];
+
    fp = fopen(argv[1], "wb");
 
    printf("%-9s %-8s %-4s\n", "ID", "Name", "Balance");
@@ -35,6 +38,6 @@ int main(int argc, char *argv[])
 }
 
 void intHandler(){
-    printf("intHandler\n");
+    execl("./ac_update", "ac_update",filename, (char*) NULL);
     exit(0);
 }

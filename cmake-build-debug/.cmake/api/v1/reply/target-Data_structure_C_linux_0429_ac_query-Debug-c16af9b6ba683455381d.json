@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Data_structure_C_linux_0429_ac_create.exe"
+			"path" : "Data_structure_C_linux_0429_ac_query.exe"
 		},
 		{
-			"path" : "Data_structure_C_linux_0429_ac_create.pdb"
+			"path" : "Data_structure_C_linux_0429_ac_query.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -48,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "Data_structure_C_linux_0429_ac_create::@6890427a1f51a3e7e1df",
+	"id" : "Data_structure_C_linux_0429_ac_query::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -68,8 +68,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "Data_structure_C_linux_0429_ac_create",
-	"nameOnDisk" : "Data_structure_C_linux_0429_ac_create.exe",
+	"name" : "Data_structure_C_linux_0429_ac_query",
+	"nameOnDisk" : "Data_structure_C_linux_0429_ac_query.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -90,7 +90,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Data_structure/C/linux/0429/ac_create.c",
+			"path" : "Data_structure/C/linux/0429/ac_query.c",
 			"sourceGroupIndex" : 0
 		}
 	],
