@@ -1,0 +1,22 @@
+initialize:
+    w = 0, b = 0,
+    η = learning rate
+
+iterate:
+    for t = 1, 2, 3, ..., do:
+        shuffle training data
+        for each mini-batch(mini_x, mini_y) in training set:
+            compute predictions :
+                # 예측값 계산
+                y_predict = mini_x * w + b
+                compute error:
+                # 오차 계산
+                error = y_predict - mini_y
+                compute gradients:
+                # 기울기 계산
+                dw = (1/size) * mini_x ^ T * error
+                db = (1/m) * sum(error)
+                update parameters:
+                # parameter update
+                w = w - n * dw
+                b = b - n * db
