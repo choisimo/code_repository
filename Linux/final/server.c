@@ -5,7 +5,34 @@
 #include <arpa/inet.h>
 #include "locker.h"
 
+#define DATABASE "locker_database.txt"
+
 struct Locker lockers[MAX_CLIENTS];
+
+void saveDB(){
+    FILE *db = fopen(DATABASE, "w");
+    if (db == NULL){
+        perror("cannot access to db file");
+        return;
+    }
+    for (int i = 0; i < MAX_CLIENTS; i++){
+        fprintf(db, "%d %d %s %s\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].password, lockers[i].content);
+    }
+    fclose(db);
+}
+
+void loadDB(){
+    FILE *db = fopen(DATABASE, "r");
+    if (db == NULL){
+        perror("cannot access to db file");
+        initialize_lockers();
+        return;
+    }
+    for (int i = 0; i < MAX_CLIENTS; i++){
+        fscanf(db, "%d %d %s %s\n", &lockers[i].locker_id, &lockers[i].in_use, lockers[i].password, lockers[i].content);
+    }
+    fclose(db);
+}
 
 void initialize_lockers() {
     for (int i = 0; i < MAX_CLIENTS; i++) {
@@ -14,17 +41,18 @@ void initialize_lockers() {
         strcpy(lockers[i].password, "");
         strcpy(lockers[i].content, "");
     }
+    saveDB();
 }
 
 void handle_client(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
 
-    // Receive locker id and password from client
+    // Receive locker id from client
     if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
         buffer[read_size] = '\0';
         int locker_id = atoi(buffer);
-        
+
         // Check if locker id is valid
         if (locker_id < 0 || locker_id >= MAX_CLIENTS) {
             char *message = "Invalid locker ID.\n";
@@ -44,7 +72,9 @@ void handle_client(int client_socket) {
                 if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
                     buffer[read_size] = '\0';
                     strcpy(lockers[locker_id].content, buffer);
-                    
+
+                    saveDB();  // Save lockers to file after modification
+
                     char *message = "Locker content saved.\n";
                     send(client_socket, message, strlen(message), 0);
                 }
@@ -58,23 +88,13 @@ void handle_client(int client_socket) {
     close(client_socket);
 }
 
-void print_menu(){
-    printf("┌─────────────────────────────────┐\n");
-    printf("│         메뉴를 선택해주세요        │\n");
-    printf("│─────────────────────────────────│\n");
-    printf("│    1. 조회 │ 2. 예약 │ 3. 지불    │\n");
-    printf("│─────────────────────────────────│\n");
-    printf("│    4. 남은 시간 │ 5. 비용 확인     │\n");
-    printf("└─────────────────────────────────┘\n");
-}
-
 int main() {
     int server_socket, client_socket;
     struct sockaddr_in server_addr, client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
 
-    // Initialize lockers
-    initialize_lockers();
+    // Load lockers from file
+    loadDB();
 
     // Create socket
     if ((server_socket = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
@@ -98,7 +118,7 @@ int main() {
 
     printf("Waiting for incoming connections...\n");
 
-    // Accept and incoming connection
+    // Accept an incoming connection
     while ((client_socket = accept(server_socket, (struct sockaddr *)&client_addr, &client_addr_len))) {
         printf("Connection accepted\n");
         handle_client(client_socket);
@@ -112,4 +132,3 @@ int main() {
     close(server_socket);
     return 0;
 }
-
