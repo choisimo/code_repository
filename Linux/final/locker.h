@@ -7,7 +7,7 @@
 #define MAX_CLIENTS 10
 #define MAX_PASSWORD_SIZE 128
 #define BUFFER_SIZE 1024
-#define PORT 8081
+#define PORT 8088
 #define DATABASE "locker_database.txt"
 #define LoggerFile "log.txt"
 
@@ -16,6 +16,7 @@ struct Locker{
     char password[BUFFER_SIZE];
     char content[BUFFER_SIZE];
     int in_use;
+    time_t time;
 };
 
 #endif //CODE_REPOSITORY_LOCKER_H
