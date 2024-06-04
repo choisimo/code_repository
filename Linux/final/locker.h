@@ -7,7 +7,7 @@
 #define MAX_CLIENTS 10
 #define MAX_PASSWORD_SIZE 128
 #define BUFFER_SIZE 1024
-#define PORT 8080
+#define PORT 8081
 #define DATABASE "lockerDB.txt"
 
 struct Locker{

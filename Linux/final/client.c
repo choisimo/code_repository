@@ -6,7 +6,6 @@
 #include "locker.h"
 
 void print_menu(){
-
     printf(" please choose one menu following \n");
     printf(" 1. search \n");
     printf(" 2. reservation \n");
@@ -14,9 +13,6 @@ void print_menu(){
     printf(" 4. remain time \n");
     printf(" 5. check current bill \n");
     printf("\n");
-    printf("\n");
-
-
 }
 
 int get_menu_num(int menu_num){
@@ -46,7 +42,7 @@ int main() {
     char buffer[BUFFER_SIZE];
     char message[BUFFER_SIZE];
 
-    // Create socket
+    // socket create attempt
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Socket creation error \n");
         return -1;
@@ -55,35 +51,45 @@ int main() {
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(PORT);
 
-    // Convert IPv4 and IPv6 addresses from text to binary form
     if (inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr) <= 0) {
-        printf("Invalid address/ Address not supported \n");
+        printf("IPv4 address not accepted \n");
         return -1;
     }
 
-    // Connect to the server
+    // connect to server socket
     if (connect(sock, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-        printf("Connection Failed \n");
+        printf("error while connecting to server socket \n");
         return -1;
     }
 
     print_menu();
-    int menu_choice = scanf("메뉴 번호를 입력하시오 : %d", &menu_choice);
+    int menu_choice = -1;
+    printf("enter menu no : \n");
+    scanf("%d", &menu_choice);
+    getchar();
+
+    //send(sock, buffer, strlen(buffer). 0);
     get_menu_num(menu_choice);
 
-    // Input locker ID
     printf("Enter locker ID: ");
     fgets(buffer, BUFFER_SIZE, stdin);
-    send(sock, buffer, strlen(buffer), 0);
+    buffer[strcspn(buffer, "\n")] = 0;
+    strcat(buffer, " ");
+    //send(sock, buffer, strlen(buffer), 0);
 
     // Input password
     printf("Enter password: ");
     fgets(buffer, BUFFER_SIZE, stdin);
-    send(sock, buffer, strlen(buffer), 0);
+    buffer[strcspn(buffer, "\n")] = 0;
+    strcat(buffer, " ");
+    //send(sock, buffer, strlen(buffer), 0);
 
     // Input content
     printf("Enter content to store in the locker: ");
     fgets(buffer, BUFFER_SIZE, stdin);
+    buffer[strcspn(buffer, "\n")] = 0;
+    //send(sock, buffer strlen(buffer), 0);
+
     send(sock, buffer, strlen(buffer), 0);
 
     // Receive response from server

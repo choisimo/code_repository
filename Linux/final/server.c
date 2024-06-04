@@ -48,10 +48,14 @@ void handle_client(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
 
-    // Receive locker id from client
+    // Received data chunks from client server
     if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
         buffer[read_size] = '\0';
-        int locker_id = atoi(buffer);
+
+        char locker_id_str[BUFFER_SIZE], password[MAX_PASSWORD_SIZE], content[BUFFER_SIZE];
+        sscanf(buffer, "%s %s %[^\n]", locker_id_str, password, content);
+
+        int locker_id = atoi(locker_id_str);
 
         // Check if locker id is valid
         if (locker_id < 0 || locker_id >= MAX_CLIENTS) {
@@ -60,32 +64,23 @@ void handle_client(int client_socket) {
             close(client_socket);
             return;
         }
+        if (strcmp(lockers[locker_id].password, password) == 0 || lockers[locker_id].in_use == 0) {
+            lockers[locker_id].in_use = 1;
+            strcpy(lockers[locker_id].password, password);
+            strcpy(lockers[locker_id].content, content);
 
-        // Receive password
-        if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
-            buffer[read_size] = '\0';
-            if (strcmp(lockers[locker_id].password, buffer) == 0 || lockers[locker_id].in_use == 0) {
-                lockers[locker_id].in_use = 1;
-                strcpy(lockers[locker_id].password, buffer);
+            saveDB();  // Save lockers to file after modification
 
-                // Receive content
-                if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
-                    buffer[read_size] = '\0';
-                    strcpy(lockers[locker_id].content, buffer);
-
-                    saveDB();  // Save lockers to file after modification
-
-                    char *message = "Locker content saved.\n";
-                    send(client_socket, message, strlen(message), 0);
-                }
-            } else {
-                char *message = "Incorrect password.\n";
-                send(client_socket, message, strlen(message), 0);
-            }
+            char *message = "Locker content saved.\n";
+            send(client_socket, message, strlen(message), 0);
+        } else {
+            char *message = "Incorrect password.\n";
+            send(client_socket, message, strlen(message), 0);
         }
     }
 
     close(client_socket);
+
 }
 
 int main() {
