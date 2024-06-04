@@ -5,8 +5,6 @@
 #include <arpa/inet.h>
 #include "locker.h"
 
-#define DATABASE "locker_database.txt"
-
 struct Locker lockers[MAX_CLIENTS];
 
 void saveDB(){
@@ -21,6 +19,17 @@ void saveDB(){
     fclose(db);
 }
 
+int initialize_lockers() {
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        lockers[i].locker_id = i;
+        lockers[i].in_use = 0;
+        strcpy(lockers[i].password, "");
+        strcpy(lockers[i].content, "");
+    }
+    saveDB();
+}
+
+
 void loadDB(){
     FILE *db = fopen(DATABASE, "r");
     if (db == NULL){
@@ -34,15 +43,19 @@ void loadDB(){
     fclose(db);
 }
 
-void initialize_lockers() {
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        lockers[i].locker_id = i;
-        lockers[i].in_use = 0;
-        strcpy(lockers[i].password, "");
-        strcpy(lockers[i].content, "");
+void saveLogger(const char* message){
+    FILE* Logger = fopen(LoggerFile, "w");
+    if (Logger == NULL){
+        message = "Logger file not exist";
+        perror(message);
+        fprintf(Logger, "init Logger");
+        getchar();
+    } else {
+        fprintf(Logger, message);
+        getchar();
     }
-    saveDB();
 }
+
 
 void handle_client(int client_socket) {
     char buffer[BUFFER_SIZE];
@@ -52,18 +65,28 @@ void handle_client(int client_socket) {
     if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
         buffer[read_size] = '\0';
 
-        char locker_id_str[BUFFER_SIZE], password[MAX_PASSWORD_SIZE], content[BUFFER_SIZE];
-        sscanf(buffer, "%s %s %[^\n]", locker_id_str, password, content);
+        int locker_id = atoi(buffer);
 
-        int locker_id = atoi(locker_id_str);
-
-        // Check if locker id is valid
+        // 유효한 잠금 장치 ID인지 확인
         if (locker_id < 0 || locker_id >= MAX_CLIENTS) {
             char *message = "Invalid locker ID.\n";
+            saveLogger(message);
             send(client_socket, message, strlen(message), 0);
-            close(client_socket);
-            return;
+        } else {
+            if (lockers[locker_id].in_use == 0) {
+                char *message = "Locker ID is available.\n";
+                saveLogger(message);
+                send(client_socket, message, strlen(message), 0);
+            } else {
+                char *message = "Locker ID is already in use.\n";
+                saveLogger(message);
+                send(client_socket, message, strlen(message), 0);
+            }
         }
+
+        char password[MAX_PASSWORD_SIZE], content[BUFFER_SIZE];
+        sscanf(buffer, "%s %[^\n]",password, content);
+
         if (strcmp(lockers[locker_id].password, password) == 0 || lockers[locker_id].in_use == 0) {
             lockers[locker_id].in_use = 1;
             strcpy(lockers[locker_id].password, password);
@@ -72,9 +95,11 @@ void handle_client(int client_socket) {
             saveDB();  // Save lockers to file after modification
 
             char *message = "Locker content saved.\n";
+            saveLogger(message);
             send(client_socket, message, strlen(message), 0);
         } else {
             char *message = "Incorrect password.\n";
+            saveLogger(message);
             send(client_socket, message, strlen(message), 0);
         }
     }
@@ -94,7 +119,9 @@ int main() {
     // Create socket
     if ((server_socket = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
         perror("Could not create socket");
-        return 1;
+        char* message = "could not create socket";
+        saveLogger(message);
+        return -1;
     }
 
     // Prepare the sockaddr_in structure
@@ -105,10 +132,15 @@ int main() {
     // Bind
     if (bind(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
         perror("Bind failed");
-        return 1;
+        return -1;
     }
 
-    // Listen
+    /*
+===========================================================
+        listen client
+===========================================================
+     * */
+
     listen(server_socket, MAX_CLIENTS);
 
     printf("Waiting for incoming connections...\n");
@@ -121,9 +153,10 @@ int main() {
 
     if (client_socket < 0) {
         perror("Accept failed");
-        return 1;
+        return -1;
     }
 
     close(server_socket);
     return 0;
 }
+

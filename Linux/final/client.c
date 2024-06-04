@@ -37,6 +37,13 @@ int get_menu_num(int menu_num){
 }
 
 int main() {
+
+    /**
+====================================================================================
+                               소켓 연결 시작
+====================================================================================
+ * */
+
     int sock;
     struct sockaddr_in server_addr;
     char buffer[BUFFER_SIZE];
@@ -62,20 +69,25 @@ int main() {
         return -1;
     }
 
-    print_menu();
+    /**
+====================================================================================
+                                   소켓 연결 끝
+====================================================================================
+     * */
+
     int menu_choice = -1;
+
+    print_menu();
     printf("enter menu no : \n");
     scanf("%d", &menu_choice);
     getchar();
 
-    //send(sock, buffer, strlen(buffer). 0);
     get_menu_num(menu_choice);
 
     printf("Enter locker ID: ");
     fgets(buffer, BUFFER_SIZE, stdin);
     buffer[strcspn(buffer, "\n")] = 0;
-    strcat(buffer, " ");
-    //send(sock, buffer, strlen(buffer), 0);
+    send(sock, buffer, strlen(buffer), 0);
 
     // Input password
     printf("Enter password: ");
