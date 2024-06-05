@@ -9,6 +9,7 @@
 #define PORT 8085
 #define DATABASE "locker_database.txt"
 #define LoggerFile "log.txt"
+#define CLoggerFile "clog.txt"
 
 struct Locker{
     int locker_id;

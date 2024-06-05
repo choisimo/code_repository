@@ -22,7 +22,7 @@ void saveDB(int locker_id) {
         } else {
             fprintf(db, "%-10s %-10s %-15s %-15s %-s\n", "Locker No", "Available", "Password", "Content", "time");
             for (int i = 0; i < MAX_CLIENTS; i++) {
-                fprintf(db, "%-10d %-10d %-15s %-15s %-lld\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].password,
+                fprintf(db, "%-10d %-10d %-15s %-15s %-ld\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].password,
                         lockers[i].content, lockers[i].time);
             }
         }
@@ -30,20 +30,20 @@ void saveDB(int locker_id) {
         return;
     }
 
-        fseek(db, 0, SEEK_SET);
-        int line = 0;
-        char buffer[BUFFER_SIZE];
+    fseek(db, 0, SEEK_SET);
+    int line = 0;
+    char buffer[BUFFER_SIZE];
 
-        while(fgets(buffer, BUFFER_SIZE, db) != NULL){
-            if (line == (locker_id + 1)){
-                fseek(db, -strlen(buffer), SEEK_CUR);
-                fprintf(db, "%-10d %-10d %-15s %-15s %-ld\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time);
-                break;
-            }
-            line++;
+    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
+        if (line == (locker_id + 1)) {
+            fseek(db, -strlen(buffer), SEEK_CUR);
+            fprintf(db, "%-10d %-10d %-15s %-15s %-ld\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time);
+            break;
         }
-        fclose(db);
+        line++;
     }
+    fclose(db);
+}
 
 
 void initialize_lockers() {
@@ -66,11 +66,33 @@ void loadDB() {
         initialize_lockers();
         return;
     }
+    char buffer[BUFFER_SIZE];
+    fgets(buffer, BUFFER_SIZE, db);
     for (int i = 0; i < MAX_CLIENTS; i++) {
-        fscanf(db, "%d %d %s %s\n", &lockers[i].locker_id, &lockers[i].in_use, lockers[i].password, lockers[i].content);
+        fscanf(db, "%d %d %s %s %ld\n", &lockers[i].locker_id, &lockers[i].in_use, lockers[i].password, lockers[i].content, &lockers[i].time);
     }
     fclose(db);
 }
+
+void loadDBbyId(int locker_id) {
+    FILE *db = fopen(DATABASE, "r");
+    if (db == NULL) {
+        perror("cannot access to db file");
+        return;
+    }
+    char buffer[BUFFER_SIZE];
+    fgets(buffer, BUFFER_SIZE, db); // 헤더 건너뛰기
+    int line = 0;
+    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
+        if (line == locker_id) {
+            sscanf(buffer, "%d %d %s %s %ld", &lockers[locker_id].locker_id, &lockers[locker_id].in_use, lockers[locker_id].password, lockers[locker_id].content, &lockers[locker_id].time);
+            break;
+        }
+        line++;
+    }
+    fclose(db);
+}
+
 
 void saveLogger(const char *message) {
     FILE *Logger = fopen(LoggerFile, "a");
@@ -80,24 +102,28 @@ void saveLogger(const char *message) {
     } else {
         time_t curtime = time(NULL);
         struct tm tm = *localtime(&curtime);
-        fprintf(Logger, "%lld %s\n", curtime, message);
+        fprintf(Logger, "%ld %s\n", curtime, message);
         fclose(Logger);
     }
 }
 
-void handle_client(int client_socket) {
+void handle_search(int client_socket){
+
+}
+void handle_reservation(int client_socket){
+
     char buffer[BUFFER_SIZE];
     int read_size;
 
     if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
         buffer[read_size] = '\0';
-
         int locker_id = atoi(buffer);
 
         int fd = open(DATABASE, O_RDWR);
         if (fd == -1){
             perror("Database access failed");
             saveLogger("Database access failed");
+            close(client_socket);
             return;
         }
 
@@ -128,16 +154,30 @@ void handle_client(int client_socket) {
             char *message = "Invalid locker ID.\n";
             saveLogger(message);
             send(client_socket, message, strlen(message), 0);
+            lock.l_type = F_UNLCK;
+            fcntl(fd, F_SETLK, &lock);
+            close(fd);
+            close(client_socket);
+            return;
+        }
+
+        loadDBbyId(locker_id);
+
+        if (lockers[locker_id].in_use == 0) {
+            char *message = "Locker ID is available.\n";
+            saveLogger(message);
+            send(client_socket, message, strlen(message), 0);
         } else {
-            if (lockers[locker_id].in_use == 0) {
-                char *message = "Locker ID is available.\n";
-                saveLogger(message);
-                send(client_socket, message, strlen(message), 0);
-            } else {
-                char *message = "Locker ID is already in use.\n";
-                saveLogger(message);
-                send(client_socket, message, strlen(message), 0);
+            char *message = "Locker ID is already in use.\n";
+            saveLogger(message);
+            send(client_socket, message, strlen(message), 0);
+            lock.l_type = F_UNLCK;
+            if (fcntl(fd, F_SETLK, &lock) == -1){
+                saveLogger("file unlock failed");
             }
+            close(fd);
+            close(client_socket);
+            return;
         }
 
         while (1) {
@@ -157,6 +197,7 @@ void handle_client(int client_socket) {
                         char *message = "password and confirm password not equal";
                         saveLogger(message);
                         send(client_socket, message, strlen(message), 0);
+                        continue;
                     } else {
                         char *message1 = "password equal";
                         saveLogger(message1);
@@ -179,7 +220,9 @@ void handle_client(int client_socket) {
                             char *message = "Locker content saved.\n";
                             saveLogger(message);
                             send(client_socket, message, strlen(message), 0);
+                            buffer[read_size] = '\0';
                             break;
+
                         }
                     }
                 }
@@ -195,8 +238,34 @@ void handle_client(int client_socket) {
     exit(0);
 }
 
-int main(int argc, char* argv[]) {
+void handle_client(int client_socket) {
+    int menu_choice;
+    recv(client_socket, &menu_choice, sizeof(menu_choice), 0);
 
+    switch (menu_choice) {
+        case 1:
+            handle_search(client_socket);
+            break;
+        case 2:
+            handle_reservation(client_socket);
+            break;
+        case 3:
+            // 결제 처리 로직 구현
+            break;
+        case 4:
+            // 남은 시간 확인 로직 구현
+            break;
+        case 5:
+            // 청구서 확인 로직 구현
+            break;
+        default:
+            printf("잘못된 선택입니다\n");
+            break;
+    }
+
+}
+
+int main(int argc, char* argv[]) {
     if (argc != 2){
         fprintf(stderr, "Usage: %s <number_of_lockers>\n", argv[0]);
         return 1;
@@ -208,18 +277,15 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    lockers = malloc(MAX_CLIENTS * sizeof(struct Locker));
+    lockers = malloc( sizeof(struct Locker) * MAX_CLIENTS);
     if (lockers == NULL){
         saveLogger("locker is null [memory error]");
         return 1;
     }
 
-
     int server_socket, client_socket;
     struct sockaddr_in server_addr, client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
-
-    loadDB();
 
     if ((server_socket = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
         perror("Could not create socket");
@@ -240,6 +306,7 @@ int main(int argc, char* argv[]) {
 
     listen(server_socket, MAX_CLIENTS);
 
+    loadDB();
     printf("server started.. waiting for any connections\n");
 
     while ((client_socket = accept(server_socket, (struct sockaddr *)&client_addr, &client_addr_len))) {
@@ -257,17 +324,6 @@ int main(int argc, char* argv[]) {
         } else {
             close(client_socket);
         }
-
-/*        int *client_sock_ptr = malloc(sizeof(int));
-        *client_sock_ptr = client_socket;
-        if (pthread_create(&thread_id, NULL, handle_client, (void*)client_sock_ptr) < 0) {
-            perror("could not create thread");
-            free(client_sock_ptr);
-            continue;
-        }
-
-        pthread_detach(thread_id);
-        */
     }
 
     if (client_socket < 0) {
