@@ -13,10 +13,11 @@
 
 struct Locker{
     int locker_id;
-    char password[BUFFER_SIZE];
+    char password[MAX_PASSWORD_SIZE];
     char content[BUFFER_SIZE];
     int in_use;
     time_t time;
+    int duration;
 };
 
 #endif //CODE_REPOSITORY_LOCKER_H

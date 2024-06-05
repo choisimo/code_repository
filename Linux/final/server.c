@@ -116,6 +116,13 @@ void saveLogger(const char *message) {
     }
 }
 
+void calculate_remaining_time(struct Locker *locker, char *buffer) {
+    time_t current_time = time(NULL);
+    int remaining_time = locker->duration - difftime(current_time, locker->time);
+    if (remaining_time < 0) remaining_time = 0;
+    snprintf(buffer, BUFFER_SIZE, "remain time : %d ÃÊ", remaining_time);
+}
+
 void handle_search(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
@@ -128,37 +135,54 @@ void handle_search(int client_socket) {
     }
 
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
-        send(client_socket, buffer, strlen(buffer), 0);
+        int locker_id, in_use;
+        sscanf(buffer, "%d %d", &locker_id, &in_use);
+        if (locker_id >= 0 && locker_id < MAX_CLIENTS && (in_use == 0 || in_use == 1)) {
+            snprintf(buffer, sizeof(buffer), "Locker No: %d | Available: %s\n", locker_id, in_use==0?"No":"Yes");
+            send(client_socket, buffer, strlen(buffer), 0);
+        }
     }
+    strcpy(buffer, "end_of_list\n");
+    send(client_socket, buffer, strlen(buffer), 0);
     fclose(db);
 
     while (1) {
         int locker_num;
-        int bytes_received = recv(client_socket, &locker_num, sizeof(locker_num), 0);
-        if (bytes_received <= 0) {
-            saveLogger("locker_num recv may be null...\n");
+        int received = recv(client_socket, &locker_num, sizeof(locker_num), 0);
+        if (received <= 0) {
+            saveLogger("locker_num received may be null...\n");
             break;
         }
+
         if (locker_num < 0 || locker_num >= MAX_CLIENTS) {
             strcpy(buffer, "wrong locker number.. please check again!\n");
+            send(client_socket, buffer, strlen(buffer), 0);
             saveLogger("wrong locker number.. please check again!\n");
         } else {
             loadDBbyId(locker_num);
-            snprintf(buffer, sizeof(buffer), "locker number: %d\navailability: %d\ncontents: %s\n",
-                     lockers[locker_num].locker_id, lockers[locker_num].in_use, "secured data");
-            send(client_socket, buffer, strlen(buffer), 0);
-
-            char password[MAX_PASSWORD_SIZE];
-            int password_received = recv(client_socket, password, sizeof(password), 0);
-            if (password_received > 0) {
-                password[password_received] = '\0';
-                if (checkPassword(locker_num, password)) {
-                    snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %d | contents: %s\n",
-                             lockers[locker_num].locker_id, lockers[locker_num].in_use, lockers[locker_num].content);
-                } else {
-                    strcpy(buffer, "wrong password!\n");
-                }
+            if (lockers[locker_num].in_use == 0){
+                snprintf(buffer, sizeof(buffer), "locker %d is empty\n", lockers[locker_num].locker_id);
                 send(client_socket, buffer, strlen(buffer), 0);
+            } else {
+                char time_buffer[BUFFER_SIZE];
+                calculate_remaining_time(&lockers[locker_num], time_buffer);
+                snprintf(buffer, sizeof(buffer), "locker number: %d\navailability: %d\ncontents: %s\n",
+                         lockers[locker_num].locker_id, lockers[locker_num].in_use, "secured data", time_buffer);
+                send(client_socket, buffer, strlen(buffer), 0);
+
+                char password[MAX_PASSWORD_SIZE];
+                int password_received = recv(client_socket, password, sizeof(password), 0);
+                if (password_received > 0) {
+                    password[password_received] = '\0';
+                    if (checkPassword(locker_num, password)) {
+                        snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %d | contents: %s\n",
+                                 lockers[locker_num].locker_id, lockers[locker_num].in_use,
+                                 lockers[locker_num].content);
+                    } else {
+                        strcpy(buffer, "wrong password!\n");
+                    }
+                    send(client_socket, buffer, strlen(buffer), 0);
+                }
             }
         }
     }

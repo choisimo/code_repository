@@ -55,18 +55,25 @@ void saveLogger(const char *message) {
 
 void handle_search(int sock) {
     char buffer[BUFFER_SIZE];
+
     while (1) {
         int received = recv(sock, buffer, sizeof(buffer), 0);
         if (received <= 0) {
             break;
-        }
+       }
         buffer[received] = '\0';
+        if (strcmp(buffer, "end_of_list\n") == 0){
+            break;
+        }
         printf("%s", buffer);
+    }
 
+    while(1){
         printf("want to see more specific info? (Y | N) \n");
-        char choice = 'N';
-        scanf("%c", &choice);
-        if (choice == 'Y' || choice == 'y'){
+        char choice;
+        scanf(" %c", &choice);
+
+        if (choice == 'Y' || choice == 'y') {
             printf("enter the number of locker : ");
             int locker_num;
             scanf("%d", &locker_num);
@@ -76,6 +83,18 @@ void handle_search(int sock) {
             if (detail_info > 0) {
                 buffer[detail_info] = '\0';
                 printf("%s", buffer);
+
+                if (strstr(buffer, "is empty") != NULL) {
+                    printf("this is an empty locker...\n");
+                    saveLogger("this is an empty locker...\n");
+                    continue;
+                }
+                if (strstr(buffer, "wrong locker number.. please check again!\n") != NULL){
+                    printf("wrong locker number input error\n");
+                    saveLogger("wrong locker number input error\n");
+                    continue;
+                }
+
                 printf("enter password to see secured content\n");
                 printf("password : ");
                 char password[MAX_PASSWORD_SIZE];
@@ -83,7 +102,7 @@ void handle_search(int sock) {
                 send(sock, password, strlen(password), 0);
 
                 int content_received = recv(sock, buffer, BUFFER_SIZE, 0);
-                if (content_received > 0){
+                if (content_received > 0) {
                     buffer[content_received] = '\0';
                     printf("received data : \n %s\n", buffer);
 
@@ -98,6 +117,11 @@ void handle_search(int sock) {
         } else {
             printf("search menu off...\n");
             saveLogger("search menu off...\n");
+            close(sock);
+            execl("./client", "client", (char *)NULL);
+            perror("excl failed");
+            saveLogger("execl failed");
+            exit(0);
             break;
         }
     }
@@ -108,61 +132,63 @@ void handle_searchById(int sock, int id){
     int menu_value = 1;
 }
 
+
+
 int handle_reservation(int sock) {
     char buffer[BUFFER_SIZE];
     char message[BUFFER_SIZE];
 
-    printf("Enter locker ID: ");
-    fgets(buffer, BUFFER_SIZE, stdin);
-    buffer[strcspn(buffer, "\n")] = 0;
-    send(sock, buffer, strlen(buffer), 0);
+    while (1) {
+        printf("Enter locker ID: ");
+        fgets(buffer, BUFFER_SIZE, stdin);
+        buffer[strcspn(buffer, "\n")] = 0;
+        send(sock, buffer, strlen(buffer), 0);
 
-    int read_size = recv(sock, message, BUFFER_SIZE, 0);
-    if (read_size > 0) {
-        message[read_size] = '\0';
-        printf("Server: %s\n", message);
+        int read_size = recv(sock, message, BUFFER_SIZE, 0);
+        if (read_size > 0) {
+            message[read_size] = '\0';
+            printf("Server: %s\n", message);
 
-        if (strcmp(message, "Locker ID is available.\n") == 0) {
-            while(1){
+            if (strcmp(message, "Locker ID is available.\n") == 0) {
+                while (1) {
+                    printf("Enter password: ");
+                    fgets(buffer, BUFFER_SIZE, stdin);
+                    buffer[strcspn(buffer, "\n")] = 0;
+                    send(sock, buffer, strlen(buffer), 0);
 
-                printf("Enter password: ");
-                fgets(buffer, BUFFER_SIZE, stdin);
-                buffer[strcspn(buffer, "\n")] = 0;
-                send(sock, buffer, strlen(buffer), 0);
+                    printf("Confirm password: ");
+                    fgets(buffer, BUFFER_SIZE, stdin);
+                    buffer[strcspn(buffer, "\n")] = 0;
+                    send(sock, buffer, strlen(buffer), 0);
 
-                printf("Confirm password: ");
-                fgets(buffer, BUFFER_SIZE, stdin);
-                buffer[strcspn(buffer, "\n")] = 0;
-                send(sock, buffer, strlen(buffer), 0);
+                    read_size = recv(sock, message, BUFFER_SIZE, 0);
+                    if (read_size > 0) {
+                        message[read_size] = '\0';
+                        printf("Server: %s\n", message);
 
-                read_size = recv(sock, message, BUFFER_SIZE, 0);
-                if (read_size > 0) {
-                    message[read_size] = '\0';
-                    printf("Server: %s\n", message);
-
-                    if (strcmp(message, "password and confirm password not equal") == 0) {
-                        continue;
-                    } else {
-                        printf("Enter content to store in the locker: ");
-                        fgets(buffer, BUFFER_SIZE, stdin);
-                        buffer[strcspn(buffer, "\n")] = 0;
-                        send(sock, buffer, strlen(buffer), 0);
-
-                        read_size = recv(sock, message, BUFFER_SIZE, 0);
-                        if (read_size > 0){
-                            printf("Server: %s \n", message);
-                            break;
-                        } else {
-                            perror("server error");
+                        if (strcmp(message, "password and confirm password not equal") == 0) {
                             continue;
+                        } else {
+                            printf("Enter content to store in the locker: ");
+                            fgets(buffer, BUFFER_SIZE, stdin);
+                            buffer[strcspn(buffer, "\n")] = 0;
+                            send(sock, buffer, strlen(buffer), 0);
+
+                            read_size = recv(sock, message, BUFFER_SIZE, 0);
+                            if (read_size > 0) {
+                                printf("Server: %s \n", message);
+                                return 0;
+                            } else {
+                                perror("server error");
+                                continue;
+                            }
                         }
                     }
                 }
+            } else if (strcmp(message, "Locker ID is already in use.\n") == 0) {
+                printf("Enter locker ID again.\n");
+                continue;
             }
-        } else if (strcmp(message, "Locker ID is already in use.\n") == 0) {
-            close(sock);
-            execl("./client", "client", (char *)NULL);
-            return 0;
         }
     }
 }
