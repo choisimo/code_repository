@@ -93,6 +93,15 @@ void loadDBbyId(int locker_id) {
     fclose(db);
 }
 
+int checkPassword(int num, const char *password) {
+    loadDBbyId(num);
+    if (strcmp(password, lockers[num].password) == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 
 void saveLogger(const char *message) {
     FILE *Logger = fopen(LoggerFile, "a");
@@ -107,7 +116,7 @@ void saveLogger(const char *message) {
     }
 }
 
-void handle_search(int client_socket){
+void handle_search(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
 
@@ -123,8 +132,36 @@ void handle_search(int client_socket){
     }
     fclose(db);
 
-    strcpy(buffer, "successfully send DB to client\n");
-    send(client_socket, buffer, strlen(buffer), 0);
+    while (1) {
+        int locker_num;
+        int bytes_received = recv(client_socket, &locker_num, sizeof(locker_num), 0);
+        if (bytes_received <= 0) {
+            saveLogger("locker_num recv may be null...\n");
+            break;
+        }
+        if (locker_num < 0 || locker_num >= MAX_CLIENTS) {
+            strcpy(buffer, "wrong locker number.. please check again!\n");
+            saveLogger("wrong locker number.. please check again!\n");
+        } else {
+            loadDBbyId(locker_num);
+            snprintf(buffer, sizeof(buffer), "locker number: %d\navailability: %d\ncontents: %s\n",
+                     lockers[locker_num].locker_id, lockers[locker_num].in_use, "secured data");
+            send(client_socket, buffer, strlen(buffer), 0);
+
+            char password[MAX_PASSWORD_SIZE];
+            int password_received = recv(client_socket, password, sizeof(password), 0);
+            if (password_received > 0) {
+                password[password_received] = '\0';
+                if (checkPassword(locker_num, password)) {
+                    snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %d | contents: %s\n",
+                             lockers[locker_num].locker_id, lockers[locker_num].in_use, lockers[locker_num].content);
+                } else {
+                    strcpy(buffer, "wrong password!\n");
+                }
+                send(client_socket, buffer, strlen(buffer), 0);
+            }
+        }
+    }
 }
 
 void handle_reservation(int client_socket){

@@ -40,19 +40,6 @@ int get_menu_num(int menu_num){
     }
 }
 
-struct Locker getLockerById(int sock, int locker_id) {
-    send(sock, &locker_id, sizeof(locker_id), 0);
-    struct Locker inLocker;
-    recv(sock, &inLocker, sizeof(inLocker), 0);
-    return inLocker;
-}
-
-struct Locker getLockerList(int sock){
-    send(sock, 0);
-    struct Locker inLocker;
-    return inLocker;
-}
-
 void saveLogger(const char *message) {
     FILE *Logger = fopen(CLoggerFile, "a");
     if (Logger == NULL) {
@@ -67,15 +54,55 @@ void saveLogger(const char *message) {
 }
 
 void handle_search(int sock) {
-    struct Locker locker1 = getLockerById(sock);
-    if (!locker1.locker_id){
-        char* message = "not exist locker id... please check again\n";
-        perror(message);
-        saveLogger(message);
-    } else {
-        saveLogger("this id exists in DATABASE\n");
+    char buffer[BUFFER_SIZE];
+    while (1) {
+        int received = recv(sock, buffer, sizeof(buffer), 0);
+        if (received <= 0) {
+            break;
+        }
+        buffer[received] = '\0';
+        printf("%s", buffer);
+
+        printf("want to see more specific info? (Y | N) \n");
+        char choice = 'N';
+        scanf("%c", &choice);
+        if (choice == 'Y' || choice == 'y'){
+            printf("enter the number of locker : ");
+            int locker_num;
+            scanf("%d", &locker_num);
+            send(sock, &locker_num, sizeof(locker_num), 0);
+
+            int detail_info = recv(sock, buffer, sizeof(buffer), 0);
+            if (detail_info > 0) {
+                buffer[detail_info] = '\0';
+                printf("%s", buffer);
+                printf("enter password to see secured content\n");
+                printf("password : ");
+                char password[MAX_PASSWORD_SIZE];
+                scanf("%s", password);
+                send(sock, password, strlen(password), 0);
+
+                int content_received = recv(sock, buffer, BUFFER_SIZE, 0);
+                if (content_received > 0){
+                    buffer[content_received] = '\0';
+                    printf("received data : \n %s\n", buffer);
+
+                } else {
+                    printf("failed to fetch secured content\n");
+                    saveLogger("failed to fetch secured content\n");
+                }
+            } else {
+                printf("error to fetch detail info\n");
+                saveLogger("error to fetch detail info\n");
+            }
+        } else {
+            printf("search menu off...\n");
+            saveLogger("search menu off...\n");
+            break;
+        }
     }
 }
+
 
 void handle_searchById(int sock, int id){
     int menu_value = 1;
@@ -84,6 +111,7 @@ void handle_searchById(int sock, int id){
 int handle_reservation(int sock) {
     char buffer[BUFFER_SIZE];
     char message[BUFFER_SIZE];
+
     printf("Enter locker ID: ");
     fgets(buffer, BUFFER_SIZE, stdin);
     buffer[strcspn(buffer, "\n")] = 0;
