@@ -4,26 +4,46 @@
 #include <unistd.h>
 #include <time.h>
 #include <pthread.h>
+#include <fcntl.h>
+#include <errno.h>
 #include <arpa/inet.h>
 #include "locker.h"
 
 struct Locker lockers[MAX_CLIENTS];
-pthread_mutex_t locker_mutex;
 
-void saveDB() {
-    FILE *db = fopen(DATABASE, "w");
+void saveDB(int locker_id) {
+    FILE *db = fopen(DATABASE, "r+");
     if (db == NULL) {
-        perror("cannot access to db file");
+        db = fopen(DATABASE, "w+");
+        if (db == NULL) {
+            perror("cannot access to db file");
+            return;
+        } else {
+            fprintf(db, "%-10s %-10s %-15s %-15s %-s\n", "Locker No", "Available", "Password", "Content", "time");
+            for (int i = 0; i < MAX_CLIENTS; i++) {
+                fprintf(db, "%-10d %-10d %-15s %-15s %-lld\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].password,
+                        lockers[i].content, lockers[i].time);
+            }
+        }
+        fclose(db);
         return;
     }
-    time_t curtime = time(NULL);
-    struct tm tm = *localtime(&curtime);
-    fprintf(db, "%-10s %-10s %-15s %-15s %-s\n", "Locker No", "Available", "Password", "Content", "time");
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        fprintf(db, "%-10d %-10d %-15s %-15s %-s\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].password, lockers[i].content, lockers[i].time);
+
+        fseek(db, 0, SEEK_SET);
+        int line = 0;
+        char buffer[BUFFER_SIZE];
+
+        while(fgets(buffer, BUFFER_SIZE, db) != NULL){
+            if (line == (locker_id + 1)){
+                fseek(db, -strlen(buffer), SEEK_CUR);
+                fprintf(db, "%-10d %-10d %-15s %-15s %-ld\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time);
+                break;
+            }
+            line++;
+        }
+        fclose(db);
     }
-    fclose(db);
-}
+
 
 void initialize_lockers() {
     for (int i = 0; i < MAX_CLIENTS; i++) {
@@ -33,7 +53,9 @@ void initialize_lockers() {
         strcpy(lockers[i].content, "");
         lockers[i].time = 0;
     }
-    saveDB();
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        saveDB(i);
+    }
 }
 
 void loadDB() {
@@ -62,9 +84,7 @@ void saveLogger(const char *message) {
     }
 }
 
-void* handle_client(void* client_socket_thread) {
-    int client_socket = *(int*)client_socket_thread;
-    free(client_socket_thread);
+void handle_client(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
 
@@ -73,7 +93,36 @@ void* handle_client(void* client_socket_thread) {
 
         int locker_id = atoi(buffer);
 
-        pthread_mutex_lock(&locker_mutex);
+        int fd = open(DATABASE, O_RDWR);
+        if (fd == -1){
+            perror("Database access failed");
+            saveLogger("Database access failed");
+            return;
+        }
+
+        /**
+         * file lock initialize
+         */
+        struct flock lock;
+        lock.l_type = F_WRLCK; // set write lock
+        lock.l_whence = SEEK_SET;
+        lock.l_start = locker_id * sizeof(struct Locker);
+        lock.l_len = sizeof(struct Locker);
+        lock.l_pid = getpid();
+
+        if (fcntl(fd, F_SETLK, &lock) == -1){
+            if (errno == EAGAIN){
+                char* message = "this locker is on reservation...";
+                saveLogger(message);
+                send(client_socket, message, strlen(message), 0);
+            } else {
+                saveLogger("file lock fail");
+            }
+            close(fd);
+            close(client_socket);
+            return;
+        }
+
         if (locker_id < 0 || locker_id >= MAX_CLIENTS) {
             char *message = "Invalid locker ID.\n";
             saveLogger(message);
@@ -89,7 +138,6 @@ void* handle_client(void* client_socket_thread) {
                 send(client_socket, message, strlen(message), 0);
             }
         }
-        pthread_mutex_unlock(&locker_mutex);
 
         while (1) {
             read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
@@ -120,12 +168,10 @@ void* handle_client(void* client_socket_thread) {
 
                             saveLogger("content received from client server");
 
-                            pthread_mutex_lock(&locker_mutex);
                             lockers[locker_id].in_use = 1;
                             strcpy(lockers[locker_id].password, password);
                             strcpy(lockers[locker_id].content, content);
-                            saveDB();
-                            pthread_mutex_unlock(&locker_mutex);
+                            saveDB(locker_id);
 
                             saveLogger("file updated to DB");
 
@@ -138,9 +184,14 @@ void* handle_client(void* client_socket_thread) {
                 }
             }
         }
+        lock.l_type = F_UNLCK;
+        if (fcntl(fd, F_SETLK, &lock) == -1){
+            saveLogger("file unlock fail");
+        }
+        close(fd);
     }
     close(client_socket);
-    return NULL;
+    exit(0);
 }
 
 int main() {
@@ -174,8 +225,20 @@ int main() {
     while ((client_socket = accept(server_socket, (struct sockaddr *)&client_addr, &client_addr_len))) {
         printf("Connection accepted\n");
 
-        pthread_t thread_id;
-        int *client_sock_ptr = malloc(sizeof(int));
+        pid_t pid = fork();
+        if (pid < 0){
+            saveLogger("fork fail");
+            continue;
+        } else if (pid == 0)
+        {
+            close(server_socket);
+            handle_client(client_socket);
+            exit(0);
+        } else {
+            close(client_socket);
+        }
+
+/*        int *client_sock_ptr = malloc(sizeof(int));
         *client_sock_ptr = client_socket;
         if (pthread_create(&thread_id, NULL, handle_client, (void*)client_sock_ptr) < 0) {
             perror("could not create thread");
@@ -184,6 +247,7 @@ int main() {
         }
 
         pthread_detach(thread_id);
+        */
     }
 
     if (client_socket < 0) {
