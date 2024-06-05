@@ -47,6 +47,11 @@ struct Locker getLockerById(int sock, int locker_id) {
     return inLocker;
 }
 
+struct Locker getLockerList(int sock){
+    send(sock, 0);
+    struct Locker inLocker;
+    return inLocker;
+}
 
 void saveLogger(const char *message) {
     FILE *Logger = fopen(CLoggerFile, "a");
@@ -62,8 +67,7 @@ void saveLogger(const char *message) {
 }
 
 void handle_search(int sock) {
-    int menu_value = 1;
-    struct Locker locker1 = getLockerById(sock, menu_value);
+    struct Locker locker1 = getLockerById(sock);
     if (!locker1.locker_id){
         char* message = "not exist locker id... please check again\n";
         perror(message);

@@ -108,8 +108,25 @@ void saveLogger(const char *message) {
 }
 
 void handle_search(int client_socket){
+    char buffer[BUFFER_SIZE];
+    int read_size;
 
+    FILE *db = fopen(DATABASE, "r");
+    if (db == NULL) {
+        perror("cannot access to DB");
+        saveLogger("cannot access to DB");
+        return;
+    }
+
+    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
+        send(client_socket, buffer, strlen(buffer), 0);
+    }
+    fclose(db);
+
+    strcpy(buffer, "successfully send DB to client\n");
+    send(client_socket, buffer, strlen(buffer), 0);
 }
+
 void handle_reservation(int client_socket){
 
     char buffer[BUFFER_SIZE];
