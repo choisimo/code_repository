@@ -9,7 +9,8 @@
 #include <arpa/inet.h>
 #include "locker.h"
 
-struct Locker lockers[MAX_CLIENTS];
+int MAX_CLIENTS;
+struct Locker *lockers;
 
 void saveDB(int locker_id) {
     FILE *db = fopen(DATABASE, "r+");
@@ -194,7 +195,26 @@ void handle_client(int client_socket) {
     exit(0);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+
+    if (argc != 2){
+        fprintf(stderr, "Usage: %s <number_of_lockers>\n", argv[0]);
+        return 1;
+    }
+
+    MAX_CLIENTS = atoi(argv[1]);
+    if (MAX_CLIENTS <= 0){
+        fprintf(stderr, "invalid number of locker, please type bigger than 0 again!\n");
+        return 1;
+    }
+
+    lockers = malloc(MAX_CLIENTS * sizeof(struct Locker));
+    if (lockers == NULL){
+        saveLogger("locker is null [memory error]");
+        return 1;
+    }
+
+
     int server_socket, client_socket;
     struct sockaddr_in server_addr, client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
