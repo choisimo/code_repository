@@ -48,12 +48,12 @@ void saveDB(int locker_id) {
             perror("cannot access to db file");
             return;
         } else {
-            fprintf(db, "%-10s %-10s %-10s %-15s %-15s %-s\n", "Locker No", "Available", "Draft", "Password", "Content", "time");
+            fprintf(db, "%-10s %-10s %-10s %-15s %-15s %-10s %-s\n", "Locker No", "Available", "Draft", "Password", "Content", "time", "duration");
             for (int i = 0; i < MAX_CLIENTS; i++) {
                 char message[BUFFER_SIZE];
                 sprintf(message, "Locker %d is saving now", lockers[i].locker_id);
                 saveLogger(message);
-                fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-ld\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time);
+                fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10ld %-ld\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time, lockers[i].duration);
             }
         }
         fclose(db);
@@ -67,7 +67,7 @@ void saveDB(int locker_id) {
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
         if (line == (locker_id + 1)) {
             fseek(db, -strlen(buffer), SEEK_CUR);
-            fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-ld\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time);
+            fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10ld %-ld\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time, lockers[locker_id].duration);
             break;
         }
         line++;
@@ -84,6 +84,7 @@ void initialize_lockers() {
         strcpy(lockers[i].password, "");
         strcpy(lockers[i].content, "");
         lockers[i].time = 0;
+        lockers[i].duration = 0;
     }
     for (int i = 0; i < MAX_CLIENTS; i++) {
         saveDB(i);
@@ -100,7 +101,7 @@ void loadDB() {
     char buffer[BUFFER_SIZE];
     fgets(buffer, BUFFER_SIZE, db);
     for (int i = 0; i < MAX_CLIENTS; i++) {
-        fscanf(db, "%d %d %d %s %s %ld\n", &lockers[i].locker_id, &lockers[i].in_use, &lockers[i].draft, lockers[i].password, lockers[i].content, &lockers[i].time);
+        fscanf(db, "%d %d %d %s %s %ld %ld\n", &lockers[i].locker_id, &lockers[i].in_use, &lockers[i].draft, lockers[i].password, lockers[i].content, &lockers[i].time, &lockers[i].duration);
     }
     fclose(db);
 }
@@ -116,7 +117,7 @@ void loadDBbyId(int locker_id) {
     int line = 0;
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
         if (line == locker_id) {
-            sscanf(buffer, "%d %d %d %s %s %ld", &lockers[locker_id].locker_id, &lockers[locker_id].in_use, &lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, &lockers[locker_id].time);
+            sscanf(buffer, "%d %d %d %s %s %ld %ld", &lockers[locker_id].locker_id, &lockers[locker_id].in_use, &lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, &lockers[locker_id].time, &lockers[locker_id].duration);
             break;
         }
         line++;
@@ -155,7 +156,7 @@ void calculate_remaining_time(struct Locker *locker, char *buffer) {
     }
     time_t end_time = locker->time + locker->duration;
     struct tm *end_time_tm = localtime(&end_time);
-    strftime(buffer, BUFFER_SIZE, "남은 시간 : %Y-%m-%d %H:%M:%S (KST)", end_time_tm);
+    strftime(buffer, BUFFER_SIZE, "register time : %Y-%m-%d %H:%M:%S (KST)", end_time_tm);
 }
 
 
