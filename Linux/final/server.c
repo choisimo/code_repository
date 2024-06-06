@@ -15,6 +15,7 @@ struct Locker *lockers;
 int server_socket;
 
 void saveDB(int locker_id);
+void saveLogger(const char* message);
 
 void handle_exit(int sig){
     for (int i = 0; i < MAX_CLIENTS; i++){
@@ -49,6 +50,9 @@ void saveDB(int locker_id) {
         } else {
             fprintf(db, "%-10s %-10s %-10s %-15s %-15s %-s\n", "Locker No", "Available", "Draft", "Password", "Content", "time");
             for (int i = 0; i < MAX_CLIENTS; i++) {
+                char message[BUFFER_SIZE];
+                sprintf(message, "Locker %d is saving now", lockers[i].locker_id);
+                saveLogger(message);
                 fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-ld\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time);
             }
         }
@@ -154,6 +158,7 @@ void calculate_remaining_time(struct Locker *locker, char *buffer) {
     strftime(buffer, BUFFER_SIZE, "남은 시간 : %Y-%m-%d %H:%M:%S (KST)", end_time_tm);
 }
 
+
 void handle_search(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
@@ -219,6 +224,7 @@ void handle_search(int client_socket) {
         }
     }
 }
+
 
 void handle_reservation(int client_socket) {
     char buffer[BUFFER_SIZE];
