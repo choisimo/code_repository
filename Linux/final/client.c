@@ -174,6 +174,11 @@ int handle_reservation(int sock) {
                             buffer[strcspn(buffer, "\n")] = 0;
                             send(sock, buffer, strlen(buffer), 0);
 
+                            printf("Enter duration [hour type] : ");
+                            fgets(buffer, BUFFER_SIZE, stdin);
+                            buffer[strcspn(buffer, "\n")] = 0;
+                            send(sock, buffer, strlen(buffer), 0);
+
                             read_size = recv(sock, message, BUFFER_SIZE, 0);
                             if (read_size > 0) {
                                 printf("Server: %s \n", message);

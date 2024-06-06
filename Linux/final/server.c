@@ -188,17 +188,16 @@ void handle_search(int client_socket) {
     }
 }
 
-void handle_reservation(int client_socket){
-
+void handle_reservation(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
 
-    if ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+    while ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
         buffer[read_size] = '\0';
         int locker_id = atoi(buffer);
 
         int fd = open(DATABASE, O_RDWR);
-        if (fd == -1){
+        if (fd == -1) {
             perror("Database access failed");
             saveLogger("Database access failed");
             close(client_socket);
@@ -215,8 +214,8 @@ void handle_reservation(int client_socket){
         lock.l_len = sizeof(struct Locker);
         lock.l_pid = getpid();
 
-        if (fcntl(fd, F_SETLK, &lock) == -1){
-            if (errno == EAGAIN){
+        if (fcntl(fd, F_SETLK, &lock) == -1) {
+            if (errno == EAGAIN) {
                 char* message = "this locker is on reservation...";
                 saveLogger(message);
                 send(client_socket, message, strlen(message), 0);
@@ -224,8 +223,7 @@ void handle_reservation(int client_socket){
                 saveLogger("file lock fail");
             }
             close(fd);
-            close(client_socket);
-            return;
+            continue;
         }
 
         if (locker_id < 0 || locker_id >= MAX_CLIENTS) {
@@ -235,83 +233,93 @@ void handle_reservation(int client_socket){
             lock.l_type = F_UNLCK;
             fcntl(fd, F_SETLK, &lock);
             close(fd);
-            close(client_socket);
-            return;
+            continue;
         }
-
+ 
         loadDBbyId(locker_id);
 
         if (lockers[locker_id].in_use == 0) {
             char *message = "Locker ID is available.\n";
             saveLogger(message);
             send(client_socket, message, strlen(message), 0);
+
+            while (1) {
+                read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
+                if (read_size > 0) {
+                    buffer[read_size] = '\0';
+                    char password[MAX_PASSWORD_SIZE];
+                    sscanf(buffer, "%s", password);
+
+                    read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
+                    if (read_size > 0) {
+                        buffer[read_size] = '\0';
+                        char confirm_password[MAX_PASSWORD_SIZE];
+                        sscanf(buffer, "%s", confirm_password);
+
+                        if (strcmp(password, confirm_password) != 0) {
+                            char *message = "password and confirm password not equal";
+                            saveLogger(message);
+                            send(client_socket, message, strlen(message), 0);
+                            continue;
+                        } else {
+                            char *message1 = "password equal";
+                            saveLogger(message1);
+                            send(client_socket, message1, strlen(message1), 0);
+
+                            read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
+                            if (read_size > 0) {
+                                buffer[read_size] = '\0';
+                                char content[BUFFER_SIZE];
+                                sscanf(buffer, "%s", content);
+
+                                saveLogger("content received from client server");
+
+                                // 사용자 이용 시간 지정
+                                read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
+                                if (read_size > 0){
+                                    buffer[read_size] = '\0';
+                                    int duration = atoi(buffer);
+
+                                    lockers[locker_id].in_use = 1;
+                                    strcpy(lockers[locker_id].password, password);
+                                    strcpy(lockers[locker_id].content, content);
+                                    lockers[locker_id].time = time(NULL);
+                                    lockers[locker_id].duration = duration * 3600;
+                                    saveDB(locker_id);
+
+                                    saveLogger("file updated to DB");
+
+                                    char *message = "Locker content saved.\n";
+                                    saveLogger(message);
+                                    send(client_socket, message, strlen(message), 0);
+                                    buffer[read_size] = '\0';
+                                    break;
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         } else {
             char *message = "Locker ID is already in use.\n";
             saveLogger(message);
             send(client_socket, message, strlen(message), 0);
             lock.l_type = F_UNLCK;
-            if (fcntl(fd, F_SETLK, &lock) == -1){
+            if (fcntl(fd, F_SETLK, &lock) == -1) {
                 saveLogger("file unlock failed");
             }
             close(fd);
-            close(client_socket);
-            return;
+            continue;
         }
 
-        while (1) {
-            read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
-            if (read_size > 0) {
-                buffer[read_size] = '\0';
-                char password[MAX_PASSWORD_SIZE];
-                sscanf(buffer, "%s", password);
-
-                read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
-                if (read_size > 0) {
-                    buffer[read_size] = '\0';
-                    char confirm_password[MAX_PASSWORD_SIZE];
-                    sscanf(buffer, "%s", confirm_password);
-
-                    if (strcmp(password, confirm_password) != 0) {
-                        char *message = "password and confirm password not equal";
-                        saveLogger(message);
-                        send(client_socket, message, strlen(message), 0);
-                        continue;
-                    } else {
-                        char *message1 = "password equal";
-                        saveLogger(message1);
-                        send(client_socket, message1, strlen(message1), 0);
-
-                        read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
-                        if (read_size > 0) {
-                            char content[BUFFER_SIZE];
-                            sscanf(buffer, "%s", content);
-
-                            saveLogger("content received from client server");
-
-                            lockers[locker_id].in_use = 1;
-                            strcpy(lockers[locker_id].password, password);
-                            strcpy(lockers[locker_id].content, content);
-                            saveDB(locker_id);
-
-                            saveLogger("file updated to DB");
-
-                            char *message = "Locker content saved.\n";
-                            saveLogger(message);
-                            send(client_socket, message, strlen(message), 0);
-                            buffer[read_size] = '\0';
-                            break;
-
-                        }
-                    }
-                }
-            }
-        }
         lock.l_type = F_UNLCK;
-        if (fcntl(fd, F_SETLK, &lock) == -1){
+        if (fcntl(fd, F_SETLK, &lock) == -1) {
             saveLogger("file unlock fail");
         }
         close(fd);
     }
+
     close(client_socket);
     exit(0);
 }
