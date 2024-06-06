@@ -60,12 +60,12 @@ void handle_search(int sock) {
         int received = recv(sock, buffer, sizeof(buffer), 0);
         if (received <= 0) {
             break;
-       }
+        }
         buffer[received] = '\0';
-        if (strcmp(buffer, "end_of_list\n") == 0){
+        printf("%s", buffer);
+        if (strstr(buffer, "end_of_list") != NULL){
             break;
         }
-        printf("%s", buffer);
     }
 
     while(1){
@@ -237,28 +237,28 @@ int main() {
 ====================================================================================
      * */
 
+        print_menu();
+        printf("choose one menu num... : \n");
+        int menu_choice;
+        scanf("%d", &menu_choice);
+        getchar();
 
-    print_menu();
-    printf("choose one menu num... : \n");
-    int menu_choice;
-    scanf("%d", &menu_choice);
-    getchar();
+        send(sock, &menu_choice, sizeof(menu_choice), 0);
 
-    send(sock, &menu_choice, sizeof(menu_choice), 0);
+        if (menu_choice == 1){
+            handle_search(sock);
+        } else if (menu_choice == 2){
+            handle_reservation(sock);
+        } else if (menu_choice == 3){
 
-    if (menu_choice == 1){
-        handle_search(sock);
-    } else if (menu_choice == 2){
-        handle_reservation(sock);
-    } else if (menu_choice == 3){
+        } else if (menu_choice == 4){
 
-    } else if (menu_choice == 4){
+        } else if (menu_choice == 5){
 
-    } else if (menu_choice == 5){
+        } else {
 
-    } else {
+        }
 
-    }
     close(sock);
     return 0;
 }

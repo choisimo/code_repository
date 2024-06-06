@@ -6,7 +6,7 @@
 #define CODE_REPOSITORY_LOCKER_H
 #define MAX_PASSWORD_SIZE 128
 #define BUFFER_SIZE 1024
-#define PORT 8085
+#define PORT 8080
 #define DATABASE "locker_database.txt"
 #define LoggerFile "log.txt"
 #define CLoggerFile "clog.txt"
@@ -18,6 +18,7 @@ struct Locker{
     int in_use;
     time_t time;
     int duration;
+    int draft;
 };
 
 #endif //CODE_REPOSITORY_LOCKER_H
