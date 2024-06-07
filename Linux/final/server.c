@@ -40,6 +40,7 @@ void signal_handler(){
     }
 }
 
+/*
 void saveDB(int locker_id) {
     FILE *db = fopen(DATABASE, "r+");
     if (db == NULL) {
@@ -53,7 +54,7 @@ void saveDB(int locker_id) {
                 char message[BUFFER_SIZE];
                 sprintf(message, "Locker %d is saving now", lockers[i].locker_id);
                 saveLogger(message);
-                fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10ld %-ld\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time, lockers[i].duration);
+                fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time, lockers[i].duration);
             }
         }
         fclose(db);
@@ -69,13 +70,32 @@ void saveDB(int locker_id) {
         position = ftell(db);
         if (line == (locker_id + 1)) {
             fseek(db, -strlen(buffer), SEEK_CUR);
-            fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10ld %-ld\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time, lockers[locker_id].duration);
+            fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time, lockers[locker_id].duration);
             break;
         }
         line++;
     }
     fclose(db);
 }
+*/
+void saveDB(int locker_id) {
+    FILE *db = fopen(DATABASE, "w");
+    if (db == NULL) {
+        perror("cannot access to db file");
+        return;
+    }
+
+    fprintf(db, "%-10s %-10s %-10s %-15s %-15s %-10s %-s\n", "Locker No", "Available", "Draft", "Password", "Content", "time", "duration");
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        char message[BUFFER_SIZE];
+        sprintf(message, "Locker %d is saving now", lockers[i].locker_id);
+        saveLogger(message);
+        fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time, lockers[i].duration);
+    }
+
+    fclose(db);
+}
+
 
 void remove_expired_lockers(){
 
@@ -106,9 +126,16 @@ void loadDB() {
     char buffer[BUFFER_SIZE];
     fgets(buffer, BUFFER_SIZE, db);
     for (int i = 0; i < MAX_CLIENTS; i++) {
-        fscanf(db, "%d %d %d %s %s %ld %ld\n", &lockers[i].locker_id, &lockers[i].in_use, &lockers[i].draft, lockers[i].password, lockers[i].content, &lockers[i].time, &lockers[i].duration);
+        if (fgets(buffer, BUFFER_SIZE, db) != NULL){
+            fscanf(db, "%d %d %d %s %s %lld %d\n", &lockers[i].locker_id, &lockers[i].in_use, &lockers[i].draft, lockers[i].password, lockers[i].content, &lockers[i].time, &lockers[i].duration);
+        }
     }
     fclose(db);
+}
+
+void updateLocker(int locker_id) {
+    loadDB();
+    saveDB(locker_id);
 }
 
 void loadDBbyId(int locker_id) {
@@ -197,8 +224,6 @@ void calculate_remaining_time(struct Locker *locker, char *buffer, int type) {
     }
 }
 
-
-
 void handle_search(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
@@ -210,7 +235,7 @@ void handle_search(int client_socket) {
         return;
     }
 
-    fgets(buffer, BUFFER_SIZE, db); // 헤더 건너뛰기
+    fgets(buffer, BUFFER_SIZE, db); // skip header
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
         int locker_id, in_use, draft;
         sscanf(buffer, "%d %d %d", &locker_id, &in_use, &draft);
@@ -219,6 +244,7 @@ void handle_search(int client_socket) {
             send(client_socket, buffer, strlen(buffer), 0);
         }
     }
+
     strcpy(buffer, "end_of_list\n");
     send(client_socket, buffer, strlen(buffer), 0);
     fclose(db);
