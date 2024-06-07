@@ -11,6 +11,7 @@
 #define LoggerFile "log.txt"
 #define CLoggerFile "clog.txt"
 #define PORT_FILE "port_config.txt"
+#define SERVER_LOCK_FILE "server.lock"
 
 struct Locker{
     int locker_id;

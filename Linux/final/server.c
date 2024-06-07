@@ -74,6 +74,7 @@ void handle_exit(int sig) {
         }
     }
     close(server_socket);
+    unlink(SERVER_LOCK_FILE);
     printf("server shutdown..\n");
     exit(0);
 }
@@ -678,8 +679,35 @@ void port_file(int port) {
     fclose(file);
 }
 
+int create_server_lock(const char* lock_file){
+    int fd = open(lock_file, O_WRONLY | O_CREAT, 0666);
+    if (fd == -1) {
+        perror("Failed to open lock file");
+        return 1;
+    }
+    struct flock server_lock;
+    server_lock.l_type = F_WRLCK;
+    server_lock.l_start = 0;
+    server_lock.l_whence = SEEK_SET;
+    server_lock.l_len = 0;
+
+    if (fcntl(fd, F_SETLK, &server_lock) == -1) {
+        if (errno == EACCES || errno == EAGAIN) {
+            close(fd);
+            saveLogger("Other process is using server...\n");
+            return -1;
+        }
+        perror("Failed to lock file");
+        close(fd);
+        return 1;
+    }
+
+    return fd;
+
+}
 
 int main(int argc, char* argv[]) {
+
     if (argc != 2){
         fprintf(stderr, "Usage: %s <number_of_lockers>\n", argv[0]);
         return 1;
@@ -690,6 +718,16 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, "invalid number of locker, please type bigger than 0 again!\n");
         return 1;
     }
+
+    int lock_fd = create_server_lock(SERVER_LOCK_FILE);
+    if (lock_fd == -1) {
+        fprintf(stderr, "Server already open...\n");
+        return 1;
+    } else if (lock_fd == 1) {
+        fprintf(stderr, "Failed to create or lock the lock file...\n");
+        return 1;
+    }
+
 
     lockers = malloc( sizeof(struct Locker) * MAX_CLIENTS);
     if (lockers == NULL){
@@ -776,5 +814,8 @@ int main(int argc, char* argv[]) {
     }
 
     close(server_socket);
+    flock(lock_fd, LOCK_UN);
+    close(lock_fd);
+    unlink(SERVER_LOCK_FILE);
     return 0;
 }
