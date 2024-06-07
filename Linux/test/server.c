@@ -11,13 +11,25 @@
 #include "locker.h"
 #include "socket.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <time.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <signal.h>
+#include <arpa/inet.h>
+#include "locker.h"
+#include "socket.h"
+
 int MAX_CLIENTS;
 struct Locker *lockers;
 int server_socket;
 struct clientInfo *clients;
 int client_count = 0;
 
-void saveDB(int locker_id);
+void saveDB();
 void saveLogger(const char* message);
 
 void add_client(int socket, int locker_id){
@@ -38,25 +50,25 @@ void add_client(int socket, int locker_id){
 
     char logMessage[BUFFER_SIZE];
     sprintf(logMessage, "current client_count : %d", client_count);
-    saveLogger("new client socker add\n");
+    saveLogger("new client socket add\n");
     saveLogger(logMessage);
 }
 
 void remove_client(int socket){
     for (int i = 0; i < client_count; i++){
         if (clients[i].socket == socket){
-            for (int j = 0; j < client_count - 1; j++){
+            for (int j = i; j < client_count - 1; j++){
                 clients[j] = clients[j + 1];
             }
             client_count--;
-            struct clientInfo *newClients = (struct clientInfo *)malloc(sizeof(struct clientInfo) * (client_count + 1));
+            struct clientInfo *newClients = (struct clientInfo *)malloc(sizeof(struct clientInfo) * client_count);
             if (newClients == NULL){
                 perror("memory allocate error");
                 saveLogger("memory allocate error");
                 return;
             }
             if (client_count > 0){
-                memcpy(newClients, clients, sizeof(struct clientInfo)* client_count);
+                memcpy(newClients, clients, sizeof(struct clientInfo) * client_count);
             }
             free(clients);
             clients = newClients;
@@ -65,12 +77,11 @@ void remove_client(int socket){
     }
 }
 
-
 void handle_exit(int sig) {
     for (int i = 0; i < client_count; i++) {
         if (clients[i].socket == -1 && lockers[clients[i].locker_id].draft == 1) {
             lockers[clients[i].locker_id].draft = 0;
-            saveDB(clients[i].locker_id);
+            saveDB();
         }
     }
     close(server_socket);
@@ -89,46 +100,54 @@ void signal_handler(){
     }
 }
 
-
-
-void saveDB(int locker_id) {
+void saveDB() {
     FILE *db = fopen(DATABASE, "r+");
     if (db == NULL) {
         db = fopen(DATABASE, "w+");
         if (db == NULL) {
             perror("cannot access to db file");
             return;
-        } else {
-            fprintf(db, "%-10s %-10s %-10s %-15s %-15s %-10s %-s\n", "Locker No", "Available", "Draft", "Password", "Content", "time", "duration");
-            for (int i = 0; i < MAX_CLIENTS; i++) {
-                char message[BUFFER_SIZE];
-                sprintf(message, "Locker %d is saving now", lockers[i].locker_id);
-                saveLogger(message);
-                fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time, lockers[i].duration);
-            }
         }
+    }
+
+    // 기존 데이터를 저장할 배열
+    struct Locker *db_lockers = malloc(sizeof(struct Locker) * MAX_CLIENTS);
+    if (db_lockers == NULL) {
+        perror("memory allocate error");
+        saveLogger("memory allocate error");
         fclose(db);
         return;
     }
+    memset(db_lockers, 0, sizeof(struct Locker) * MAX_CLIENTS);
 
-    fseek(db, 0, SEEK_SET);
-    int line = 0;
+    // 기존 데이터를 읽어옴
     char buffer[BUFFER_SIZE];
-    long position = 0;
-
-    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
-        if (line == (locker_id + 1)) {
-            position = ftell(db);
-            fseek(db, position - strlen(buffer), SEEK_SET);
-            fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time, lockers[locker_id].duration);
-            break;
+    fgets(buffer, BUFFER_SIZE, db); // 헤더 스킵
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        if (fgets(buffer, BUFFER_SIZE, db) != NULL) {
+            sscanf(buffer, "%d %d %d %s %s %lld %d", &db_lockers[i].locker_id, &db_lockers[i].in_use, &db_lockers[i].draft, db_lockers[i].password, db_lockers[i].content, &db_lockers[i].time, &db_lockers[i].duration);
         }
-        line++;
     }
+
+    // 업데이트된 데이터를 반영함
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        db_lockers[i] = lockers[i];
+    }
+
+    // 파일 포인터를 처음으로 되돌림
+    rewind(db);
+
+    // 헤더 작성
+    fprintf(db, "%-10s %-10s %-10s %-15s %-15s %-10s %-s\n", "Locker No", "Available", "Draft", "Password", "Content", "time", "duration");
+
+    // 데이터를 파일에 씀
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", db_lockers[i].locker_id, db_lockers[i].in_use, db_lockers[i].draft, db_lockers[i].password, db_lockers[i].content, db_lockers[i].time, db_lockers[i].duration);
+    }
+
     fclose(db);
+    free(db_lockers);
 }
-
-
 void initialize_lockers() {
     for (int i = 0; i < MAX_CLIENTS; i++) {
         lockers[i].locker_id = i;
@@ -139,9 +158,7 @@ void initialize_lockers() {
         lockers[i].time = 0;
         lockers[i].duration = 0;
     }
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        saveDB(i);
-    }
+    saveDB();
 }
 
 void loadDB() {
@@ -155,7 +172,7 @@ void loadDB() {
     fgets(buffer, BUFFER_SIZE, db);
     for (int i = 0; i < MAX_CLIENTS; i++) {
         if (fgets(buffer, BUFFER_SIZE, db) != NULL){
-            fscanf(db, "%d %d %d %s %s %lld %d\n", &lockers[i].locker_id, &lockers[i].in_use, &lockers[i].draft, lockers[i].password, lockers[i].content, &lockers[i].time, &lockers[i].duration);
+            sscanf(buffer, "%d %d %d %s %s %lld %d", &lockers[i].locker_id, &lockers[i].in_use, &lockers[i].draft, lockers[i].password, lockers[i].content, &lockers[i].time, &lockers[i].duration);
         }
     }
     fclose(db);
@@ -163,28 +180,9 @@ void loadDB() {
 
 void updateLocker(int locker_id) {
     loadDB();
-    saveDB(locker_id);
+    saveDB();
 }
-/**
- *
-    fgets(buffer, BUFFER_SIZE, db); // skip header
-    int line = 0;
-    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
-        int locker_id, in_use, draft;
-        sscanf(buffer, "%d %d %d", &locker_id, &in_use, &draft);
-        if (line >= 0 && line < MAX_CLIENTS) {
-            lockers[line].locker_id = line;
-            lockers[line].in_use = in_use;
-            lockers[line].draft = draft;
 
-            char message[BUFFER_SIZE];
-            snprintf(message, sizeof(message), "Locker No: %d | Available: %s\n", line, (in_use == 0 && draft == 0) ? "Yes" : "No");
-            send(client_socket, message, strlen(message), 0);
-        }
-        line++;
-    }
-
- * */
 void loadDBbyId(int locker_id) {
     FILE *db = fopen(DATABASE, "r");
     if (db == NULL) {
@@ -196,7 +194,7 @@ void loadDBbyId(int locker_id) {
     int line = 0;
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
         if (line == locker_id) {
-            sscanf(buffer, "%d %d %d %s %s %lld %d", &line, &lockers[locker_id].in_use, &lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, &lockers[locker_id].time, &lockers[locker_id].duration);
+            sscanf(buffer, "%d %d %d %s %s %lld %d", &lockers[locker_id].locker_id, &lockers[locker_id].in_use, &lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, &lockers[locker_id].time, &lockers[locker_id].duration);
             break;
         }
         line++;
@@ -212,7 +210,6 @@ int checkPassword(int num, const char *password) {
         return 0;
     }
 }
-
 
 void saveLogger(const char *message) {
     FILE *Logger = fopen(LoggerFile, "a");
@@ -270,6 +267,7 @@ void calculate_remaining_time(struct Locker *locker, char *buffer, int type) {
             break;
     }
 }
+
 void handle_search(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
