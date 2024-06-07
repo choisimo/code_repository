@@ -90,13 +90,13 @@ void signal_handler(){
 }
 
 
-
 void saveDB(int locker_id) {
     FILE *db = fopen(DATABASE, "rb+");
     if (db == NULL) {
         db = fopen(DATABASE, "wb");
         if (db == NULL) {
             perror("cannot access to db file");
+            printf("new db file created\n");
             return;
         }
     }
@@ -118,6 +118,7 @@ void initialize_lockers() {
     FILE *db = fopen(DATABASE, "wb");
     if (db == NULL) {
         perror("cannot create db file");
+        printf("new db file created\n");
         return;
     }
     fwrite(lockers, sizeof(struct Locker), MAX_CLIENTS, db);
@@ -129,6 +130,7 @@ void loadDB() {
     FILE *db = fopen(DATABASE, "rb");
     if (db == NULL) {
         perror("cannot access to db file");
+        printf("new db file created\n");
         initialize_lockers();
         return;
     }
@@ -146,7 +148,6 @@ void loadDBbyId(int locker_id) {
     fread(&lockers[locker_id], sizeof(struct Locker), 1, db);
     fclose(db);
 }
-
 
 
 void updateLocker(int locker_id) {
@@ -534,6 +535,105 @@ int handle_reservation(int client_socket) {
     return locker_id;
 }
 
+void handle_time(int client_socket){
+    char buffer[BUFFER_SIZE];
+    int read_size;
+    int locker_id = -1;
+
+    while ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+        buffer[read_size] = '\0';
+        locker_id = atoi(buffer);
+
+        char log_message[read_size];
+        sprintf(log_message,"received locker number : %d", locker_id);
+        saveLogger(log_message);
+
+        int fd = open(DATABASE, O_RDWR);
+        if (fd == -1) {
+            perror("DATABASE access failed");
+            saveLogger("DATABASE access failed");
+            close(client_socket);
+            return;
+        }
+
+        if (locker_id < 0 || locker_id > MAX_CLIENTS) {
+            char *error_message = "wrong locker_id received...";
+            perror(error_message);
+            saveLogger(error_message);
+            send(client_socket, error_message, strlen(error_message), 0);
+            break;
+        }
+
+        loadDBbyId(locker_id);
+
+        while (1) {
+            if (lockers[locker_id].in_use == 0){
+                char *error_message = "Locker is already empty.";
+                perror(error_message);
+                saveLogger(error_message);
+                send(client_socket, error_message, strlen(error_message), 0);
+                break;
+            } else {
+                char *response = "enter locker's password : ";
+                send(client_socket, response, strlen(response), 0);
+            }
+
+            int clientRecv;
+
+            if ((clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+                buffer[clientRecv] = '\0';
+                char password[MAX_PASSWORD_SIZE];
+                sscanf(buffer, "%s", password);
+                if (strstr(password, lockers[locker_id].password) != NULL) {
+                    char *message = "password correct.\n";
+                    send(client_socket, message, strlen(message), 0);
+
+                    loadDBbyId(locker_id);
+
+                    char dual_time_buffer[BUFFER_SIZE];
+                    calculate_remaining_time(&lockers[locker_id], dual_time_buffer, 2);
+                    snprintf(buffer, sizeof(buffer),
+                             "\n------------| locker info |-------------\n"
+                             "locker number: %d | contents: %s\n %s\n",
+                             locker_id, lockers[locker_id].content, dual_time_buffer);
+                    send(client_socket, buffer, strlen(buffer), 0);
+
+                    clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0);
+                    if (clientRecv > 0) {
+                        buffer[clientRecv] = '\0';
+                        int input_time = atoi(buffer);
+
+                        char logMessage[BUFFER_SIZE];
+                        snprintf(logMessage, BUFFER_SIZE, "Received time from client: %d", input_time);
+                        saveLogger(logMessage);
+
+                        lockers[locker_id].duration += input_time * 3600;
+                        saveDB(locker_id);
+
+                        char logMessage2[BUFFER_SIZE];
+                        snprintf(logMessage2, BUFFER_SIZE, "Updated duration for locker %d: %d seconds", locker_id, lockers[locker_id].duration);
+                        saveLogger(logMessage2);
+
+                        char* success_message = "success";
+                        send(client_socket, success_message, strlen(success_message), 0);
+                    } else {
+                        perror("failed to fetch client info");
+                        saveLogger("failed to fetch client info");
+                    }
+                } else {
+                    char *message = "wrong password!";
+                    perror(message);
+                    saveLogger(message);
+                    send(client_socket, message, strlen(message), 0);
+                }
+            } else {
+                saveLogger("failed to fetch password info");
+            }
+        }
+    }
+}
+
+
 void handle_client(int client_socket) {
     int menu_choice;
     recv(client_socket, &menu_choice, sizeof(menu_choice), 0);
@@ -553,7 +653,7 @@ void handle_client(int client_socket) {
             handle_checkout(client_socket);
             break;
         case 4:
-            // 남은 시간 확인 로직 구현
+            handle_time(client_socket);
             break;
         case 5:
             // 청구서 확인 로직 구현
@@ -564,6 +664,18 @@ void handle_client(int client_socket) {
     }
     remove_client(client_socket);
     close(client_socket);
+}
+
+void port_file(int port) {
+    FILE* file = fopen(PORT_FILE, "w");
+    if (file == NULL) {
+        char* error_message = "error while opening port config file";
+        perror(error_message);
+        saveLogger(error_message);
+        return;
+    }
+    fprintf(file, "%d\n", port);
+    fclose(file);
 }
 
 
@@ -590,26 +702,55 @@ int main(int argc, char* argv[]) {
     struct sockaddr_in server_addr, client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
 
-    if ((server_socket = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
-        perror("Could not create socket");
-        char* message = "could not create socket";
-        saveLogger(message);
-        return -1;
+    int port = PORT;
+    int port_increment = 1;
+    int bind_attempts = 5;
+
+    printf("-----------------------------------------------------\n");
+    printf("server binding port... in progress...\n");
+
+    while (bind_attempts > 0) {
+        if ((server_socket = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
+            perror("Could not create socket");
+            saveLogger("could not create socket");
+            return -1;
+        }
+
+        server_addr.sin_family = AF_INET;
+        server_addr.sin_addr.s_addr = INADDR_ANY;
+        server_addr.sin_port = htons(port);
+
+        if (bind(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+            perror("Bind failed");
+            saveLogger("Bind failed");
+
+            printf("bind port [ %d ] failed ...\n", port);
+            printf("retry with 1 increment... \n");
+
+            port += port_increment;
+            bind_attempts--;
+
+            close(server_socket);
+            if (bind_attempts == 0) {
+                return -1;
+            }
+
+            continue;
+        }
+
+        char logMessage[BUFFER_SIZE];
+        snprintf(logMessage, BUFFER_SIZE, "Server bound to port %d", port);
+        saveLogger(logMessage);
+        port_file(port);
+        break;
     }
 
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_addr.s_addr = INADDR_ANY;
-    server_addr.sin_port = htons(PORT);
-
-    if (bind(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-        perror("Bind failed");
-        saveLogger("Bind failed");
-        return -1;
-    }
+    printf("server bind port successfully with port [ %d ]\n", port);
 
     listen(server_socket, MAX_CLIENTS);
 
     loadDB();
+
     printf("server started.. waiting for any connections\n");
 
     while ((client_socket = accept(server_socket, (struct sockaddr *)&client_addr, &client_addr_len))) {

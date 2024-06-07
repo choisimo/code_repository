@@ -10,6 +10,7 @@
 #define DATABASE "locker_database.txt"
 #define LoggerFile "log.txt"
 #define CLoggerFile "clog.txt"
+#define PORT_FILE "port_config.txt"
 
 struct Locker{
     int locker_id;

@@ -11,6 +11,7 @@ void print_menu(){
     printf(" 1. search \n");
     printf(" 2. reservation \n");
     printf(" 3. checkout \n");
+    printf(" 4. handle time \n");
     printf("\n");
 }
 
@@ -28,6 +29,7 @@ int get_menu_num(int menu_num){
         printf("check out page\n");
         return 3;
     } else if (menu_num == 4) {
+        printf("handle time page\n");
         return 4;
     } else if (menu_num == 5) {
         return 5;
@@ -252,7 +254,119 @@ void handle_checkout(int sock) {
 }
 
 
+void handle_time(int sock) {
+    char buffer[BUFFER_SIZE];
+    char message[BUFFER_SIZE];
 
+    while (1) {
+        printf("Enter locker ID : ");
+        fgets(buffer, BUFFER_SIZE, stdin);
+        buffer[strcspn(buffer, "\n")] = 0;
+        send(sock, buffer, strlen(buffer), 0);
+
+        int read_size = recv(sock, message, BUFFER_SIZE, 0);
+        if (read_size > 0) {
+            message[read_size] = '\0';
+
+            if (strstr(message, "wrong locker_id") != NULL) {
+                printf("Server: %s\n", message);
+                continue;
+            } else if (strstr(message, "Locker is already empty") != NULL){
+                printf("Server: %s\n", message);
+                continue;
+            }
+
+            printf("Enter password: ");
+            fgets(buffer, BUFFER_SIZE, stdin);
+            buffer[strcspn(buffer, "\n")] = 0;
+            send(sock, buffer, strlen(buffer), 0);
+
+            read_size = recv(sock, message, BUFFER_SIZE, 0);
+            if (read_size > 0) {
+                message[read_size] = '\0';
+                printf("Server: %s\n", message);
+                int input_time = -1;
+
+                if (strstr(message, "password correct") != NULL) {
+                    int info = recv(sock, message, BUFFER_SIZE, 0);
+                    if (info > 0) {
+                        message[info] = '\0';
+                        printf("Server : %s\n", message);
+                    } else {
+                        printf("password not valid!\n");
+                        continue;
+                    }
+
+                    while (1) {
+                        printf("enter time[hour] you want (should be bigger than 0) : ");
+                        if (scanf("%d", &input_time) != 1 || input_time <= 0) {
+                            printf("Invalid input. Please enter a positive integer.\n");
+                            while (getchar() != '\n');
+                        } else {
+                            break;
+                        }
+                    }
+
+                    snprintf(message, BUFFER_SIZE, "%d", input_time);
+                    send(sock, message, strlen(message), 0);
+                    int status = recv(sock, message, strlen(message), 0);
+                    if (status > 0){
+                        message[status] = '\0';
+                        if (strstr(message, "success") != NULL){
+                            printf("successfully change time\n");
+                            close(sock);
+                            exit(0);
+                        }
+                    } else {
+                        perror("failed to fetch data");
+                        saveLogger("failed to fetch data");
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+int get_menu_choice() {
+    int menu_choice;
+    char buffer[BUFFER_SIZE];
+    while (1) {
+        print_menu();
+        printf("choose one menu num... : ");
+        if (fgets(buffer, BUFFER_SIZE, stdin) != NULL) {
+            if (sscanf(buffer, "%d", &menu_choice) == 1) {
+                if (menu_choice >= 1 && menu_choice <= 5) {
+                    break;
+                } else {
+                    printf("Invalid choice...\n");
+                }
+            } else {
+                printf("Invalid input. Please enter a valid number.\n");
+            }
+        }
+    }
+    return menu_choice;
+}
+
+int read_port(const char *filename){
+    FILE* file = fopen(filename, "r");
+    if (file == NULL){
+        char* error_message = "failed to read port file";
+        perror(error_message);
+        saveLogger(error_message);
+        return -1;
+    }
+    int new_port;
+
+    if(fscanf(file, "%d", &new_port) != 1){
+        perror("error reading port from file\n");
+        fclose(file);
+        return -1;
+    }
+    fclose(file);
+    return new_port;
+}
 
     /**
 ====================================================================================
@@ -266,6 +380,12 @@ int main() {
     char buffer[BUFFER_SIZE];
     char message[BUFFER_SIZE];
 
+    int port = read_port(PORT_FILE);
+    if (port == -1){
+        port = PORT;
+        printf("failed to read port file\n");
+        return -1;
+    }
     // socket create attempt
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("Socket creation error \n");
@@ -273,7 +393,7 @@ int main() {
     }
 
     server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(PORT);
+    server_addr.sin_port = htons(port);
 
     if (inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr) <= 0) {
         printf("IPv4 address not accepted \n");
@@ -292,26 +412,28 @@ int main() {
 ====================================================================================
      * */
 
+
         print_menu();
         printf("choose one menu num... : \n");
-        int menu_choice;
-        scanf("%d", &menu_choice);
-        getchar();
 
-        send(sock, &menu_choice, sizeof(menu_choice), 0);
+        while(1){
+            int menu_choice = get_menu_choice();
+            send(sock, &menu_choice, sizeof(menu_choice), 0);
 
-        if (menu_choice == 1){
-            handle_search(sock);
-        } else if (menu_choice == 2){
-            handle_reservation(sock);
-        } else if (menu_choice == 3){
-            handle_checkout(sock);
-        } else if (menu_choice == 4){
+            if (menu_choice == 1){
+                handle_search(sock);
+            } else if (menu_choice == 2){
+                handle_reservation(sock);
+            } else if (menu_choice == 3){
+                handle_checkout(sock);
+            } else if (menu_choice == 4){
+                handle_time(sock);
+            } else if (menu_choice == 5){
 
-        } else if (menu_choice == 5){
-
-        } else {
-
+            } else {
+                printf("invalid choice.. please enter a valid menu\n");
+                continue;
+            }
         }
 
     close(sock);
