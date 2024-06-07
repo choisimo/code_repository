@@ -10,9 +10,7 @@ void print_menu(){
     printf(" please choose one menu following \n");
     printf(" 1. search \n");
     printf(" 2. reservation \n");
-    printf(" 3. pay load \n");
-    printf(" 4. remain time \n");
-    printf(" 5. check current bill \n");
+    printf(" 3. checkout \n");
     printf("\n");
 }
 
@@ -27,13 +25,11 @@ int get_menu_num(int menu_num){
         printf("reservation page\n");
         return 2;
     } else if (menu_num == 3) {
-        printf("payment page\n");
+        printf("check out page\n");
         return 3;
     } else if (menu_num == 4) {
-        printf("check remain time page\n");
         return 4;
     } else if (menu_num == 5) {
-        printf("check bill page\n");
         return 5;
     } else {
         return 0;
@@ -82,7 +78,8 @@ void handle_search(int sock) {
             int detail_info = recv(sock, buffer, sizeof(buffer), 0);
             if (detail_info > 0) {
                 buffer[detail_info] = '\0';
-                printf("%s", buffer);
+                printf("-------------| normal info |--------------\n");
+                printf("%s\n", buffer);
 
                 if (strstr(buffer, "is empty") != NULL) {
                     printf("this is an empty locker...\n");
@@ -96,6 +93,7 @@ void handle_search(int sock) {
                 }
 
                 printf("enter password to see secured content\n");
+                printf("------------------------------------------\n");
                 printf("password : ");
                 char password[MAX_PASSWORD_SIZE];
                 scanf("%s", password);
@@ -104,8 +102,9 @@ void handle_search(int sock) {
                 int content_received = recv(sock, buffer, BUFFER_SIZE, 0);
                 if (content_received > 0) {
                     buffer[content_received] = '\0';
-                    printf("received data : \n %s\n", buffer);
-
+                    printf("-------------| detail info |--------------\n");
+                    printf("%s\n", buffer);
+                    printf("------------------------------------------\n");
                 } else {
                     printf("failed to fetch secured content\n");
                     saveLogger("failed to fetch secured content\n");
@@ -126,12 +125,6 @@ void handle_search(int sock) {
         }
     }
 }
-
-
-void handle_searchById(int sock, int id){
-    int menu_value = 1;
-}
-
 
 
 int handle_reservation(int sock) {
@@ -169,6 +162,7 @@ int handle_reservation(int sock) {
                         if (strcmp(message, "password and confirm password not equal") == 0) {
                             continue;
                         } else {
+                            printf("\n");
                             printf("Enter content to store in the locker: ");
                             fgets(buffer, BUFFER_SIZE, stdin);
                             buffer[strcspn(buffer, "\n")] = 0;
@@ -197,6 +191,64 @@ int handle_reservation(int sock) {
         }
     }
 }
+
+
+void handle_checkout(int sock) {
+    char buffer[BUFFER_SIZE];
+    char message[BUFFER_SIZE];
+
+    while (1) {
+        printf("Enter locker ID : ");
+        fgets(buffer, BUFFER_SIZE, stdin);
+        buffer[strcspn(buffer, "\n")] = 0;
+        send(sock, buffer, strlen(buffer), 0);
+
+        int read_size = recv(sock, message, BUFFER_SIZE, 0);
+        if (read_size > 0) {
+            message[read_size] = '\0';
+
+            if (strstr(message, "wrong locker_id received...") != NULL) {
+                printf("Server: %s\n", message);
+                continue;
+            } else if (strstr(message, "Locker is already empty") != NULL){
+                printf("Server: %s\n", message);
+                continue;
+            }
+
+            printf("Enter password: ");
+            fgets(buffer, BUFFER_SIZE, stdin);
+            buffer[strcspn(buffer, "\n")] = 0;
+            send(sock, buffer, strlen(buffer), 0);
+
+            read_size = recv(sock, message, BUFFER_SIZE, 0);
+            if (read_size > 0) {
+                message[read_size] = '\0';
+                printf("Server: %s\n", message);
+
+                if (strstr(message, "password correct") != NULL) {
+                    char choice;
+                    scanf(" %c", &choice);
+                    getchar();
+
+                    if (choice == 'Y' || choice == 'y') {
+                        send(sock, "Y", 1, 0);
+                    } else {
+                        send(sock, "N", 1, 0);
+                    }
+
+                    read_size = recv(sock, message, BUFFER_SIZE, 0);
+                    if (read_size > 0) {
+                        message[read_size] = '\0';
+                        printf("Server: %s\n", message);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 
     /**
@@ -250,7 +302,7 @@ int main() {
         } else if (menu_choice == 2){
             handle_reservation(sock);
         } else if (menu_choice == 3){
-
+            handle_checkout(sock);
         } else if (menu_choice == 4){
 
         } else if (menu_choice == 5){

@@ -63,8 +63,10 @@ void saveDB(int locker_id) {
     fseek(db, 0, SEEK_SET);
     int line = 0;
     char buffer[BUFFER_SIZE];
+    int position;
 
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
+        position = ftell(db);
         if (line == (locker_id + 1)) {
             fseek(db, -strlen(buffer), SEEK_CUR);
             fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10ld %-ld\n", lockers[locker_id].locker_id, lockers[locker_id].in_use, lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, lockers[locker_id].time, lockers[locker_id].duration);
@@ -75,6 +77,9 @@ void saveDB(int locker_id) {
     fclose(db);
 }
 
+void remove_expired_lockers(){
+
+}
 
 void initialize_lockers() {
     for (int i = 0; i < MAX_CLIENTS; i++) {
@@ -113,7 +118,7 @@ void loadDBbyId(int locker_id) {
         return;
     }
     char buffer[BUFFER_SIZE];
-    fgets(buffer, BUFFER_SIZE, db); // 헤더 건너뛰기
+    fgets(buffer, BUFFER_SIZE, db); // skip header info
     int line = 0;
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
         if (line == locker_id) {
@@ -148,16 +153,50 @@ void saveLogger(const char *message) {
     }
 }
 
-void calculate_remaining_time(struct Locker *locker, char *buffer) {
+// 0 : reg_time, 1 : end_time, 2: reg + end time
+void calculate_remaining_time(struct Locker *locker, char *buffer, int type) {
     time_t current_time = time(NULL);
     int remaining_time = locker->duration - difftime(current_time, locker->time);
     if (remaining_time < 0) {
         remaining_time = 0;
     }
+    time_t reg_time = locker->time;
     time_t end_time = locker->time + locker->duration;
-    struct tm *end_time_tm = localtime(&end_time);
-    strftime(buffer, BUFFER_SIZE, "register time : %Y-%m-%d %H:%M:%S (KST)", end_time_tm);
+
+    char logBuffer[BUFFER_SIZE];
+    sprintf(logBuffer, "regtime : %ld, end_time : %ld", reg_time, end_time);
+    saveLogger(logBuffer);
+
+    struct tm reg_time_tm;
+    struct tm end_time_tm;
+
+    localtime_r(&reg_time, &reg_time_tm);
+    localtime_r(&end_time, &end_time_tm);
+
+    sprintf(logBuffer, "regtime_tm : %ld, endtime_tm : %ld", (long)&reg_time_tm, (long)&end_time_tm);
+    saveLogger(logBuffer);
+
+    char reg_time_str[BUFFER_SIZE];
+    char end_time_str[BUFFER_SIZE];
+
+    switch(type) {
+        case 0:
+            strftime(buffer, BUFFER_SIZE, "%Y-%m-%d %H:%M:%S (KST)", &reg_time_tm);
+            break;
+        case 1:
+            strftime(buffer, BUFFER_SIZE, "%Y-%m-%d %H:%M:%S (KST)", &end_time_tm);
+            break;
+        case 2:
+            strftime(reg_time_str, BUFFER_SIZE, "%Y-%m-%d %H:%M:%S (KST)", &reg_time_tm);
+            strftime(end_time_str, BUFFER_SIZE, "%Y-%m-%d %H:%M:%S (KST)", &end_time_tm);
+            snprintf(buffer, BUFFER_SIZE, "Registered at: %s | Expires at: %s", reg_time_str, end_time_str);
+            break;
+        default:
+            snprintf(buffer, BUFFER_SIZE, "Invalid time type");
+            break;
+    }
 }
+
 
 
 void handle_search(int client_socket) {
@@ -171,10 +210,11 @@ void handle_search(int client_socket) {
         return;
     }
 
+    fgets(buffer, BUFFER_SIZE, db); // 헤더 건너뛰기
     while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
         int locker_id, in_use, draft;
         sscanf(buffer, "%d %d %d", &locker_id, &in_use, &draft);
-        if (locker_id >= 0 && locker_id < MAX_CLIENTS && (in_use == 0 || in_use == 1)) {
+        if (locker_id >= 0 && locker_id < MAX_CLIENTS) {
             snprintf(buffer, sizeof(buffer), "Locker No: %d | Available: %s\n", locker_id, (in_use == 0 && draft == 0) ? "Yes" : "No");
             send(client_socket, buffer, strlen(buffer), 0);
         }
@@ -198,14 +238,14 @@ void handle_search(int client_socket) {
         } else {
             loadDBbyId(locker_num);
 
-            if (lockers[locker_num].in_use == 0){
+            if (lockers[locker_num].in_use == 0) {
                 snprintf(buffer, sizeof(buffer), "locker %d is empty\n", lockers[locker_num].locker_id);
                 send(client_socket, buffer, strlen(buffer), 0);
             } else {
-                char time_buffer[BUFFER_SIZE];
-                calculate_remaining_time(&lockers[locker_num], time_buffer);
-                snprintf(buffer, sizeof(buffer), "locker number: %d\navailability: %d\ncontents: %s\n",
-                         lockers[locker_num].locker_id, lockers[locker_num].in_use, "secured data", time_buffer);
+                char reg_time_buffer[BUFFER_SIZE], dual_time_buffer[BUFFER_SIZE];
+                calculate_remaining_time(&lockers[locker_num], reg_time_buffer, 0);
+                snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %s | contents: %s \n registered at : %s",
+                         lockers[locker_num].locker_id, (lockers[locker_num].in_use == 0) || (lockers[locker_num].draft == 0) ? "True":"False", "secured data", reg_time_buffer);
                 send(client_socket, buffer, strlen(buffer), 0);
 
                 char password[MAX_PASSWORD_SIZE];
@@ -213,9 +253,10 @@ void handle_search(int client_socket) {
                 if (password_received > 0) {
                     password[password_received] = '\0';
                     if (checkPassword(locker_num, password)) {
-                        snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %d | contents: %s\n",
-                                 lockers[locker_num].locker_id, lockers[locker_num].in_use,
-                                 lockers[locker_num].content);
+                        calculate_remaining_time(&lockers[locker_num], dual_time_buffer, 2);
+                        snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %s | contents: %s\n %s",
+                                 lockers[locker_num].locker_id, (lockers[locker_num].in_use == 0) || (lockers[locker_num].draft == 0) ? "True":"False",
+                                 lockers[locker_num].content, dual_time_buffer);
                     } else {
                         strcpy(buffer, "wrong password!\n");
                     }
@@ -226,6 +267,95 @@ void handle_search(int client_socket) {
     }
 }
 
+void handle_checkout(int client_socket) {
+    char buffer[BUFFER_SIZE];
+    int read_size;
+    int locker_id = -1;
+
+    while ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+        buffer[read_size] = '\0';
+        locker_id = atoi(buffer);
+
+        int fd = open(DATABASE, O_RDWR);
+        if (fd == -1) {
+            perror("DATABASE access failed");
+            saveLogger("DATABASE access failed");
+            close(client_socket);
+            return;
+        }
+
+        loadDBbyId(locker_id);
+
+        while (1) {
+            if (locker_id < 0 || locker_id > MAX_CLIENTS) {
+                char *error_message = "wrong locker_id received...";
+                perror(error_message);
+                saveLogger(error_message);
+                send(client_socket, error_message, strlen(error_message), 0);
+                return;
+            }
+
+            if (lockers[locker_id].in_use == 0){
+                char *error_message = "Locker is already empty.";
+                perror(error_message);
+                saveLogger(error_message);
+                send(client_socket, error_message, strlen(error_message), 0);
+                return;
+            }
+
+            send(client_socket, "", BUFFER_SIZE, 0);
+
+            while(1){
+            int clientRecv;
+            if ((clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+                buffer[clientRecv] = '\0';
+                char password[MAX_PASSWORD_SIZE];
+                sscanf(buffer, "%s", password);
+                if (strstr(password, lockers[locker_id].password) != NULL) {
+                    char *message = "password correct. Really want to checkout? (Y/N) : \n";
+                    send(client_socket, message, strlen(message), 0);
+
+                    clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0);
+                    if (clientRecv > 0) {
+                        buffer[clientRecv] = '\0';
+                        if (strcmp(buffer, "Y") == 0 || strcmp(buffer, "y") == 0) {
+                            lockers[locker_id].in_use = 0;
+                            lockers[locker_id].draft = 0;
+                            strcpy(lockers[locker_id].password, "");
+                            strcpy(lockers[locker_id].content, "");
+                            lockers[locker_id].time = 0;
+                            lockers[locker_id].duration = 0;
+                            saveDB(locker_id);
+
+                            char logMessage[BUFFER_SIZE];
+                            sprintf(logMessage, "Locker %d has been checked out and is now empty.",
+                                    lockers[locker_id].locker_id);
+                            saveLogger(logMessage);
+
+                            message = "Locker content deleted successfully.\n";
+                            send(client_socket, message, strlen(message), 0);
+                        } else {
+                            char *message = "Checkout canceled.\n";
+                            send(client_socket, message, strlen(message), 0);
+                        }
+                    } else {
+                        perror("failed to fetch confirmation info");
+                        saveLogger("failed to fetch confirmation info");
+                    }
+                } else {
+                    char *message = "wrong password!";
+                    perror(message);
+                    saveLogger(message);
+                    send(client_socket, message, strlen(message), 0);
+                }
+            } else {
+                perror("failed to fetch password info");
+                saveLogger("failed to fetch password info");
+            }
+            }
+        }
+    }
+}
 
 void handle_reservation(int client_socket) {
     char buffer[BUFFER_SIZE];
@@ -243,7 +373,6 @@ void handle_reservation(int client_socket) {
             close(client_socket);
             return;
         }
-
 
         /**
          * file lock initialize
@@ -393,7 +522,7 @@ void handle_client(int client_socket) {
             handle_reservation(client_socket);
             break;
         case 3:
-            // 결제 처리 로직 구현
+            handle_checkout(client_socket);
             break;
         case 4:
             // 남은 시간 확인 로직 구현
@@ -407,6 +536,7 @@ void handle_client(int client_socket) {
     }
 
 }
+
 
 int main(int argc, char* argv[]) {
     if (argc != 2){
