@@ -207,7 +207,7 @@ void handle_checkout(int sock) {
         if (read_size > 0) {
             message[read_size] = '\0';
 
-            if (strstr(message, "wrong locker_id received...") != NULL) {
+            if (strstr(message, "wrong locker_id") != NULL) {
                 printf("Server: %s\n", message);
                 continue;
             } else if (strstr(message, "Locker is already empty") != NULL){

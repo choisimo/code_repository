@@ -92,14 +92,9 @@ void saveDB(int locker_id) {
         saveLogger(message);
         fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", lockers[i].locker_id, lockers[i].in_use, lockers[i].draft, lockers[i].password, lockers[i].content, lockers[i].time, lockers[i].duration);
     }
-
     fclose(db);
 }
 
-
-void remove_expired_lockers(){
-
-}
 
 void initialize_lockers() {
     for (int i = 0; i < MAX_CLIENTS; i++) {
@@ -302,6 +297,10 @@ void handle_checkout(int client_socket) {
         buffer[read_size] = '\0';
         locker_id = atoi(buffer);
 
+        char log_message[read_size];
+        sprintf(log_message,"check out locker number : %d", locker_id);
+        saveLogger(log_message);
+
         int fd = open(DATABASE, O_RDWR);
         if (fd == -1) {
             perror("DATABASE access failed");
@@ -310,23 +309,23 @@ void handle_checkout(int client_socket) {
             return;
         }
 
+        if (locker_id < 0 || locker_id > MAX_CLIENTS) {
+            char *error_message = "wrong locker_id received...";
+            perror(error_message);
+            saveLogger(error_message);
+            send(client_socket, error_message, strlen(error_message), 0);
+            break;
+        }
+
         loadDBbyId(locker_id);
 
         while (1) {
-            if (locker_id < 0 || locker_id > MAX_CLIENTS) {
-                char *error_message = "wrong locker_id received...";
-                perror(error_message);
-                saveLogger(error_message);
-                send(client_socket, error_message, strlen(error_message), 0);
-                return;
-            }
-
             if (lockers[locker_id].in_use == 0){
                 char *error_message = "Locker is already empty.";
                 perror(error_message);
                 saveLogger(error_message);
                 send(client_socket, error_message, strlen(error_message), 0);
-                return;
+                break;
             }
 
             send(client_socket, "", BUFFER_SIZE, 0);
@@ -375,9 +374,8 @@ void handle_checkout(int client_socket) {
                     send(client_socket, message, strlen(message), 0);
                 }
             } else {
-                perror("failed to fetch password info");
                 saveLogger("failed to fetch password info");
-            }
+                }
             }
         }
     }
