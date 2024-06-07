@@ -91,6 +91,9 @@ void handle_search(int sock) {
                     saveLogger("wrong locker number input error\n");
                     continue;
                 }
+                if (strstr(buffer, "on reservation") != NULL){
+                    continue;
+                }
 
                 printf("enter password to see secured content\n");
                 printf("------------------------------------------\n");

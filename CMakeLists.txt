@@ -43,7 +43,9 @@ add_executable(Data_structure_C++_stack_infix_postfix_calculate Data_structure/C
 
 add_executable(Data_structure_C++_stack_homework4_5 Data_structure/C++/stack/homework4_5.cpp)
 add_executable(Data_structure_C++_stack_homework_3 Data_structure/C++/stack/homework_3.cpp)
-add_executable(Data_structure_C++_homework2_litmus2 Data_structure/C++/homework2/litmus2.cpp)
+add_executable(Data_structure_C++_homework2_litmus2 Data_structure/C++/homework2/litmus2.cpp
+        Linux/final/socket.h
+        Linux/final/kill_port.c)
 add_executable(Data_structure_C++_homework2_litmus2_test Data_structure/C++/homework2/litmus2_test.cpp)
 add_executable(Data_structure_C++_homework2_litmus2_test2 Data_structure/C++/homework2/litmus2_test2.cpp)
 add_executable(Data_structure_C++_homework2_test3 Data_structure/C++/homework2/test3.cpp)
