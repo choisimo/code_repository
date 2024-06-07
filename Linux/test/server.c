@@ -11,25 +11,13 @@
 #include "locker.h"
 #include "socket.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <time.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <signal.h>
-#include <arpa/inet.h>
-#include "locker.h"
-#include "socket.h"
-
 int MAX_CLIENTS;
 struct Locker *lockers;
 int server_socket;
 struct clientInfo *clients;
 int client_count = 0;
 
-void saveDB();
+void saveDB(int locker_id);
 void saveLogger(const char* message);
 
 void add_client(int socket, int locker_id){
@@ -50,25 +38,25 @@ void add_client(int socket, int locker_id){
 
     char logMessage[BUFFER_SIZE];
     sprintf(logMessage, "current client_count : %d", client_count);
-    saveLogger("new client socket add\n");
+    saveLogger("new client socker add\n");
     saveLogger(logMessage);
 }
 
 void remove_client(int socket){
     for (int i = 0; i < client_count; i++){
         if (clients[i].socket == socket){
-            for (int j = i; j < client_count - 1; j++){
+            for (int j = 0; j < client_count - 1; j++){
                 clients[j] = clients[j + 1];
             }
             client_count--;
-            struct clientInfo *newClients = (struct clientInfo *)malloc(sizeof(struct clientInfo) * client_count);
+            struct clientInfo *newClients = (struct clientInfo *)malloc(sizeof(struct clientInfo) * (client_count + 1));
             if (newClients == NULL){
                 perror("memory allocate error");
                 saveLogger("memory allocate error");
                 return;
             }
             if (client_count > 0){
-                memcpy(newClients, clients, sizeof(struct clientInfo) * client_count);
+                memcpy(newClients, clients, sizeof(struct clientInfo)* client_count);
             }
             free(clients);
             clients = newClients;
@@ -77,11 +65,12 @@ void remove_client(int socket){
     }
 }
 
+
 void handle_exit(int sig) {
     for (int i = 0; i < client_count; i++) {
         if (clients[i].socket == -1 && lockers[clients[i].locker_id].draft == 1) {
             lockers[clients[i].locker_id].draft = 0;
-            saveDB();
+            saveDB(clients[i].locker_id);
         }
     }
     close(server_socket);
@@ -100,54 +89,22 @@ void signal_handler(){
     }
 }
 
-void saveDB() {
-    FILE *db = fopen(DATABASE, "r+");
+
+
+void saveDB(int locker_id) {
+    FILE *db = fopen(DATABASE, "rb+");
     if (db == NULL) {
-        db = fopen(DATABASE, "w+");
+        db = fopen(DATABASE, "wb");
         if (db == NULL) {
             perror("cannot access to db file");
             return;
         }
     }
-
-    // 기존 데이터를 저장할 배열
-    struct Locker *db_lockers = malloc(sizeof(struct Locker) * MAX_CLIENTS);
-    if (db_lockers == NULL) {
-        perror("memory allocate error");
-        saveLogger("memory allocate error");
-        fclose(db);
-        return;
-    }
-    memset(db_lockers, 0, sizeof(struct Locker) * MAX_CLIENTS);
-
-    // 기존 데이터를 읽어옴
-    char buffer[BUFFER_SIZE];
-    fgets(buffer, BUFFER_SIZE, db); // 헤더 스킵
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (fgets(buffer, BUFFER_SIZE, db) != NULL) {
-            sscanf(buffer, "%d %d %d %s %s %lld %d", &db_lockers[i].locker_id, &db_lockers[i].in_use, &db_lockers[i].draft, db_lockers[i].password, db_lockers[i].content, &db_lockers[i].time, &db_lockers[i].duration);
-        }
-    }
-
-    // 업데이트된 데이터를 반영함
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        db_lockers[i] = lockers[i];
-    }
-
-    // 파일 포인터를 처음으로 되돌림
-    rewind(db);
-
-    // 헤더 작성
-    fprintf(db, "%-10s %-10s %-10s %-15s %-15s %-10s %-s\n", "Locker No", "Available", "Draft", "Password", "Content", "time", "duration");
-
-    // 데이터를 파일에 씀
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        fprintf(db, "%-10d %-10d %-10d %-15s %-15s %-10lld %-d\n", db_lockers[i].locker_id, db_lockers[i].in_use, db_lockers[i].draft, db_lockers[i].password, db_lockers[i].content, db_lockers[i].time, db_lockers[i].duration);
-    }
-
+    fseek(db, locker_id * sizeof(struct Locker), SEEK_SET);
+    fwrite(&lockers[locker_id], sizeof(struct Locker), 1, db);
     fclose(db);
-    free(db_lockers);
 }
+
 void initialize_lockers() {
     for (int i = 0; i < MAX_CLIENTS; i++) {
         lockers[i].locker_id = i;
@@ -158,49 +115,45 @@ void initialize_lockers() {
         lockers[i].time = 0;
         lockers[i].duration = 0;
     }
-    saveDB();
+    FILE *db = fopen(DATABASE, "wb");
+    if (db == NULL) {
+        perror("cannot create db file");
+        return;
+    }
+    fwrite(lockers, sizeof(struct Locker), MAX_CLIENTS, db);
+    fclose(db);
 }
 
+
 void loadDB() {
-    FILE *db = fopen(DATABASE, "r");
+    FILE *db = fopen(DATABASE, "rb");
     if (db == NULL) {
         perror("cannot access to db file");
         initialize_lockers();
         return;
     }
-    char buffer[BUFFER_SIZE];
-    fgets(buffer, BUFFER_SIZE, db);
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        if (fgets(buffer, BUFFER_SIZE, db) != NULL){
-            sscanf(buffer, "%d %d %d %s %s %lld %d", &lockers[i].locker_id, &lockers[i].in_use, &lockers[i].draft, lockers[i].password, lockers[i].content, &lockers[i].time, &lockers[i].duration);
-        }
-    }
+    fread(lockers, sizeof(struct Locker), MAX_CLIENTS, db);
     fclose(db);
 }
 
-void updateLocker(int locker_id) {
-    loadDB();
-    saveDB();
-}
-
 void loadDBbyId(int locker_id) {
-    FILE *db = fopen(DATABASE, "r");
+    FILE *db = fopen(DATABASE, "rb");
     if (db == NULL) {
         perror("cannot access to db file");
         return;
     }
-    char buffer[BUFFER_SIZE];
-    fgets(buffer, BUFFER_SIZE, db); // skip header info
-    int line = 0;
-    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
-        if (line == locker_id) {
-            sscanf(buffer, "%d %d %d %s %s %lld %d", &lockers[locker_id].locker_id, &lockers[locker_id].in_use, &lockers[locker_id].draft, lockers[locker_id].password, lockers[locker_id].content, &lockers[locker_id].time, &lockers[locker_id].duration);
-            break;
-        }
-        line++;
-    }
+    fseek(db, locker_id * sizeof(struct Locker), SEEK_SET);
+    fread(&lockers[locker_id], sizeof(struct Locker), 1, db);
     fclose(db);
 }
+
+
+
+void updateLocker(int locker_id) {
+    loadDB();
+    saveDB(locker_id);
+}
+
 
 int checkPassword(int num, const char *password) {
     loadDBbyId(num);
@@ -210,6 +163,7 @@ int checkPassword(int num, const char *password) {
         return 0;
     }
 }
+
 
 void saveLogger(const char *message) {
     FILE *Logger = fopen(LoggerFile, "a");
@@ -267,7 +221,6 @@ void calculate_remaining_time(struct Locker *locker, char *buffer, int type) {
             break;
     }
 }
-
 void handle_search(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
@@ -279,27 +232,18 @@ void handle_search(int client_socket) {
         return;
     }
 
-    fgets(buffer, BUFFER_SIZE, db); // skip header
-    int line = 0;
-    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
-        int locker_id, in_use, draft;
-        sscanf(buffer, "%d %d %d", &locker_id, &in_use, &draft);
-        if (line >= 0 && line < MAX_CLIENTS) {
-            lockers[line].locker_id = line;
-            lockers[line].in_use = in_use;
-            lockers[line].draft = draft;
+    fread(lockers, sizeof(struct Locker), MAX_CLIENTS, db);
+    fclose(db);
 
-            char message[BUFFER_SIZE];
-            snprintf(message, sizeof(message), "Locker No: %d | Available: %s\n", line, (in_use == 0 && draft == 0) ? "Yes" : "No");
-            send(client_socket, message, strlen(message), 0);
-        }
-        line++;
+    for (int i = 0; i < MAX_CLIENTS; i++) {
+        snprintf(buffer, sizeof(buffer), "Locker No: %d | Available: %s\n", i,
+                 (lockers[i].in_use == 0 && lockers[i].draft == 0) ? "Yes" : "No");
+        send(client_socket, buffer, strlen(buffer), 0);
     }
     strcpy(buffer, "end_of_list\n");
     send(client_socket, buffer, strlen(buffer), 0);
-    fclose(db);
 
-    while (1) {
+    while (1){
         int locker_num;
         int received = recv(client_socket, &locker_num, sizeof(locker_num), 0);
         if (received <= 0) {
@@ -342,83 +286,6 @@ void handle_search(int client_socket) {
         }
     }
 }
-
-/*
-void handle_search(int client_socket) {
-    char buffer[BUFFER_SIZE];
-    int read_size;
-
-    FILE *db = fopen(DATABASE, "r");
-    if (db == NULL) {
-        perror("cannot access to DB");
-        saveLogger("cannot access to DB");
-        return;
-    }
-
-    fgets(buffer, BUFFER_SIZE, db); // skip header
-    while (fgets(buffer, BUFFER_SIZE, db) != NULL) {
-        int locker_id, in_use, draft;
-        sscanf(buffer, "%d %d %d", &locker_id, &in_use, &draft);
-        if (locker_id >= 0 && locker_id < MAX_CLIENTS) {
-            snprintf(buffer, sizeof(buffer), "Locker No: %d | Available: %s\n", locker_id, (in_use == 0 && draft == 0) ? "Yes" : "No");
-            send(client_socket, buffer, strlen(buffer), 0);
-        }
-    }
-
-    strcpy(buffer, "end_of_list\n");
-    send(client_socket, buffer, strlen(buffer), 0);
-    fclose(db);
-
-    while (1) {
-        int locker_num;
-        int received = recv(client_socket, &locker_num, sizeof(locker_num), 0);
-        if (received <= 0) {
-            saveLogger("locker_num received may be null...\n");
-            break;
-        }
-
-        if (locker_num < 0 || locker_num >= MAX_CLIENTS) {
-            strcpy(buffer, "wrong locker number.. please check again!\n");
-            send(client_socket, buffer, strlen(buffer), 0);
-            saveLogger("wrong locker number.. please check again!\n");
-        } else {
-            loadDBbyId(locker_num);
-
-            if (lockers[locker_num].in_use == 0 && lockers[locker_num].draft == 0) {
-                snprintf(buffer, sizeof(buffer), "locker %d is empty\n", lockers[locker_num].locker_id);
-                send(client_socket, buffer, strlen(buffer), 0);
-            }
-            else if(lockers[locker_num].in_use == 0 && lockers[locker_num].draft == 1)
-            {
-                snprintf(buffer, sizeof(buffer), "locker %d is on reservation\n", lockers[locker_num].locker_id);
-                send(client_socket, buffer, strlen(buffer), 0);
-            }
-            else {
-                    char reg_time_buffer[BUFFER_SIZE], dual_time_buffer[BUFFER_SIZE];
-                    calculate_remaining_time(&lockers[locker_num], reg_time_buffer, 0);
-                    snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %s | contents: %s \n registered at : %s",
-                             lockers[locker_num].locker_id, (lockers[locker_num].in_use == 0) || (lockers[locker_num].draft == 0) ? "True":"False", "secured data", reg_time_buffer);
-                    send(client_socket, buffer, strlen(buffer), 0);
-
-                    char password[MAX_PASSWORD_SIZE];
-                    int password_received = recv(client_socket, password, sizeof(password), 0);
-                    if (password_received > 0) {
-                        password[password_received] = '\0';
-                        if (checkPassword(locker_num, password)) {
-                            calculate_remaining_time(&lockers[locker_num], dual_time_buffer, 2);
-                            snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %s | contents: %s\n %s",
-                                     lockers[locker_num].locker_id, (lockers[locker_num].in_use == 0) || (lockers[locker_num].draft == 0) ? "True":"False",
-                                     lockers[locker_num].content, dual_time_buffer);
-                        } else {
-                            strcpy(buffer, "wrong password!\n");
-                        }
-                        send(client_socket, buffer, strlen(buffer), 0);
-                    }
-                }
-            }
-        }
-    }
-*/
 
 void handle_checkout(int client_socket) {
     char buffer[BUFFER_SIZE];
@@ -463,51 +330,51 @@ void handle_checkout(int client_socket) {
             send(client_socket, "", BUFFER_SIZE, 0);
 
             while(1){
-            int clientRecv;
-            if ((clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
-                buffer[clientRecv] = '\0';
-                char password[MAX_PASSWORD_SIZE];
-                sscanf(buffer, "%s", password);
-                if (strstr(password, lockers[locker_id].password) != NULL) {
-                    char *message = "password correct. Really want to checkout? (Y/N) : \n";
-                    send(client_socket, message, strlen(message), 0);
+                int clientRecv;
+                if ((clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+                    buffer[clientRecv] = '\0';
+                    char password[MAX_PASSWORD_SIZE];
+                    sscanf(buffer, "%s", password);
+                    if (strstr(password, lockers[locker_id].password) != NULL) {
+                        char *message = "password correct. Really want to checkout? (Y/N) : \n";
+                        send(client_socket, message, strlen(message), 0);
 
-                    clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0);
-                    if (clientRecv > 0) {
-                        buffer[clientRecv] = '\0';
-                        if (strcmp(buffer, "Y") == 0 || strcmp(buffer, "y") == 0) {
-                            lockers[locker_id].locker_id = locker_id;
-                            lockers[locker_id].in_use = 0;
-                            lockers[locker_id].draft = 0;
-                            strcpy(lockers[locker_id].password, "");
-                            strcpy(lockers[locker_id].content, "");
-                            lockers[locker_id].time = 0;
-                            lockers[locker_id].duration = 0;
-                            saveDB(locker_id);
+                        clientRecv = recv(client_socket, buffer, BUFFER_SIZE, 0);
+                        if (clientRecv > 0) {
+                            buffer[clientRecv] = '\0';
+                            if (strcmp(buffer, "Y") == 0 || strcmp(buffer, "y") == 0) {
+                                lockers[locker_id].locker_id = locker_id;
+                                lockers[locker_id].in_use = 0;
+                                lockers[locker_id].draft = 0;
+                                strcpy(lockers[locker_id].password, "");
+                                strcpy(lockers[locker_id].content, "");
+                                lockers[locker_id].time = 0;
+                                lockers[locker_id].duration = 0;
+                                saveDB(locker_id);
 
-                            char logMessage[BUFFER_SIZE];
-                            sprintf(logMessage, "Locker %d has been checked out and is now empty.",
-                                    locker_id);
-                            saveLogger(logMessage);
+                                char logMessage[BUFFER_SIZE];
+                                sprintf(logMessage, "Locker %d has been checked out and is now empty.",
+                                        locker_id);
+                                saveLogger(logMessage);
 
-                            message = "Locker content deleted successfully.\n";
-                            send(client_socket, message, strlen(message), 0);
+                                message = "Locker content deleted successfully.\n";
+                                send(client_socket, message, strlen(message), 0);
+                            } else {
+                                char *message = "Checkout canceled.\n";
+                                send(client_socket, message, strlen(message), 0);
+                            }
                         } else {
-                            char *message = "Checkout canceled.\n";
-                            send(client_socket, message, strlen(message), 0);
+                            perror("failed to fetch confirmation info");
+                            saveLogger("failed to fetch confirmation info");
                         }
                     } else {
-                        perror("failed to fetch confirmation info");
-                        saveLogger("failed to fetch confirmation info");
+                        char *message = "wrong password!";
+                        perror(message);
+                        saveLogger(message);
+                        send(client_socket, message, strlen(message), 0);
                     }
                 } else {
-                    char *message = "wrong password!";
-                    perror(message);
-                    saveLogger(message);
-                    send(client_socket, message, strlen(message), 0);
-                }
-            } else {
-                saveLogger("failed to fetch password info");
+                    saveLogger("failed to fetch password info");
                 }
             }
         }

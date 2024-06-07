@@ -6,7 +6,7 @@
 #define CODE_REPOSITORY_LOCKER_H
 #define MAX_PASSWORD_SIZE 128
 #define BUFFER_SIZE 1024
-#define PORT 8050
+#define PORT 8040
 #define DATABASE "locker_database.txt"
 #define LoggerFile "log.txt"
 #define CLoggerFile "clog.txt"
