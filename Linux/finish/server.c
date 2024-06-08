@@ -692,78 +692,79 @@ void handle_client(int client_socket) {
             break;
         case 2:
             locker_id = handle_reservation(client_socket);
-            if (locker_id >= 0){
+            if (locker_id >= 0) {
                 for (int i = 0; i < client_count; i++) {
                     if (clients[i].socket == client_socket) {
                         clients[i].locker_id = locker_id;
                         break;
                     }
                 }
-        case 3:
-            handle_checkout(client_socket);
-            break;
-        case 4:
-            handle_time(client_socket);
-            break;
-        case 5:
-            // 청구서 확인 로직 구현
-            break;
-        default:
-            printf("잘못된 선택입니다\n");
-            break;
+                case 3:
+                    handle_checkout(client_socket);
+                break;
+                case 4:
+                    handle_time(client_socket);
+                break;
+                case 5:
+                    // 청구서 확인 로직 구현
+                    break;
+                default:
+                    printf("잘못된 선택입니다\n");
+                break;
+            }
+            remove_client(client_socket);
+            close(client_socket);
     }
-    remove_client(client_socket);
-    close(client_socket);
 }
 
-void port_file(int port) {
-    FILE* file = fopen(PORT_FILE, "w");
-    if (file == NULL) {
-        char* error_message = "error while opening port config file";
-        perror(error_message);
-        saveLogger(error_message);
-        return;
-    }
-    fprintf(file, "%d\n", port);
-    fclose(file);
-}
-
-int create_server_lock(const char* lock_file){
-    int fd = open(lock_file, O_WRONLY | O_CREAT, 0666);
-    if (fd == -1) {
-        perror("Failed to open lock file");
-        return 1;
-    }
-    struct flock server_lock;
-    server_lock.l_type = F_WRLCK;
-    server_lock.l_start = 0;
-    server_lock.l_whence = SEEK_SET;
-    server_lock.l_len = 0;
-
-    if (fcntl(fd, F_SETLK, &server_lock) == -1) {
-        if (errno == EACCES || errno == EAGAIN) {
-            close(fd);
-            saveLogger("Other process is using server...\n");
-            return -1;
+    void port_file(int port) {
+        FILE *file = fopen(PORT_FILE, "w");
+        if (file == NULL) {
+            char *error_message = "error while opening port config file";
+            perror(error_message);
+            saveLogger(error_message);
+            return;
         }
-        perror("Failed to lock file");
-        close(fd);
-        return 1;
+        fprintf(file, "%d\n", port);
+        fclose(file);
     }
 
-    return fd;
+    int create_server_lock(const char *lock_file) {
+        int fd = open(lock_file, O_WRONLY | O_CREAT, 0666);
+        if (fd == -1) {
+            perror("Failed to open lock file");
+            return 1;
+        }
+        struct flock server_lock;
+        server_lock.l_type = F_WRLCK;
+        server_lock.l_start = 0;
+        server_lock.l_whence = SEEK_SET;
+        server_lock.l_len = 0;
 
-}
+        if (fcntl(fd, F_SETLK, &server_lock) == -1) {
+            if (errno == EACCES || errno == EAGAIN) {
+                close(fd);
+                saveLogger("Other process is using server...\n");
+                return -1;
+            }
+            perror("Failed to lock file");
+            close(fd);
+            return 1;
+        }
 
-int main(int argc, char* argv[]) {
+        return fd;
 
-    if (argc != 2){
+    }
+
+int main(int argc, char *argv[]) {
+
+    if (argc != 2) {
         fprintf(stderr, "Usage: %s <number_of_lockers>\n", argv[0]);
         return 1;
     }
 
     MAX_CLIENTS = atoi(argv[1]);
-    if (MAX_CLIENTS <= 0){
+    if (MAX_CLIENTS <= 0) {
         fprintf(stderr, "invalid number of locker, please type bigger than 0 again!\n");
         return 1;
     }
@@ -778,8 +779,8 @@ int main(int argc, char* argv[]) {
     }
 
 
-    lockers = malloc( sizeof(struct Locker) * MAX_CLIENTS);
-    if (lockers == NULL){
+    lockers = malloc(sizeof(struct Locker) * MAX_CLIENTS);
+    if (lockers == NULL) {
         saveLogger("locker is null [memory error]");
         return 1;
     }
@@ -807,7 +808,7 @@ int main(int argc, char* argv[]) {
         server_addr.sin_addr.s_addr = INADDR_ANY;
         server_addr.sin_port = htons(port);
 
-        if (bind(server_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+        if (bind(server_socket, (struct sockaddr *) &server_addr, sizeof(server_addr)) < 0) {
             perror("Bind failed");
             saveLogger("Bind failed");
 
@@ -840,15 +841,14 @@ int main(int argc, char* argv[]) {
 
     printf("server started.. waiting for any connections\n");
 
-    while ((client_socket = accept(server_socket, (struct sockaddr *)&client_addr, &client_addr_len))) {
+    while ((client_socket = accept(server_socket, (struct sockaddr *) &client_addr, &client_addr_len))) {
         printf("Connection accepted\n");
 
         pid_t pid = fork();
-        if (pid < 0){
+        if (pid < 0) {
             saveLogger("fork fail");
             continue;
-        } else if (pid == 0)
-        {
+        } else if (pid == 0) {
             close(server_socket);
             handle_client(client_socket);
             exit(0);
