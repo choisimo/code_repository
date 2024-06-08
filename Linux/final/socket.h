@@ -7,5 +7,6 @@
 struct clientInfo {
     int socket;
     int locker_id;
+    time_t block_time;
 };
 #endif //CODE_REPOSITORY_SOCKET_H

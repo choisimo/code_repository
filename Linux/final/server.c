@@ -16,6 +16,8 @@ struct Locker *lockers;
 int server_socket;
 struct clientInfo *clients;
 int client_count = 0;
+int *failed_attempts;
+
 
 void saveDB(int locker_id);
 void saveLogger(const char* message);
@@ -34,6 +36,7 @@ void add_client(int socket, int locker_id){
     clients = newClients;
     clients[client_count].socket = socket;
     clients[client_count].locker_id = locker_id;
+    clients[client_count].block_time = 0;
     client_count++;
 
     char logMessage[BUFFER_SIZE];
@@ -45,6 +48,10 @@ void add_client(int socket, int locker_id){
 void remove_client(int socket){
     for (int i = 0; i < client_count; i++){
         if (clients[i].socket == socket){
+            int locker_id = clients[i].locker_id;
+            lockers[locker_id].draft = 0;
+            saveDB(locker_id);
+
             for (int j = 0; j < client_count - 1; j++){
                 clients[j] = clients[j + 1];
             }
@@ -223,9 +230,29 @@ void calculate_remaining_time(struct Locker *locker, char *buffer, int type) {
             break;
     }
 }
+
+
 void handle_search(int client_socket) {
     char buffer[BUFFER_SIZE];
     int read_size;
+
+    struct clientInfo* client = NULL;
+    for (int i = 0; i < client_count; i++){
+        if (clients[i].socket == client_socket){
+            client = &clients[i];
+            break;
+        }
+    }
+
+    if (client == NULL){
+        return;
+    }
+
+    if (time(NULL) < client->block_time) {
+        send(client_socket, "Access temporarily blocked due to multiple incorrect password attempts.\n", 78, 0);
+        close(client_socket);
+        return;
+    }
 
     FILE *db = fopen(DATABASE, "r");
     if (db == NULL) {
@@ -275,12 +302,20 @@ void handle_search(int client_socket) {
                 if (password_received > 0) {
                     password[password_received] = '\0';
                     if (checkPassword(locker_num, password)) {
+                        failed_attempts[locker_num] = 0;
                         calculate_remaining_time(&lockers[locker_num], dual_time_buffer, 2);
                         snprintf(buffer, sizeof(buffer), "locker number: %d | availability: %s | contents: %s\n %s",
                                  locker_num, (lockers[locker_num].in_use == 0) || (lockers[locker_num].draft == 0) ? "True":"False",
                                  lockers[locker_num].content, dual_time_buffer);
                     } else {
                         strcpy(buffer, "wrong password!\n");
+                        failed_attempts[locker_num]++;
+                        if (failed_attempts[locker_num] >= MAX_ATTEMPT){
+                            client->block_time = time(NULL) + BLOCK_TIME;
+                            send(client_socket, "too many incorrect password attemption", strlen(buffer), 0);
+                            close(client_socket);
+                            return;
+                        }
                     }
                     send(client_socket, buffer, strlen(buffer), 0);
                 }
@@ -321,8 +356,15 @@ void handle_checkout(int client_socket) {
         loadDBbyId(locker_id);
 
         while (1) {
-            if (lockers[locker_id].in_use == 0){
+            if (lockers[locker_id].in_use == 0 && lockers[locker_id].draft == 0){
                 char *error_message = "Locker is already empty.";
+                perror(error_message);
+                saveLogger(error_message);
+                send(client_socket, error_message, strlen(error_message), 0);
+                break;
+            } else if (lockers[locker_id].in_use == 0 && lockers[locker_id].draft == 1)
+            {
+                char *error_message = "Locker is on reservation";
                 perror(error_message);
                 saveLogger(error_message);
                 send(client_socket, error_message, strlen(error_message), 0);
@@ -338,6 +380,7 @@ void handle_checkout(int client_socket) {
                     char password[MAX_PASSWORD_SIZE];
                     sscanf(buffer, "%s", password);
                     if (strstr(password, lockers[locker_id].password) != NULL) {
+                        failed_attempts[locker_id] = 0;
                         char *message = "password correct. Really want to checkout? (Y/N) : \n";
                         send(client_socket, message, strlen(message), 0);
 
@@ -370,10 +413,18 @@ void handle_checkout(int client_socket) {
                             saveLogger("failed to fetch confirmation info");
                         }
                     } else {
-                        char *message = "wrong password!";
-                        perror(message);
-                        saveLogger(message);
-                        send(client_socket, message, strlen(message), 0);
+                        failed_attempts[locker_id]++;
+                        if (failed_attempts[locker_id] >= MAX_ATTEMPT){
+                            clients->block_time = time(NULL) + BLOCK_TIME;
+                            send(client_socket, "too many incorrect password attemption", strlen(buffer), 0);
+                            close(client_socket);
+                            return;
+                        } else {
+                            char *message = "wrong password!";
+                            perror(message);
+                            saveLogger(message);
+                            send(client_socket, message, strlen(message), 0);
+                        }
                     }
                 } else {
                     saveLogger("failed to fetch password info");
@@ -464,10 +515,18 @@ int handle_reservation(int client_socket) {
                         sscanf(buffer, "%s", confirm_password);
 
                         if (strcmp(password, confirm_password) != 0) {
-                            char *message = "password and confirm password not equal";
-                            saveLogger(message);
-                            send(client_socket, message, strlen(message), 0);
-                            continue;
+                            failed_attempts[locker_id]++;
+                            if (failed_attempts[locker_id] >= MAX_ATTEMPT){
+                                clients->block_time = time(NULL) + BLOCK_TIME;
+                                send(client_socket, "too many incorrect password attemption", strlen(buffer), 0);
+                                close(client_socket);
+                                return 1;
+                            } else {
+                                char *message = "password and confirm password not equal";
+                                saveLogger(message);
+                                send(client_socket, message, strlen(message), 0);
+                                continue;
+                            }
                         } else {
                             char *message1 = "password equal";
                             saveLogger(message1);
@@ -634,38 +693,81 @@ void handle_time(int client_socket){
     }
 }
 
+void cleanup_client(int client_socket){
+    for (int i = 0; i < client_count; i++){
+        if (clients[i].socket == client_socket){
+            int locker_id = clients[i].locker_id;
+            lockers[locker_id].draft = 0;
+            saveDB(locker_id);
+            close(client_socket);
+            remove_client(client_socket);
+            ;
+        }
+    }
+}
 
 void handle_client(int client_socket) {
     int menu_choice;
-    recv(client_socket, &menu_choice, sizeof(menu_choice), 0);
-    int locker_id = -1;
+    char buffer[BUFFER_SIZE];
+    int read_size;
 
-    switch (menu_choice) {
-        case 1:
-            handle_search(client_socket);
-            break;
-        case 2:
-            locker_id = handle_reservation(client_socket);
-            if (locker_id >= 0){
-                add_client(client_socket, locker_id);
+    while ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
+        buffer[read_size] = '\0';
+
+        for (int i = 0; i < client_count; i++) {
+            if (clients[i].socket == client_socket) {
+                time_t current_time = time(NULL);
+                if (current_time < clients[i].block_time) {
+                    int remaining_time = (int)(clients[i].block_time - current_time);
+                    snprintf(buffer, sizeof(buffer), "Access temporarily blocked due to multiple incorrect password attempts. Please try again in %d seconds.\n", remaining_time);
+                    send(client_socket, buffer, strlen(buffer), 0);
+                    close(client_socket);
+                    return;
+                }
+                break;
             }
-            break;
-        case 3:
-            handle_checkout(client_socket);
-            break;
-        case 4:
-            handle_time(client_socket);
-            break;
-        case 5:
-            // 청구서 확인 로직 구현
-            break;
-        default:
-            printf("잘못된 선택입니다\n");
-            break;
+        }
+
+        memcpy(&menu_choice, buffer, sizeof(menu_choice));
+        int locker_id = -1;
+
+        switch (menu_choice) {
+            case 1:
+                handle_search(client_socket);
+                break;
+            case 2:
+                locker_id = handle_reservation(client_socket);
+                if (locker_id >= 0){
+                    add_client(client_socket, locker_id);
+                }
+                break;
+            case 3:
+                handle_checkout(client_socket);
+                break;
+            case 4:
+                handle_time(client_socket);
+                break;
+            case 5:
+
+                break;
+            default:
+                printf("wrong choice.. please check again\n");
+                break;
+        }
     }
-    remove_client(client_socket);
+
+    if (read_size == 0) {
+        printf("client disconnected\n");
+        cleanup_client(client_socket);
+        saveLogger("client removed");
+    } else if (read_size == -1) {
+        perror("recv failed");
+        saveLogger("recv failed");
+    }
+
     close(client_socket);
 }
+
 
 void port_file(int port) {
     FILE* file = fopen(PORT_FILE, "w");

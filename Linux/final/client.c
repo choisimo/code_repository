@@ -3,8 +3,11 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
+#include <signal.h>
 #include <arpa/inet.h>
 #include "locker.h"
+
+int sock;
 
 void print_menu(){
     printf(" please choose one menu following \n");
@@ -369,6 +372,13 @@ int read_port(const char *filename){
     return new_port;
 }
 
+
+void sigint_handler(int sig){
+    char* message = "client shutdown";
+    send(sock, message, strlen(message), 0);
+    close(sock);
+    exit(0);
+}
     /**
 ====================================================================================
                                소켓 연결 시작
@@ -376,7 +386,8 @@ int read_port(const char *filename){
  * */
 int main() {
 
-    int sock;
+    signal(SIGINT, sigint_handler);
+
     struct sockaddr_in server_addr;
     char buffer[BUFFER_SIZE];
     char message[BUFFER_SIZE];
