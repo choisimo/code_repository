@@ -3,11 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
-#include <signal.h>
 #include <arpa/inet.h>
 #include "locker.h"
-
-int sock;
 
 void print_menu(){
     printf(" please choose one menu following \n");
@@ -312,7 +309,6 @@ void handle_time(int sock) {
 
                     snprintf(message, BUFFER_SIZE, "%d", input_time);
                     send(sock, message, strlen(message), 0);
-
                     int status = recv(sock, message, strlen(message), 0);
                     if (status > 0){
                         message[status] = '\0';
@@ -372,13 +368,6 @@ int read_port(const char *filename){
     return new_port;
 }
 
-
-void sigint_handler(int sig){
-    char* message = "client shutdown";
-    send(sock, message, strlen(message), 0);
-    close(sock);
-    exit(0);
-}
     /**
 ====================================================================================
                                소켓 연결 시작
@@ -386,8 +375,7 @@ void sigint_handler(int sig){
  * */
 int main() {
 
-    signal(SIGINT, sigint_handler);
-
+    int sock;
     struct sockaddr_in server_addr;
     char buffer[BUFFER_SIZE];
     char message[BUFFER_SIZE];
@@ -435,9 +423,12 @@ int main() {
             handle_checkout(sock);
         } else if (menu_choice == 4){
             handle_time(sock);
+        } else if (menu_choice == 5){
+
         } else {
             printf("invalid choice.. please enter a valid menu\n");
         }
+
 
     close(sock);
     return 0;

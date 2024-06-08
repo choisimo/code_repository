@@ -13,9 +13,6 @@
 #define PORT_FILE "port_config.txt"
 #define SERVER_LOCK_FILE "server.lock"
 
-#define MAX_ATTEMPT 3
-#define BLOCK_TIME 30
-
 struct Locker{
     int locker_id;
     char password[MAX_PASSWORD_SIZE];

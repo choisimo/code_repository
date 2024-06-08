@@ -719,7 +719,6 @@ void cleanup_client(int client_socket){
             saveDB(locker_id);
             close(client_socket);
             remove_client(client_socket);
-            ;
         }
     }
 }
