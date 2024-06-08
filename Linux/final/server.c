@@ -233,6 +233,7 @@ void calculate_remaining_time(struct Locker *locker, char *buffer, int type) {
 
 
 void handle_search(int client_socket) {
+    saveLogger("handle_search entrance\n");
     char buffer[BUFFER_SIZE];
     int read_size;
 
@@ -245,11 +246,13 @@ void handle_search(int client_socket) {
     }
 
     if (client == NULL){
+        saveLogger("client is null\n");
         return;
     }
 
     if (time(NULL) < client->block_time) {
         send(client_socket, "Access temporarily blocked due to multiple incorrect password attempts.\n", 78, 0);
+        saveLogger("Access temporarily blocked due to multiple incorrect password attempts.\n");
         close(client_socket);
         return;
     }
@@ -270,6 +273,8 @@ void handle_search(int client_socket) {
         send(client_socket, buffer, strlen(buffer), 0);
     }
     strcpy(buffer, "end_of_list\n");
+    saveLogger("end of list\n");
+
     send(client_socket, buffer, strlen(buffer), 0);
 
     while (1){
@@ -281,13 +286,14 @@ void handle_search(int client_socket) {
         }
 
         if (locker_num < 0 || locker_num >= MAX_CLIENTS) {
+            saveLogger("wrong locker number.. please check again!\n");
             strcpy(buffer, "wrong locker number.. please check again!\n");
             send(client_socket, buffer, strlen(buffer), 0);
-            saveLogger("wrong locker number.. please check again!\n");
         } else {
             loadDBbyId(locker_num);
 
             if (lockers[locker_num].in_use == 0) {
+                saveLogger("locker is empty\n");
                 snprintf(buffer, sizeof(buffer), "locker %d is empty\n", locker_num);
                 send(client_socket, buffer, strlen(buffer), 0);
             } else {
@@ -325,6 +331,7 @@ void handle_search(int client_socket) {
 }
 
 void handle_checkout(int client_socket) {
+    saveLogger("handle_checkout entrance\n");
     char buffer[BUFFER_SIZE];
     int read_size;
     int locker_id = -1;
@@ -435,6 +442,7 @@ void handle_checkout(int client_socket) {
 }
 
 int handle_reservation(int client_socket) {
+    saveLogger("handle_reservation entrance\n");
     char buffer[BUFFER_SIZE];
     int read_size;
     int locker_id = -1;
@@ -559,6 +567,15 @@ int handle_reservation(int client_socket) {
                                     saveLogger(message);
                                     send(client_socket, message, strlen(message), 0);
                                     buffer[read_size] = '\0';
+
+
+                                    for (int i = 0; i < client_count; i++) {
+                                        if (clients[i].socket == client_socket) {
+                                            clients[i].locker_id = locker_id;
+                                            break;
+                                        }
+                                    }
+
                                     break;
 
                                 }
@@ -694,6 +711,7 @@ void handle_time(int client_socket){
 }
 
 void cleanup_client(int client_socket){
+    saveLogger("cleanup_client entrance\n");
     for (int i = 0; i < client_count; i++){
         if (clients[i].socket == client_socket){
             int locker_id = clients[i].locker_id;
@@ -707,9 +725,12 @@ void cleanup_client(int client_socket){
 }
 
 void handle_client(int client_socket) {
+    saveLogger("handle_client entrance\n");
     int menu_choice;
     char buffer[BUFFER_SIZE];
     int read_size;
+
+    add_client(client_socket, -1);
 
     while ((read_size = recv(client_socket, buffer, BUFFER_SIZE, 0)) > 0) {
         buffer[read_size] = '\0';
@@ -738,7 +759,12 @@ void handle_client(int client_socket) {
             case 2:
                 locker_id = handle_reservation(client_socket);
                 if (locker_id >= 0){
-                    add_client(client_socket, locker_id);
+                    for (int i = 0; i < client_count; i++) {
+                        if (clients[i].socket == client_socket) {
+                            clients[i].locker_id = locker_id;
+                            break;
+                        }
+                    }
                 }
                 break;
             case 3:
@@ -782,6 +808,7 @@ void port_file(int port) {
 }
 
 int create_server_lock(const char* lock_file){
+    saveLogger("create_server_lock entrance\n");
     int fd = open(lock_file, O_WRONLY | O_CREAT, 0666);
     if (fd == -1) {
         perror("Failed to open lock file");
