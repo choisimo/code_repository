@@ -34,6 +34,7 @@ void add_client(int socket, int locker_id){
     clients = newClients;
     clients[client_count].socket = socket;
     clients[client_count].locker_id = locker_id;
+    clients[client_count].block_time = 0;
     client_count++;
 
     char logMessage[BUFFER_SIZE];

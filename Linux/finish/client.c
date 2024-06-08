@@ -322,6 +322,10 @@ void handle_time(int sock) {
                         saveLogger("failed to fetch data");
                         continue;
                     }
+                } else {
+                    perror("incorrect password! please check again...\n");
+                    saveLogger("incorrect password! please check again\n");
+                    continue;
                 }
             }
         }
