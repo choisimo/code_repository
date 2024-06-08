@@ -312,7 +312,6 @@ void handle_time(int sock) {
 
                     snprintf(message, BUFFER_SIZE, "%d", input_time);
                     send(sock, message, strlen(message), 0);
-
                     int status = recv(sock, message, strlen(message), 0);
                     if (status > 0){
                         message[status] = '\0';
@@ -424,9 +423,8 @@ int main() {
 ====================================================================================
      * */
 
-        int menu_choice = get_menu_choice();
-        send(sock, &menu_choice, sizeof(menu_choice), 0);
 
+<<<<<<< HEAD
         if (menu_choice == 1){
             handle_search(sock);
         } else if (menu_choice == 2){
@@ -437,6 +435,29 @@ int main() {
             handle_time(sock);
         } else {
             printf("invalid choice.. please enter a valid menu\n");
+=======
+        print_menu();
+        printf("choose one menu num... : \n");
+
+        while(1){
+            int menu_choice = get_menu_choice();
+            send(sock, &menu_choice, sizeof(menu_choice), 0);
+
+            if (menu_choice == 1){
+                handle_search(sock);
+            } else if (menu_choice == 2){
+                handle_reservation(sock);
+            } else if (menu_choice == 3){
+                handle_checkout(sock);
+            } else if (menu_choice == 4){
+                handle_time(sock);
+            } else if (menu_choice == 5){
+
+            } else {
+                printf("invalid choice.. please enter a valid menu\n");
+                continue;
+            }
+>>>>>>> parent of 567c42c (Update client.c)
         }
 
     close(sock);
