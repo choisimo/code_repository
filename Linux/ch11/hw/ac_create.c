@@ -7,6 +7,7 @@
 
 void intHandler();
 char* filename;
+
 /* Save account information */
 int main(int argc, char *argv[])
 {
@@ -20,7 +21,6 @@ int main(int argc, char *argv[])
    }
 
    filename = argv[1];
-
    fp = fopen(argv[1], "wb");
 
    printf("%-9s %-8s %-4s\n", "ID", "Name", "Balance");
@@ -32,12 +32,16 @@ int main(int argc, char *argv[])
 	   }
       fseek(fp, (long) (record.id - START_ID) * sizeof(record), SEEK_SET);
       fwrite((char *) &record, sizeof(record), 1, fp);
+      fflush(fp);
    }
    fclose(fp);
    exit(0);
 }
 
 void intHandler(){
-    execl("./ac_update", "ac_update",filename, (char*) NULL);
+    fflush(stdout);
+    printf("start ac_update\n");
+    execl("./ac_update", "ac_update", filename, (char*) NULL);
+    perror("execl fail");
     exit(0);
 }

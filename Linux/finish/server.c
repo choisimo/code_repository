@@ -506,7 +506,7 @@ int handle_reservation(int client_socket) {
 
                                 saveLogger("content received from client server");
 
-                                // »ç¿ëÀÚ ÀÌ¿ë ½Ã°£ ÁöÁ¤
+                                // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
                                 read_size = recv(client_socket, buffer, BUFFER_SIZE, 0);
                                 if (read_size > 0){
                                     buffer[read_size] = '\0';
@@ -627,7 +627,8 @@ void handle_time(int client_socket){
                     calculate_remaining_time(&lockers[locker_id], dual_time_buffer, 2);
                     snprintf(buffer, sizeof(buffer),
                              "\n------------| locker info |-------------\n"
-                             "locker number: %d | contents: %s\n %s\n",
+                             "locker number: %d | contents: %s\n %s\n"
+                             "-------------------------------------\n",
                              locker_id, lockers[locker_id].content, dual_time_buffer);
                     send(client_socket, buffer, strlen(buffer), 0);
 
@@ -707,10 +708,10 @@ void handle_client(int client_socket) {
                     handle_time(client_socket);
                 break;
                 case 5:
-                    // Ã»±¸¼­ È®ÀÎ ·ÎÁ÷ ±¸Çö
+                    // Ã»ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     break;
                 default:
-                    printf("Àß¸øµÈ ¼±ÅÃÀÔ´Ï´Ù\n");
+                    printf("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½\n");
                 break;
             }
             remove_client(client_socket);
