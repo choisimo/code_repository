@@ -15,7 +15,8 @@ add_executable(new_target Data_structure/C++/others/sum.cpp
         Data_structure/C++/homework2/litmus2.cpp
         Data_structure/C++/homework2/litmus2_test.cpp
         Data_structure/C++/homework2/litmus2_test2.cpp
-        Data_structure/C++/homework2/test3.cpp)
+        Data_structure/C++/homework2/test3.cpp
+        cLang++/0905/project_1_1.h)
 
 add_executable(Data_structure_C++_stack_rectangle Data_structure/C++/stack/rectangle.cpp)
 add_executable(Data_structure_C++_stack_annotation Data_structure/C++/stack/annotation.cpp)
@@ -45,7 +46,13 @@ add_executable(Data_structure_C++_stack_homework4_5 Data_structure/C++/stack/hom
 add_executable(Data_structure_C++_stack_homework_3 Data_structure/C++/stack/homework_3.cpp)
 add_executable(Data_structure_C++_homework2_litmus2 Data_structure/C++/homework2/litmus2.cpp
         Linux/final/socket.h
-        Linux/final/kill_port.c)
+        Linux/final/kill_port.c
+        Algorithm/C++/multiply_test.cpp
+        cLang++/test.cpp
+        cLang++/test.h
+        cLang++/0905/project_1_1.cpp
+        cLang++/0905/project_1_1.h
+        cLang++/0905/project_1_1.h)
 add_executable(Data_structure_C++_homework2_litmus2_test Data_structure/C++/homework2/litmus2_test.cpp)
 add_executable(Data_structure_C++_homework2_litmus2_test2 Data_structure/C++/homework2/litmus2_test2.cpp)
 add_executable(Data_structure_C++_homework2_test3 Data_structure/C++/homework2/test3.cpp)

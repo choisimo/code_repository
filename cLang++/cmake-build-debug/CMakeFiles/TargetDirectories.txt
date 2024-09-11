@@ -1,0 +1,3 @@
+C:/workspace/github/code_repository/cLang++/cmake-build-debug/CMakeFiles/cLang__.dir
+C:/workspace/github/code_repository/cLang++/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/workspace/github/code_repository/cLang++/cmake-build-debug/CMakeFiles/rebuild_cache.dir
