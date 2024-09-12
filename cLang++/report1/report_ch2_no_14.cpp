@@ -3,6 +3,7 @@
 //
 
 /*
+ * ch2 - no 14
  * 커피를 주문하는 간단한 C++ 프로그램을 작성해보자.
  * 커피 종류는 “에스프레소”, “아메리카노”, “카푸치노”의 3가지이며 가격은 각각 2000원, 2300원, 2500원이다.
  * 하루에 20,000원 이상 벌게 되면 카페를 닫는다. 실행 결과와 같이 작동하는 프로그램을 작성하라.
@@ -55,7 +56,20 @@ public:
         }
         if (!foundMenu){
             cout << menu << " 이름의 메뉴는 없습니다. " << endl;
+            cout << "가능한 메뉴 목록 출력 중 . . ." << endl;
+            this->print_menu();
         }
+    }
+
+    void print_menu(){
+        Node* temp = head;
+
+        cout << "메뉴 목록 : " << endl;
+        while (temp) {
+            cout << "메뉴명 : " << temp->name << " | 메뉴 가격 : " << temp->price << endl;
+            temp = temp->next;
+        }
+        cout << endl;
     }
 
     bool isCafeOpen(){
