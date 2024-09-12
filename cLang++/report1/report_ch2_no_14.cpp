@@ -3,24 +3,84 @@
 //
 
 /*
- * ì»¤í”¼ë¥¼ ì£¼ë¬¸í•˜ëŠ” ê°„ë‹¨í•œ C++ í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•´ë³´ìž.
- * ì»¤í”¼ ì¢…ë¥˜ëŠ” â€œì—ìŠ¤í”„ë ˆì†Œâ€, â€œì•„ë©”ë¦¬ì¹´ë…¸â€, â€œì¹´í‘¸ì¹˜ë…¸â€ì˜ 3ê°€ì§€ì´ë©° ê°€ê²©ì€ ê°ê° 2000ì›, 2300ì›, 2500ì›ì´ë‹¤.
- * í•˜ë£¨ì— 20000ì› ì´ìƒ ë²Œê²Œ ë˜ë©´ ì¹´íŽ˜ë¥¼ ë‹«ëŠ”ë‹¤. ì‹¤í–‰ ê²°ê³¼ì™€ ê°™ì´ ìž‘ë™í•˜ëŠ” í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•˜ë¼.
+ * Ä¿ÇÇ¸¦ ÁÖ¹®ÇÏ´Â °£´ÜÇÑ C++ ÇÁ·Î±×·¥À» ÀÛ¼ºÇØº¸ÀÚ.
+ * Ä¿ÇÇ Á¾·ù´Â ¡°¿¡½ºÇÁ·¹¼Ò¡±, ¡°¾Æ¸Þ¸®Ä«³ë¡±, ¡°Ä«ÇªÄ¡³ë¡±ÀÇ 3°¡ÁöÀÌ¸ç °¡°ÝÀº °¢°¢ 2000¿ø, 2300¿ø, 2500¿øÀÌ´Ù.
+ * ÇÏ·ç¿¡ 20,000¿ø ÀÌ»ó ¹ú°Ô µÇ¸é Ä«Æä¸¦ ´Ý´Â´Ù. ½ÇÇà °á°ú¿Í °°ÀÌ ÀÛµ¿ÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ¶ó.
 * */
 
 #include <iostream>
 #include <string>
+#include <cstring>
 using namespace std;
+
+class Node {
+public:
+    int price;
+    string name;
+    Node* next;
+    Node(int price, string name) : price(price), name(name) ,next(nullptr){}
+};
 
 class cafe {
 private:
-    int menu_no;
-    int price;
-    char *menu[];
+    int total_sale;
+    Node* head;
 public:
-    cafe(int m, int p, string n) : menu_no(m), price(p), menu(n)
-    {}
+    cafe(): head(nullptr), total_sale(0){}
+
+    void add_menu(int price, string name){
+        Node *newMenu = new Node(price, name);
+        if (!head) {
+            head = newMenu;
+        } else {
+            Node* temp = head;
+            while (temp->next) {
+                temp = temp->next;
+            }
+            temp->next = newMenu;
+        }
+    };
+
+    void order_drink(const char* menu){
+        Node* temp = head;
+        bool foundMenu = false;
+        while (temp) {
+            if (strcmp(temp->name.c_str(), menu) == 0) {
+                this->total_sale += temp->price;
+                cout << temp->name + " ÁÖ¹® Ãß°¡. ÃÑ ¸ÅÃâ : " << this->total_sale << endl;
+                foundMenu = true;
+                break;
+            }
+            temp = temp->next;
+        }
+        if (!foundMenu){
+            cout << menu << " ÀÌ¸§ÀÇ ¸Þ´º´Â ¾ø½À´Ï´Ù. " << endl;
+        }
+    }
+
+    bool isCafeOpen(){
+        return total_sale < 20000;
+    }
+
 };
 int main() {
+    cafe c;
+    c.add_menu(2000, "¿¡½ºÇÁ·¹¼Ò");
+    c.add_menu(2300, "¾Æ¸Þ¸®Ä«³ë");
+    c.add_menu(2500,"Ä«ÇªÄ¡³ë");
 
+    char menu_name[20];
+
+    while(c.isCafeOpen()){
+        cout << "ÁÖ¹®ÇÒ À½·á¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä : " << endl;
+        cin.getline(menu_name, sizeof(menu_name));
+        c.order_drink(menu_name);
+
+        if (!c.isCafeOpen()){
+            cout << "¿µ¾÷ ³¡³µ½À´Ï´Ù. ´ÙÀ½¿¡ ´Ù½Ã ¸¸³ª¿ä. " << endl;
+            break;
+        }
+    }
+
+    return 0;
 }

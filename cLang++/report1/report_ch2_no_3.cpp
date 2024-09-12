@@ -3,6 +3,11 @@
 // 2장 레포트 3번 문제
 //
 
+/*
+ *  ch2 - no : 3
+ *  키보드로부터 두개의 정수를 읽어 큰 수를 화면에 출력하라.
+ * */
+
 #include <iostream>
 using namespace std;
 
