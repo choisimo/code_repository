@@ -49,13 +49,6 @@ cmake_ninja_workdir = C$:/workspace/github/code_repository/cLang++/cmake-build-d
 
 build cmake_object_order_depends_target_cLang__: phony || CMakeFiles/cLang__.dir
 
-build CMakeFiles/cLang__.dir/test.cpp.obj: CXX_COMPILER__cLang___unscanned_Debug C$:/workspace/github/code_repository/cLang++/test.cpp || cmake_object_order_depends_target_cLang__
-  DEP_FILE = CMakeFiles\cLang__.dir\test.cpp.obj.d
-  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
-  INCLUDES = -IC:/workspace/github/code_repository/cLang++/. -IC:/workspace/github/code_repository/cLang++/0905
-  OBJECT_DIR = CMakeFiles\cLang__.dir
-  OBJECT_FILE_DIR = CMakeFiles\cLang__.dir
-
 build CMakeFiles/cLang__.dir/0905/hello.cpp.obj: CXX_COMPILER__cLang___unscanned_Debug C$:/workspace/github/code_repository/cLang++/0905/hello.cpp || cmake_object_order_depends_target_cLang__
   DEP_FILE = CMakeFiles\cLang__.dir\0905\hello.cpp.obj.d
   FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
@@ -85,7 +78,7 @@ build CMakeFiles/cLang__.dir/0905/nameCard.cpp.obj: CXX_COMPILER__cLang___unscan
 #############################################
 # Link the executable cLang__.exe
 
-build cLang__.exe: CXX_EXECUTABLE_LINKER__cLang___Debug CMakeFiles/cLang__.dir/test.cpp.obj CMakeFiles/cLang__.dir/0905/hello.cpp.obj CMakeFiles/cLang__.dir/0905/name.cpp.obj CMakeFiles/cLang__.dir/0905/nameCard.cpp.obj
+build cLang__.exe: CXX_EXECUTABLE_LINKER__cLang___Debug CMakeFiles/cLang__.dir/0905/hello.cpp.obj CMakeFiles/cLang__.dir/0905/name.cpp.obj CMakeFiles/cLang__.dir/0905/nameCard.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\cLang__.dir

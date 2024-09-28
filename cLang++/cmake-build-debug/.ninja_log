@@ -1,8 +1,7 @@
 # ninja log v5
 10	109	7472068056973987	CMakeFiles/cLang__.dir/test.cpp.obj	e616dbf8e074baba
 1	1032	7472068066205294	CMakeFiles/cLang__.dir/0905/1-1.cpp.obj	2a7ad616987e979
-1036	1429	7472068070100556	cLang__.exe	d81e087dd563ffbc
 1	731	7472083956206047	CMakeFiles/cLang__.dir/0905/hello.cpp.obj	d2162dd2f1dd9c79
+1036	1429	7472068070100556	cLang__.exe	d81e087dd563ffbc
 9	736	7472083956248060	CMakeFiles/cLang__.dir/0905/name.cpp.obj	bf005ee332466778
-16	771	7472083956625444	CMakeFiles/cLang__.dir/0905/nameCard.cpp.obj	261827c27e10b18a
 8	594	7472088474012749	CMakeFiles/cLang__.dir/0905/nameCard.cpp.obj	261827c27e10b18a
