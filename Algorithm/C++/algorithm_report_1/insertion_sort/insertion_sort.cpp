@@ -26,13 +26,8 @@ public:
 
     // 삽입 정렬 구현
     void sort(){
-        for (int i = 1; i < size; i++) {
+        for (int i = 1; i < this->size; i++) {
             int key = this->arr[i];
-
-            // 중간 0 ~ 9, 500 ~ 509, 990 ~ 999 출력
-            if (i >= 0 && i <= 9 || i >= 500 && i <= 509 || i >= 990 && i <= 999){
-                cout << "list [" <<  i << "] " << arr[i] << endl;
-            }
 
             int j = i - 1;
             // key 보다 큰 요소를 한 칸씩 오른쪽 이동
@@ -44,6 +39,20 @@ public:
         }
     }
 
+    // 배열 출력 함수
+    void printArray(){
+        cout << "sorted arrays [insertion sort]" << endl;
+        cout << "-----------------------------" << endl;
+        // 중간 0 ~ 9, 500 ~ 509, 990 ~ 999 출력
+        for (int i = 0; i < this->size; i++) {
+            if (i >= 0 && i <= 9 || i >= 500 && i <= 509 || i >= 990 && i <= 999){
+                cout << "list [" << i << "] = " << this->arr[i] << endl;
+            }
+            if (i == 9 || i == 509 || i == 999){
+                cout << "-----------------------------" << endl;
+            }
+        }
+    }
 
     ~insertionSort(){
         delete[] arr;
@@ -60,6 +69,9 @@ int main(){
     clock_t end_time = clock();
 
     double interval = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+
+    // 결과 print 하기
+    newSort.printArray();
 
     cout << "spent time for sorting : " << interval << endl;
     return 0;
