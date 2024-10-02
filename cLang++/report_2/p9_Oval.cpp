@@ -10,15 +10,72 @@
  * 너비와 높이 값을 매개 변수로 받는 생성자
  * 너비와 높이를 1로 초기화하는 매개 변수 없는 생성자
  * width 와 height 를 출력하는 소멸자
- * 타원의 너비를 리턴하는 getWidth() 함수 멤버
+ *
+ * // 타원의 너비를 리턴하는 getWidth() 함수 멤버
  * 타원의 높이를 리턴하는 getHeight() 함수 멤버
  * 타원의 면적을 리턴하는 getArea() 함수 멤버
+ * //
  * 타원의 너비와 높이를 변경하는 set(int w, int h) 함수 멤버
  * 타원의 너비와 높이를 화면에 출력하는 show() 함수 멤버
- * /
+ */
+
+
 #include <iostream>
 using namespace std;
 
 class Oval{
+private:
+    int width;
+    int height;
+public:
+    Oval(int w, int h);
+    Oval();
+    ~Oval();
 
+    // 타원의 너비를 리턴
+    int getWidth();
+
+    // 타원의 높이를 리턴
+    int getHeight();
+
+    // 타원의 면적을 출력
+    int getArea();
+
+    // 타원의 너비와 높이를 변경
+    void set(int w, int h);
+
+    // 타원의 너비와 높이를 출력
+    void show();
 };
+
+Oval::Oval(int w, int h) : width(w), height(h){}
+Oval::Oval() : width(1), height(1){}
+Oval::~Oval(){cout << "width: " << this->width << "\n" << "height: " << this->height << endl;}
+
+int Oval::getWidth() {
+    return this->width;
+}
+int Oval::getHeight() {
+    return this->height;
+}
+int Oval::getArea() { return 3.14 * (width / 2) * (height / 2); }
+void Oval::set(int w, int h) {
+    this->width = width;
+    this->height = height;
+}
+void Oval::show() {
+    cout << "width: " << this->width << "height: " << this->height << endl;
+}
+
+int main(){
+    Oval oval(10, 20);
+    oval.show();
+    cout << "Area: " << oval.getArea() << endl;
+
+    Oval oval1;
+    oval1.show();
+    oval1.set(10,20);
+    oval1.show();
+    cout << "Area: " << oval1.getArea() << endl;
+    return 0;
+}
