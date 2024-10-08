@@ -4,23 +4,24 @@
 
 
 /*
- * Oval í´ëž˜ìŠ¤ëŠ” ì£¼ì–´ì§„ ì‚¬ê°í˜•ì— ë‚´ì ‘í•˜ëŠ” íƒ€ì›ì„ ì¶”ìƒí™”í•œ í´ëž˜ìŠ¤ì´ë‹¤. Oval í´ëž˜ìŠ¤ ë©¤ë²„ëŠ” ëª¨ë‘ ë‹¤ìŒê³¼ ê°™ë‹¤.
+ * Oval Å¬·¡½º´Â ÁÖ¾îÁø »ç°¢Çü¿¡ ³»Á¢ÇÏ´Â Å¸¿øÀ» Ãß»óÈ­ÇÑ Å¬·¡½ºÀÌ´Ù. Oval Å¬·¡½º ¸â¹ö´Â ¸ðµÎ ´ÙÀ½°ú °°´Ù.
  *
- * ì •ìˆ˜ ê°’ì˜ ì‚¬ê°í˜• ë„ˆë¹„ì™€ ë†’ì´ë¥¼ ê°€ì§€ëŠ” width, height ë©¤ë²„ ë³€ìˆ˜
- * ë„ˆë¹„ì™€ ë†’ì´ ê°’ì„ ë§¤ê°œ ë³€ìˆ˜ë¡œ ë°›ëŠ” ìƒì„±ìž
- * ë„ˆë¹„ì™€ ë†’ì´ë¥¼ 1ë¡œ ì´ˆê¸°í™”í•˜ëŠ” ë§¤ê°œ ë³€ìˆ˜ ì—†ëŠ” ìƒì„±ìž
- * width ì™€ height ë¥¼ ì¶œë ¥í•˜ëŠ” ì†Œë©¸ìž
+ * Á¤¼ö °ªÀÇ »ç°¢Çü ³Êºñ¿Í ³ôÀÌ¸¦ °¡Áö´Â width, height ¸â¹ö º¯¼ö
+ * ³Êºñ¿Í ³ôÀÌ °ªÀ» ¸Å°³ º¯¼ö·Î ¹Þ´Â »ý¼ºÀÚ
+ * ³Êºñ¿Í ³ôÀÌ¸¦ 1·Î ÃÊ±âÈ­ÇÏ´Â ¸Å°³ º¯¼ö ¾ø´Â »ý¼ºÀÚ
+ * width ¿Í height ¸¦ Ãâ·ÂÇÏ´Â ¼Ò¸êÀÚ
  *
- * // íƒ€ì›ì˜ ë„ˆë¹„ë¥¼ ë¦¬í„´í•˜ëŠ” getWidth() í•¨ìˆ˜ ë©¤ë²„
- * íƒ€ì›ì˜ ë†’ì´ë¥¼ ë¦¬í„´í•˜ëŠ” getHeight() í•¨ìˆ˜ ë©¤ë²„
- * íƒ€ì›ì˜ ë©´ì ì„ ë¦¬í„´í•˜ëŠ” getArea() í•¨ìˆ˜ ë©¤ë²„
+ * // Å¸¿øÀÇ ³Êºñ¸¦ ¸®ÅÏÇÏ´Â getWidth() ÇÔ¼ö ¸â¹ö
+ * Å¸¿øÀÇ ³ôÀÌ¸¦ ¸®ÅÏÇÏ´Â getHeight() ÇÔ¼ö ¸â¹ö
+ * Å¸¿øÀÇ ¸éÀûÀ» ¸®ÅÏÇÏ´Â getArea() ÇÔ¼ö ¸â¹ö
  * //
- * íƒ€ì›ì˜ ë„ˆë¹„ì™€ ë†’ì´ë¥¼ ë³€ê²½í•˜ëŠ” set(int w, int h) í•¨ìˆ˜ ë©¤ë²„
- * íƒ€ì›ì˜ ë„ˆë¹„ì™€ ë†’ì´ë¥¼ í™”ë©´ì— ì¶œë ¥í•˜ëŠ” show() í•¨ìˆ˜ ë©¤ë²„
+ * Å¸¿øÀÇ ³Êºñ¿Í ³ôÀÌ¸¦ º¯°æÇÏ´Â set(int w, int h) ÇÔ¼ö ¸â¹ö
+ * Å¸¿øÀÇ ³Êºñ¿Í ³ôÀÌ¸¦ È­¸é¿¡ Ãâ·ÂÇÏ´Â show() ÇÔ¼ö ¸â¹ö
  */
 
 
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 class Oval{
@@ -32,25 +33,30 @@ public:
     Oval();
     ~Oval();
 
-    // íƒ€ì›ì˜ ë„ˆë¹„ë¥¼ ë¦¬í„´
+    // Å¸¿øÀÇ ³Êºñ¸¦ ¸®ÅÏ
     int getWidth();
 
-    // íƒ€ì›ì˜ ë†’ì´ë¥¼ ë¦¬í„´
+    // Å¸¿øÀÇ ³ôÀÌ¸¦ ¸®ÅÏ
     int getHeight();
 
-    // íƒ€ì›ì˜ ë©´ì ì„ ì¶œë ¥
-    int getArea();
+    // Å¸¿øÀÇ ¸éÀûÀ» Ãâ·Â
+    double getArea();
 
-    // íƒ€ì›ì˜ ë„ˆë¹„ì™€ ë†’ì´ë¥¼ ë³€ê²½
+    // Å¸¿øÀÇ ³Êºñ¿Í ³ôÀÌ¸¦ º¯°æ
     void set(int w, int h);
 
-    // íƒ€ì›ì˜ ë„ˆë¹„ì™€ ë†’ì´ë¥¼ ì¶œë ¥
+    // Å¸¿øÀÇ ³Êºñ¿Í ³ôÀÌ¸¦ Ãâ·Â
     void show();
 };
 
 Oval::Oval(int w, int h) : width(w), height(h){}
 Oval::Oval() : width(1), height(1){}
-Oval::~Oval(){cout << "width: " << this->width << "\n" << "height: " << this->height << endl;}
+Oval::~Oval(){
+    cout << "~¼Ò¸êÀÚ È£Ãâ" << endl;
+    cout << "width: " << this->width << "\n" << "height: " << this->height << endl;
+    cout << "~¼Ò¸êÀÚ Á¾·á" << endl;
+}
+
 
 int Oval::getWidth() {
     return this->width;
@@ -58,10 +64,11 @@ int Oval::getWidth() {
 int Oval::getHeight() {
     return this->height;
 }
-int Oval::getArea() { return 3.14 * (width / 2) * (height / 2); }
+double Oval::getArea() { return M_PI * (width / 2.0) * (height / 2.0); }
+
 void Oval::set(int w, int h) {
-    this->width = width;
-    this->height = height;
+    this->width = w;
+    this->height = h;
 }
 void Oval::show() {
     cout << "width: " << this->width << "height: " << this->height << endl;
@@ -74,7 +81,7 @@ int main(){
 
     Oval oval1;
     oval1.show();
-    oval1.set(10,20);
+    oval1.set(15,30);
     oval1.show();
     cout << "Area: " << oval1.getArea() << endl;
     return 0;
