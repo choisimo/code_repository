@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.27"
@@ -32,12 +32,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/workspace/github/code_repository/cLang/cmake-build-debug",
-		"source" : "C:/workspace/github/code_repository/cLang"
+		"build" : "/workspace/code_repository/cLang/cmake-build-debug",
+		"source" : "/workspace/code_repository/cLang"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 7
 	}
 }
