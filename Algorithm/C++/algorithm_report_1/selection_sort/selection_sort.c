@@ -19,7 +19,7 @@ int main(){
         arr[i] = rand() % 100000;
     }
 
-
+    for (int i = 0; i )
     // allocated memory set free
     free(arr);
 }
