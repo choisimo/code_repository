@@ -10,7 +10,7 @@ using namespace std;
 // Game 구조체 정의
 struct Game {
     string id;                         // 게임 고유 식별자
-    bool rated;                        // 평점이 매겨졌는지 여부 (참 | 거짓)
+    string rated;                        // 평점이 매겨졌는지 여부 (참 | 거짓)
     string victory_status;             // 승리 상태 (체크메이트, 항복 등)
     string winner;                     // 승리한 플레이어 (백, 흑, None == 무승부)
     int white_rating;                  // 백색 플레이어 평점
@@ -54,16 +54,26 @@ public:
             Game game;
 
             game.id = row[header_map["id"]];
-            game.rated = (row[header_map["rated"]] == "TRUE");
+            game.rated = row[header_map["rated"]];
             game.victory_status = row[header_map["victory_status"]];
             game.winner = row[header_map["winner"]];
 
+            try {
+                if (!row[header_map["rated"]].empty()){
+                    game.rated = row[header_map["rated"]];
+                } else {
+                    game.rated = false;
+                }
+            } catch (const std::invalid_argument& e) {
+                cout << endl;
+            }
+
             // 예외 처리를 추가한 white_rating 변환
             try {
-                if (!row[header_map["white_rating"]].empty()) {
+                if (!row[header_map["white_rating"]].empty()) {                                             // stoi : string to integer
                     game.white_rating = stoi(row[header_map["white_rating"]]);
                 } else {
-                    game.white_rating = 0; // 기본값 설정
+                    game.white_rating = 0;                                                                  // default-value 설정
                 }
             } catch (const std::invalid_argument& e) {
                 cout << "Invalid white_rating: " << row[header_map["white_rating"]] << endl;
@@ -92,17 +102,22 @@ int main() {
     CSVLoader loader(filename);
     vector<Game> games = loader.load();
 
+    int count = 0;
     // Game 데이터 출력
-    for (const auto& game : games) {
-        //if (game.victory_status == "checkmate"){
-            cout << "Game ID: " << game.id
-                 << ", Winner: " << game.winner
-                << ", White Rating: " << game.white_rating
-                << ", Black Rating: " << game.black_rating
-                << ", winner: " << game.winner
-                << ", victory status: " << game.victory_status << endl;
 
+    cout << endl;
+
+    for (const auto& game : games) {
+
+        cout << "Game ID: " << game.id
+             << "Game rated: " << game.rated
+             << ", Winner: " << game.winner
+             << ", White Rating: " << game.white_rating
+             << ", Black Rating: " << game.black_rating
+             << ", winner: " << game.winner << endl;
+        count++;
     }
+    cout << "total count : " << count << endl;
 
     return 0;
 }
