@@ -11,7 +11,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -26,7 +27,8 @@
 					"name" : "Project",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -37,6 +39,13 @@
 					"id" : "Algorithm_C++_team_report_24_main::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-Algorithm_C++_team_report_24_main-Debug-ec2583ab68b1b0ba9f04.json",
 					"name" : "Algorithm_C++_team_report_24_main",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_0919_class_1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_0919_class_1-Debug-debb47658090549de665.json",
+					"name" : "cLang++_0919_class_1",
 					"projectIndex" : 0
 				}
 			]

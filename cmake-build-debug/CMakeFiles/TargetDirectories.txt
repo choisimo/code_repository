@@ -1,3 +1,4 @@
 C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_team_report_24_main.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_0919_class_1.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/rebuild_cache.dir

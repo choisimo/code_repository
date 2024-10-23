@@ -50,4 +50,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Algorithm_C++_team_report_24_main.dir/DependInfo.cmake"
+  "CMakeFiles/cLang++_0919_class_1.dir/DependInfo.cmake"
   )

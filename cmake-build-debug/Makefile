@@ -128,6 +128,19 @@ Algorithm_C++_team_report_24_main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_team_report_24_main.dir\build.make CMakeFiles/Algorithm_C++_team_report_24_main.dir/build
 .PHONY : Algorithm_C++_team_report_24_main/fast
 
+#=============================================================================
+# Target rules for targets named cLang++_0919_class_1
+
+# Build rule for target.
+cLang++_0919_class_1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_0919_class_1
+.PHONY : cLang++_0919_class_1
+
+# fast build rule for target.
+cLang++_0919_class_1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/build
+.PHONY : cLang++_0919_class_1/fast
+
 Algorithm/C++/team_report_24/main.obj: Algorithm/C++/team_report_24/main.cpp.obj
 .PHONY : Algorithm/C++/team_report_24/main.obj
 
@@ -152,6 +165,30 @@ Algorithm/C++/team_report_24/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_team_report_24_main.dir\build.make CMakeFiles/Algorithm_C++_team_report_24_main.dir/Algorithm/C++/team_report_24/main.cpp.s
 .PHONY : Algorithm/C++/team_report_24/main.cpp.s
 
+cLang++/0919/class_1.obj: cLang++/0919/class_1.cpp.obj
+.PHONY : cLang++/0919/class_1.obj
+
+# target to build an object file
+cLang++/0919/class_1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj
+.PHONY : cLang++/0919/class_1.cpp.obj
+
+cLang++/0919/class_1.i: cLang++/0919/class_1.cpp.i
+.PHONY : cLang++/0919/class_1.i
+
+# target to preprocess a source file
+cLang++/0919/class_1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.i
+.PHONY : cLang++/0919/class_1.cpp.i
+
+cLang++/0919/class_1.s: cLang++/0919/class_1.cpp.s
+.PHONY : cLang++/0919/class_1.s
+
+# target to generate assembly for a file
+cLang++/0919/class_1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.s
+.PHONY : cLang++/0919/class_1.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,9 +198,13 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Algorithm_C++_team_report_24_main
+	@echo ... cLang++_0919_class_1
 	@echo ... Algorithm/C++/team_report_24/main.obj
 	@echo ... Algorithm/C++/team_report_24/main.i
 	@echo ... Algorithm/C++/team_report_24/main.s
+	@echo ... cLang++/0919/class_1.obj
+	@echo ... cLang++/0919/class_1.i
+	@echo ... cLang++/0919/class_1.s
 .PHONY : help
 
 
