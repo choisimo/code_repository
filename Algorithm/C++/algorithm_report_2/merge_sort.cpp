@@ -12,7 +12,7 @@ class mergeSort
 private:
     int seed = s_num % 1000;
 public:
-    void getSeed()
+    void getSeed() const
     {
         srand(this->seed);
     }
@@ -113,7 +113,7 @@ int main()
         }
     }
 
-    cout << "quick sorting time : " << (double)(e_time - s_time) << " seconds" << endl;
+    cout << "merge sorting time : " << (double)(e_time - s_time) << " seconds" << endl;
 
     return 0;
 

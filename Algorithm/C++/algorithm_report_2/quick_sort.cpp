@@ -14,7 +14,7 @@ private:
 public:
     int partition(int arr[], int p, int r);
     void quicksort(int arr[], int p, int r);
-    void getSeed()
+    void getSeed() const
     {
         srand(this->seed);
     }
