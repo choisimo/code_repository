@@ -1,3 +1,5 @@
 
 add_executable(Algorithm_C++_team_report_24_main Algorithm/C++/team_report_24/main.cpp)
 add_executable(cLang++_0919_class_1 cLang++/0919/class_1.cpp)
+add_executable(Algorithm_C++_algorithm_report_2_merge_sort Algorithm/C++/algorithm_report_2/merge_sort.cpp)
+add_executable(Algorithm_C++_algorithm_report_2_quick_sort Algorithm/C++/algorithm_report_2/quick_sort.cpp)

@@ -12,7 +12,9 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2,
+						3
 					]
 				}
 			],
@@ -28,12 +30,28 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2,
+						3
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_algorithm_report_2_merge_sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_algorithm_report_2_merge_sort-Debug-e6dc27e3648d9464304a.json",
+					"name" : "Algorithm_C++_algorithm_report_2_merge_sort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_algorithm_report_2_quick_sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_algorithm_report_2_quick_sort-Debug-0c48272137abf6c413f1.json",
+					"name" : "Algorithm_C++_algorithm_report_2_quick_sort",
+					"projectIndex" : 0
+				},
 				{
 					"directoryIndex" : 0,
 					"id" : "Algorithm_C++_team_report_24_main::@6890427a1f51a3e7e1df",

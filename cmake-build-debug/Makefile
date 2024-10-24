@@ -141,6 +141,80 @@ cLang++_0919_class_1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/build
 .PHONY : cLang++_0919_class_1/fast
 
+#=============================================================================
+# Target rules for targets named Algorithm_C++_algorithm_report_2_merge_sort
+
+# Build rule for target.
+Algorithm_C++_algorithm_report_2_merge_sort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_algorithm_report_2_merge_sort
+.PHONY : Algorithm_C++_algorithm_report_2_merge_sort
+
+# fast build rule for target.
+Algorithm_C++_algorithm_report_2_merge_sort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_merge_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_merge_sort.dir/build
+.PHONY : Algorithm_C++_algorithm_report_2_merge_sort/fast
+
+#=============================================================================
+# Target rules for targets named Algorithm_C++_algorithm_report_2_quick_sort
+
+# Build rule for target.
+Algorithm_C++_algorithm_report_2_quick_sort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_algorithm_report_2_quick_sort
+.PHONY : Algorithm_C++_algorithm_report_2_quick_sort
+
+# fast build rule for target.
+Algorithm_C++_algorithm_report_2_quick_sort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/build
+.PHONY : Algorithm_C++_algorithm_report_2_quick_sort/fast
+
+Algorithm/C++/algorithm_report_2/merge_sort.obj: Algorithm/C++/algorithm_report_2/merge_sort.cpp.obj
+.PHONY : Algorithm/C++/algorithm_report_2/merge_sort.obj
+
+# target to build an object file
+Algorithm/C++/algorithm_report_2/merge_sort.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_merge_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_merge_sort.dir/Algorithm/C++/algorithm_report_2/merge_sort.cpp.obj
+.PHONY : Algorithm/C++/algorithm_report_2/merge_sort.cpp.obj
+
+Algorithm/C++/algorithm_report_2/merge_sort.i: Algorithm/C++/algorithm_report_2/merge_sort.cpp.i
+.PHONY : Algorithm/C++/algorithm_report_2/merge_sort.i
+
+# target to preprocess a source file
+Algorithm/C++/algorithm_report_2/merge_sort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_merge_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_merge_sort.dir/Algorithm/C++/algorithm_report_2/merge_sort.cpp.i
+.PHONY : Algorithm/C++/algorithm_report_2/merge_sort.cpp.i
+
+Algorithm/C++/algorithm_report_2/merge_sort.s: Algorithm/C++/algorithm_report_2/merge_sort.cpp.s
+.PHONY : Algorithm/C++/algorithm_report_2/merge_sort.s
+
+# target to generate assembly for a file
+Algorithm/C++/algorithm_report_2/merge_sort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_merge_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_merge_sort.dir/Algorithm/C++/algorithm_report_2/merge_sort.cpp.s
+.PHONY : Algorithm/C++/algorithm_report_2/merge_sort.cpp.s
+
+Algorithm/C++/algorithm_report_2/quick_sort.obj: Algorithm/C++/algorithm_report_2/quick_sort.cpp.obj
+.PHONY : Algorithm/C++/algorithm_report_2/quick_sort.obj
+
+# target to build an object file
+Algorithm/C++/algorithm_report_2/quick_sort.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.obj
+.PHONY : Algorithm/C++/algorithm_report_2/quick_sort.cpp.obj
+
+Algorithm/C++/algorithm_report_2/quick_sort.i: Algorithm/C++/algorithm_report_2/quick_sort.cpp.i
+.PHONY : Algorithm/C++/algorithm_report_2/quick_sort.i
+
+# target to preprocess a source file
+Algorithm/C++/algorithm_report_2/quick_sort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.i
+.PHONY : Algorithm/C++/algorithm_report_2/quick_sort.cpp.i
+
+Algorithm/C++/algorithm_report_2/quick_sort.s: Algorithm/C++/algorithm_report_2/quick_sort.cpp.s
+.PHONY : Algorithm/C++/algorithm_report_2/quick_sort.s
+
+# target to generate assembly for a file
+Algorithm/C++/algorithm_report_2/quick_sort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.s
+.PHONY : Algorithm/C++/algorithm_report_2/quick_sort.cpp.s
+
 Algorithm/C++/team_report_24/main.obj: Algorithm/C++/team_report_24/main.cpp.obj
 .PHONY : Algorithm/C++/team_report_24/main.obj
 
@@ -197,8 +271,16 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Algorithm_C++_algorithm_report_2_merge_sort
+	@echo ... Algorithm_C++_algorithm_report_2_quick_sort
 	@echo ... Algorithm_C++_team_report_24_main
 	@echo ... cLang++_0919_class_1
+	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.obj
+	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.i
+	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.s
+	@echo ... Algorithm/C++/algorithm_report_2/quick_sort.obj
+	@echo ... Algorithm/C++/algorithm_report_2/quick_sort.i
+	@echo ... Algorithm/C++/algorithm_report_2/quick_sort.s
 	@echo ... Algorithm/C++/team_report_24/main.obj
 	@echo ... Algorithm/C++/team_report_24/main.i
 	@echo ... Algorithm/C++/team_report_24/main.s

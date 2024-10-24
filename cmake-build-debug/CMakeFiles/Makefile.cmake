@@ -51,4 +51,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Algorithm_C++_team_report_24_main.dir/DependInfo.cmake"
   "CMakeFiles/cLang++_0919_class_1.dir/DependInfo.cmake"
+  "CMakeFiles/Algorithm_C++_algorithm_report_2_merge_sort.dir/DependInfo.cmake"
+  "CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/DependInfo.cmake"
   )
