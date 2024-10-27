@@ -8,15 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/github/code_repository/cLang++/0919/class_1.cpp" "CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj" "gcc" "CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj.d"
+  "C:/WorkSpace/git/code_repository/cLang++/0919/class_1.cpp" "CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj" "gcc" "CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
 set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
-  )
-
-# Targets to which this target links which contain Fortran sources.
-set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.
