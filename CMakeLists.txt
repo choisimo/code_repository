@@ -7,3 +7,4 @@ add_executable(Algorithm_C++_algorithm_report_2_merge_sort Algorithm/C++/algorit
         Algorithm/C++/middle_exam/bubble_sort.c
         Algorithm/C++/middle_exam/merge_sort.c)
 add_executable(Algorithm_C++_algorithm_report_2_quick_sort Algorithm/C++/algorithm_report_2/quick_sort.cpp)
+add_executable(Algorithm_C++_middle_exam_quick_sort Algorithm/C++/middle_exam/quick_sort.c)

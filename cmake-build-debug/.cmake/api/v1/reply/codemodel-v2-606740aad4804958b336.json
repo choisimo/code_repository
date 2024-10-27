@@ -14,7 +14,8 @@
 						0,
 						1,
 						2,
-						3
+						3,
+						4
 					]
 				}
 			],
@@ -32,7 +33,8 @@
 						0,
 						1,
 						2,
-						3
+						3,
+						4
 					]
 				}
 			],
@@ -50,6 +52,13 @@
 					"id" : "Algorithm_C++_algorithm_report_2_quick_sort::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-Algorithm_C++_algorithm_report_2_quick_sort-Debug-39f0fe67557e146dd333.json",
 					"name" : "Algorithm_C++_algorithm_report_2_quick_sort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_quick_sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_quick_sort-Debug-14c1de5e0e0ec59e6c9a.json",
+					"name" : "Algorithm_C++_middle_exam_quick_sort",
 					"projectIndex" : 0
 				},
 				{
@@ -72,12 +81,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/WorkSpace/git/code_repository/cmake-build-debug",
-		"source" : "C:/WorkSpace/git/code_repository"
+		"build" : "C:/github/code_repository/cmake-build-debug",
+		"source" : "C:/github/code_repository"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 7
 	}
 }

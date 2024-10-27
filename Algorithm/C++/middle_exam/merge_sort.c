@@ -1,14 +1,34 @@
+#include <float.h>
 //
 // Created by csimo on 10/27/2024.
 //
-void merge(int list[], int p, int q, int r){
+void merge(int list[], int p, int q, int r)
+{
     int i = p, j = q + 1, t = 0;
     int temp[r - p + 1];
 
     while (i <= q && j <= r){
         if (list[i] <= list[j]){
-
+            temp[t++] = list[i++];
         }
+        if (list[j] <= list[i]){
+            temp[t++] = list[j++];
+        }
+    }
+
+    while (i <= q)
+    {
+        temp[t++] = list[i++];
+    }
+
+    while (j <= r)
+    {
+        temp[t++] = list[j++];
+    }
+
+    for (i = p, t = 0; i <= r; i++, t++)
+    {
+        list[i] = temp[t];
     }
 }
 

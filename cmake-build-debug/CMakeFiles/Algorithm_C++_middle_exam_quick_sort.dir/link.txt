@@ -1,0 +1,3 @@
+C:\Users\csimo\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir/objects.a
+C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\ar.exe qc CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir/objects.a @CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir\objects1.rsp
+C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir/objects.a -Wl,--no-whole-archive -o Algorithm_C++_middle_exam_quick_sort.exe -Wl,--out-implib,libAlgorithm_C++_middle_exam_quick_sort.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir\linkLibs.rsp
