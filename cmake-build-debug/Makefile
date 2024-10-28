@@ -180,6 +180,71 @@ Algorithm_C++_middle_exam_quick_sort/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_quick_sort.dir/build
 .PHONY : Algorithm_C++_middle_exam_quick_sort/fast
 
+#=============================================================================
+# Target rules for targets named Algorithm_C++_middle_exam_heap_sort
+
+# Build rule for target.
+Algorithm_C++_middle_exam_heap_sort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_middle_exam_heap_sort
+.PHONY : Algorithm_C++_middle_exam_heap_sort
+
+# fast build rule for target.
+Algorithm_C++_middle_exam_heap_sort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_heap_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/build
+.PHONY : Algorithm_C++_middle_exam_heap_sort/fast
+
+#=============================================================================
+# Target rules for targets named Algorithm_C++_middle_exam_countingBucketSort
+
+# Build rule for target.
+Algorithm_C++_middle_exam_countingBucketSort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_middle_exam_countingBucketSort
+.PHONY : Algorithm_C++_middle_exam_countingBucketSort
+
+# fast build rule for target.
+Algorithm_C++_middle_exam_countingBucketSort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/build
+.PHONY : Algorithm_C++_middle_exam_countingBucketSort/fast
+
+#=============================================================================
+# Target rules for targets named Algorithm_C++_middle_exam_test_heapSort
+
+# Build rule for target.
+Algorithm_C++_middle_exam_test_heapSort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_middle_exam_test_heapSort
+.PHONY : Algorithm_C++_middle_exam_test_heapSort
+
+# fast build rule for target.
+Algorithm_C++_middle_exam_test_heapSort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_heapSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/build
+.PHONY : Algorithm_C++_middle_exam_test_heapSort/fast
+
+#=============================================================================
+# Target rules for targets named Algorithm_C++_middle_exam_test_quickSort
+
+# Build rule for target.
+Algorithm_C++_middle_exam_test_quickSort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_middle_exam_test_quickSort
+.PHONY : Algorithm_C++_middle_exam_test_quickSort
+
+# fast build rule for target.
+Algorithm_C++_middle_exam_test_quickSort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_quickSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/build
+.PHONY : Algorithm_C++_middle_exam_test_quickSort/fast
+
+#=============================================================================
+# Target rules for targets named Algorithm_C++_middle_exam_test_countingBucketSort
+
+# Build rule for target.
+Algorithm_C++_middle_exam_test_countingBucketSort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_middle_exam_test_countingBucketSort
+.PHONY : Algorithm_C++_middle_exam_test_countingBucketSort
+
+# fast build rule for target.
+Algorithm_C++_middle_exam_test_countingBucketSort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/build
+.PHONY : Algorithm_C++_middle_exam_test_countingBucketSort/fast
+
 Algorithm/C++/algorithm_report_2/merge_sort.obj: Algorithm/C++/algorithm_report_2/merge_sort.cpp.obj
 .PHONY : Algorithm/C++/algorithm_report_2/merge_sort.obj
 
@@ -251,6 +316,54 @@ Algorithm/C++/middle_exam/bubble_sort.s: Algorithm/C++/middle_exam/bubble_sort.c
 Algorithm/C++/middle_exam/bubble_sort.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_merge_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_merge_sort.dir/Algorithm/C++/middle_exam/bubble_sort.c.s
 .PHONY : Algorithm/C++/middle_exam/bubble_sort.c.s
+
+Algorithm/C++/middle_exam/countingBucketSort.obj: Algorithm/C++/middle_exam/countingBucketSort.cpp.obj
+.PHONY : Algorithm/C++/middle_exam/countingBucketSort.obj
+
+# target to build an object file
+Algorithm/C++/middle_exam/countingBucketSort.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/Algorithm/C++/middle_exam/countingBucketSort.cpp.obj
+.PHONY : Algorithm/C++/middle_exam/countingBucketSort.cpp.obj
+
+Algorithm/C++/middle_exam/countingBucketSort.i: Algorithm/C++/middle_exam/countingBucketSort.cpp.i
+.PHONY : Algorithm/C++/middle_exam/countingBucketSort.i
+
+# target to preprocess a source file
+Algorithm/C++/middle_exam/countingBucketSort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/Algorithm/C++/middle_exam/countingBucketSort.cpp.i
+.PHONY : Algorithm/C++/middle_exam/countingBucketSort.cpp.i
+
+Algorithm/C++/middle_exam/countingBucketSort.s: Algorithm/C++/middle_exam/countingBucketSort.cpp.s
+.PHONY : Algorithm/C++/middle_exam/countingBucketSort.s
+
+# target to generate assembly for a file
+Algorithm/C++/middle_exam/countingBucketSort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/Algorithm/C++/middle_exam/countingBucketSort.cpp.s
+.PHONY : Algorithm/C++/middle_exam/countingBucketSort.cpp.s
+
+Algorithm/C++/middle_exam/heap_sort.obj: Algorithm/C++/middle_exam/heap_sort.c.obj
+.PHONY : Algorithm/C++/middle_exam/heap_sort.obj
+
+# target to build an object file
+Algorithm/C++/middle_exam/heap_sort.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_heap_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/Algorithm/C++/middle_exam/heap_sort.c.obj
+.PHONY : Algorithm/C++/middle_exam/heap_sort.c.obj
+
+Algorithm/C++/middle_exam/heap_sort.i: Algorithm/C++/middle_exam/heap_sort.c.i
+.PHONY : Algorithm/C++/middle_exam/heap_sort.i
+
+# target to preprocess a source file
+Algorithm/C++/middle_exam/heap_sort.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_heap_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/Algorithm/C++/middle_exam/heap_sort.c.i
+.PHONY : Algorithm/C++/middle_exam/heap_sort.c.i
+
+Algorithm/C++/middle_exam/heap_sort.s: Algorithm/C++/middle_exam/heap_sort.c.s
+.PHONY : Algorithm/C++/middle_exam/heap_sort.s
+
+# target to generate assembly for a file
+Algorithm/C++/middle_exam/heap_sort.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_heap_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/Algorithm/C++/middle_exam/heap_sort.c.s
+.PHONY : Algorithm/C++/middle_exam/heap_sort.c.s
 
 Algorithm/C++/middle_exam/insert_sort.obj: Algorithm/C++/middle_exam/insert_sort.c.obj
 .PHONY : Algorithm/C++/middle_exam/insert_sort.obj
@@ -348,6 +461,78 @@ Algorithm/C++/middle_exam/selection_sort.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_merge_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_merge_sort.dir/Algorithm/C++/middle_exam/selection_sort.c.s
 .PHONY : Algorithm/C++/middle_exam/selection_sort.c.s
 
+Algorithm/C++/middle_exam/test/countingBucketSort.obj: Algorithm/C++/middle_exam/test/countingBucketSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/countingBucketSort.obj
+
+# target to build an object file
+Algorithm/C++/middle_exam/test/countingBucketSort.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/Algorithm/C++/middle_exam/test/countingBucketSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/countingBucketSort.c.obj
+
+Algorithm/C++/middle_exam/test/countingBucketSort.i: Algorithm/C++/middle_exam/test/countingBucketSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/countingBucketSort.i
+
+# target to preprocess a source file
+Algorithm/C++/middle_exam/test/countingBucketSort.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/Algorithm/C++/middle_exam/test/countingBucketSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/countingBucketSort.c.i
+
+Algorithm/C++/middle_exam/test/countingBucketSort.s: Algorithm/C++/middle_exam/test/countingBucketSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/countingBucketSort.s
+
+# target to generate assembly for a file
+Algorithm/C++/middle_exam/test/countingBucketSort.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/Algorithm/C++/middle_exam/test/countingBucketSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/countingBucketSort.c.s
+
+Algorithm/C++/middle_exam/test/heapSort.obj: Algorithm/C++/middle_exam/test/heapSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/heapSort.obj
+
+# target to build an object file
+Algorithm/C++/middle_exam/test/heapSort.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_heapSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/heapSort.c.obj
+
+Algorithm/C++/middle_exam/test/heapSort.i: Algorithm/C++/middle_exam/test/heapSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/heapSort.i
+
+# target to preprocess a source file
+Algorithm/C++/middle_exam/test/heapSort.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_heapSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/heapSort.c.i
+
+Algorithm/C++/middle_exam/test/heapSort.s: Algorithm/C++/middle_exam/test/heapSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/heapSort.s
+
+# target to generate assembly for a file
+Algorithm/C++/middle_exam/test/heapSort.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_heapSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/heapSort.c.s
+
+Algorithm/C++/middle_exam/test/quickSort.obj: Algorithm/C++/middle_exam/test/quickSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/quickSort.obj
+
+# target to build an object file
+Algorithm/C++/middle_exam/test/quickSort.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_quickSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/Algorithm/C++/middle_exam/test/quickSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/quickSort.c.obj
+
+Algorithm/C++/middle_exam/test/quickSort.i: Algorithm/C++/middle_exam/test/quickSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/quickSort.i
+
+# target to preprocess a source file
+Algorithm/C++/middle_exam/test/quickSort.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_quickSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/Algorithm/C++/middle_exam/test/quickSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/quickSort.c.i
+
+Algorithm/C++/middle_exam/test/quickSort.s: Algorithm/C++/middle_exam/test/quickSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/quickSort.s
+
+# target to generate assembly for a file
+Algorithm/C++/middle_exam/test/quickSort.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_quickSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/Algorithm/C++/middle_exam/test/quickSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/quickSort.c.s
+
 Algorithm/C++/team_report_24/main.obj: Algorithm/C++/team_report_24/main.cpp.obj
 .PHONY : Algorithm/C++/team_report_24/main.obj
 
@@ -406,7 +591,12 @@ help:
 	@echo ... rebuild_cache
 	@echo ... Algorithm_C++_algorithm_report_2_merge_sort
 	@echo ... Algorithm_C++_algorithm_report_2_quick_sort
+	@echo ... Algorithm_C++_middle_exam_countingBucketSort
+	@echo ... Algorithm_C++_middle_exam_heap_sort
 	@echo ... Algorithm_C++_middle_exam_quick_sort
+	@echo ... Algorithm_C++_middle_exam_test_countingBucketSort
+	@echo ... Algorithm_C++_middle_exam_test_heapSort
+	@echo ... Algorithm_C++_middle_exam_test_quickSort
 	@echo ... Algorithm_C++_team_report_24_main
 	@echo ... cLang++_0919_class_1
 	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.obj
@@ -418,6 +608,12 @@ help:
 	@echo ... Algorithm/C++/middle_exam/bubble_sort.obj
 	@echo ... Algorithm/C++/middle_exam/bubble_sort.i
 	@echo ... Algorithm/C++/middle_exam/bubble_sort.s
+	@echo ... Algorithm/C++/middle_exam/countingBucketSort.obj
+	@echo ... Algorithm/C++/middle_exam/countingBucketSort.i
+	@echo ... Algorithm/C++/middle_exam/countingBucketSort.s
+	@echo ... Algorithm/C++/middle_exam/heap_sort.obj
+	@echo ... Algorithm/C++/middle_exam/heap_sort.i
+	@echo ... Algorithm/C++/middle_exam/heap_sort.s
 	@echo ... Algorithm/C++/middle_exam/insert_sort.obj
 	@echo ... Algorithm/C++/middle_exam/insert_sort.i
 	@echo ... Algorithm/C++/middle_exam/insert_sort.s
@@ -430,6 +626,15 @@ help:
 	@echo ... Algorithm/C++/middle_exam/selection_sort.obj
 	@echo ... Algorithm/C++/middle_exam/selection_sort.i
 	@echo ... Algorithm/C++/middle_exam/selection_sort.s
+	@echo ... Algorithm/C++/middle_exam/test/countingBucketSort.obj
+	@echo ... Algorithm/C++/middle_exam/test/countingBucketSort.i
+	@echo ... Algorithm/C++/middle_exam/test/countingBucketSort.s
+	@echo ... Algorithm/C++/middle_exam/test/heapSort.obj
+	@echo ... Algorithm/C++/middle_exam/test/heapSort.i
+	@echo ... Algorithm/C++/middle_exam/test/heapSort.s
+	@echo ... Algorithm/C++/middle_exam/test/quickSort.obj
+	@echo ... Algorithm/C++/middle_exam/test/quickSort.i
+	@echo ... Algorithm/C++/middle_exam/test/quickSort.s
 	@echo ... Algorithm/C++/team_report_24/main.obj
 	@echo ... Algorithm/C++/team_report_24/main.i
 	@echo ... Algorithm/C++/team_report_24/main.s
