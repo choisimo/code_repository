@@ -13,5 +13,9 @@ C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_final_1029_Circle
 C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_final_1029_Circle_altered.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_final_1029_Circle2.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_report_ch4_exam_2.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_report_ch4_exam_6.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_report_ch4_quickSort.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_report_ch4_exam_9.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/rebuild_cache.dir

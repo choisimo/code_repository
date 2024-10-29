@@ -77,6 +77,10 @@ all: CMakeFiles/cLang++_final_1029_Circle.dir/all
 all: CMakeFiles/cLang++_final_1029_Circle_altered.dir/all
 all: CMakeFiles/cLang++_final_1029_Circle2.dir/all
 all: CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/all
+all: CMakeFiles/cLang++_report_ch4_exam_2.dir/all
+all: CMakeFiles/cLang++_report_ch4_exam_6.dir/all
+all: CMakeFiles/cLang++_report_ch4_quickSort.dir/all
+all: CMakeFiles/cLang++_report_ch4_exam_9.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -99,6 +103,10 @@ clean: CMakeFiles/cLang++_final_1029_Circle.dir/clean
 clean: CMakeFiles/cLang++_final_1029_Circle_altered.dir/clean
 clean: CMakeFiles/cLang++_final_1029_Circle2.dir/clean
 clean: CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean
+clean: CMakeFiles/cLang++_report_ch4_exam_2.dir/clean
+clean: CMakeFiles/cLang++_report_ch4_exam_6.dir/clean
+clean: CMakeFiles/cLang++_report_ch4_quickSort.dir/clean
+clean: CMakeFiles/cLang++_report_ch4_exam_9.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -490,6 +498,110 @@ Algorithm_C++_middle_exam_test_mergeSort: CMakeFiles/Algorithm_C++_middle_exam_t
 CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cLang++_report_ch4_exam_2.dir
+
+# All Build rule for target.
+CMakeFiles/cLang++_report_ch4_exam_2.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_2.dir\build.make CMakeFiles/cLang++_report_ch4_exam_2.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_2.dir\build.make CMakeFiles/cLang++_report_ch4_exam_2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=35,36 "Built target cLang++_report_ch4_exam_2"
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_2.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cLang++_report_ch4_exam_2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cLang++_report_ch4_exam_2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_2.dir/rule
+
+# Convenience name for target.
+cLang++_report_ch4_exam_2: CMakeFiles/cLang++_report_ch4_exam_2.dir/rule
+.PHONY : cLang++_report_ch4_exam_2
+
+# clean rule for target.
+CMakeFiles/cLang++_report_ch4_exam_2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_2.dir\build.make CMakeFiles/cLang++_report_ch4_exam_2.dir/clean
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_2.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cLang++_report_ch4_exam_6.dir
+
+# All Build rule for target.
+CMakeFiles/cLang++_report_ch4_exam_6.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_6.dir\build.make CMakeFiles/cLang++_report_ch4_exam_6.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_6.dir\build.make CMakeFiles/cLang++_report_ch4_exam_6.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=37,38 "Built target cLang++_report_ch4_exam_6"
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_6.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cLang++_report_ch4_exam_6.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cLang++_report_ch4_exam_6.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_6.dir/rule
+
+# Convenience name for target.
+cLang++_report_ch4_exam_6: CMakeFiles/cLang++_report_ch4_exam_6.dir/rule
+.PHONY : cLang++_report_ch4_exam_6
+
+# clean rule for target.
+CMakeFiles/cLang++_report_ch4_exam_6.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_6.dir\build.make CMakeFiles/cLang++_report_ch4_exam_6.dir/clean
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_6.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cLang++_report_ch4_quickSort.dir
+
+# All Build rule for target.
+CMakeFiles/cLang++_report_ch4_quickSort.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_quickSort.dir\build.make CMakeFiles/cLang++_report_ch4_quickSort.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_quickSort.dir\build.make CMakeFiles/cLang++_report_ch4_quickSort.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=41,42 "Built target cLang++_report_ch4_quickSort"
+.PHONY : CMakeFiles/cLang++_report_ch4_quickSort.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cLang++_report_ch4_quickSort.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cLang++_report_ch4_quickSort.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/cLang++_report_ch4_quickSort.dir/rule
+
+# Convenience name for target.
+cLang++_report_ch4_quickSort: CMakeFiles/cLang++_report_ch4_quickSort.dir/rule
+.PHONY : cLang++_report_ch4_quickSort
+
+# clean rule for target.
+CMakeFiles/cLang++_report_ch4_quickSort.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_quickSort.dir\build.make CMakeFiles/cLang++_report_ch4_quickSort.dir/clean
+.PHONY : CMakeFiles/cLang++_report_ch4_quickSort.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cLang++_report_ch4_exam_9.dir
+
+# All Build rule for target.
+CMakeFiles/cLang++_report_ch4_exam_9.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_9.dir\build.make CMakeFiles/cLang++_report_ch4_exam_9.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_9.dir\build.make CMakeFiles/cLang++_report_ch4_exam_9.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=39,40 "Built target cLang++_report_ch4_exam_9"
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_9.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cLang++_report_ch4_exam_9.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cLang++_report_ch4_exam_9.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_9.dir/rule
+
+# Convenience name for target.
+cLang++_report_ch4_exam_9: CMakeFiles/cLang++_report_ch4_exam_9.dir/rule
+.PHONY : cLang++_report_ch4_exam_9
+
+# clean rule for target.
+CMakeFiles/cLang++_report_ch4_exam_9.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_9.dir\build.make CMakeFiles/cLang++_report_ch4_exam_9.dir/clean
+.PHONY : CMakeFiles/cLang++_report_ch4_exam_9.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

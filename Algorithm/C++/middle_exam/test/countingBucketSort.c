@@ -32,8 +32,8 @@ void countingSort(double arr[], int n)
 
     for (int i = n - 1; i >= 0; i--)
     {
-        int bucketIndex = bucketOf[i];
-        B[--bucket_C[bucketIndex]] = arr[i];
+        int bucket_index = bucketOf[i];
+        B[--bucket_C[bucket_index]] = arr[i];
     }
 
     insertSort(B, n);

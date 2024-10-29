@@ -64,4 +64,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/cLang++_final_1029_Circle_altered.dir/DependInfo.cmake"
   "CMakeFiles/cLang++_final_1029_Circle2.dir/DependInfo.cmake"
   "CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/DependInfo.cmake"
+  "CMakeFiles/cLang++_report_ch4_exam_2.dir/DependInfo.cmake"
+  "CMakeFiles/cLang++_report_ch4_exam_6.dir/DependInfo.cmake"
+  "CMakeFiles/cLang++_report_ch4_quickSort.dir/DependInfo.cmake"
+  "CMakeFiles/cLang++_report_ch4_exam_9.dir/DependInfo.cmake"
   )

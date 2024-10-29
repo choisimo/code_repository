@@ -310,6 +310,58 @@ Algorithm_C++_middle_exam_test_mergeSort/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/build
 .PHONY : Algorithm_C++_middle_exam_test_mergeSort/fast
 
+#=============================================================================
+# Target rules for targets named cLang++_report_ch4_exam_2
+
+# Build rule for target.
+cLang++_report_ch4_exam_2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_report_ch4_exam_2
+.PHONY : cLang++_report_ch4_exam_2
+
+# fast build rule for target.
+cLang++_report_ch4_exam_2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_2.dir\build.make CMakeFiles/cLang++_report_ch4_exam_2.dir/build
+.PHONY : cLang++_report_ch4_exam_2/fast
+
+#=============================================================================
+# Target rules for targets named cLang++_report_ch4_exam_6
+
+# Build rule for target.
+cLang++_report_ch4_exam_6: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_report_ch4_exam_6
+.PHONY : cLang++_report_ch4_exam_6
+
+# fast build rule for target.
+cLang++_report_ch4_exam_6/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_6.dir\build.make CMakeFiles/cLang++_report_ch4_exam_6.dir/build
+.PHONY : cLang++_report_ch4_exam_6/fast
+
+#=============================================================================
+# Target rules for targets named cLang++_report_ch4_quickSort
+
+# Build rule for target.
+cLang++_report_ch4_quickSort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_report_ch4_quickSort
+.PHONY : cLang++_report_ch4_quickSort
+
+# fast build rule for target.
+cLang++_report_ch4_quickSort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_quickSort.dir\build.make CMakeFiles/cLang++_report_ch4_quickSort.dir/build
+.PHONY : cLang++_report_ch4_quickSort/fast
+
+#=============================================================================
+# Target rules for targets named cLang++_report_ch4_exam_9
+
+# Build rule for target.
+cLang++_report_ch4_exam_9: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_report_ch4_exam_9
+.PHONY : cLang++_report_ch4_exam_9
+
+# fast build rule for target.
+cLang++_report_ch4_exam_9/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_9.dir\build.make CMakeFiles/cLang++_report_ch4_exam_9.dir/build
+.PHONY : cLang++_report_ch4_exam_9/fast
+
 Algorithm/C++/algorithm_report_2/merge_sort.obj: Algorithm/C++/algorithm_report_2/merge_sort.cpp.obj
 .PHONY : Algorithm/C++/algorithm_report_2/merge_sort.obj
 
@@ -766,6 +818,102 @@ cLang++/middle/0919/class_1.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.s
 .PHONY : cLang++/middle/0919/class_1.cpp.s
 
+cLang++/report_ch4/exam_2.obj: cLang++/report_ch4/exam_2.cpp.obj
+.PHONY : cLang++/report_ch4/exam_2.obj
+
+# target to build an object file
+cLang++/report_ch4/exam_2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_2.dir\build.make CMakeFiles/cLang++_report_ch4_exam_2.dir/cLang++/report_ch4/exam_2.cpp.obj
+.PHONY : cLang++/report_ch4/exam_2.cpp.obj
+
+cLang++/report_ch4/exam_2.i: cLang++/report_ch4/exam_2.cpp.i
+.PHONY : cLang++/report_ch4/exam_2.i
+
+# target to preprocess a source file
+cLang++/report_ch4/exam_2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_2.dir\build.make CMakeFiles/cLang++_report_ch4_exam_2.dir/cLang++/report_ch4/exam_2.cpp.i
+.PHONY : cLang++/report_ch4/exam_2.cpp.i
+
+cLang++/report_ch4/exam_2.s: cLang++/report_ch4/exam_2.cpp.s
+.PHONY : cLang++/report_ch4/exam_2.s
+
+# target to generate assembly for a file
+cLang++/report_ch4/exam_2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_2.dir\build.make CMakeFiles/cLang++_report_ch4_exam_2.dir/cLang++/report_ch4/exam_2.cpp.s
+.PHONY : cLang++/report_ch4/exam_2.cpp.s
+
+cLang++/report_ch4/exam_6.obj: cLang++/report_ch4/exam_6.cpp.obj
+.PHONY : cLang++/report_ch4/exam_6.obj
+
+# target to build an object file
+cLang++/report_ch4/exam_6.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_6.dir\build.make CMakeFiles/cLang++_report_ch4_exam_6.dir/cLang++/report_ch4/exam_6.cpp.obj
+.PHONY : cLang++/report_ch4/exam_6.cpp.obj
+
+cLang++/report_ch4/exam_6.i: cLang++/report_ch4/exam_6.cpp.i
+.PHONY : cLang++/report_ch4/exam_6.i
+
+# target to preprocess a source file
+cLang++/report_ch4/exam_6.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_6.dir\build.make CMakeFiles/cLang++_report_ch4_exam_6.dir/cLang++/report_ch4/exam_6.cpp.i
+.PHONY : cLang++/report_ch4/exam_6.cpp.i
+
+cLang++/report_ch4/exam_6.s: cLang++/report_ch4/exam_6.cpp.s
+.PHONY : cLang++/report_ch4/exam_6.s
+
+# target to generate assembly for a file
+cLang++/report_ch4/exam_6.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_6.dir\build.make CMakeFiles/cLang++_report_ch4_exam_6.dir/cLang++/report_ch4/exam_6.cpp.s
+.PHONY : cLang++/report_ch4/exam_6.cpp.s
+
+cLang++/report_ch4/exam_9.obj: cLang++/report_ch4/exam_9.cpp.obj
+.PHONY : cLang++/report_ch4/exam_9.obj
+
+# target to build an object file
+cLang++/report_ch4/exam_9.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_9.dir\build.make CMakeFiles/cLang++_report_ch4_exam_9.dir/cLang++/report_ch4/exam_9.cpp.obj
+.PHONY : cLang++/report_ch4/exam_9.cpp.obj
+
+cLang++/report_ch4/exam_9.i: cLang++/report_ch4/exam_9.cpp.i
+.PHONY : cLang++/report_ch4/exam_9.i
+
+# target to preprocess a source file
+cLang++/report_ch4/exam_9.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_9.dir\build.make CMakeFiles/cLang++_report_ch4_exam_9.dir/cLang++/report_ch4/exam_9.cpp.i
+.PHONY : cLang++/report_ch4/exam_9.cpp.i
+
+cLang++/report_ch4/exam_9.s: cLang++/report_ch4/exam_9.cpp.s
+.PHONY : cLang++/report_ch4/exam_9.s
+
+# target to generate assembly for a file
+cLang++/report_ch4/exam_9.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_exam_9.dir\build.make CMakeFiles/cLang++_report_ch4_exam_9.dir/cLang++/report_ch4/exam_9.cpp.s
+.PHONY : cLang++/report_ch4/exam_9.cpp.s
+
+cLang++/report_ch4/quickSort.obj: cLang++/report_ch4/quickSort.cpp.obj
+.PHONY : cLang++/report_ch4/quickSort.obj
+
+# target to build an object file
+cLang++/report_ch4/quickSort.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_quickSort.dir\build.make CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.obj
+.PHONY : cLang++/report_ch4/quickSort.cpp.obj
+
+cLang++/report_ch4/quickSort.i: cLang++/report_ch4/quickSort.cpp.i
+.PHONY : cLang++/report_ch4/quickSort.i
+
+# target to preprocess a source file
+cLang++/report_ch4/quickSort.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_quickSort.dir\build.make CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.i
+.PHONY : cLang++/report_ch4/quickSort.cpp.i
+
+cLang++/report_ch4/quickSort.s: cLang++/report_ch4/quickSort.cpp.s
+.PHONY : cLang++/report_ch4/quickSort.s
+
+# target to generate assembly for a file
+cLang++/report_ch4/quickSort.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_report_ch4_quickSort.dir\build.make CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.s
+.PHONY : cLang++/report_ch4/quickSort.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -789,6 +937,10 @@ help:
 	@echo ... cLang++_final_1029_Circle
 	@echo ... cLang++_final_1029_Circle2
 	@echo ... cLang++_final_1029_Circle_altered
+	@echo ... cLang++_report_ch4_exam_2
+	@echo ... cLang++_report_ch4_exam_6
+	@echo ... cLang++_report_ch4_exam_9
+	@echo ... cLang++_report_ch4_quickSort
 	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.obj
 	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.i
 	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.s
@@ -846,6 +998,18 @@ help:
 	@echo ... cLang++/middle/0919/class_1.obj
 	@echo ... cLang++/middle/0919/class_1.i
 	@echo ... cLang++/middle/0919/class_1.s
+	@echo ... cLang++/report_ch4/exam_2.obj
+	@echo ... cLang++/report_ch4/exam_2.i
+	@echo ... cLang++/report_ch4/exam_2.s
+	@echo ... cLang++/report_ch4/exam_6.obj
+	@echo ... cLang++/report_ch4/exam_6.i
+	@echo ... cLang++/report_ch4/exam_6.s
+	@echo ... cLang++/report_ch4/exam_9.obj
+	@echo ... cLang++/report_ch4/exam_9.i
+	@echo ... cLang++/report_ch4/exam_9.s
+	@echo ... cLang++/report_ch4/quickSort.obj
+	@echo ... cLang++/report_ch4/quickSort.i
+	@echo ... cLang++/report_ch4/quickSort.s
 .PHONY : help
 
 
