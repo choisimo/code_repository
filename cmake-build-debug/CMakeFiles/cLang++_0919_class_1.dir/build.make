@@ -68,28 +68,28 @@ include CMakeFiles/cLang++_0919_class_1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cLang++_0919_class_1.dir/flags.make
 
-CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj: CMakeFiles/cLang++_0919_class_1.dir/flags.make
-CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj: C:/github/code_repository/cLang++/0919/class_1.cpp
-CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj: CMakeFiles/cLang++_0919_class_1.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj"
-	C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj -MF CMakeFiles\cLang++_0919_class_1.dir\cLang++\0919\class_1.cpp.obj.d -o CMakeFiles\cLang++_0919_class_1.dir\cLang++\0919\class_1.cpp.obj -c C:\github\code_repository\cLang++\0919\class_1.cpp
+CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj: CMakeFiles/cLang++_0919_class_1.dir/flags.make
+CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj: C:/github/code_repository/cLang++/middle/0919/class_1.cpp
+CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj: CMakeFiles/cLang++_0919_class_1.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj"
+	C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj -MF CMakeFiles\cLang++_0919_class_1.dir\cLang++\middle\0919\class_1.cpp.obj.d -o CMakeFiles\cLang++_0919_class_1.dir\cLang++\middle\0919\class_1.cpp.obj -c C:\github\code_repository\cLang++\middle\0919\class_1.cpp
 
-CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.i"
-	C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\github\code_repository\cLang++\0919\class_1.cpp > CMakeFiles\cLang++_0919_class_1.dir\cLang++\0919\class_1.cpp.i
+CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.i"
+	C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\github\code_repository\cLang++\middle\0919\class_1.cpp > CMakeFiles\cLang++_0919_class_1.dir\cLang++\middle\0919\class_1.cpp.i
 
-CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.s"
-	C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\github\code_repository\cLang++\0919\class_1.cpp -o CMakeFiles\cLang++_0919_class_1.dir\cLang++\0919\class_1.cpp.s
+CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.s"
+	C:\Users\csimo\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\github\code_repository\cLang++\middle\0919\class_1.cpp -o CMakeFiles\cLang++_0919_class_1.dir\cLang++\middle\0919\class_1.cpp.s
 
 # Object files for target cLang++_0919_class_1
 cLang_______0919_class_1_OBJECTS = \
-"CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj"
+"CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj"
 
 # External object files for target cLang++_0919_class_1
 cLang_______0919_class_1_EXTERNAL_OBJECTS =
 
-cLang++_0919_class_1.exe: CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj
+cLang++_0919_class_1.exe: CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj
 cLang++_0919_class_1.exe: CMakeFiles/cLang++_0919_class_1.dir/build.make
 cLang++_0919_class_1.exe: CMakeFiles/cLang++_0919_class_1.dir/linkLibs.rsp
 cLang++_0919_class_1.exe: CMakeFiles/cLang++_0919_class_1.dir/objects1.rsp

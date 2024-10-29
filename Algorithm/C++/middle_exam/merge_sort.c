@@ -10,8 +10,8 @@ void merge(int list[], int p, int q, int r)
     while (i <= q && j <= r){
         if (list[i] <= list[j]){
             temp[t++] = list[i++];
-        }
-        if (list[j] <= list[i]){
+        } else
+        {
             temp[t++] = list[j++];
         }
     }

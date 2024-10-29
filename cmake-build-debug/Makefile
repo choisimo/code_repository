@@ -245,6 +245,71 @@ Algorithm_C++_middle_exam_test_countingBucketSort/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/build
 .PHONY : Algorithm_C++_middle_exam_test_countingBucketSort/fast
 
+#=============================================================================
+# Target rules for targets named Algorithm_C++_middle_exam_binary_search_tree
+
+# Build rule for target.
+Algorithm_C++_middle_exam_binary_search_tree: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_middle_exam_binary_search_tree
+.PHONY : Algorithm_C++_middle_exam_binary_search_tree
+
+# fast build rule for target.
+Algorithm_C++_middle_exam_binary_search_tree/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_binary_search_tree.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/build
+.PHONY : Algorithm_C++_middle_exam_binary_search_tree/fast
+
+#=============================================================================
+# Target rules for targets named cLang++_final_1029_Circle
+
+# Build rule for target.
+cLang++_final_1029_Circle: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_final_1029_Circle
+.PHONY : cLang++_final_1029_Circle
+
+# fast build rule for target.
+cLang++_final_1029_Circle/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle.dir\build.make CMakeFiles/cLang++_final_1029_Circle.dir/build
+.PHONY : cLang++_final_1029_Circle/fast
+
+#=============================================================================
+# Target rules for targets named cLang++_final_1029_Circle_altered
+
+# Build rule for target.
+cLang++_final_1029_Circle_altered: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_final_1029_Circle_altered
+.PHONY : cLang++_final_1029_Circle_altered
+
+# fast build rule for target.
+cLang++_final_1029_Circle_altered/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle_altered.dir\build.make CMakeFiles/cLang++_final_1029_Circle_altered.dir/build
+.PHONY : cLang++_final_1029_Circle_altered/fast
+
+#=============================================================================
+# Target rules for targets named cLang++_final_1029_Circle2
+
+# Build rule for target.
+cLang++_final_1029_Circle2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cLang++_final_1029_Circle2
+.PHONY : cLang++_final_1029_Circle2
+
+# fast build rule for target.
+cLang++_final_1029_Circle2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle2.dir\build.make CMakeFiles/cLang++_final_1029_Circle2.dir/build
+.PHONY : cLang++_final_1029_Circle2/fast
+
+#=============================================================================
+# Target rules for targets named Algorithm_C++_middle_exam_test_mergeSort
+
+# Build rule for target.
+Algorithm_C++_middle_exam_test_mergeSort: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Algorithm_C++_middle_exam_test_mergeSort
+.PHONY : Algorithm_C++_middle_exam_test_mergeSort
+
+# fast build rule for target.
+Algorithm_C++_middle_exam_test_mergeSort/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/build
+.PHONY : Algorithm_C++_middle_exam_test_mergeSort/fast
+
 Algorithm/C++/algorithm_report_2/merge_sort.obj: Algorithm/C++/algorithm_report_2/merge_sort.cpp.obj
 .PHONY : Algorithm/C++/algorithm_report_2/merge_sort.obj
 
@@ -292,6 +357,30 @@ Algorithm/C++/algorithm_report_2/quick_sort.s: Algorithm/C++/algorithm_report_2/
 Algorithm/C++/algorithm_report_2/quick_sort.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_algorithm_report_2_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.s
 .PHONY : Algorithm/C++/algorithm_report_2/quick_sort.cpp.s
+
+Algorithm/C++/middle_exam/binary_search_tree.obj: Algorithm/C++/middle_exam/binary_search_tree.c.obj
+.PHONY : Algorithm/C++/middle_exam/binary_search_tree.obj
+
+# target to build an object file
+Algorithm/C++/middle_exam/binary_search_tree.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_binary_search_tree.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/Algorithm/C++/middle_exam/binary_search_tree.c.obj
+.PHONY : Algorithm/C++/middle_exam/binary_search_tree.c.obj
+
+Algorithm/C++/middle_exam/binary_search_tree.i: Algorithm/C++/middle_exam/binary_search_tree.c.i
+.PHONY : Algorithm/C++/middle_exam/binary_search_tree.i
+
+# target to preprocess a source file
+Algorithm/C++/middle_exam/binary_search_tree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_binary_search_tree.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/Algorithm/C++/middle_exam/binary_search_tree.c.i
+.PHONY : Algorithm/C++/middle_exam/binary_search_tree.c.i
+
+Algorithm/C++/middle_exam/binary_search_tree.s: Algorithm/C++/middle_exam/binary_search_tree.c.s
+.PHONY : Algorithm/C++/middle_exam/binary_search_tree.s
+
+# target to generate assembly for a file
+Algorithm/C++/middle_exam/binary_search_tree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_binary_search_tree.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/Algorithm/C++/middle_exam/binary_search_tree.c.s
+.PHONY : Algorithm/C++/middle_exam/binary_search_tree.c.s
 
 Algorithm/C++/middle_exam/bubble_sort.obj: Algorithm/C++/middle_exam/bubble_sort.c.obj
 .PHONY : Algorithm/C++/middle_exam/bubble_sort.obj
@@ -509,6 +598,30 @@ Algorithm/C++/middle_exam/test/heapSort.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_heapSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.s
 .PHONY : Algorithm/C++/middle_exam/test/heapSort.c.s
 
+Algorithm/C++/middle_exam/test/mergeSort.obj: Algorithm/C++/middle_exam/test/mergeSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/mergeSort.obj
+
+# target to build an object file
+Algorithm/C++/middle_exam/test/mergeSort.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.obj
+.PHONY : Algorithm/C++/middle_exam/test/mergeSort.c.obj
+
+Algorithm/C++/middle_exam/test/mergeSort.i: Algorithm/C++/middle_exam/test/mergeSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/mergeSort.i
+
+# target to preprocess a source file
+Algorithm/C++/middle_exam/test/mergeSort.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.i
+.PHONY : Algorithm/C++/middle_exam/test/mergeSort.c.i
+
+Algorithm/C++/middle_exam/test/mergeSort.s: Algorithm/C++/middle_exam/test/mergeSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/mergeSort.s
+
+# target to generate assembly for a file
+Algorithm/C++/middle_exam/test/mergeSort.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.s
+.PHONY : Algorithm/C++/middle_exam/test/mergeSort.c.s
+
 Algorithm/C++/middle_exam/test/quickSort.obj: Algorithm/C++/middle_exam/test/quickSort.c.obj
 .PHONY : Algorithm/C++/middle_exam/test/quickSort.obj
 
@@ -557,29 +670,101 @@ Algorithm/C++/team_report_24/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_team_report_24_main.dir\build.make CMakeFiles/Algorithm_C++_team_report_24_main.dir/Algorithm/C++/team_report_24/main.cpp.s
 .PHONY : Algorithm/C++/team_report_24/main.cpp.s
 
-cLang++/0919/class_1.obj: cLang++/0919/class_1.cpp.obj
-.PHONY : cLang++/0919/class_1.obj
+cLang++/final/1029/Circle.obj: cLang++/final/1029/Circle.cpp.obj
+.PHONY : cLang++/final/1029/Circle.obj
 
 # target to build an object file
-cLang++/0919/class_1.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.obj
-.PHONY : cLang++/0919/class_1.cpp.obj
+cLang++/final/1029/Circle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle.dir\build.make CMakeFiles/cLang++_final_1029_Circle.dir/cLang++/final/1029/Circle.cpp.obj
+.PHONY : cLang++/final/1029/Circle.cpp.obj
 
-cLang++/0919/class_1.i: cLang++/0919/class_1.cpp.i
-.PHONY : cLang++/0919/class_1.i
+cLang++/final/1029/Circle.i: cLang++/final/1029/Circle.cpp.i
+.PHONY : cLang++/final/1029/Circle.i
 
 # target to preprocess a source file
-cLang++/0919/class_1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.i
-.PHONY : cLang++/0919/class_1.cpp.i
+cLang++/final/1029/Circle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle.dir\build.make CMakeFiles/cLang++_final_1029_Circle.dir/cLang++/final/1029/Circle.cpp.i
+.PHONY : cLang++/final/1029/Circle.cpp.i
 
-cLang++/0919/class_1.s: cLang++/0919/class_1.cpp.s
-.PHONY : cLang++/0919/class_1.s
+cLang++/final/1029/Circle.s: cLang++/final/1029/Circle.cpp.s
+.PHONY : cLang++/final/1029/Circle.s
 
 # target to generate assembly for a file
-cLang++/0919/class_1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/0919/class_1.cpp.s
-.PHONY : cLang++/0919/class_1.cpp.s
+cLang++/final/1029/Circle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle.dir\build.make CMakeFiles/cLang++_final_1029_Circle.dir/cLang++/final/1029/Circle.cpp.s
+.PHONY : cLang++/final/1029/Circle.cpp.s
+
+cLang++/final/1029/Circle2.obj: cLang++/final/1029/Circle2.cpp.obj
+.PHONY : cLang++/final/1029/Circle2.obj
+
+# target to build an object file
+cLang++/final/1029/Circle2.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle2.dir\build.make CMakeFiles/cLang++_final_1029_Circle2.dir/cLang++/final/1029/Circle2.cpp.obj
+.PHONY : cLang++/final/1029/Circle2.cpp.obj
+
+cLang++/final/1029/Circle2.i: cLang++/final/1029/Circle2.cpp.i
+.PHONY : cLang++/final/1029/Circle2.i
+
+# target to preprocess a source file
+cLang++/final/1029/Circle2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle2.dir\build.make CMakeFiles/cLang++_final_1029_Circle2.dir/cLang++/final/1029/Circle2.cpp.i
+.PHONY : cLang++/final/1029/Circle2.cpp.i
+
+cLang++/final/1029/Circle2.s: cLang++/final/1029/Circle2.cpp.s
+.PHONY : cLang++/final/1029/Circle2.s
+
+# target to generate assembly for a file
+cLang++/final/1029/Circle2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle2.dir\build.make CMakeFiles/cLang++_final_1029_Circle2.dir/cLang++/final/1029/Circle2.cpp.s
+.PHONY : cLang++/final/1029/Circle2.cpp.s
+
+cLang++/final/1029/Circle_altered.obj: cLang++/final/1029/Circle_altered.cpp.obj
+.PHONY : cLang++/final/1029/Circle_altered.obj
+
+# target to build an object file
+cLang++/final/1029/Circle_altered.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle_altered.dir\build.make CMakeFiles/cLang++_final_1029_Circle_altered.dir/cLang++/final/1029/Circle_altered.cpp.obj
+.PHONY : cLang++/final/1029/Circle_altered.cpp.obj
+
+cLang++/final/1029/Circle_altered.i: cLang++/final/1029/Circle_altered.cpp.i
+.PHONY : cLang++/final/1029/Circle_altered.i
+
+# target to preprocess a source file
+cLang++/final/1029/Circle_altered.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle_altered.dir\build.make CMakeFiles/cLang++_final_1029_Circle_altered.dir/cLang++/final/1029/Circle_altered.cpp.i
+.PHONY : cLang++/final/1029/Circle_altered.cpp.i
+
+cLang++/final/1029/Circle_altered.s: cLang++/final/1029/Circle_altered.cpp.s
+.PHONY : cLang++/final/1029/Circle_altered.s
+
+# target to generate assembly for a file
+cLang++/final/1029/Circle_altered.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle_altered.dir\build.make CMakeFiles/cLang++_final_1029_Circle_altered.dir/cLang++/final/1029/Circle_altered.cpp.s
+.PHONY : cLang++/final/1029/Circle_altered.cpp.s
+
+cLang++/middle/0919/class_1.obj: cLang++/middle/0919/class_1.cpp.obj
+.PHONY : cLang++/middle/0919/class_1.obj
+
+# target to build an object file
+cLang++/middle/0919/class_1.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.obj
+.PHONY : cLang++/middle/0919/class_1.cpp.obj
+
+cLang++/middle/0919/class_1.i: cLang++/middle/0919/class_1.cpp.i
+.PHONY : cLang++/middle/0919/class_1.i
+
+# target to preprocess a source file
+cLang++/middle/0919/class_1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.i
+.PHONY : cLang++/middle/0919/class_1.cpp.i
+
+cLang++/middle/0919/class_1.s: cLang++/middle/0919/class_1.cpp.s
+.PHONY : cLang++/middle/0919/class_1.s
+
+# target to generate assembly for a file
+cLang++/middle/0919/class_1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/cLang++/middle/0919/class_1.cpp.s
+.PHONY : cLang++/middle/0919/class_1.cpp.s
 
 # Help Target
 help:
@@ -591,20 +776,28 @@ help:
 	@echo ... rebuild_cache
 	@echo ... Algorithm_C++_algorithm_report_2_merge_sort
 	@echo ... Algorithm_C++_algorithm_report_2_quick_sort
+	@echo ... Algorithm_C++_middle_exam_binary_search_tree
 	@echo ... Algorithm_C++_middle_exam_countingBucketSort
 	@echo ... Algorithm_C++_middle_exam_heap_sort
 	@echo ... Algorithm_C++_middle_exam_quick_sort
 	@echo ... Algorithm_C++_middle_exam_test_countingBucketSort
 	@echo ... Algorithm_C++_middle_exam_test_heapSort
+	@echo ... Algorithm_C++_middle_exam_test_mergeSort
 	@echo ... Algorithm_C++_middle_exam_test_quickSort
 	@echo ... Algorithm_C++_team_report_24_main
 	@echo ... cLang++_0919_class_1
+	@echo ... cLang++_final_1029_Circle
+	@echo ... cLang++_final_1029_Circle2
+	@echo ... cLang++_final_1029_Circle_altered
 	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.obj
 	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.i
 	@echo ... Algorithm/C++/algorithm_report_2/merge_sort.s
 	@echo ... Algorithm/C++/algorithm_report_2/quick_sort.obj
 	@echo ... Algorithm/C++/algorithm_report_2/quick_sort.i
 	@echo ... Algorithm/C++/algorithm_report_2/quick_sort.s
+	@echo ... Algorithm/C++/middle_exam/binary_search_tree.obj
+	@echo ... Algorithm/C++/middle_exam/binary_search_tree.i
+	@echo ... Algorithm/C++/middle_exam/binary_search_tree.s
 	@echo ... Algorithm/C++/middle_exam/bubble_sort.obj
 	@echo ... Algorithm/C++/middle_exam/bubble_sort.i
 	@echo ... Algorithm/C++/middle_exam/bubble_sort.s
@@ -632,15 +825,27 @@ help:
 	@echo ... Algorithm/C++/middle_exam/test/heapSort.obj
 	@echo ... Algorithm/C++/middle_exam/test/heapSort.i
 	@echo ... Algorithm/C++/middle_exam/test/heapSort.s
+	@echo ... Algorithm/C++/middle_exam/test/mergeSort.obj
+	@echo ... Algorithm/C++/middle_exam/test/mergeSort.i
+	@echo ... Algorithm/C++/middle_exam/test/mergeSort.s
 	@echo ... Algorithm/C++/middle_exam/test/quickSort.obj
 	@echo ... Algorithm/C++/middle_exam/test/quickSort.i
 	@echo ... Algorithm/C++/middle_exam/test/quickSort.s
 	@echo ... Algorithm/C++/team_report_24/main.obj
 	@echo ... Algorithm/C++/team_report_24/main.i
 	@echo ... Algorithm/C++/team_report_24/main.s
-	@echo ... cLang++/0919/class_1.obj
-	@echo ... cLang++/0919/class_1.i
-	@echo ... cLang++/0919/class_1.s
+	@echo ... cLang++/final/1029/Circle.obj
+	@echo ... cLang++/final/1029/Circle.i
+	@echo ... cLang++/final/1029/Circle.s
+	@echo ... cLang++/final/1029/Circle2.obj
+	@echo ... cLang++/final/1029/Circle2.i
+	@echo ... cLang++/final/1029/Circle2.s
+	@echo ... cLang++/final/1029/Circle_altered.obj
+	@echo ... cLang++/final/1029/Circle_altered.i
+	@echo ... cLang++/final/1029/Circle_altered.s
+	@echo ... cLang++/middle/0919/class_1.obj
+	@echo ... cLang++/middle/0919/class_1.i
+	@echo ... cLang++/middle/0919/class_1.s
 .PHONY : help
 
 

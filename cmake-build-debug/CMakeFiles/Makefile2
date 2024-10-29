@@ -72,6 +72,11 @@ all: CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/all
 all: CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/all
 all: CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/all
 all: CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/all
+all: CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/all
+all: CMakeFiles/cLang++_final_1029_Circle.dir/all
+all: CMakeFiles/cLang++_final_1029_Circle_altered.dir/all
+all: CMakeFiles/cLang++_final_1029_Circle2.dir/all
+all: CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -89,6 +94,11 @@ clean: CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/clean
 clean: CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/clean
 clean: CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/clean
 clean: CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/clean
+clean: CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/clean
+clean: CMakeFiles/cLang++_final_1029_Circle.dir/clean
+clean: CMakeFiles/cLang++_final_1029_Circle_altered.dir/clean
+clean: CMakeFiles/cLang++_final_1029_Circle2.dir/clean
+clean: CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -98,7 +108,7 @@ clean: CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/clean
 CMakeFiles/Algorithm_C++_team_report_24_main.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_team_report_24_main.dir\build.make CMakeFiles/Algorithm_C++_team_report_24_main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_team_report_24_main.dir\build.make CMakeFiles/Algorithm_C++_team_report_24_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=21,22 "Built target Algorithm_C++_team_report_24_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=25,26 "Built target Algorithm_C++_team_report_24_main"
 .PHONY : CMakeFiles/Algorithm_C++_team_report_24_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -124,7 +134,7 @@ CMakeFiles/Algorithm_C++_team_report_24_main.dir/clean:
 CMakeFiles/cLang++_0919_class_1.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_0919_class_1.dir\build.make CMakeFiles/cLang++_0919_class_1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=23,24 "Built target cLang++_0919_class_1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=27,28 "Built target cLang++_0919_class_1"
 .PHONY : CMakeFiles/cLang++_0919_class_1.dir/all
 
 # Build rule for subdir invocation for target.
@@ -202,7 +212,7 @@ CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/clean:
 CMakeFiles/Algorithm_C++_middle_exam_quick_sort.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_quick_sort.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_quick_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_quick_sort.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=13,14 "Built target Algorithm_C++_middle_exam_quick_sort"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=15,16 "Built target Algorithm_C++_middle_exam_quick_sort"
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_quick_sort.dir/all
 
 # Build rule for subdir invocation for target.
@@ -228,7 +238,7 @@ CMakeFiles/Algorithm_C++_middle_exam_quick_sort.dir/clean:
 CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_heap_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_heap_sort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=11,12 "Built target Algorithm_C++_middle_exam_heap_sort"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=13,14 "Built target Algorithm_C++_middle_exam_heap_sort"
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/all
 
 # Build rule for subdir invocation for target.
@@ -254,7 +264,7 @@ CMakeFiles/Algorithm_C++_middle_exam_heap_sort.dir/clean:
 CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=9,10 "Built target Algorithm_C++_middle_exam_countingBucketSort"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=11,12 "Built target Algorithm_C++_middle_exam_countingBucketSort"
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/all
 
 # Build rule for subdir invocation for target.
@@ -280,7 +290,7 @@ CMakeFiles/Algorithm_C++_middle_exam_countingBucketSort.dir/clean:
 CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_heapSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_heapSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=17,18 "Built target Algorithm_C++_middle_exam_test_heapSort"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=19,20 "Built target Algorithm_C++_middle_exam_test_heapSort"
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/all
 
 # Build rule for subdir invocation for target.
@@ -306,7 +316,7 @@ CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/clean:
 CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_quickSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_quickSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=19,20 "Built target Algorithm_C++_middle_exam_test_quickSort"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=23,24 "Built target Algorithm_C++_middle_exam_test_quickSort"
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/all
 
 # Build rule for subdir invocation for target.
@@ -332,7 +342,7 @@ CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir/clean:
 CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=15,16 "Built target Algorithm_C++_middle_exam_test_countingBucketSort"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=17,18 "Built target Algorithm_C++_middle_exam_test_countingBucketSort"
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/all
 
 # Build rule for subdir invocation for target.
@@ -350,6 +360,136 @@ Algorithm_C++_middle_exam_test_countingBucketSort: CMakeFiles/Algorithm_C++_midd
 CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_countingBucketSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/clean
 .PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir
+
+# All Build rule for target.
+CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_binary_search_tree.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_binary_search_tree.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=9,10 "Built target Algorithm_C++_middle_exam_binary_search_tree"
+.PHONY : CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/rule
+
+# Convenience name for target.
+Algorithm_C++_middle_exam_binary_search_tree: CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/rule
+.PHONY : Algorithm_C++_middle_exam_binary_search_tree
+
+# clean rule for target.
+CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_binary_search_tree.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/clean
+.PHONY : CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cLang++_final_1029_Circle.dir
+
+# All Build rule for target.
+CMakeFiles/cLang++_final_1029_Circle.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle.dir\build.make CMakeFiles/cLang++_final_1029_Circle.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle.dir\build.make CMakeFiles/cLang++_final_1029_Circle.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=29,30 "Built target cLang++_final_1029_Circle"
+.PHONY : CMakeFiles/cLang++_final_1029_Circle.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cLang++_final_1029_Circle.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cLang++_final_1029_Circle.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/cLang++_final_1029_Circle.dir/rule
+
+# Convenience name for target.
+cLang++_final_1029_Circle: CMakeFiles/cLang++_final_1029_Circle.dir/rule
+.PHONY : cLang++_final_1029_Circle
+
+# clean rule for target.
+CMakeFiles/cLang++_final_1029_Circle.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle.dir\build.make CMakeFiles/cLang++_final_1029_Circle.dir/clean
+.PHONY : CMakeFiles/cLang++_final_1029_Circle.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cLang++_final_1029_Circle_altered.dir
+
+# All Build rule for target.
+CMakeFiles/cLang++_final_1029_Circle_altered.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle_altered.dir\build.make CMakeFiles/cLang++_final_1029_Circle_altered.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle_altered.dir\build.make CMakeFiles/cLang++_final_1029_Circle_altered.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=33,34 "Built target cLang++_final_1029_Circle_altered"
+.PHONY : CMakeFiles/cLang++_final_1029_Circle_altered.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cLang++_final_1029_Circle_altered.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cLang++_final_1029_Circle_altered.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/cLang++_final_1029_Circle_altered.dir/rule
+
+# Convenience name for target.
+cLang++_final_1029_Circle_altered: CMakeFiles/cLang++_final_1029_Circle_altered.dir/rule
+.PHONY : cLang++_final_1029_Circle_altered
+
+# clean rule for target.
+CMakeFiles/cLang++_final_1029_Circle_altered.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle_altered.dir\build.make CMakeFiles/cLang++_final_1029_Circle_altered.dir/clean
+.PHONY : CMakeFiles/cLang++_final_1029_Circle_altered.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/cLang++_final_1029_Circle2.dir
+
+# All Build rule for target.
+CMakeFiles/cLang++_final_1029_Circle2.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle2.dir\build.make CMakeFiles/cLang++_final_1029_Circle2.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle2.dir\build.make CMakeFiles/cLang++_final_1029_Circle2.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=31,32 "Built target cLang++_final_1029_Circle2"
+.PHONY : CMakeFiles/cLang++_final_1029_Circle2.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/cLang++_final_1029_Circle2.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cLang++_final_1029_Circle2.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/cLang++_final_1029_Circle2.dir/rule
+
+# Convenience name for target.
+cLang++_final_1029_Circle2: CMakeFiles/cLang++_final_1029_Circle2.dir/rule
+.PHONY : cLang++_final_1029_Circle2
+
+# clean rule for target.
+CMakeFiles/cLang++_final_1029_Circle2.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cLang++_final_1029_Circle2.dir\build.make CMakeFiles/cLang++_final_1029_Circle2.dir/clean
+.PHONY : CMakeFiles/cLang++_final_1029_Circle2.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir
+
+# All Build rule for target.
+CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\github\code_repository\cmake-build-debug\CMakeFiles --progress-num=21,22 "Built target Algorithm_C++_middle_exam_test_mergeSort"
+.PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\github\code_repository\cmake-build-debug\CMakeFiles 0
+.PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/rule
+
+# Convenience name for target.
+Algorithm_C++_middle_exam_test_mergeSort: CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/rule
+.PHONY : Algorithm_C++_middle_exam_test_mergeSort
+
+# clean rule for target.
+CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\build.make CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean
+.PHONY : CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

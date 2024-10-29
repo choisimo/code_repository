@@ -50,3 +50,19 @@ void buildHeap(int A[], int n)
         percolateDown(A, n, i);
     }
 }
+
+void heapSort(int A[], int n)
+{
+    // 최대 힙 생성
+    buildHeap(A, n);
+
+    for (int i = n - 1; i > 0; i--)
+    {
+        int temp = A[0];
+        A[0] = A[i];
+        A[i] = temp;
+
+        percolateDown(A, i, 0);
+    }
+
+}

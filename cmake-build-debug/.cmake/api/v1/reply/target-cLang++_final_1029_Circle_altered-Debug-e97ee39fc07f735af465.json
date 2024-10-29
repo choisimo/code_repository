@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "cLang++_0919_class_1.exe"
+			"path" : "cLang++_final_1029_Circle_altered.exe"
 		},
 		{
-			"path" : "cLang++_0919_class_1.pdb"
+			"path" : "cLang++_final_1029_Circle_altered.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -27,7 +27,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 3,
+				"line" : 18,
 				"parent" : 0
 			}
 		]
@@ -48,7 +48,7 @@
 			]
 		}
 	],
-	"id" : "cLang++_0919_class_1::@6890427a1f51a3e7e1df",
+	"id" : "cLang++_final_1029_Circle_altered::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -68,8 +68,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "cLang++_0919_class_1",
-	"nameOnDisk" : "cLang++_0919_class_1.exe",
+	"name" : "cLang++_final_1029_Circle_altered",
+	"nameOnDisk" : "cLang++_final_1029_Circle_altered.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -90,7 +90,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "cLang++/0919/class_1.cpp",
+			"path" : "cLang++/final/1029/Circle_altered.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

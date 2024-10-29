@@ -8,5 +8,10 @@ C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_middle_exam
 C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_middle_exam_test_quickSort.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_middle_exam_test_countingBucketSort.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_middle_exam_binary_search_tree.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_final_1029_Circle.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_final_1029_Circle_altered.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/cLang++_final_1029_Circle2.dir
+C:/github/code_repository/cmake-build-debug/CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/github/code_repository/cmake-build-debug/CMakeFiles/rebuild_cache.dir

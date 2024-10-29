@@ -17,6 +17,7 @@ void countingSort(double arr[], int n)
         bucket_C[i] = 0;
     }
 
+    // 실수 버킷 인덱스 -> 정수 변환 후 count 배열에 삽입
     for (int i = 0; i < n; i++)
     {
         bucketOf[i] = arr[i] * BUCKET_SIZE;
@@ -26,16 +27,16 @@ void countingSort(double arr[], int n)
     // 누적 합
     for (int i = 0; i < n; i++)
     {
-        bucketOf[i + 1] += bucketOf[i];
+        bucket_C[i+1] += bucket_C[i];
     }
 
     for (int i = n - 1; i >= 0; i--)
     {
         int bucketIndex = bucketOf[i];
-        B[--bucket_C[bucketIndex]] = arr[i] * 100;
+        B[--bucket_C[bucketIndex]] = arr[i];
     }
 
-    insertSort(B, BUCKET_SIZE);
+    insertSort(B, n);
 }
 
 void insertSort(int B[], int n)

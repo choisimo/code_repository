@@ -3,23 +3,38 @@
 //
 #include <stdio.h>
 
-// n = 원소 개수, k = 현재 노드
 void percolateDown(int arr[], int n, int k)
 {
     int child = 2 * k + 1;
     int right = 2 * k + 2;
     int temp;
-    int index = arr[0];
 
-    // child 가 n 배열 내부에 있는지
     if (child < n)
     {
-        if (arr[child] < arr[right] && right < n)
+        if (right < n && arr[child] < arr[right])
         {
             child = right;
         }
 
-        index = arr[child];
+        if (arr[k] < arr[child])
+        {
+            temp = arr[k];
+            arr[k] = arr[child];
+            arr[child] = temp;
 
+            percolateDown(arr, n, child);
+
+        }
     }
+}
+
+int DeleteMaxHeap(int arr[], int *n)
+{
+    int max = arr[0];
+    arr[0] = arr[*n - 1];
+    (*n)--;
+
+    percolateDown(arr, *n, 0);
+
+    return max;
 }
