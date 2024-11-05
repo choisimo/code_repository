@@ -1,4 +1,4 @@
-C:\Users\csimo\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\github\code_repository -B C:\github\code_repository\cmake-build-debug
+/home/nodove/.cache/JetBrains/RemoteDev/dist/3f9fdcd33c262_CLion-2024.2.3/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /workspace/code_repository -B /workspace/code_repository/cmake-build-debug
 CMake Warning (dev) in CMakeLists.txt:
   No project() command is present.  The top-level CMakeLists.txt file must
   contain a literal, direct call to the project() command.  Add a line of
@@ -18,6 +18,6 @@ CMake Warning (dev) in CMakeLists.txt:
   both commands.
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done (0.2s)
--- Generating done (0.2s)
--- Build files have been written to: C:/github/code_repository/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspace/code_repository/cmake-build-debug

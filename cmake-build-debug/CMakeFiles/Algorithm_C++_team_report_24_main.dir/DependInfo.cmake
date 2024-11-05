@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/github/code_repository/Algorithm/C++/team_report_24/main.cpp" "CMakeFiles/Algorithm_C++_team_report_24_main.dir/Algorithm/C++/team_report_24/main.cpp.obj" "gcc" "CMakeFiles/Algorithm_C++_team_report_24_main.dir/Algorithm/C++/team_report_24/main.cpp.obj.d"
+  "/workspace/code_repository/Algorithm/C++/team_report_24/main.cpp" "CMakeFiles/Algorithm_C++_team_report_24_main.dir/Algorithm/C++/team_report_24/main.cpp.o" "gcc" "CMakeFiles/Algorithm_C++_team_report_24_main.dir/Algorithm/C++/team_report_24/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/cLang++_final_1029_Circle_altered.dir/cLang++/final/1029/Circle_altered.cpp.obj"
-  "CMakeFiles/cLang++_final_1029_Circle_altered.dir/cLang++/final/1029/Circle_altered.cpp.obj.d"
-  "cLang++_final_1029_Circle_altered.exe"
-  "cLang++_final_1029_Circle_altered.exe.manifest"
+  "CMakeFiles/cLang++_final_1029_Circle_altered.dir/cLang++/final/1029/Circle_altered.cpp.o"
+  "CMakeFiles/cLang++_final_1029_Circle_altered.dir/cLang++/final/1029/Circle_altered.cpp.o.d"
+  "cLang++_final_1029_Circle_altered"
   "cLang++_final_1029_Circle_altered.pdb"
-  "libcLang++_final_1029_Circle_altered.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

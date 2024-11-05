@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/cLang++_report_ch4_exam_6.dir/cLang++/report_ch4/exam_6.cpp.obj"
-  "CMakeFiles/cLang++_report_ch4_exam_6.dir/cLang++/report_ch4/exam_6.cpp.obj.d"
-  "cLang++_report_ch4_exam_6.exe"
-  "cLang++_report_ch4_exam_6.exe.manifest"
+  "CMakeFiles/cLang++_report_ch4_exam_6.dir/cLang++/report_ch4/exam_6.cpp.o"
+  "CMakeFiles/cLang++_report_ch4_exam_6.dir/cLang++/report_ch4/exam_6.cpp.o.d"
+  "cLang++_report_ch4_exam_6"
   "cLang++_report_ch4_exam_6.pdb"
-  "libcLang++_report_ch4_exam_6.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -63,7 +63,10 @@ CMAKE_BINARY_DIR = /workspace/code_repository/cLang/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all:
+all: CMakeFiles/new_target0.dir/all
+all: CMakeFiles/new_target1.dir/all
+all: CMakeFiles/new_target3.dir/all
+all: CMakeFiles/new_target4.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,8 +74,115 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean:
+clean: CMakeFiles/new_target0.dir/clean
+clean: CMakeFiles/new_target1.dir/clean
+clean: CMakeFiles/new_target3.dir/clean
+clean: CMakeFiles/new_target4.dir/clean
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/new_target0.dir
+
+# All Build rule for target.
+CMakeFiles/new_target0.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target0.dir/build.make CMakeFiles/new_target0.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target0.dir/build.make CMakeFiles/new_target0.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target new_target0"
+.PHONY : CMakeFiles/new_target0.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/new_target0.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/new_target0.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/new_target0.dir/rule
+
+# Convenience name for target.
+new_target0: CMakeFiles/new_target0.dir/rule
+.PHONY : new_target0
+
+# clean rule for target.
+CMakeFiles/new_target0.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target0.dir/build.make CMakeFiles/new_target0.dir/clean
+.PHONY : CMakeFiles/new_target0.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/new_target1.dir
+
+# All Build rule for target.
+CMakeFiles/new_target1.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target1.dir/build.make CMakeFiles/new_target1.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target1.dir/build.make CMakeFiles/new_target1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target new_target1"
+.PHONY : CMakeFiles/new_target1.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/new_target1.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/new_target1.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/new_target1.dir/rule
+
+# Convenience name for target.
+new_target1: CMakeFiles/new_target1.dir/rule
+.PHONY : new_target1
+
+# clean rule for target.
+CMakeFiles/new_target1.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target1.dir/build.make CMakeFiles/new_target1.dir/clean
+.PHONY : CMakeFiles/new_target1.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/new_target3.dir
+
+# All Build rule for target.
+CMakeFiles/new_target3.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target3.dir/build.make CMakeFiles/new_target3.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target3.dir/build.make CMakeFiles/new_target3.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target new_target3"
+.PHONY : CMakeFiles/new_target3.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/new_target3.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/new_target3.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/new_target3.dir/rule
+
+# Convenience name for target.
+new_target3: CMakeFiles/new_target3.dir/rule
+.PHONY : new_target3
+
+# clean rule for target.
+CMakeFiles/new_target3.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target3.dir/build.make CMakeFiles/new_target3.dir/clean
+.PHONY : CMakeFiles/new_target3.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/new_target4.dir
+
+# All Build rule for target.
+CMakeFiles/new_target4.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target4.dir/build.make CMakeFiles/new_target4.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target4.dir/build.make CMakeFiles/new_target4.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target new_target4"
+.PHONY : CMakeFiles/new_target4.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/new_target4.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/new_target4.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code_repository/cLang/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/new_target4.dir/rule
+
+# Convenience name for target.
+new_target4: CMakeFiles/new_target4.dir/rule
+.PHONY : new_target4
+
+# clean rule for target.
+CMakeFiles/new_target4.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target4.dir/build.make CMakeFiles/new_target4.dir/clean
+.PHONY : CMakeFiles/new_target4.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

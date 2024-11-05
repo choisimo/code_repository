@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/github/code_repository/Algorithm/C++/middle_exam/test/heapSort.c" "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.obj" "gcc" "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.obj.d"
+  "/workspace/code_repository/Algorithm/C++/middle_exam/test/heapSort.c" "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.o" "gcc" "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

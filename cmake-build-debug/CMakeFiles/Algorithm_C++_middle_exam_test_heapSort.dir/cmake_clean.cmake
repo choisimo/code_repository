@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "Algorithm_C++_middle_exam_test_heapSort.exe"
-  "Algorithm_C++_middle_exam_test_heapSort.exe.manifest"
+  "Algorithm_C++_middle_exam_test_heapSort"
   "Algorithm_C++_middle_exam_test_heapSort.pdb"
-  "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.obj"
-  "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.obj.d"
-  "libAlgorithm_C++_middle_exam_test_heapSort.dll.a"
+  "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.o"
+  "CMakeFiles/Algorithm_C++_middle_exam_test_heapSort.dir/Algorithm/C++/middle_exam/test/heapSort.c.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

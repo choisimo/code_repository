@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.27"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "cLang",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "new_target0::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-new_target0-Debug-f9ec0e245ff4f93bf5e1.json",
+					"name" : "new_target0",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "new_target1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-new_target1-Debug-2e3deaf606cb2be24a0f.json",
+					"name" : "new_target1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "new_target3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-new_target3-Debug-85428f3cf0d4949bd201.json",
+					"name" : "new_target3",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "new_target4::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-new_target4-Debug-45bc12dc5481e7e32f60.json",
+					"name" : "new_target4",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/workspace/code_repository/cLang/cmake-build-debug",
+		"source" : "/workspace/code_repository/cLang"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

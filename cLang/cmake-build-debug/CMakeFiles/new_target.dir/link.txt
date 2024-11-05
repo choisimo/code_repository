@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/new_target.dir/1030/ex1_digitalClock.c.o CMakeFiles/new_target.dir/1030/infinite_loop.c.o -o new_target

@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/new_target3.dir/1104/copilot_test.c.o -o new_target3

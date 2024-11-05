@@ -116,6 +116,154 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named new_target0
+
+# Build rule for target.
+new_target0: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_target0
+.PHONY : new_target0
+
+# fast build rule for target.
+new_target0/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target0.dir/build.make CMakeFiles/new_target0.dir/build
+.PHONY : new_target0/fast
+
+#=============================================================================
+# Target rules for targets named new_target1
+
+# Build rule for target.
+new_target1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_target1
+.PHONY : new_target1
+
+# fast build rule for target.
+new_target1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target1.dir/build.make CMakeFiles/new_target1.dir/build
+.PHONY : new_target1/fast
+
+#=============================================================================
+# Target rules for targets named new_target3
+
+# Build rule for target.
+new_target3: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_target3
+.PHONY : new_target3
+
+# fast build rule for target.
+new_target3/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target3.dir/build.make CMakeFiles/new_target3.dir/build
+.PHONY : new_target3/fast
+
+#=============================================================================
+# Target rules for targets named new_target4
+
+# Build rule for target.
+new_target4: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_target4
+.PHONY : new_target4
+
+# fast build rule for target.
+new_target4/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target4.dir/build.make CMakeFiles/new_target4.dir/build
+.PHONY : new_target4/fast
+
+1030/ex1_digitalClock.o: 1030/ex1_digitalClock.c.o
+.PHONY : 1030/ex1_digitalClock.o
+
+# target to build an object file
+1030/ex1_digitalClock.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target0.dir/build.make CMakeFiles/new_target0.dir/1030/ex1_digitalClock.c.o
+.PHONY : 1030/ex1_digitalClock.c.o
+
+1030/ex1_digitalClock.i: 1030/ex1_digitalClock.c.i
+.PHONY : 1030/ex1_digitalClock.i
+
+# target to preprocess a source file
+1030/ex1_digitalClock.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target0.dir/build.make CMakeFiles/new_target0.dir/1030/ex1_digitalClock.c.i
+.PHONY : 1030/ex1_digitalClock.c.i
+
+1030/ex1_digitalClock.s: 1030/ex1_digitalClock.c.s
+.PHONY : 1030/ex1_digitalClock.s
+
+# target to generate assembly for a file
+1030/ex1_digitalClock.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target0.dir/build.make CMakeFiles/new_target0.dir/1030/ex1_digitalClock.c.s
+.PHONY : 1030/ex1_digitalClock.c.s
+
+1030/infinite_loop.o: 1030/infinite_loop.c.o
+.PHONY : 1030/infinite_loop.o
+
+# target to build an object file
+1030/infinite_loop.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target1.dir/build.make CMakeFiles/new_target1.dir/1030/infinite_loop.c.o
+.PHONY : 1030/infinite_loop.c.o
+
+1030/infinite_loop.i: 1030/infinite_loop.c.i
+.PHONY : 1030/infinite_loop.i
+
+# target to preprocess a source file
+1030/infinite_loop.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target1.dir/build.make CMakeFiles/new_target1.dir/1030/infinite_loop.c.i
+.PHONY : 1030/infinite_loop.c.i
+
+1030/infinite_loop.s: 1030/infinite_loop.c.s
+.PHONY : 1030/infinite_loop.s
+
+# target to generate assembly for a file
+1030/infinite_loop.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target1.dir/build.make CMakeFiles/new_target1.dir/1030/infinite_loop.c.s
+.PHONY : 1030/infinite_loop.c.s
+
+1104/copilot_test.o: 1104/copilot_test.c.o
+.PHONY : 1104/copilot_test.o
+
+# target to build an object file
+1104/copilot_test.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target3.dir/build.make CMakeFiles/new_target3.dir/1104/copilot_test.c.o
+.PHONY : 1104/copilot_test.c.o
+
+1104/copilot_test.i: 1104/copilot_test.c.i
+.PHONY : 1104/copilot_test.i
+
+# target to preprocess a source file
+1104/copilot_test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target3.dir/build.make CMakeFiles/new_target3.dir/1104/copilot_test.c.i
+.PHONY : 1104/copilot_test.c.i
+
+1104/copilot_test.s: 1104/copilot_test.c.s
+.PHONY : 1104/copilot_test.s
+
+# target to generate assembly for a file
+1104/copilot_test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target3.dir/build.make CMakeFiles/new_target3.dir/1104/copilot_test.c.s
+.PHONY : 1104/copilot_test.c.s
+
+1104/rand.o: 1104/rand.c.o
+.PHONY : 1104/rand.o
+
+# target to build an object file
+1104/rand.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target4.dir/build.make CMakeFiles/new_target4.dir/1104/rand.c.o
+.PHONY : 1104/rand.c.o
+
+1104/rand.i: 1104/rand.c.i
+.PHONY : 1104/rand.i
+
+# target to preprocess a source file
+1104/rand.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target4.dir/build.make CMakeFiles/new_target4.dir/1104/rand.c.i
+.PHONY : 1104/rand.c.i
+
+1104/rand.s: 1104/rand.c.s
+.PHONY : 1104/rand.s
+
+# target to generate assembly for a file
+1104/rand.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/new_target4.dir/build.make CMakeFiles/new_target4.dir/1104/rand.c.s
+.PHONY : 1104/rand.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -124,6 +272,22 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... new_target0"
+	@echo "... new_target1"
+	@echo "... new_target3"
+	@echo "... new_target4"
+	@echo "... 1030/ex1_digitalClock.o"
+	@echo "... 1030/ex1_digitalClock.i"
+	@echo "... 1030/ex1_digitalClock.s"
+	@echo "... 1030/infinite_loop.o"
+	@echo "... 1030/infinite_loop.i"
+	@echo "... 1030/infinite_loop.s"
+	@echo "... 1104/copilot_test.o"
+	@echo "... 1104/copilot_test.i"
+	@echo "... 1104/copilot_test.s"
+	@echo "... 1104/rand.o"
+	@echo "... 1104/rand.i"
+	@echo "... 1104/rand.s"
 .PHONY : help
 
 
