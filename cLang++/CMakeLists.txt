@@ -11,3 +11,4 @@ add_executable(cLang__
         middle/0905/name.cpp
         middle/0905/nameCard.cpp)
 add_executable(cLang__1 final/1105/Person.cpp)
+add_executable(cLang__2 final/1107/MyVector.cpp)
