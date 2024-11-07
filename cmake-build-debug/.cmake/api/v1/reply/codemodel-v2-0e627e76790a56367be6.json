@@ -1,0 +1,227 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_algorithm_report_2_merge_sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_algorithm_report_2_merge_sort-Debug-636a108352cd2b804613.json",
+					"name" : "Algorithm_C++_algorithm_report_2_merge_sort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_algorithm_report_2_quick_sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_algorithm_report_2_quick_sort-Debug-b8567f563388fa1d483e.json",
+					"name" : "Algorithm_C++_algorithm_report_2_quick_sort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_binary_search_tree::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_binary_search_tree-Debug-5c561875967c0bcfbd4a.json",
+					"name" : "Algorithm_C++_middle_exam_binary_search_tree",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_countingBucketSort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_countingBucketSort-Debug-fd0e7475863b998b218d.json",
+					"name" : "Algorithm_C++_middle_exam_countingBucketSort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_heap_sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_heap_sort-Debug-a994d1f6e132b77d5af6.json",
+					"name" : "Algorithm_C++_middle_exam_heap_sort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_quick_sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_quick_sort-Debug-78ecf2f893e397fc5eea.json",
+					"name" : "Algorithm_C++_middle_exam_quick_sort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_test_countingBucketSort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_test_countingBucketSort-Debug-b8fe47189299b0d3f3c2.json",
+					"name" : "Algorithm_C++_middle_exam_test_countingBucketSort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_test_heapSort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_test_heapSort-Debug-d8e33f578cafae397112.json",
+					"name" : "Algorithm_C++_middle_exam_test_heapSort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_test_mergeSort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_test_mergeSort-Debug-5f5f51567b7e2ee8a7a5.json",
+					"name" : "Algorithm_C++_middle_exam_test_mergeSort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_middle_exam_test_quickSort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_middle_exam_test_quickSort-Debug-e1661c8fba10831c354d.json",
+					"name" : "Algorithm_C++_middle_exam_test_quickSort",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Algorithm_C++_team_report_24_main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Algorithm_C++_team_report_24_main-Debug-ec2583ab68b1b0ba9f04.json",
+					"name" : "Algorithm_C++_team_report_24_main",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_0919_class_1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_0919_class_1-Debug-5d1a320d00e2364b6bec.json",
+					"name" : "cLang++_0919_class_1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_final_1029_Circle::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_final_1029_Circle-Debug-c560f3826a82aa8836d7.json",
+					"name" : "cLang++_final_1029_Circle",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_final_1029_Circle2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_final_1029_Circle2-Debug-620ebac9251111798d7b.json",
+					"name" : "cLang++_final_1029_Circle2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_final_1029_Circle_altered::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_final_1029_Circle_altered-Debug-bf676372e66e98c17591.json",
+					"name" : "cLang++_final_1029_Circle_altered",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_report_ch4_exam_10::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_report_ch4_exam_10-Debug-abdd0ff04fb02e4524be.json",
+					"name" : "cLang++_report_ch4_exam_10",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_report_ch4_exam_2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_report_ch4_exam_2-Debug-2235849ccc97614879be.json",
+					"name" : "cLang++_report_ch4_exam_2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_report_ch4_exam_6::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_report_ch4_exam_6-Debug-4352ec4a574137f5199b.json",
+					"name" : "cLang++_report_ch4_exam_6",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_report_ch4_exam_9::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_report_ch4_exam_9-Debug-73d303dc5a288135c8ee.json",
+					"name" : "cLang++_report_ch4_exam_9",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "cLang++_report_ch4_quickSort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cLang++_report_ch4_quickSort-Debug-8993124d93d60fea798f.json",
+					"name" : "cLang++_report_ch4_quickSort",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/git/code_repository/cmake-build-debug",
+		"source" : "C:/git/code_repository"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

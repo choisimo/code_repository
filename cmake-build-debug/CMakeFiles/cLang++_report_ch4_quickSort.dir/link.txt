@@ -1,1 +1,3 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.o -o cLang++_report_ch4_quickSort
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f CMakeFiles\cLang++_report_ch4_quickSort.dir/objects.a
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\mingw\bin\ar.exe qc CMakeFiles\cLang++_report_ch4_quickSort.dir/objects.a @CMakeFiles\cLang++_report_ch4_quickSort.dir\objects1.rsp
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\cLang++_report_ch4_quickSort.dir/objects.a -Wl,--no-whole-archive -o cLang++_report_ch4_quickSort.exe -Wl,--out-implib,libcLang++_report_ch4_quickSort.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cLang++_report_ch4_quickSort.dir\linkLibs.rsp

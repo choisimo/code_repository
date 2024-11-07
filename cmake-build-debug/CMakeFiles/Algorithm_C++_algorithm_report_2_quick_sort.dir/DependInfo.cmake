@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspace/code_repository/Algorithm/C++/algorithm_report_2/quick_sort.cpp" "CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.o" "gcc" "CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.o.d"
+  "C:/git/code_repository/Algorithm/C++/algorithm_report_2/quick_sort.cpp" "CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.obj" "gcc" "CMakeFiles/Algorithm_C++_algorithm_report_2_quick_sort.dir/Algorithm/C++/algorithm_report_2/quick_sort.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
