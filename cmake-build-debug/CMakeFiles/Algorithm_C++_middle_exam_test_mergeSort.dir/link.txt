@@ -1,1 +1,3 @@
-/usr/bin/cc -g -rdynamic CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.o -o Algorithm_C++_middle_exam_test_mergeSort
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir/objects.a
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\mingw\bin\ar.exe qc CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir/objects.a @CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\objects1.rsp
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\mingw\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir/objects.a -Wl,--no-whole-archive -o Algorithm_C++_middle_exam_test_mergeSort.exe -Wl,--out-implib,libAlgorithm_C++_middle_exam_test_mergeSort.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Algorithm_C++_middle_exam_test_mergeSort.dir\linkLibs.rsp

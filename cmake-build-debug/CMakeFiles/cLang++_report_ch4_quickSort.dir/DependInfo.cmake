@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspace/code_repository/cLang++/report_ch4/quickSort.cpp" "CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.o" "gcc" "CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.o.d"
+  "C:/git/code_repository/cLang++/report_ch4/quickSort.cpp" "CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.obj" "gcc" "CMakeFiles/cLang++_report_ch4_quickSort.dir/cLang++/report_ch4/quickSort.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

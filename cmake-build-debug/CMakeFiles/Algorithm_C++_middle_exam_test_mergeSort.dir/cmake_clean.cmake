@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
-  "Algorithm_C++_middle_exam_test_mergeSort"
+  "Algorithm_C++_middle_exam_test_mergeSort.exe"
+  "Algorithm_C++_middle_exam_test_mergeSort.exe.manifest"
   "Algorithm_C++_middle_exam_test_mergeSort.pdb"
-  "CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.o"
-  "CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.o.d"
+  "CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.obj"
+  "CMakeFiles/Algorithm_C++_middle_exam_test_mergeSort.dir/Algorithm/C++/middle_exam/test/mergeSort.c.obj.d"
+  "libAlgorithm_C++_middle_exam_test_mergeSort.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,1 +1,3 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/Algorithm_C++_team_report_24_main.dir/Algorithm/C++/team_report_24/main.cpp.o -o Algorithm_C++_team_report_24_main
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f CMakeFiles\Algorithm_C++_team_report_24_main.dir/objects.a
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\mingw\bin\ar.exe qc CMakeFiles\Algorithm_C++_team_report_24_main.dir/objects.a @CMakeFiles\Algorithm_C++_team_report_24_main.dir\objects1.rsp
+C:\Users\nodove\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\Algorithm_C++_team_report_24_main.dir/objects.a -Wl,--no-whole-archive -o Algorithm_C++_team_report_24_main.exe -Wl,--out-implib,libAlgorithm_C++_team_report_24_main.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Algorithm_C++_team_report_24_main.dir\linkLibs.rsp
