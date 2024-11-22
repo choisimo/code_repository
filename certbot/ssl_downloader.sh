@@ -2,6 +2,9 @@
 
 # Nginx conf 디렉토리 경로
 NGINX_CONF_DIR="/data/nginx/proxy-host"
+ 
+# sudo mkdir -p /var/www/.well-known/acme-challenge
+
 # Certbot의 인증 경로
 ACME_CHALLENGE_PATH="/var/www/.well-known/acme-challenge"
 
