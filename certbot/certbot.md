@@ -108,3 +108,97 @@ sudo certbot certificates
 
 ### **결론**
 Nginx 등과 연동하지 않고도 DNS-01 또는 HTTP-01 인증 방식을 사용하여 Certbot으로 인증서를 독립적으로 다운로드받을 수 있습니다. 와일드카드 인증서가 필요한 경우 DNS-01 방식을 사용하는 것을 추천합니다.
+
+`Certbot`에서 **DNS-01 인증**을 사용할 때 TXT 파일을 직접 업로드하거나 URL 경로를 통해 인증하는 방식은 사용되지 않습니다. **DNS-01 인증**은 DNS 서버에 `_acme-challenge.<도메인>`에 대한 TXT 레코드를 추가하여 도메인 소유권을 확인합니다.
+
+그러나, 요청하신 내용이 **Certbot의 HTTP-01 인증**과 관련된 경우라면, `HTTP-01 인증`에서는 특정 URL 경로를 통해 인증 파일을 제공해야 합니다. 이 과정에서 `/.well-known/acme-challenge/<인증토큰>` 경로를 사용합니다.
+
+---
+
+### **HTTP-01 인증 방식에서 Certbot이 인증에 사용하는 URL 경로**
+
+1. **URL 경로 형식**:
+   - `http://<도메인>/.well-known/acme-challenge/<인증토큰>`
+
+2. **예시**:
+   - 도메인: `grafana.career-block.com`
+   - 인증 URL: `http://grafana.career-block.com/.well-known/acme-challenge/abc123xyz`
+
+---
+
+### **Certbot이 HTTP-01 인증 방식으로 인증서를 발급받는 과정**
+
+#### 1. Certbot 실행
+Certbot을 `--manual`과 함께 실행합니다:
+```bash
+sudo certbot certonly --manual --preferred-challenges http -d grafana.career-block.com
+```
+
+#### 2. 인증 토큰 생성
+Certbot 실행 후, 다음과 같은 메시지가 표시됩니다:
+
+```plaintext
+Create a file containing just this data:
+abc123xyz (인증 토큰)
+
+And make it available on your web server at this URL:
+http://grafana.career-block.com/.well-known/acme-challenge/abc123xyz
+```
+
+#### 3. `.well-known/acme-challenge` 경로에 파일 추가
+1. **파일 생성**:
+   - Certbot이 요청한 인증 데이터를 포함하는 파일을 생성합니다:
+     ```bash
+     mkdir -p /var/www/html/.well-known/acme-challenge
+     echo "abc123xyz" > /var/www/html/.well-known/acme-challenge/abc123xyz
+     ```
+
+2. **Nginx 설정 (HTTP-01 인증용)**:
+   Nginx에서 인증 경로를 설정합니다:
+   ```nginx
+   server {
+       listen 80;
+       server_name grafana.career-block.com;
+
+       location /.well-known/acme-challenge/ {
+           root /var/www/html;  # 인증 파일이 저장된 경로
+       }
+
+       location / {
+           proxy_pass http://127.0.0.1:3000;  # 다른 요청은 Grafana로 전달
+       }
+   }
+   ```
+
+3. **Nginx 재시작**:
+   ```bash
+   sudo systemctl reload nginx
+   ```
+
+#### 4. 인증 요청 완료
+Certbot에서 TXT 파일을 제공하는 URL이 정상적으로 동작하는지 확인 후 인증을 진행합니다:
+```bash
+sudo certbot certonly --manual --preferred-challenges http -d grafana.career-block.com
+```
+
+---
+
+### **DNS-01과 HTTP-01 인증 방식 비교**
+
+| 항목                        | DNS-01 인증 방식                          | HTTP-01 인증 방식                         |
+|-----------------------------|------------------------------------------|------------------------------------------|
+| **도메인 소유권 검증 방법**   | DNS에 `_acme-challenge.<도메인>` TXT 레코드 추가 | 웹 서버를 통해 인증 토큰 제공 (`/.well-known/acme-challenge/`) |
+| **설정 필요**               | DNS 관리자 필요                          | Nginx/Apache와 같은 웹 서버 필요          |
+| **와일드카드 인증서**        | 가능                                    | 불가능                                   |
+| **자동화 용이성**            | DNS API를 통해 가능                      | Certbot 자동화 (웹 서버와 연동) 가능      |
+
+---
+
+### **HTTP-01 인증의 사용 사례**
+- 도메인 소유자가 DNS 레코드에 접근할 수 없는 경우.
+- 웹 서버(Nginx/Apache)를 운영 중이며 도메인의 HTTP 요청 처리가 가능한 경우.
+- 와일드카드 인증서(`*.example.com`)가 필요하지 않은 경우.
+
+---
+
+추가적으로 설정이 필요하거나 특정 인증 방식에 대한 질문이 있다면 알려주세요! 😊
