@@ -113,6 +113,8 @@ Nginx 경로 설정이 완료되면, Certbot을 사용해 인증서를 수동으
 
 ```bash
 sudo certbot certonly --webroot -w /var/www -d sub.example.com --non-interactive --agree-tos -m nodove@example.com -v
+
+sudo certbot certonly --manual --preferred-challenges http -d grafana.career-block.com
 ```
 
 #### **발급 확인**
