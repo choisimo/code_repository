@@ -109,9 +109,10 @@ sudo systemctl reload nginx
 
 #### **2) Certbot 명령 실행**
 Nginx 경로 설정이 완료되면, Certbot을 사용해 인증서를 수동으로 발급받습니다:
+>  /var/www/html/.well-known/acme-challenge
 
 ```bash
-sudo certbot certonly --webroot -w /var/www -d example.com
+sudo certbot certonly --webroot -w /var/www -d sub.example.com --non-interactive --agree-tos -m nodove@example.com -v
 ```
 
 #### **발급 확인**
