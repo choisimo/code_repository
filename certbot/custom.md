@@ -89,7 +89,8 @@ server {
     server_name example.com;
 
     location /.well-known/acme-challenge/ {
-        alias /var/www/.well-known/acme-challenge/;
+        root /var/www/html;                   # static nginx 경로 root 지정 변경
+        # 경로 : /var/www/html/.well-known/acme-challenge/파일명
         allow all;
     }
 
