@@ -13,5 +13,6 @@ add_executable(new_target5 report_1113/exam_8.c)
 add_executable(new_target5 report_1113/exam_11.c)
 add_executable(new_target5 report_1113/exam_12.c)
 add_executable(new_target5 report_1113/exam_15 .c)
+add_executable(new_target6  ../cLang/1202/pibo.c)
 
 
