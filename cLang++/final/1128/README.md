@@ -1,14 +1,8 @@
-<img src="image/img.png" width="49%" style="display: inline-block;">
-<img src="image/img_1.png" width="49%" style="display: inline-block;">
+<img src="./image/img.png" width="49%" style="display: inline-block;">
+<img src="./image/img_1.png" width="49%" style="display: inline-block;">
 
 ---
-
-### 예제 9-1: 파생 클래스에서 함수 재정의
-1. **특징**:
-    - `Base` 클래스와 `Derived` 클래스 모두 동일한 이름의 함수 `f()`를 정의하지만, 가상 함수가 아닌 단순한 함수입니다.
-    - `Base*` 포인터를 통해 `Derived` 객체를 참조할 경우, **정적 바인딩**이 이루어져 **Base 클래스의 `f()`**가 호출됩니다.
-
-2. **코드 분석**:
+   
    ```cpp
    Base* pBase = pDer; // 업캐스팅
    pBase->f();         // Base::f() 호출
