@@ -1,1 +1,1 @@
-C:\git\code_repository에서 CMakeLists.txt을(를) 찾을 수 없습니다 CMakeLists.txt 선택
+CMakeLists.txt not found in C:\WorkSpace\git\code_repository Select CMakeLists.txt
