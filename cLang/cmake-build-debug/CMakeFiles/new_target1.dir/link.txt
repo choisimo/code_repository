@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/new_target1.dir/1030/infinite_loop.c.o -o new_target1
