@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/new_target0.dir/1030/ex1_digitalClock.c.o -o new_target0

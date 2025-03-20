@@ -1,6 +1,0 @@
-/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles/new_target0.dir
-/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles/new_target1.dir
-/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles/new_target3.dir
-/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles/new_target4.dir
-/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles/edit_cache.dir
-/workspace/code_repository/cLang/cmake-build-debug/CMakeFiles/rebuild_cache.dir

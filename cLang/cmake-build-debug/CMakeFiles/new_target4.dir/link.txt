@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/new_target4.dir/1104/rand.c.o -o new_target4
