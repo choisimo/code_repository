@@ -205,22 +205,23 @@ operator ("("|")"|"["|"]"|"{"|"}"|"->"|"."|","|"\\"|"!"|"~"|"++"|"--"|"*"|"/"|"%
 %x COMMENT		
 
 %%
-
 <AA,BB>".."/[0-9]+	{ printf("OP\t%s\n", yytext); }
 <AA,BB>{operator}   { printf("OP\t%s\n", yytext); }
-<AA,BB>{whitespace} { /* ECHO 출력?? */}
-<AA,BB>{id}     	{ printf("ID\t%s\n", yytext); }
 <AA,BB>{keyword}	{ printf("KEYWORD\t%s\n", yytext); }
+<AA,BB>{id}     	{ printf("ID\t%s\n", yytext); }
 <AA,BB>{float}		{ printf("FLOAT\t%s\n", yytext); }
 <AA,BB>{int}		{ printf("INTEGER\t%s\n", yytext); }
+<AA,BB>{whitespace} {}
+<AA,BB>.			{}
 
 <AA>"/*"        { BEGIN(COMMENT); process_comment_start(processor); }
 <BB>"/*"        { BEGIN(COMMENT); process_comment_start(processor); }
 
 <COMMENT>"/*"	{ process_comment_start(processor); } 
-<COMMENT>"*/"	{ if(process_comment_end(processor)){ BEGIN(INITIAL); } }
+<COMMENT>"*/"	{ if(process_comment_end(processor)){ BEGIN(AA); } }
 <COMMENT>.|\n	{}
 
+<INITIAL>.|\n	{ BEGIN(AA); REJECT; }
 %%
 
 int main (int argc, char** argv)
