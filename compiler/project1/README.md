@@ -86,10 +86,11 @@ else                    { printf("Keyword: else\n"); }
 
 /* 숫자 및 식별자 인식 */
 [0-9]+                  { printf("Number: %s\n", yytext); }
-[a-zA-Z_][a-zA-Z0-9_]* { printf("Identifier: %s\n", yytext); }
+[a-zA-Z_][a-zA-Z0-9]* { printf("Identifier: %s\n", yytext); }
 %%
 ```
 > 주의사항 : 먼저 호출 되는 규칙이 우선적으로 적용됨!!
+
 
 #### User Subroutines
 ```c
@@ -99,7 +100,29 @@ int main(int argc, char **argv) {
 }
 ```
 
-### 참고 문헌
+#### START STATE
+```c
+/* exclusive state (%x) */
+/* 상태 접두사가 없는 규칙은 제외 */
+%x STATE_NAME
+/* inclusive state (%s) */
+/* 상태가 없는 규칙도 포함 */
+%s STATE_NAME
+
+/* STATE CHANGE */
+BEGIN(STATE_NAME);
+/* return to init */
+BEGIN(INITIAL);
+
+/* Multiple STATES example */
+%x STATE1 STATE2 STATE3
+%s STATE4 
+```
+
+
+### 참고 문헌들
+- [flex & bison](https://web.iitd.ac.in/~sumeet/flex__bison.pdf)
 - [oracle_docs](https://docs.oracle.com/cd/E19504-01/802-5880/lex-42143/index.html)
 - [ibm_docs](https://www.ibm.com/docs/en/aix/7.2?topic=l-lex-command)
-- [제공 pdf]()
+- [default-reserved.pdf](https://drop.nodove.com/-URZ7qnQHuC/Project1_Description.pdf)
+- [regular-expression.pdf](https://drop.nodove.com/-frwTgqsmZB/davechild_regular-expressions.pdf)
