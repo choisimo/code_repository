@@ -10,6 +10,34 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+# 도움말 함수
+display_help() {
+    echo "사용법: $0 [옵션]"
+    echo
+    echo "Rsync를 사용한 백업 스크립트 - 다양한 백업 방식 지원"
+    echo
+    echo "옵션:"
+    echo "  -h, --help                도움말 표시"
+    echo "  -r, --run                 백업 즉시 실행"
+    echo "  -b, --background          백그라운드에서 실행 (nohup 사용)"
+    echo "  -P, --parallel JOBS       병렬 작업 수 설정 (기본값: 4)"
+    echo "  -t, --type TYPE           백업 유형 설정 (full, incremental, differential)"
+    echo "  -c, --compress LEVEL      압축 수준 설정 (0-9)"
+    echo "  -l, --limit-rate RATE     대역폭 제한 (KB/s)"
+    echo "  -e, --email EMAIL         작업 완료 시 이메일 알림"
+    echo "  -d, --dry-run             실제 백업 없이 테스트 실행"
+    echo "  -v, --verbose             상세 출력 모드"
+    echo "  -s, --schedule SCHEDULE   백업 일정 설정 (daily, weekly, monthly)"
+    echo
+    echo "예시:"
+    echo "  $0 -r                     기본 설정으로 백업 즉시 실행"
+    echo "  $0 -b -t incremental      백그라운드에서 증분 백업 실행"
+    echo "  $0 -c 6 -l 1000           압축 수준 6, 대역폭 1000KB/s로 백업 실행"
+    echo "  $0 -s weekly              주간 백업 일정 설정"
+    echo
+    exit 0
+}
+
 # 기본 설정값 로드
 load_defaults() {
     # 기본값
@@ -372,7 +400,7 @@ prompt_custom_settings() {
 
 # 설정을 .env 파일에 저장
 save_settings_to_env() {
-    ENV_FILE=".env"
+    ENV_FILE=".backup_env"
     
     echo "# 백업 설정 - 생성일: $(date)" > $ENV_FILE
     echo "BACKUP_SCHEDULE=\"$BACKUP_SCHEDULE\"" >> $ENV_FILE
@@ -389,15 +417,16 @@ save_settings_to_env() {
     echo "EXCLUDE_PATTERN=\"$EXCLUDE_PATTERN\"" >> $ENV_FILE
     echo "RETENTION_DAYS=$RETENTION_DAYS" >> $ENV_FILE
     echo "SYNC_OPTIONS=\"$SYNC_OPTIONS\"" >> $ENV_FILE
+    echo "BACKUP_TYPE=\"$BACKUP_TYPE\"" >> $ENV_FILE
+    echo "COMPRESSION_LEVEL=\"$COMPRESSION_LEVEL\"" >> $ENV_FILE
+    echo "BANDWIDTH_LIMIT=\"$BANDWIDTH_LIMIT\"" >> $ENV_FILE
+    echo "EMAIL_ADDRESS=\"$EMAIL_ADDRESS\"" >> $ENV_FILE
     
     echo -e "${GREEN}설정이 $ENV_FILE에 저장되었습니다${NC}"
 }
 
 # 백업 실행
 perform_backup() {
-    # 기존 백업 코드 (변경 없음)
-    # ...
-
     # 이 백업을 위한 타임스탬프 생성
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
     LOG_FILE="$BACKUP_LOG_DIR/backup_$TIMESTAMP.log"
@@ -587,6 +616,93 @@ perform_backup() {
     fi
 }
 
+# 백업 유형에 따른 설정 구성
+configure_backup_type() {
+    case "$BACKUP_TYPE" in
+        "full")
+            # 전체 백업 설정
+            echo -e "${BLUE}전체 백업 모드 설정...${NC}"
+            SYNC_OPTIONS="-avz --delete"
+            ;;
+        "incremental")
+            # 증분 백업 설정 (hardlink 사용)
+            echo -e "${BLUE}증분 백업 모드 설정...${NC}"
+            
+            # 이전 백업 디렉토리 확인
+            local current_date=$(date +%Y%m%d)
+            BACKUP_DEST_CURRENT="$BACKUP_DEST_DIR/current"
+            BACKUP_DEST_NEW="$BACKUP_DEST_DIR/$current_date"
+            
+            # 대상 디렉토리 생성
+            mkdir -p "$BACKUP_DEST_NEW"
+            
+            # 이전 백업이 있으면 hardlink로 연결
+            if [ -d "$BACKUP_DEST_CURRENT" ] && [ -L "$BACKUP_DEST_CURRENT" ]; then
+                SYNC_OPTIONS="-avz --delete --link-dest=$BACKUP_DEST_CURRENT"
+            else
+                # 첫 백업이라면 일반 백업으로 진행
+                SYNC_OPTIONS="-avz --delete"
+            fi
+            
+            # 백업 후 current 심볼릭 링크 업데이트를 위해 설정
+            BACKUP_DEST_ORIGINAL="$BACKUP_DEST_DIR"
+            BACKUP_DEST_DIR="$BACKUP_DEST_NEW"
+            ;;
+        "differential")
+            # 차등 백업 설정
+            echo -e "${BLUE}차등 백업 모드 설정...${NC}"
+            
+            # 기준 백업 디렉토리 확인 (baseline)
+            local current_date=$(date +%Y%m%d)
+            BACKUP_BASELINE="$BACKUP_DEST_DIR/baseline"
+            BACKUP_DEST_NEW="$BACKUP_DEST_DIR/$current_date"
+            
+            # 대상 디렉토리 생성
+            mkdir -p "$BACKUP_DEST_NEW"
+            
+            # 베이스라인 백업이 없으면 생성
+            if [ ! -d "$BACKUP_BASELINE" ]; then
+                echo -e "${YELLOW}베이스라인 백업이 없습니다. 새로 생성합니다.${NC}"
+                SYNC_OPTIONS="-avz --delete"
+                BACKUP_DEST_ORIGINAL="$BACKUP_DEST_DIR"
+                BACKUP_DEST_DIR="$BACKUP_BASELINE"
+                CREATE_BASELINE=true
+            else
+                # 베이스라인과 비교하여 변경된 파일만 백업
+                echo -e "${BLUE}베이스라인 기준 차등 백업을 수행합니다.${NC}"
+                SYNC_OPTIONS="-avz --delete --compare-dest=$BACKUP_BASELINE"
+                BACKUP_DEST_ORIGINAL="$BACKUP_DEST_DIR"
+                BACKUP_DEST_DIR="$BACKUP_DEST_NEW"
+            fi
+            ;;
+        *)
+            echo -e "${YELLOW}알 수 없는 백업 유형: $BACKUP_TYPE, 기본 설정을 사용합니다.${NC}"
+            BACKUP_TYPE="full"
+            SYNC_OPTIONS="-avz --delete"
+            ;;
+    esac
+}
+
+# 이메일 알림 함수
+send_email_notification() {
+    local subject="$1"
+    local message="$2"
+    
+    if [ -z "$EMAIL_ADDRESS" ]; then
+        return 0
+    fi
+    
+    echo -e "${BLUE}이메일 알림 전송 중: $EMAIL_ADDRESS${NC}"
+    echo "$message" | mail -s "$subject" "$EMAIL_ADDRESS"
+    
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}이메일이 성공적으로 전송되었습니다.${NC}"
+    else
+        echo -e "${RED}이메일 전송 실패.${NC}"
+    fi
+}
+
+
 # 백업 스케줄 설정
 setup_backup_schedule() {
     case $BACKUP_SCHEDULE in
@@ -617,19 +733,206 @@ setup_backup_schedule() {
     echo -e "${YELLOW}'crontab -e' 명령으로 crontab을 편집할 수 있습니다.${NC}"
 }
 
-# 메인 실행
+# 백그라운드에서 실행 함수
+run_in_background() {
+    local timestamp=$(date +%Y%m%d_%H%M%S)
+    local log_file="$BACKUP_LOG_DIR/backup_bg_$timestamp.log"
+    local pid_file="$BACKUP_LOG_DIR/backup_bg_$timestamp.pid"
+    
+    # 로그 디렉토리 생성
+    mkdir -p "$BACKUP_LOG_DIR"
+    
+    echo "백업이 백그라운드에서 실행됩니다."
+    echo "로그 파일: $log_file"
+    echo "PID 파일: $pid_file"
+    
+    # nohup 사용하여 session 의존성 제거
+    nohup "$0" --run > "$log_file" 2>&1 &
+    
+    echo $! > "$pid_file"
+
+    echo "백그라운드 프로세스 ID: $!"
+    echo "백업이 백그라운드에서 실행 중입니다. 로그를 확인하려면:"
+    echo "tail -f $log_file"
+    exit 0
+}
+
+perform_parallel_backup() {
+    local source_dir="$BACKUP_SOURCE_DIR"
+    local dest_dir="$BACKUP_DEST_DIR"
+    local max_jobs=${PARALLEL_JOBS:-4}
+    local retries=3
+    local error_log="$BACKUP_LOG_DIR/parallel_errors_$(date +%Y%m%d_%H%M%S).log"
+
+    # 디렉토리 구조 동기화
+    echo -e "${BLUE}기본 디렉토리 구조 동기화 중...${NC}"
+    rsync -a --include '*/' --exclude '*' "$source_dir/" "$dest_dir/" || {
+        echo -e "${RED}디렉토리 구조 동기화 실패${NC}"
+        return 1
+    }
+
+    # 병렬 처리 파일 목록 생성
+    local file_list=$(mktemp)
+    find "$source_dir" -type f > "$file_list"
+
+    # 병렬 실행
+    echo -e "${BLUE}병렬 백업 시작 (최대 $max_jobs 작업)${NC}"
+    cat "$file_list" | while read -r file; do
+        echo "$file"
+    done | xargs -P "$max_jobs" -I {} bash -c '
+        file="{}"
+        attempt=1
+        while [ $attempt -le '"$retries"' ]; do
+            rsync '"$SYNC_OPTIONS"' "$file" "'"$dest_dir"'/${file#'"$source_dir"'/}"
+            if [ $? -eq 0 ]; then
+                break
+            fi
+            ((attempt++))
+        done
+        if [ $attempt -gt '"$retries"' ]; then
+            echo "[실패] $file" >> '"$error_log"'
+        fi
+    '
+
+    # 결과 보고
+    if [ -s "$error_log" ]; then
+        echo -e "${RED}일부 파일 백업 실패:${NC}"
+        cat "$error_log"
+        return 1
+    else
+        echo -e "${GREEN}모든 파일 성공적으로 백업됨${NC}"
+        return 0
+    fi
+}
+
+# 메인 함수 개선
 main() {
-    # 기본 설정을 먼저 로드
+    # 기본 설정 로드
     load_defaults
     
-    # --run 플래그로 실행되었는지 확인 (cron 실행용)
-    if [ "$1" == "--run" ]; then
-        # .env에서 로드하고 프롬프트 없이 실행
-        load_env_file ".env"
-        perform_backup
-        exit $?
+    # 명령줄 인수 처리
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -h|--help)
+                display_help
+                ;;
+            -r|--run)
+                RUN_BACKUP=true
+                ;;
+            -b|--background)
+                BACKGROUND_MODE=true
+                ;;
+            -P|--parallel)
+                if [[ "$2" =~ ^[0-9]+$ ]]; then
+                    PARALLEL_JOBS="$2"
+                    shift
+                fi
+                ;;
+
+            -t|--type)
+                if [ -n "$2" ]; then
+                    BACKUP_TYPE="$2"
+                    shift
+                fi
+                ;;
+            -c|--compress)
+                if [ -n "$2" ]; then
+                    COMPRESSION_LEVEL="$2"
+                    shift
+                fi
+                ;;
+            -l|--limit-rate)
+                if [ -n "$2" ]; then
+                    BANDWIDTH_LIMIT="$2"
+                    shift
+                fi
+                ;;
+            -e|--email)
+                if [ -n "$2" ]; then
+                    EMAIL_ADDRESS="$2"
+                    shift
+                fi
+                ;;
+            -d|--dry-run)
+                DRY_RUN=true
+                ;;
+            -v|--verbose)
+                VERBOSE=true
+                ;;
+            -s|--schedule)
+                if [ -n "$2" ]; then
+                    BACKUP_SCHEDULE="$2"
+                    shift
+                fi
+                ;;
+            *)
+                echo -e "${RED}알 수 없는 옵션: $1${NC}"
+                display_help
+                ;;
+        esac
+        shift
+    done
+    
+    # 백그라운드 모드 처리
+    if [ "$BACKGROUND_MODE" = true ]; then
+        run_in_background
     fi
     
+    # .env 파일에서 설정 로드 시도
+    if [ -f ".env" ]; then
+        load_env_file ".env"
+    fi
+    
+    # 백업 실행 모드인 경우
+    if [ "$RUN_BACKUP" = true ]; then
+        # 백업 유형 설정
+        configure_backup_type
+        
+        # 압축 설정
+        set_compression_level
+        
+        # 대역폭 제한 설정
+        set_bandwidth_limit
+        
+        # DRY_RUN 모드 설정
+        if [ "$DRY_RUN" = true ]; then
+            SYNC_OPTIONS="$SYNC_OPTIONS --dry-run"
+            echo -e "${YELLOW}DRY-RUN 모드: 실제 파일은 복사되지 않습니다.${NC}"
+        fi
+        
+        # 백업 실행
+        perform_backup
+        
+        # 백업 완료 후 처리
+        if [ "$BACKUP_TYPE" = "incremental" ]; then
+            # 증분 백업 완료 후 'current' 심볼릭 링크 업데이트
+            ln -sfn "$BACKUP_DEST_DIR" "$BACKUP_DEST_ORIGINAL/current"
+        elif [ "$BACKUP_TYPE" = "differential" ] && [ "$CREATE_BASELINE" = true ]; then
+            # 베이스라인 백업을 새로 생성한 경우
+            echo -e "${GREEN}새 베이스라인 백업이 생성되었습니다: $BACKUP_DEST_DIR${NC}"
+        fi
+        
+        # 이메일 알림 전송
+        if [ -n "$EMAIL_ADDRESS" ]; then
+            local subject="백업 완료 알림: $BACKUP_TYPE 백업"
+            local message="백업 정보:\n"
+            message+="- 백업 유형: $BACKUP_TYPE\n"
+            message+="- 소스: $BACKUP_SOURCE_DIR\n"
+            message+="- 대상: $BACKUP_DEST_DIR\n"
+            message+="- 완료 시간: $(date)\n"
+            
+            if [ $? -eq 0 ]; then
+                message+="- 상태: 성공\n"
+            else
+                message+="- 상태: 실패\n"
+            fi
+            
+            send_email_notification "$subject" "$message"
+        fi
+        
+        exit $?
+    fi
+
     # 대화형 모드
     echo "=================================================="
     echo "         RSYNC 백업 스케줄링 스크립트           "
