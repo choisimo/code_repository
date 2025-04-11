@@ -18,10 +18,224 @@ load_defaults() {
     BACKUP_SOURCE_DIR="./"
     BACKUP_DEST_DIR="~/backup"
     BACKUP_LOG_DIR="./backup"
-    REMOTE_SERVER="127.0.0.1"
+    REMOTE_SERVER=""
+    REMOTE_HOST=""
+    REMOTE_PORT="22"
+    REMOTE_USER=""
+    IDENTITY_FILE=""
+    USE_SSHD_CONFIG="yes"
     EXCLUDE_PATTERN=""
     RETENTION_DAYS=30
     SYNC_OPTIONS="-avz --delete"
+}
+
+# ~/.ssh/config 파일에서 호스트 정보 추출
+read_ssh_config() {
+    local config_file="$HOME/.ssh/config"
+    local hosts=()
+    
+    if [ ! -f "$config_file" ]; then
+        echo -e "${YELLOW}경고: ~/.ssh/config 파일이 존재하지 않습니다.${NC}"
+        return 1
+    fi
+    
+    # Host 항목 추출
+    while read -r line; do
+        # 주석과 빈 줄 제외
+        if [[ "$line" =~ ^[[:space:]]*# ]] || [[ -z "${line// }" ]]; then
+            continue
+        fi
+        
+        if [[ "$line" =~ ^[[:space:]]*Host[[:space:]]+([^*][^[:space:]]+) ]]; then
+            # 와일드카드(*) 포함하지 않는 호스트만 추가
+            local host_name="${BASH_REMATCH[1]}"
+            if [[ ! "$host_name" =~ \* ]]; then
+                hosts+=("$host_name")
+            fi
+        fi
+    done < "$config_file"
+    
+    if [ ${#hosts[@]} -eq 0 ]; then
+        echo -e "${YELLOW}경고: ~/.ssh/config 파일에 유효한 Host 항목이 없습니다.${NC}"
+        return 1
+    fi
+    
+    echo -e "${BLUE}~/.ssh/config 파일에서 가져온 호스트 목록:${NC}"
+    for i in "${!hosts[@]}"; do
+        echo "$(($i+1))) ${hosts[$i]}"
+    done
+    
+    read -p "호스트를 선택하세요 (1-${#hosts[@]}): " host_choice
+    
+    if ! [[ "$host_choice" =~ ^[0-9]+$ ]] || [ "$host_choice" -lt 1 ] || [ "$host_choice" -gt ${#hosts[@]} ]; then
+        echo -e "${RED}유효하지 않은 선택입니다.${NC}"
+        return 1
+    fi
+    
+    selected_host="${hosts[$((host_choice-1))]}"
+    echo -e "${GREEN}선택된 호스트: $selected_host${NC}"
+    
+    # 호스트 정보 추출
+    get_host_info "$selected_host" "$config_file"
+    
+    return 0
+}
+
+# 선택한 호스트의 세부 정보 추출
+get_host_info() {
+    local host="$1"
+    local config_file="$2"
+    local in_host_section=false
+    local hostname=""
+    local port=""
+    local user=""
+    local identity_file=""
+    
+    while read -r line; do
+        # 모든 선행/후행 공백 제거
+        line=$(echo "$line" | xargs)
+        
+        # 주석과 빈 줄 제외
+        if [[ "$line" =~ ^# ]] || [[ -z "$line" ]]; then
+            continue
+        fi
+        
+        # 호스트 섹션 시작 확인
+        if [[ "$line" =~ ^Host[[:space:]]+(.*) ]]; then
+            # 정확한 호스트 매칭을 위해 호스트 이름을 단어 단위로 분리하여 확인
+            local hosts_in_line=(${BASH_REMATCH[1]})
+            in_host_section=false
+            
+            for h in "${hosts_in_line[@]}"; do
+                if [[ "$h" == "$host" ]]; then
+                    in_host_section=true
+                    break
+                fi
+            done
+            continue
+        fi
+        
+        # 현재 호스트 섹션 내에서 정보 추출
+        if [ "$in_host_section" = true ]; then
+            if [[ "$line" =~ ^HostName[[:space:]]+(.+)$ ]]; then
+                hostname="${BASH_REMATCH[1]}"
+            elif [[ "$line" =~ ^Port[[:space:]]+(.+)$ ]]; then
+                port="${BASH_REMATCH[1]}"
+            elif [[ "$line" =~ ^User[[:space:]]+(.+)$ ]]; then
+                user="${BASH_REMATCH[1]}"
+            elif [[ "$line" =~ ^IdentityFile[[:space:]]+(.+)$ ]]; then
+                identity_file="${BASH_REMATCH[1]}"
+            fi
+        fi
+    done < "$config_file"
+    
+    # 추출한 정보를 설정 변수에 적용
+    if [ ! -z "$hostname" ]; then
+        REMOTE_HOST="$hostname"
+        echo "호스트명: $REMOTE_HOST"
+    else
+        REMOTE_HOST="$host"
+        echo "호스트명: $REMOTE_HOST (Host 항목에서 가져옴)"
+    fi
+    
+    if [ ! -z "$port" ]; then
+        REMOTE_PORT="$port"
+        echo "포트: $REMOTE_PORT"
+    else
+        REMOTE_PORT="22"
+        echo "포트: $REMOTE_PORT (기본값)"
+    fi
+    
+    if [ ! -z "$user" ]; then
+        REMOTE_USER="$user"
+        echo "사용자: $REMOTE_USER"
+    fi
+    
+    if [ ! -z "$identity_file" ]; then
+        # ~/ 경로를 $HOME으로 확장
+        IDENTITY_FILE="${identity_file/#\~\//$HOME/}"
+        echo "인증 파일: $IDENTITY_FILE"
+    fi
+    
+    # REMOTE_SERVER 구성
+    if [ ! -z "$REMOTE_USER" ] && [ ! -z "$REMOTE_HOST" ]; then
+        REMOTE_SERVER="${REMOTE_USER}@${REMOTE_HOST}"
+    elif [ ! -z "$REMOTE_HOST" ]; then
+        REMOTE_SERVER="$REMOTE_HOST"
+    fi
+    
+    echo "최종 원격 서버 설정: $REMOTE_SERVER"
+    
+    return 0
+}
+
+# SSH 설정 추출
+get_ssh_config() {
+    local host="$1"
+    local config_file="/etc/ssh/sshd_config"
+    
+    echo -e "${BLUE}원격 서버 $host의 SSH 설정을 확인합니다...${NC}"
+    
+    # 원격 서버의 SSH 설정 파일 접근 시도
+    if ! ssh -o BatchMode=yes -o ConnectTimeout=5 "$host" "test -r $config_file"; then
+        echo -e "${YELLOW}경고: 원격 서버의 $config_file 파일에 접근할 수 없습니다. 기본값을 사용합니다.${NC}"
+        return 1
+    fi
+    
+    # PORT 정보 추출
+    local port=$(ssh "$host" "grep -E '^Port\s+' $config_file | awk '{print \$2}'")
+    if [ ! -z "$port" ]; then
+        REMOTE_PORT="$port"
+        echo -e "SSH 포트: $REMOTE_PORT"
+    else
+        echo -e "SSH 포트 정보를 찾을 수 없어 기본값(22)을 사용합니다."
+    fi
+    
+    # PermitRootLogin 정보 추출
+    local permit_root=$(ssh "$host" "grep -E '^PermitRootLogin\s+' $config_file | awk '{print \$2}'")
+    if [ ! -z "$permit_root" ]; then
+        echo -e "Root 로그인 허용 여부: $permit_root"
+        if [[ "$permit_root" == "no" && "$REMOTE_USER" == "root" ]]; then
+            echo -e "${YELLOW}경고: 원격 서버에서 root 로그인이 허용되지 않습니다. 다른 사용자를 지정하세요.${NC}"
+        fi
+    fi
+    
+    return 0
+}
+
+# 원격 디렉토리 접근성 검증
+check_remote_directory() {
+    local host="$1"
+    local dir="$2"
+    local port="$3"
+    local identity=""
+    
+    if [ ! -z "$IDENTITY_FILE" ]; then
+        identity="-i $IDENTITY_FILE"
+    fi
+    
+    echo -e "${BLUE}원격 디렉토리 $dir 접근성을 확인 중...${NC}"
+    
+    # 디렉토리 존재 여부 확인
+    if ! ssh $identity -p "$port" "$host" "test -d $dir"; then
+        echo -e "${YELLOW}원격 디렉토리 $dir가 존재하지 않습니다. 생성을 시도합니다...${NC}"
+        
+        # 디렉토리 생성 시도
+        if ! ssh $identity -p "$port" "$host" "mkdir -p $dir"; then
+            echo -e "${RED}오류: 원격 디렉토리를 생성할 수 없습니다. 권한을 확인하세요.${NC}"
+            return 1
+        fi
+        echo -e "${GREEN}원격 디렉토리를 성공적으로 생성했습니다.${NC}"
+    fi
+    
+    # 디렉토리 쓰기 권한 확인
+    if ! ssh $identity -p "$port" "$host" "touch $dir/.test_write && rm $dir/.test_write"; then
+        echo -e "${RED}오류: 원격 디렉토리에 쓰기 권한이 없습니다.${NC}"
+        return 1
+    fi
+    
+    echo -e "${GREEN}원격 디렉토리 접근 및 쓰기 권한 확인 완료.${NC}"
+    return 0
 }
 
 # .env 파일에서 설정 로드
@@ -36,6 +250,39 @@ load_env_file() {
         echo -e "${YELLOW}경고: $1 파일을 찾을 수 없습니다.${NC}"
         return 1
     fi
+}
+
+# SSH 설정 커스텀 프롬프트
+prompt_ssh_settings() {
+    echo -e "${BLUE}SSH 연결 설정:${NC}"
+    echo "1. 원격 서버 sshd_config 파일에서 정보 가져오기"
+    echo "2. 직접 설정하기"
+    read -p "옵션을 선택하세요 (1-2): " ssh_choice
+    
+    if [ "$ssh_choice" == "1" ]; then
+        USE_SSHD_CONFIG="yes"
+    else
+        USE_SSHD_CONFIG="no"
+        read -p "SSH 포트 (기본값: 22): " input_port
+        REMOTE_PORT=${input_port:-"22"}
+        
+        echo -e "${YELLOW}인증 방식:${NC}"
+        echo "1. 비밀번호 인증"
+        echo "2. 공개키(PublicKey) 인증"
+        read -p "인증 방식을 선택하세요 (1-2): " auth_choice
+        
+        if [ "$auth_choice" == "2" ]; then
+            read -p "Identity 파일 경로 (예: ~/.ssh/id_rsa): " IDENTITY_FILE
+            if [ -z "$IDENTITY_FILE" ]; then
+                echo -e "${YELLOW}Identity 파일이 지정되지 않았습니다. 기본 SSH 키를 사용합니다.${NC}"
+            elif [ ! -f "$IDENTITY_FILE" ]; then
+                echo -e "${RED}지정한 Identity 파일을 찾을 수 없습니다: $IDENTITY_FILE${NC}"
+                return 1
+            fi
+        fi
+    fi
+    
+    return 0
 }
 
 # 사용자 입력으로 커스텀 설정
@@ -73,8 +320,28 @@ prompt_custom_settings() {
     read -p "옵션을 선택하세요 (1-2): " dest_choice
     
     if [ "$dest_choice" == "2" ]; then
-        read -p "원격 서버 (user@hostname): " REMOTE_SERVER
-        read -p "원격 서버의 대상 디렉토리: " BACKUP_DEST_DIR
+        echo -e "${YELLOW}원격 서버 선택 방법:${NC}"
+        echo "1. ~/.ssh/config 파일에서 선택"
+        echo "2. 직접 입력"
+        read -p "옵션을 선택하세요 (1-2): " server_choice
+        
+        if [ "$server_choice" == "1" ]; then
+            if read_ssh_config; then
+                echo -e "${GREEN}SSH config에서 서버 설정을 가져왔습니다.${NC}"
+                read -p "원격 서버의 대상 디렉토리: " BACKUP_DEST_DIR
+            else
+                echo -e "${YELLOW}SSH config에서 서버 선택에 실패했습니다. 직접 입력해주세요.${NC}"
+                read -p "원격 서버 (user@hostname): " REMOTE_SERVER
+                read -p "원격 서버의 대상 디렉토리: " BACKUP_DEST_DIR
+                # SSH 설정 프롬프트
+                prompt_ssh_settings
+            fi
+        else
+            read -p "원격 서버 (user@hostname): " REMOTE_SERVER
+            read -p "원격 서버의 대상 디렉토리: " BACKUP_DEST_DIR
+            # SSH 설정 프롬프트
+            prompt_ssh_settings
+        fi
     else
         read -p "대상 디렉토리: " BACKUP_DEST_DIR
     fi
@@ -107,6 +374,11 @@ save_settings_to_env() {
     echo "BACKUP_DEST_DIR=\"$BACKUP_DEST_DIR\"" >> $ENV_FILE
     echo "BACKUP_LOG_DIR=\"$BACKUP_LOG_DIR\"" >> $ENV_FILE
     echo "REMOTE_SERVER=\"$REMOTE_SERVER\"" >> $ENV_FILE
+    echo "REMOTE_HOST=\"$REMOTE_HOST\"" >> $ENV_FILE
+    echo "REMOTE_PORT=\"$REMOTE_PORT\"" >> $ENV_FILE
+    echo "REMOTE_USER=\"$REMOTE_USER\"" >> $ENV_FILE
+    echo "USE_SSHD_CONFIG=\"$USE_SSHD_CONFIG\"" >> $ENV_FILE
+    echo "IDENTITY_FILE=\"$IDENTITY_FILE\"" >> $ENV_FILE
     echo "EXCLUDE_PATTERN=\"$EXCLUDE_PATTERN\"" >> $ENV_FILE
     echo "RETENTION_DAYS=$RETENTION_DAYS" >> $ENV_FILE
     echo "SYNC_OPTIONS=\"$SYNC_OPTIONS\"" >> $ENV_FILE
@@ -116,6 +388,9 @@ save_settings_to_env() {
 
 # 백업 실행
 perform_backup() {
+    # 기존 백업 코드 (변경 없음)
+    # ...
+
     # 이 백업을 위한 타임스탬프 생성
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
     LOG_FILE="$BACKUP_LOG_DIR/backup_$TIMESTAMP.log"
@@ -128,6 +403,41 @@ perform_backup() {
     START_TIME_HUMAN=$(date)
     echo "백업 시작 시간: $START_TIME_HUMAN" | tee -a "$LOG_FILE"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a "$LOG_FILE"
+    
+    # 원격 서버 설정 확인 및 검증
+    if [ ! -z "$REMOTE_SERVER" ]; then
+        # SSH 포트 및 인증 설정
+        local ssh_opts=""
+        local rsync_opts=""
+        
+        # sshd_config에서 설정 가져오기
+        if [ "$USE_SSHD_CONFIG" == "yes" ]; then
+            get_ssh_config "$REMOTE_SERVER" || echo -e "${YELLOW}SSH 설정을 가져오는 데 실패했습니다. 기본값을 사용합니다.${NC}" | tee -a "$LOG_FILE"
+        fi
+        
+        # SSH 포트 설정
+        ssh_opts="-p $REMOTE_PORT"
+        rsync_opts="-e \"ssh -p $REMOTE_PORT"
+        
+        # Identity 파일 설정
+        if [ ! -z "$IDENTITY_FILE" ]; then
+            ssh_opts="$ssh_opts -i $IDENTITY_FILE"
+            rsync_opts="$rsync_opts -i $IDENTITY_FILE"
+        fi
+        
+        rsync_opts="$rsync_opts\""
+        
+        # 원격 디렉토리 접근성 확인
+        echo "원격 서버 디렉토리 접근성 검증 중..." | tee -a "$LOG_FILE"
+        if ! check_remote_directory "$REMOTE_SERVER" "$BACKUP_DEST_DIR" "$REMOTE_PORT"; then
+            echo -e "${RED}오류: 원격 디렉토리에 접근할 수 없습니다. 백업을 중단합니다.${NC}" | tee -a "$LOG_FILE"
+            END_TIME=$(date +%s)
+            DURATION=$((END_TIME - START_TIME))
+            echo "백업 실행 시간: ${DURATION}초" | tee -a "$LOG_FILE"
+            echo "백업 상태: 실패 (원격 디렉토리 접근 불가)" | tee -a "$LOG_FILE"
+            return 1
+        fi
+    fi
     
     # 제외 옵션 구성
     EXCLUDE_OPTS=""
@@ -146,7 +456,11 @@ perform_backup() {
     fi
     
     # 백업 명령 생성
-    BACKUP_CMD="rsync $SYNC_OPTIONS $EXCLUDE_OPTS \"$BACKUP_SOURCE_DIR\" \"$FULL_DEST\""
+    if [ ! -z "$REMOTE_SERVER" ]; then
+        BACKUP_CMD="rsync $SYNC_OPTIONS $rsync_opts $EXCLUDE_OPTS \"$BACKUP_SOURCE_DIR\" \"$FULL_DEST\""
+    else
+        BACKUP_CMD="rsync $SYNC_OPTIONS $EXCLUDE_OPTS \"$BACKUP_SOURCE_DIR\" \"$FULL_DEST\""
+    fi
     
     echo "실행 명령: $BACKUP_CMD" | tee -a "$LOG_FILE"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | tee -a "$LOG_FILE"
@@ -166,7 +480,7 @@ perform_backup() {
             item_start=$(date +%s)
             
             if [ ! -z "$REMOTE_SERVER" ]; then
-                if rsync $SYNC_OPTIONS $EXCLUDE_OPTS "$item" "$REMOTE_SERVER:$BACKUP_DEST_DIR" 2>> "$LOG_FILE"; then
+                if eval rsync $SYNC_OPTIONS $rsync_opts $EXCLUDE_OPTS \"$item\" \"$FULL_DEST\" 2>> "$LOG_FILE"; then
                     SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
                     echo -e "${GREEN}성공${NC}: $item_name 백업 완료" | tee -a "$LOG_FILE"
                 else
@@ -199,7 +513,7 @@ perform_backup() {
         item_start=$(date +%s)
         
         if [ ! -z "$REMOTE_SERVER" ]; then
-            if rsync $SYNC_OPTIONS $EXCLUDE_OPTS "$BACKUP_SOURCE_DIR" "$REMOTE_SERVER:$BACKUP_DEST_DIR" 2>> "$LOG_FILE"; then
+            if eval rsync $SYNC_OPTIONS $rsync_opts $EXCLUDE_OPTS \"$BACKUP_SOURCE_DIR\" \"$FULL_DEST\" 2>> "$LOG_FILE"; then
                 SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
                 echo -e "${GREEN}성공${NC}: $item_name 백업 완료" | tee -a "$LOG_FILE"
             else
@@ -227,7 +541,7 @@ perform_backup() {
     echo "$RETENTION_DAYS일보다 오래된 백업 정리 중..." | tee -a "$LOG_FILE"
     
     if [ ! -z "$REMOTE_SERVER" ]; then
-        ssh $REMOTE_SERVER "find \"$BACKUP_DEST_DIR\" -type f -mtime +$RETENTION_DAYS -delete" 2>> "$LOG_FILE"
+        ssh $ssh_opts $REMOTE_SERVER "find \"$BACKUP_DEST_DIR\" -type f -mtime +$RETENTION_DAYS -delete" 2>> "$LOG_FILE"
     else
         find "$BACKUP_DEST_DIR" -type f -mtime +$RETENTION_DAYS -delete 2>> "$LOG_FILE"
     fi
@@ -344,6 +658,10 @@ main() {
     echo "대상: $BACKUP_DEST_DIR"
     if [ ! -z "$REMOTE_SERVER" ]; then
         echo "원격 서버: $REMOTE_SERVER"
+        echo "원격 포트: $REMOTE_PORT"
+        if [ ! -z "$IDENTITY_FILE" ]; then
+            echo "인증 파일: $IDENTITY_FILE"
+        fi
     fi
     echo "로그 디렉토리: $BACKUP_LOG_DIR"
     echo "보존 기간: $RETENTION_DAYS 일"
