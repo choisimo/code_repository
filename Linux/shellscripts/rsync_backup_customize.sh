@@ -169,34 +169,41 @@ get_host_info() {
     return 0
 }
 
-# SSH 설정 추출
-get_ssh_config() {
-    local host="$1"
-    local config_file="/etc/ssh/sshd_config"
+prompt_ssh_settings() {
+    echo -e "${BLUE}SSH 연결 설정:${NC}"
+    echo "1. ~/.ssh/config 파일에서 정보 가져오기"
+    echo "2. 직접 설정하기"
+    read -p "옵션을 선택하세요 (1-2): " ssh_choice
     
-    echo -e "${BLUE}원격 서버 $host의 SSH 설정을 확인합니다...${NC}"
-    
-    # 원격 서버의 SSH 설정 파일 접근 시도
-    if ! ssh -o BatchMode=yes -o ConnectTimeout=5 "$host" "test -r $config_file"; then
-        echo -e "${YELLOW}경고: 원격 서버의 $config_file 파일에 접근할 수 없습니다. 기본값을 사용합니다.${NC}"
-        return 1
+    if [ "$ssh_choice" == "1" ]; then
+        # ~/.ssh/config 파일에서 호스트 선택
+        if read_ssh_config; then
+            echo -e "${GREEN}SSH config에서 서버 설정을 가져왔습니다.${NC}"
+        else
+            echo -e "${YELLOW}SSH config에서 서버 선택에 실패했습니다. 직접 입력해주세요.${NC}"
+            ssh_choice="2"  # 직접 입력으로 전환
+        fi
     fi
     
-    # PORT 정보 추출
-    local port=$(ssh "$host" "grep -E '^Port\s+' $config_file | awk '{print \$2}'")
-    if [ ! -z "$port" ]; then
-        REMOTE_PORT="$port"
-        echo -e "SSH 포트: $REMOTE_PORT"
-    else
-        echo -e "SSH 포트 정보를 찾을 수 없어 기본값(22)을 사용합니다."
-    fi
-    
-    # PermitRootLogin 정보 추출
-    local permit_root=$(ssh "$host" "grep -E '^PermitRootLogin\s+' $config_file | awk '{print \$2}'")
-    if [ ! -z "$permit_root" ]; then
-        echo -e "Root 로그인 허용 여부: $permit_root"
-        if [[ "$permit_root" == "no" && "$REMOTE_USER" == "root" ]]; then
-            echo -e "${YELLOW}경고: 원격 서버에서 root 로그인이 허용되지 않습니다. 다른 사용자를 지정하세요.${NC}"
+    if [ "$ssh_choice" == "2" ]; then
+        # 직접 입력 방식
+        read -p "원격 서버 (user@hostname): " REMOTE_SERVER
+        read -p "SSH 포트 (기본값: 22): " input_port
+        REMOTE_PORT=${input_port:-"22"}
+        
+        echo -e "${YELLOW}인증 방식:${NC}"
+        echo "1. 비밀번호 인증"
+        echo "2. 공개키(PublicKey) 인증"
+        read -p "인증 방식을 선택하세요 (1-2): " auth_choice
+        
+        if [ "$auth_choice" == "2" ]; then
+            read -p "Identity 파일 경로 (예: ~/.ssh/id_rsa): " IDENTITY_FILE
+            if [ -z "$IDENTITY_FILE" ]; then
+                echo -e "${YELLOW}Identity 파일이 지정되지 않았습니다. 기본 SSH 키를 사용합니다.${NC}"
+            elif [ ! -f "$IDENTITY_FILE" ]; then
+                echo -e "${RED}지정한 Identity 파일을 찾을 수 없습니다: $IDENTITY_FILE${NC}"
+                return 1
+            fi
         fi
     fi
     
@@ -412,7 +419,7 @@ perform_backup() {
         
         # sshd_config에서 설정 가져오기
         if [ "$USE_SSHD_CONFIG" == "yes" ]; then
-            get_ssh_config "$REMOTE_SERVER" || echo -e "${YELLOW}SSH 설정을 가져오는 데 실패했습니다. 기본값을 사용합니다.${NC}" | tee -a "$LOG_FILE"
+            prompt_ssh_settings "$REMOTE_SERVER" || echo -e "${YELLOW}SSH 설정을 가져오는 데 실패했습니다. 기본값을 사용합니다.${NC}" | tee -a "$LOG_FILE"
         fi
         
         # SSH 포트 설정
