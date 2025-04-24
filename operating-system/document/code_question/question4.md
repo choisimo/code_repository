@@ -1,5 +1,218 @@
 # 운영체제 스레드 및 병행성 문제
 
+# 쓰레드와 프로세스 생성 혼합 문제
+
+쓰레드와 프로세스는 운영체제의 핵심 개념이지만, 특히 둘을 함께 사용할 때 헷갈리기 쉬운 상황이 많이 발생합니다. 다음은 쓰레드 호출과 fork() 시스템 콜을 혼합한 문제들입니다.
+
+## 문제 1: 쓰레드와 fork() 조합 시 생성되는 프로세스/쓰레드 수
+
+다음 코드를 실행하면 총 몇 개의 프로세스와 몇 개의 쓰레드가 생성됩니까?
+
+```c
+#include 
+#include 
+#include 
+
+void *thread_function(void *arg) {
+    fork();
+    return NULL;
+}
+
+int main() {
+    pthread_t tid1, tid2;
+    
+    pthread_create(&tid1, NULL, thread_function, NULL);
+    pthread_create(&tid2, NULL, thread_function, NULL);
+    
+    pthread_join(tid1, NULL);
+    pthread_join(tid2, NULL);
+    
+    return 0;
+}
+```
+
+**정답**: 총 5개의 프로세스, 6개의 쓰레드
+
+**해설**: 
+1. 최초 메인 프로세스에는 3개의 쓰레드가 있음(메인 쓰레드, tid1, tid2)
+2. tid1이 fork()를 호출하면 새로운 프로세스가 생성됨. 이 새 프로세스는 tid1 쓰레드만 복제함
+3. tid2가 fork()를 호출하면 또 다른 프로세스가 생성됨. 이 프로세스도 tid2 쓰레드만 복제함
+4. 원래 프로세스의 tid1도 fork()를 호출하여 또 다른 프로세스 생성
+5. 원래 프로세스의 tid2도 fork()를 호출하여 또 다른 프로세스 생성
+
+결과: 원래 프로세스(3 쓰레드) + 4개의 새 프로세스(각각 1 쓰레드) = 5 프로세스, 3+1+1+1+1 = 7 쓰레드
+
+## 문제 2: 공유 변수 값 예측
+
+다음 코드를 실행한 후 출력되는 값은 무엇입니까?
+
+```c
+#include 
+#include 
+#include 
+#include 
+
+int global_var = 0;
+
+void *thread_function(void *arg) {
+    global_var += 5;
+    return NULL;
+}
+
+int main() {
+    pthread_t tid;
+    
+    pthread_create(&tid, NULL, thread_function, NULL);
+    pthread_join(tid, NULL);
+    
+    if (fork() == 0) {
+        // 자식 프로세스
+        global_var += 10;
+        printf("Child: %d\n", global_var);
+        return 0;
+    } else {
+        // 부모 프로세스
+        wait(NULL);
+        printf("Parent: %d\n", global_var);
+    }
+    
+    return 0;
+}
+```
+
+**정답**: 
+```
+Child: 15
+Parent: 5
+```
+
+**해설**: 
+1. 처음에 global_var는 0
+2. 쓰레드가 global_var를 5 증가시켜 값은 5가 됨
+3. fork() 호출 시 자식 프로세스는 부모의 메모리를 복사하므로 global_var=5를 상속받음
+4. 자식 프로세스는 global_var에 10을 더해 15가 되고 이를 출력
+5. 부모 프로세스는 자식이 종료될 때까지 기다린 후 global_var를 출력하지만, 자식이 변경한 값은 부모에게 영향을 주지 않으므로 여전히 5
+
+## 문제 3: 실행 경로 예측
+
+다음 코드를 실행할 때 출력되는 순서를 예측하세요.
+
+```c
+#include 
+#include 
+#include 
+
+void *thread_function(void *arg) {
+    printf("Thread running\n");
+    if (fork() == 0) {
+        printf("Child of thread\n");
+        return NULL;
+    }
+    printf("Thread continues\n");
+    return NULL;
+}
+
+int main() {
+    pthread_t tid;
+    
+    printf("Main starts\n");
+    pthread_create(&tid, NULL, thread_function, NULL);
+    
+    if (fork() == 0) {
+        printf("Child of main\n");
+        return 0;
+    }
+    
+    pthread_join(tid, NULL);
+    printf("Main ends\n");
+    
+    return 0;
+}
+```
+
+**정답**: 출력 순서는 여러 가능성이 있지만, 다음 제약 조건이 적용됩니다:
+- "Main starts"는 항상 첫 번째로 출력됨
+- "Thread running"은 "Thread continues" 이전에 출력됨
+- "Child of thread"는 "Thread running" 이후에 출력됨
+- "Main ends"는 "Thread continues" 이후에 출력됨
+
+**해설**: 
+이 문제에서는 특정 순서가 보장되지 않지만, 쓰레드 생성과 fork() 호출 간의 상대적 타이밍 관계에 따라 여러 출력 순서가 가능합니다. 프로세스 스케줄링에 따라 달라질 수 있습니다.
+
+## 문제 4: 혼합 모델에서의 쓰레드 수 계산
+
+다음 코드를 실행하면 최종적으로 몇 개의 쓰레드가 실행됩니까?
+
+```c
+#include 
+#include 
+#include 
+#include 
+
+void *thread_func(void *arg) {
+    int i;
+    for (i = 0; i 
+#include 
+#include 
+
+void *compute_task(void *arg) {
+    // CPU 집약적 작업 시뮬레이션
+    int i;
+    for (i = 0; i 
+#include 
+#include 
+#include 
+
+int x = 0;
+
+void *thread_function(void *arg) {
+    x += 5;
+    if (fork() == 0) {
+        // 자식 프로세스
+        x += 10;
+        printf("Child of thread: x = %d\n", x);
+        _exit(0);
+    }
+    x += 15;
+    return NULL;
+}
+
+int main() {
+    pthread_t tid;
+    
+    pthread_create(&tid, NULL, thread_function, NULL);
+    x += 2;
+    
+    if (fork() == 0) {
+        // 자식 프로세스
+        x += 8;
+        printf("Child of main: x = %d\n", x);
+        _exit(0);
+    }
+    
+    pthread_join(tid, NULL);
+    printf("Main process: x = %d\n", x);
+    
+    return 0;
+}
+```
+
+**정답**:
+```
+Child of thread: x = 15
+Child of main: x = 10
+Main process: x = 22
+```
+
+**해설**: 
+1. 초기에 x = 0
+2. 메인 쓰레드와 새 쓰레드가 병렬로 실행됨
+3. 메인 쓰레드는 x += 2를 실행, 새 쓰레드는 x += 5를 실행. x = 7
+4. 메인 쓰레드가 fork()를 호출하면 자식 프로세스는 x = 7을 상속받고 x += 8을 실행하여 x = 15가 됨
+5. 새 쓰레드가 fork()를 호출하면 그 자식 프로세스는 x = 7을 상속받고 x += 10을 실행하여 x = 17이 됨
+6. 새 쓰레드는 계속 실행하여 x += 15를 수행, x = 22가 됨
+7. 메인 프로세스에서는 모든 쓰레드가 join된 후 x = 22를 출력함
+
 ## 객관식 문제
 
 1. 스레드가 속한 프로세스의 자원 중 스레드 간에 공유되는 것은?
