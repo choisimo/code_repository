@@ -4,49 +4,11 @@
 # 기능: 파일 검색/병합, 디렉토리 크기 검사, 로깅, 자동 테스트
 # 사용법: ./concat.sh [옵션] 또는 대화형 메뉴
 #==============================================================================
-# 개선된 오류 처리 함수
-configure_pipe_handling() {
-    local mode="${1:-advanced}"
-    
-    case $mode in
-        basic)
-            trap '' SIGPIPE
-            ;;
-        advanced)
-            trap 'pipe_error_handler' SIGPIPE
-            set -o pipefail
-            export PIPESTATUS_MANAGER=enabled
-            ;;
-        debug)
-            trap 'debug_signal_handler' SIGPIPE
-            set -x
-            ;;
-    esac
-}
-
-pipe_error_handler() {
-    local pid=$$
-    echo "[ERROR] Pipe failure in process $pid" >&2
-    logger -t "$SCRIPT_NAME" "SIGPIPE in $pid"
-    [ "$PIPESTATUS_MANAGER" = "enabled" ] && return 0 || exit 1
-}
+trap '' SIGPIPE
 #==============================================================================
 # 초기화 
 #==============================================================================
-
-# 일괄 작업 시 권장 설정
-set -eo pipefail
-trap 'catch $? $LINENO' ERR
-
-catch() {
-  if [ $1 -eq 141 ]; then
-    echo "파이프라인 오류 무시 및 계속 실행"
-    return 0
-  fi
-  exit $1
-}
-
-
+set -eo pipefail                                # 오류 발생 시 즉시 종료
 VERSION="2.0.0"
 SCRIPT_NAME=$(basename "$0")
 CONFIG_DIR="${HOME}/config_concat"              # 설정 저장 디렉토리
