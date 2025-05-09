@@ -41,6 +41,7 @@ void processor_delete(PROCESSOR* proc) {
 }
 
 // 주석 시작 처리
+
 void process_comment_start(PROCESSOR* proc) {
     proc->comment_depth++;
     push(proc->cstack, '/*');
