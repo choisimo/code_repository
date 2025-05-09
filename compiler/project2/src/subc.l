@@ -1,9 +1,8 @@
-/*                                                                          */
-/* File Name    : subc.l                                                    */
-/* Description  : a skeleton flex input                                     */
-/*                                                                          */
-/* Course       : Compiler                                                  */
-/*                                                                          */
+/*                                                          */
+/* File Name    : subc.l                                    */
+/* Description  : a lexical analyzer for SubC language      */
+/*                                                          */
+/* Course       : Compiler                                  */
 
 %{
 /* C Code Section */
@@ -17,42 +16,114 @@
 /* Definitions Section */
 /* This section contains simple name definitions and declarations of start conditions. */
 
+/* @TODO: lexical analyzer 정의 부분 확장 필요
+ * - 필요한 정규 표현식 정의 추가:
+ *   + letter, digit, id 등 기본 요소 정의 
+ *   + 주석 처리를 위한 상태(start condition) 정의
+ * - 와일드 카드 처리 부분 구현:
+ *   + 줄바꿈 문자(\n)도 매칭 가능하도록 구현
+ *   + [\s\S] 또는 유사한 패턴 사용 고려 
+ */
 letter        [A-Za-z_]
 digit         [0-9]
-integer_const ([1-9]{digit}*)|"0"
+integer_const ([1-9]{digit}*)|"0"4
 whitespace    [ \t]
 special_char  \\[nt]
+id            {letter}({letter}|{digit})*
+string_const  \"([^\\\"\n]|\\.)*\"
+
+/* @TODO 주석 처리 구현
+* - start condition 정의 - %x COMMENT
+* - // 스타일 주석 처리도 추가 필요
+*/
+%x COMMENT
 
 %%
 
+  /* @TODO: Rules Section 확장 필요
+   * - 주석 처리 규칙 구현:
+   *   + C 스타일 주석(/* */) 처리 구현
+   *   + 중첩 주석 고려 필요
+   *   + // 스타일 주석은 금지되어 있음 (주석 파싱 x, 주석으로 사용될 때)
+   * 
+   * - 토큰 인식 규칙 추가:
+   *   + 모든 C 언어 키워드: if, else, while, for, return 등
+   *   + 연산자: ++, --, ||, &&, ==, !=, >=, <= 등
+   *   + 구조체 연산자 ->
+   *   + 모든 기본 문자 토큰(+, -, *, /, = 등)
+   * 
+   * - 토큰 반환 값 처리:
+   *   + 키워드와 특수 연산자는 토큰 타입 반환
+   *   + 기본 문자 토큰은 yytext[0] 반환
+   *   + subc.tab.h에 정의된 토큰과 일치해야 함
+   *
+   * - 와일드카드 처리를 위한 특별 규칙 구현:
+   *   + 미리 정의된 패턴에 매칭되지 않는 모든 문자 처리
+   */
+
   /* Rules Section */
   /* This section contains series of rules for recognizing tokens. */
+  /* @TODO : Rules Section 확장 필요 (토큰 정의하기)
+  * - 모든 토큰 선언하기
+  * - Bison 은 선언된 token 만 인식함. 모든 토큰 선언 필요
+  */
 
-  /* Keywords */
-"int" | "char"                  { return TYPE; }
-"struct"                        { return STRUCT; }
+  /*
+  @TODO : Refactoring (additional implementation required)
+  * - Comments - using start condition to handle
+  **/
 
-  /* Integer constants */
-{integer_const}                 {
-                                  return INTEGER_CONST;
-                                }
+"/*"          { BEGIN(COMMENT); }
+<COMMENT>"*/" { BEGIN(INITIAL); }
+<COMMENT>[^*\n]*|"*"+[^*/\n]* { /* Skip comment content */ }
+\n            { yylineno++;     }
+<COMMENT>\n   { yylineno++; /* Skip newlines in comments */ }
+<COMMENT><<EOF>> { 
+                  printf("Error: unterminated comment\n"); 
+                  BEGIN(INITIAL); 
+                }
 
-  /* String variables */
-\"({special_char}|[^\\\"\n])*\" {
-                                  return STRING;
-                                }
-
-  /* Character variables */
-'({special_char}|[^\\'\n])'     {    
-                                  return CHAR_CONST;
-                                }
+/* Keywords */
+"int"|"char"                   { return TYPE; }
+"struct"                       { return STRUCT; }
+"NULL"                         { return SYM_NULL; }
+"return"                       { return RETURN; }
+"if"                           { return IF; }
+"else"                         { return ELSE; }
+"while"                        { return WHILE; }
+"for"                          { return FOR; }
+"break"                        { return BREAK; }
+"continue"                     { return CONTINUE; }
 
   /* Operators */
-";"|","                         { return yytext[0]; }
+"||"                           { return LOGICAL_OR; }
+"&&"                           { return LOGICAL_AND; }
+"<"|"<="|">"|">="              { return RELOP; }
+"=="|"!="                      { return EQUOP; }
+"++"                           { return INCOP; }
+"--"                           { return DECOP; }
+"->"                           { return STRUCTOP; }
+"+"|"-"|"*"|"/"|"%"|"="|"&"|"!"|"^"|"~"|"."|"["|"]"|"("|")"|"{"|"}"|";"|":" { return yytext[0]; }
+","                            { return yytext[0]; }
 
-  /* Whitespaces */
-{whitespace}                    {}
+  /* Constants
+  * - @TODO escape sequence 처리 필요 구현
+  * - "," "\" "\0" "\r" "\n" 등 처리 필요함
+  */
 
+{integer_const}                { return INTEGER_CONST; }
+'(\\.|[^\\'\n])'               { return CHAR_CONST; }
+\"(\\.|[^\\\"\n])*\"           { return STRING; }
+
+  /* Identifier */
+{id}                           { return ID; }
+
+  /* Whitespace */
+{whitespace}                   { /* Skip whitespace */ }
+\n                             { /* Skip newline */ }
+
+  /* Anything else */
+.                              { return yytext[0]; }
 
 %%
    
