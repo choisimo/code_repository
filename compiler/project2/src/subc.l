@@ -9,9 +9,12 @@
 /* Any code placed inside the brackets will be literally copied into the generated C file. */
 
 #include <stdio.h>
-#include <strings.h>
+#include <stdlib.h>
+#include <string.h>
 #include "subc.tab.h"
 %}
+
+%option noyywrap
 
 /* Definitions Section */
 /* This section contains simple name definitions and declarations of start conditions. */
@@ -24,23 +27,29 @@
  *   + 줄바꿈 문자(\n)도 매칭 가능하도록 구현
  *   + [\s\S] 또는 유사한 패턴 사용 고려 
  */
+
+
 letter        [A-Za-z_]
 digit         [0-9]
-integer_const ([1-9]{digit}*)|"0"4
+integer_const ([1-9][0-9]*|0)
 whitespace    [ \t]
 special_char  \\[nt]
 id            {letter}({letter}|{digit})*
-string_const  \"([^\\\"\n]|\\.)*\"
+escape         \\[abfnrtv0\\'\"]
+string_const   \"({escape}|[^\\\"\n]|\\\n)*\"
+char_const     '({escape}|[^\\'\n])' 
 
 /* @TODO 주석 처리 구현
 * - start condition 정의 - %x COMMENT
-* - // 스타일 주석 처리도 추가 필요
+* 독립적인 상태를 가지는 start condition COMMENT 정의 
 */
+
 %x COMMENT
 
 %%
 
-  /* @TODO: Rules Section 확장 필요
+  /**
+   * @TODO: Rules Section 확장 필요
    * - 주석 처리 규칙 구현:
    *   + C 스타일 주석(/* */) 처리 구현
    *   + 중첩 주석 고려 필요
@@ -73,16 +82,14 @@ string_const  \"([^\\\"\n]|\\.)*\"
   * - Comments - using start condition to handle
   **/
 
-"/*"          { BEGIN(COMMENT); }
-<COMMENT>"*/" { BEGIN(INITIAL); }
-<COMMENT>[^*\n]*|"*"+[^*/\n]* { /* Skip comment content */ }
-\n            { yylineno++;     }
-<COMMENT>\n   { yylineno++; /* Skip newlines in comments */ }
-<COMMENT><<EOF>> { 
-                  printf("Error: unterminated comment\n"); 
-                  BEGIN(INITIAL); 
-                }
+"/*"                                                                             { BEGIN(COMMENT); }
+<COMMENT>"*/"                                                                    { BEGIN(INITIAL); }
+<COMMENT>[^*\n]+                                                                 { /* skip */ }
+<COMMENT>\*+[^*/\n]*                                                             { /* skip */ }
+<COMMENT>\n                                                                      { yylineno++; }
+<COMMENT><<EOF>>                                                                 { printf("Error: unterminated comment\n"); BEGIN(INITIAL); }
 
+/* Order : Keyword - Operator - Constant - WhiteSpace - Anything */
 /* Keywords */
 "int"|"char"                   { return TYPE; }
 "struct"                       { return STRUCT; }
@@ -111,22 +118,23 @@ string_const  \"([^\\\"\n]|\\.)*\"
   * - "," "\" "\0" "\r" "\n" 등 처리 필요함
   */
 
-{integer_const}                { return INTEGER_CONST; }
-'(\\.|[^\\'\n])'               { return CHAR_CONST; }
-\"(\\.|[^\\\"\n])*\"           { return STRING; }
-
-  /* Identifier */
-{id}                           { return ID; }
+{integer_const}   { return INTEGER_CONST; }
+{char_const}      { return CHAR_CONST; }
+{string_const}    { return STRING; }
+{id}              { return ID; }
 
   /* Whitespace */
-{whitespace}                   { /* Skip whitespace */ }
-\n                             { /* Skip newline */ }
+{whitespace}+                   { /* Skip whitespace */ }
+\n                             { yylineno++;  /* Skip newline */ }
 
   /* Anything else */
-.                              { return yytext[0]; }
+.  { 
+    fprintf(stderr, "에러: %d행 - 잘못된 문자 '%c'\n", yylineno, *yytext); 
+    yyterminate();
+}
 
 %%
-   
+
 /* User Code Section */
 /* The user code section is simply copied to lex.yy.c verbatim. */
 
