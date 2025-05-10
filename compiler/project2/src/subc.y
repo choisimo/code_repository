@@ -23,10 +23,9 @@ void  reduce(char* s);
 /* 토큰 타입 지정 */
 %token <ival> INTEGER_CONST
 %token <cval> CHAR_CONST
-%token <sval> STRING ID
+%token <sval> STRING ID LOGICAL_OR LOGICAL_AND RELOP EQUOP
 %token TYPE STRUCT SYM_NULL RETURN
 %token IF ELSE WHILE FOR BREAK CONTINUE
-%token LOGICAL_OR LOGICAL_AND RELOP EQUOP 
 %token INCOP DECOP STRUCTOP
 
 /* Bison declarations section */
@@ -234,7 +233,7 @@ binary
     { reduce("binary->binary '/' binary"); }
   | binary '%' binary
     { reduce("binary->binary '%' binary"); }
-  | unary %prec '='
+  | unary
     { reduce("binary->unary"); }
   | binary LOGICAL_AND binary
     { reduce("binary->binary LOGICAL_AND binary"); }

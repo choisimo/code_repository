@@ -21,6 +21,10 @@ static char get_escape_char(char c) {
         case 'n': return '\n';
         case 't': return '\t';
         case 'r': return '\r';
+        case 'b': return '\b';
+        case 'f': return '\f';
+        case 'v': return '\v';
+        case 'a': return '\a';
         case '0': return '\0';
         case '\'': return '\'';
         case '\"': return '\"';
@@ -43,11 +47,17 @@ static char* get_string_value(const char* str) {
     
     /* 따옴표 제외하고 복사 (첫 문자와 마지막 문자 제외) */
     for (int i = 1; i < len - 1; i++) {
-        if (str[i] == '\\' && i + 1 < len - 1) {
-            result[j++] = get_escape_char(str[++i]);
-        } else {
-            result[j++] = str[i];
+        if (str[i] == '\\') {
+            if (i + 1 < len - 1 && str[i+1] == '\n') {
+                i++; // skip line continuation
+                continue;
+            }
+            if (i + 1 < len - 1) {
+                result[j++] = get_escape_char(str[++i]);
+                continue;
+            }
         }
+        result[j++] = str[i];
     }
     result[j] = '\0';
     return result;
