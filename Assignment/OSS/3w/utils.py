@@ -1,12 +1,3 @@
-import pandas as pd
-import json
-import csv
-import io
-from datetime import datetime
-from typing import Dict, Any, List, Union, Optional, BinaryIO
-"""
-로그 분석에 필요한 유틸리티 함수들
-"""
 import re
 import json
 from datetime import datetime
@@ -15,6 +6,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
+import io
+import csv
+from typing import Union, Dict, Any, Optional, BinaryIO
 
 def parse_log_entries(logs):
     """
@@ -286,6 +280,7 @@ def suggest_solutions(error_types):
         return f"가장 빈번한 오류 '{most_common_error}'에 대해 시스템 로그를 자세히 분석하고, 관련 컴포넌트의 동작을 검토하세요. 필요시 개발 팀과 문제를 공유하고 도움을 요청하세요."
     
     return matching_solution
+
 def format_timestamp(timestamp: Union[str, datetime], output_format: str = "%Y-%m-%d %H:%M:%S") -> str:
     """
     타임스탬프를 지정된 형식으로 변환합니다.
@@ -323,24 +318,15 @@ def export_results(df: pd.DataFrame, analysis_results: Dict[str, Any], export_fo
     now = datetime.now().strftime("%Y%m%d_%H%M%S")
     
     if export_format == "csv":
-        # CSV 형식으로 내보내기
-        output = io.BytesIO()
-        
-        # 로그 데이터 저장
-        df.to_csv(output, index=False, encoding='utf-8')
-        
-        # 분석 결과 추가
-        writer = csv.writer(output)
-        writer.writerow([])
-        writer.writerow(["# 분석 결과"])
-        
+        # CSV 텍스트 버퍼로 내보내기
+        text_io = io.StringIO()
+        df.to_csv(text_io, index=False)
+        text_io.write("\n# 분석 결과\n")
         for key, value in analysis_results.get("structured_analysis", {}).items():
-            writer.writerow([])
-            writer.writerow([f"## {key}"])
-            for line in value.strip().split('\n'):
-                writer.writerow([line])
-        
-        output.seek(0)
+            text_io.write(f"\n## {key}\n")
+            for line in value.strip().split("\n"):
+                text_io.write(line + "\n")
+        output = io.BytesIO(text_io.getvalue().encode("utf-8"))
         return output
     
     elif export_format == "json":

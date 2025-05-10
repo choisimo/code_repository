@@ -6,50 +6,111 @@ from io import StringIO
 import time
 from typing import Dict, List, Any, Union
 
-# 로그 형식 정규 표현식 패턴
 LOG_PATTERNS = {
-    'timestamp': r'(\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?)',
-    'error_code': r'(?:ERR|ERROR|FATAL|WARN|WARNING)[_\-]?(\d{4,6})',
-    'ip_address': r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',
-    'request_id': r'(?:req|request|id)[_\-:]([a-f0-9]{8,32})',
-    'log_level': r'\b(DEBUG|INFO|WARN(?:ING)?|ERROR|CRITICAL|FATAL)\b'
-}
-import pandas as pd
-import re
-from datetime import datetime
-import json
-from io import StringIO
-import time
-from typing import Dict, List, Any, Union
+    # 기존 패턴 개선
+    'apache': r'^(?P<ip>\S+) \S+ \S+ \[(?P<timestamp>[^\]]+)\] "(?P<method>\S+)(?: +(?P<uri>[^"]*?)(?: +(?P<protocol>\S+))?)?" (?P<status>\d+) (?P<bytes>\d+|-)',
+    'nginx': r'^(?P<remote_addr>\S+) - (?P<remote_user>\S+) \[(?P<time_local>[^\]]+)\] "(?P<request>\S+ \S+ \S+)" (?P<status>\d+) (?P<body_bytes_sent>\d+) "(?P<http_referer>[^"]*)" "(?P<http_user_agent>[^"]*)"',
+    
+    # 신규 시스템 로그 포맷
+    'syslog_bsd': r'^<(?P<pri>\d+)>(?P<timestamp>\w{3} \d{2} \d{2}:\d{2}:\d{2}) (?P<hostname>\S+) (?P<tag>\w+)(?:\[(?P<pid>\d+)\])?: (?P<message>.*)',
+    'syslog_rfc5424': r'^<(?P<pri>\d+)>1 (?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z) (?P<hostname>\S+) (?P<app>\S+) (?P<procid>\S+) (?P<msgid>\S+) (?P<structured_data>\[.*?\]) (?P<message>.*)',
+    
+    # Windows 이벤트 로그
+    'windows_event': r'^(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z) (?P<event_id>\d+) (?P<level>\w+) (?P<source>\S+) (?P<message>.*)',
+    
+    # CEF 포맷
+    'cef': r'CEF:(?P<cef_version>\d+)\|(?P<device_vendor>[^|]*)\|(?P<device_product>[^|]*)\|(?P<device_version>[^|]*)\|(?P<signature_id>[^|]*)\|(?P<name>[^|]*)\|(?P<severity>[^|]*)\|(?P<extension>.*)',
+    
+    # GELF 포맷 (JSON 구조)
+    'gelf': r'^{"version":"1\.1", "host":"(?P<host>\S+)", "short_message":"(?P<short_message>.*?)", ',
+    
+    # AWS CloudTrail
+    'aws_cloudtrail': r'^(?P<event_time>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z) (?P<event_source>\S+) (?P<event_name>\S+)',
+    
+    # IIS W3C 확장 형식
+    'iis_w3c': r'^(?P<date>\d{4}-\d{2}-\d{2}) (?P<time>\d{2}:\d{2}:\d{2}) (?P<s_ip>\S+) (?P<cs_method>\S+) (?P<cs_uri_stem>\S+) (?P<cs_uri_query>\S+) (?P<s_port>\d+)',
+    
+    # Docker JSON 로그
+    'docker_json': r'\{"log":"(?P<message>.*?)","stream":"(?P<stream>stdout|stderr)","time":"(?P<timestamp>.*?)"\}',
 
-# 로그 형식 정규 표현식 패턴
-LOG_PATTERNS = {
-    "standard": r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3})\s+(\w+)\s+\[([^\]]+)\]\s+(.*)",
-    "apache": r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - - \[(.*?)\] "(.*?)" (\d+) (\d+|-)',
-    "nginx": r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - (\S+) \[(.*?)\] "(.*?)" (\d+) (\d+) "(.*?)" "(.*?)"',
-    "custom": r"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z)\s+\[(\w+)\]\s+(\w+):\s+(.*)"
+    # 커스텀 애플리케이션 로그
+    'custom_app': r'^\[(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3})\] (?P<level>\w+) (?P<thread>\S+) (?P<logger>\S+) - (?P<message>.*)',
+    
+    # 네트워크 장비 로그 (Cisco)
+    'cisco_asa': r'^%ASA-(?P<level>\d+)-(?P<message_id>\d+): (?P<message>.*)',
+    
+    # Kubernetes Pod 로그
+    'k8s_pod': r'^(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z) \[(?P<level>\w+)\] (?P<message>.*)',
+    
+    # ELF(Extended Log Format)
+    'elf': r'^#Version: (?P<version>\d+\.\d+)\n#Fields: (?P<fields>.*?)\n(?P<data>.*)',
+    
+    # W3C 확장 로그
+    'w3c_extended': r'^(?P<date>\d{4}-\d{2}-\d{2}) (?P<time>\d{2}:\d{2}:\d{2}) (?P<s_ip>\S+) (?P<cs_method>\S+) (?P<cs_uri_stem>\S+) (?P<cs_uri_query>\S+) (?P<s_port>\d+)',
+    
+    # Heroku 로그
+    'heroku': r'^(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z) (?P<source>\S+) (?P<dyno>\S+) (?P<message>.*)',
+    
+    # CloudWatch 로그
+    'aws_cloudwatch': r'^\[(?P<timestamp>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+Z)\] (?P<level>\w+) (?P<message>.*)'
 }
+
+# 패턴 확장성: 구조화 데이터 파싱 및 동적 필드 매핑
+FIELD_MAPPINGS = {
+    'syslog_rfc5424': {
+        'pri': lambda x: {'facility': int(x)//8, 'severity': int(x)%8}
+    }
+}
+
+def parse_structured_data(sd: str) -> Dict[str, str]:
+    """ structured_data 필드에서 key="value" 쌍을 파싱합니다."""
+    return dict(re.findall(r'(\S+)="([^"]*)"', sd))
+
+def detect_log_format(sample: str) -> str:
+    """ 샘플 텍스트 기반으로 로그 형식을 감지합니다. """
+    try:
+        json.loads(sample)
+        return 'json'
+    except:
+        pass
+    if ',' in sample and '\n' in sample:
+        return 'csv'
+    for fmt, pattern in LOG_PATTERNS.items():
+        if re.search(pattern, sample, flags=re.MULTILINE):
+            return fmt
+    return 'standard'
 
 def process_log(content: str, log_format: str = "standard") -> pd.DataFrame:
-    """
-    로그 파일을 처리하고 구조화된 데이터프레임으로 변환합니다.
-    
-    Args:
-        content: 로그 파일 내용
-        log_format: 로그 형식 (standard, apache, nginx, custom)
-        
-    Returns:
-        구조화된 로그 데이터를 담은 DataFrame
-    """
-    pattern = LOG_PATTERNS.get(log_format)
+    # 패턴 확장성: 감지된 형식 사용 or 파라미터 우선
+    fmt = detect_log_format(content[:1000]) if log_format == "standard" else log_format
+    if fmt == 'json':
+        return process_json_logs(content)
+    elif fmt == 'csv':
+        return process_csv_logs(content)
+    # MM/DD HH:MM:SS 형식 우선 처리
+    alt_pattern = r'(\d{2}/\d{2} \d{2}:\d{2}:\d{2})\s+(\w+)\s+(:[^:]+:)\s+(.*)'
+    alt_logs = []
+    for line in content.splitlines():
+        m = re.match(alt_pattern, line)
+        if m:
+            ts, lvl, comp, msg = m.groups()
+            alt_logs.append({
+                "timestamp": ts,
+                "level": lvl,
+                "component": comp.strip(':'),
+                "message": msg
+            })
+    if alt_logs:
+        return pd.DataFrame(alt_logs)
+    pattern = LOG_PATTERNS.get(fmt)
     if not pattern:
-        raise ValueError(f"지원하지 않는 로그 형식: {log_format}")
+        raise ValueError(f"지원하지 않는 로그 형식: {fmt}")
     
     logs = []
     for line in content.splitlines():
         match = re.match(pattern, line)
         if match:
-            if log_format == "standard":
+            if fmt == "standard":
                 timestamp, level, component, message = match.groups()
                 logs.append({
                     "timestamp": timestamp,
@@ -57,7 +118,7 @@ def process_log(content: str, log_format: str = "standard") -> pd.DataFrame:
                     "component": component,
                     "message": message
                 })
-            elif log_format == "apache":
+            elif fmt == "apache":
                 ip, timestamp, request, status, size = match.groups()
                 logs.append({
                     "ip": ip,
@@ -66,7 +127,7 @@ def process_log(content: str, log_format: str = "standard") -> pd.DataFrame:
                     "status": status,
                     "size": size if size != "-" else "0"
                 })
-            elif log_format == "nginx":
+            elif fmt == "nginx":
                 ip, user, timestamp, request, status, size, referer, user_agent = match.groups()
                 logs.append({
                     "ip": ip,
@@ -78,7 +139,7 @@ def process_log(content: str, log_format: str = "standard") -> pd.DataFrame:
                     "referer": referer,
                     "user_agent": user_agent
                 })
-            elif log_format == "custom":
+            elif fmt == "custom":
                 timestamp, level, component, message = match.groups()
                 logs.append({
                     "timestamp": timestamp,
@@ -86,8 +147,33 @@ def process_log(content: str, log_format: str = "standard") -> pd.DataFrame:
                     "component": component,
                     "message": message
                 })
-    
-    return pd.DataFrame(logs)
+            else:
+                # 기타 패턴: groupdict 구조화 + structured_data 파싱
+                entry = match.groupdict()
+                sd = entry.pop('structured_data', None)
+                if sd:
+                    entry.update(parse_structured_data(sd))
+                logs.append(entry)
+    # 동적 필드 매핑 적용
+    for entry in logs:
+        for fld, mapper in FIELD_MAPPINGS.get(fmt, {}).items():
+            if fld in entry:
+                entry.update(mapper(entry[fld]))
+    df = pd.DataFrame(logs)
+    if not df.empty:
+        return df
+
+    # AI 기반 폴백 파싱
+    from gpt_analyzer import GPTAnalyzer
+    analyzer = GPTAnalyzer()
+    try:
+        parsed = analyzer.parse_logs(content)
+        if parsed:
+            return pd.DataFrame(parsed)
+    except Exception:
+        pass
+
+    return pd.DataFrame()
 
 def normalize_logs(df: pd.DataFrame, log_format: str = "standard") -> pd.DataFrame:
     """
@@ -132,56 +218,6 @@ def normalize_logs(df: pd.DataFrame, log_format: str = "standard") -> pd.DataFra
     df["weekday"] = df["timestamp"].dt.day_name()
     
     return df
-# 로그 처리 함수
-def process_log(log_content: str) -> pd.DataFrame:
-    """
-    로그 텍스트를 처리하여 구조화된 DataFrame으로 변환합니다.
-    
-    Args:
-        log_content: 원시 로그 텍스트
-        
-    Returns:
-        pandas DataFrame: 구조화된 로그 데이터
-    """
-    # 로그 형식 감지
-    log_format = detect_log_format(log_content[:1000])  # 처음 1000자를 검사하여 형식 감지
-    
-    # 형식에 따른 처리
-    if log_format == 'json':
-        return process_json_logs(log_content)
-    elif log_format == 'csv':
-        return process_csv_logs(log_content)
-    else:  # 텍스트 기반 로그
-        return process_text_logs(log_content)
-
-def detect_log_format(log_sample: str) -> str:
-    """
-    로그 샘플의 형식을 감지합니다.
-    
-    Args:
-        log_sample: 로그 샘플 텍스트
-        
-    Returns:
-        str: 감지된 로그 형식 ('json', 'csv', 'text')
-    """
-    # JSON 형식 감지
-    try:
-        # 첫 줄이 JSON 객체인지 확인
-        first_line = log_sample.strip().split('\n')[0].strip()
-        json.loads(first_line)
-        return 'json'
-    except (json.JSONDecodeError, IndexError):
-        pass
-    
-    # CSV 형식 감지
-    if ',' in log_sample and log_sample.count('\n') > 0:
-        comma_count = log_sample.count(',')
-        line_count = log_sample.count('\n')
-        if comma_count / line_count >= 3:  # 평균적으로 라인당 3개 이상의 쉼표가 있으면 CSV로 간주
-            return 'csv'
-    
-    # 기본적으로 텍스트 로그로 간주
-    return 'text'
 
 def process_text_logs(log_content: str) -> pd.DataFrame:
     """
@@ -263,8 +299,12 @@ def process_json_logs(log_content: str) -> pd.DataFrame:
             
         try:
             log_entry = json.loads(line)
-            log_entry['raw_log'] = line
-            parsed_logs.append(log_entry)
+            # Ensure only dict entries are added to avoid DataFrame errors
+            if isinstance(log_entry, dict):
+                log_entry['raw_log'] = line
+                parsed_logs.append(log_entry)
+            else:
+                logger.warning(f"JSON 파싱 결과가 dict가 아닙니다. 스킵: {line[:100]}")
         except json.JSONDecodeError:
             # JSON 파싱 실패 시 텍스트 로그로 처리
             log_entry = {'raw_log': line}
@@ -415,3 +455,238 @@ def process_log_in_chunks(log_file_path: str, chunk_size: int = 10000):
             chunk_content = ''.join(chunk)
             processed_chunk = process_log(chunk_content)
             yield processed_chunk
+import pandas as pd
+import json
+import re
+from datetime import datetime
+import logging
+
+# 로깅 설정
+logger = logging.getLogger(__name__)
+
+def process_log(log_content, log_format='json'):
+    """
+    로그 콘텐츠를 처리하고 분석 가능한 데이터프레임으로 변환합니다.
+    
+    Args:
+        log_content (str): 로그 파일의 내용
+        log_format (str): 로그 형식 (json, csv, text 등)
+        
+    Returns:
+        pandas.DataFrame: 처리된 로그 데이터프레임
+    """
+    logger.info(f"로그 처리 시작: 형식 {log_format}")
+    
+    try:
+        if log_format == 'json':
+            return _process_json_log(log_content)
+        elif log_format == 'csv':
+            return _process_csv_log(log_content)
+        elif log_format == 'text':
+            return _process_text_log(log_content)
+        else:
+            logger.warning(f"지원되지 않는 로그 형식: {log_format}")
+            raise ValueError(f"지원되지 않는 로그 형식: {log_format}")
+    except Exception as e:
+        logger.error(f"로그 처리 중 오류 발생: {str(e)}")
+        raise
+
+def _process_json_log(log_content):
+    """JSON 로그 처리"""
+    logs = []
+    for line in log_content.splitlines():
+        if line.strip():
+            try:
+                log_entry = json.loads(line)
+                # Ensure only dict entries are added to avoid DataFrame errors
+                if isinstance(log_entry, dict):
+                    logs.append(log_entry)
+                else:
+                    logger.warning(f"JSON 파싱 결과가 dict가 아닙니다. 스킵: {line[:100]}")
+            except json.JSONDecodeError:
+                logger.warning(f"JSON 파싱 오류: {line[:100]}")
+    
+    if not logs:
+        return pd.DataFrame()
+    
+    return pd.DataFrame(logs)
+
+def _process_csv_log(log_content):
+    """CSV 로그 처리"""
+    try:
+        # CSV 파싱 시도
+        df = pd.read_csv(pd.StringIO(log_content))
+        return df
+    except Exception as e:
+        logger.error(f"CSV 로그 처리 오류: {str(e)}")
+        return pd.DataFrame()
+
+def _process_text_log(log_content):
+    """텍스트 로그 처리 - 일반적인 로그 패턴 검색"""
+    # 일반적인 로그 패턴: [시간] [레벨] [컴포넌트] - 메시지
+    pattern = r'(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}(?:\.\d+)?)\s+(\w+)\s+(?:\[([^\]]+)\])?\s*-?\s*(.*)'
+    logs = []
+    
+    for line in log_content.splitlines():
+        match = re.match(pattern, line)
+        if match:
+            timestamp, level, component, message = match.groups()
+            logs.append({
+                'timestamp': timestamp,
+                'level': level,
+                'component': component or '',
+                'message': message
+            })
+        elif line.strip():
+            # 패턴에 맞지 않는 줄은 이전 로그의 연속으로 처리
+            if logs:
+                logs[-1]['message'] += '\n' + line
+    
+    return pd.DataFrame(logs)
+
+def normalize_logs(df):
+    """
+    로그 데이터프레임을 정규화하고 표준 형식으로 변환합니다.
+    
+    Args:
+        df (pandas.DataFrame): 원시 로그 데이터프레임
+        
+    Returns:
+        pandas.DataFrame: 정규화된 로그 데이터프레임
+    """
+    logger.info("로그 정규화 시작")
+    
+    if df.empty:
+        return df
+    
+    # 필수 열 확인 및 추가
+    required_columns = ['timestamp', 'level', 'message']
+    result_df = df.copy()
+    
+    # 타임스탬프 열 처리
+    timestamp_columns = [col for col in df.columns if 'time' in col.lower() or 'date' in col.lower()]
+    if 'timestamp' not in df.columns and timestamp_columns:
+        result_df['timestamp'] = df[timestamp_columns[0]]
+    elif 'timestamp' not in df.columns:
+        result_df['timestamp'] = datetime.now().isoformat()
+    
+    # 로그 레벨 열 처리
+    level_columns = [col for col in df.columns if 'level' in col.lower() or 'severity' in col.lower()]
+    if 'level' not in df.columns and level_columns:
+        result_df['level'] = df[level_columns[0]]
+    elif 'level' not in df.columns:
+        result_df['level'] = 'INFO'
+    
+    # 메시지 열 처리
+    message_columns = [col for col in df.columns if 'message' in col.lower() or 'msg' in col.lower()]
+    if 'message' not in df.columns and message_columns:
+        result_df['message'] = df[message_columns[0]]
+    elif 'message' not in df.columns:
+        # 메시지가 없는 경우, 다른 컬럼들을 합쳐서 메시지 생성
+        other_cols = [col for col in df.columns if col not in ['timestamp', 'level']]
+        if other_cols:
+            result_df['message'] = df[other_cols].apply(lambda row: ' '.join(str(val) for val in row), axis=1)
+        else:
+            result_df['message'] = ''
+    
+    # 타임스탬프 형식 표준화
+    if 'timestamp' in result_df.columns:
+        result_df['timestamp'] = standardize_timestamps(result_df['timestamp'])
+    
+    # 로그 레벨 표준화
+    if 'level' in result_df.columns:
+        result_df['level'] = standardize_log_levels(result_df['level'])
+    
+    logger.info("로그 정규화 완료")
+    return result_df
+
+def standardize_timestamps(timestamp_series):
+    """타임스탬프를 표준 형식으로 변환"""
+    def convert_timestamp(ts):
+        if pd.isna(ts):
+            return None
+        
+        ts = str(ts)
+        
+        # Unix 타임스탬프 (초 단위)
+        if ts.isdigit() and len(ts) == 10:
+            return datetime.fromtimestamp(int(ts)).isoformat()
+        
+        # Unix 타임스탬프 (밀리초 단위)
+        if ts.isdigit() and len(ts) == 13:
+            return datetime.fromtimestamp(int(ts) / 1000).isoformat()
+        
+        # 다양한 날짜 형식 처리 시도
+        formats = [
+            '%Y-%m-%d %H:%M:%S',
+            '%Y-%m-%dT%H:%M:%S',
+            '%Y-%m-%dT%H:%M:%S.%f',
+            '%Y/%m/%d %H:%M:%S',
+            '%d/%b/%Y:%H:%M:%S'
+        ]
+        
+        for fmt in formats:
+            try:
+                return datetime.strptime(ts, fmt).isoformat()
+            except ValueError:
+                continue
+        
+        return ts
+
+def standardize_log_levels(level_series):
+    """로그 레벨을 표준 형식으로 변환"""
+    level_map = {
+        'debug': 'DEBUG',
+        'info': 'INFO',
+        'information': 'INFO',
+        'warn': 'WARNING',
+        'warning': 'WARNING',
+        'error': 'ERROR',
+        'err': 'ERROR',
+        'critical': 'CRITICAL',
+        'fatal': 'CRITICAL'
+    }
+    
+    def map_level(level):
+        if pd.isna(level):
+            return 'INFO'
+        
+        level_str = str(level).lower()
+        return level_map.get(level_str, level)
+    
+    return level_series.apply(map_level)
+
+def extract_error_patterns(df):
+    """로그에서 오류 패턴을 추출"""
+    if 'level' not in df.columns or 'message' not in df.columns:
+        return {}
+    
+    error_df = df[df['level'].str.upper().isin(['ERROR', 'CRITICAL', 'FATAL'])]
+    if error_df.empty:
+        return {}
+    
+    # 간단한 오류 패턴 추출
+    error_patterns = {}
+    for message in error_df['message']:
+        # 오류 코드 추출 (예: ERR-1234)
+        code_match = re.search(r'(ERR|ERROR|E)-\d+', message)
+        if code_match:
+            code = code_match.group(0)
+            error_patterns[code] = error_patterns.get(code, 0) + 1
+            continue
+            
+        # Exception 유형 추출
+        exception_match = re.search(r'([A-Za-z]+Exception|[A-Za-z]+Error)', message)
+        if exception_match:
+            exception = exception_match.group(0)
+            error_patterns[exception] = error_patterns.get(exception, 0) + 1
+            continue
+            
+        # 일반적인 오류 메시지 키워드
+        keywords = ['failed', 'failure', 'error', 'cannot', 'unable to', 'timeout']
+        for keyword in keywords:
+            if keyword in message.lower():
+                error_patterns[keyword] = error_patterns.get(keyword, 0) + 1
+                break
+    
+    return error_patterns
