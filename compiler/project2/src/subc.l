@@ -13,7 +13,6 @@
 #include "subc.tab.h"
 
 /* 전역 변수 */
-int yylineno = 1;     /* 현재 줄 번호 */
 int comment_depth = 0; /* 중첩 주석 깊이 */
 
 /* 문자 상수와 문자열 상수 처리를 위한 함수 */
@@ -61,16 +60,6 @@ static char* get_string_value(const char* str) {
 /* Definitions Section */
 /* This section contains simple name definitions and declarations of start conditions. */
 
-/* @TODO: lexical analyzer 정의 부분 확장 필요
- * - 필요한 정규 표현식 정의 추가:
- *   + letter, digit, id 등 기본 요소 정의
- *   + 주석 처리를 위한 상태(start condition) 정의
- * - 와일드 카드 처리 부분 구현:
- *   + 줄바꿈 문자(\n)도 매칭 가능하도록 구현
- *   + [\s\S] 또는 유사한 패턴 사용 고려
- */
-
-
 letter        [A-Za-z_]
 digit         [0-9]
 integer_const ([1-9][0-9]*|0)
@@ -89,28 +78,6 @@ char_const     '({escape}|[^\\'\n])'
 %x COMMENT
 
 %%
-
-  /**
-   * @TODO: Rules Section 확장 필요
-   * - 주석 처리 규칙 구현:
-   *   + C 스타일 주석(/* */) 처리 구현
-   *   + 중첩 주석 고려 필요
-   *   + // 스타일 주석은 금지되어 있음 (주석 파싱 x, 주석으로 사용될 때)
-   *
-   * - 토큰 인식 규칙 추가:
-   *   + 모든 C 언어 키워드: if, else, while, for, return 등
-   *   + 연산자: ++, --, ||, &&, ==, !=, >=, <= 등
-   *   + 구조체 연산자 ->
-   *   + 모든 기본 문자 토큰(+, -, *, /, = 등)
-   *
-   * - 토큰 반환 값 처리:
-   *   + 키워드와 특수 연산자는 토큰 타입 반환
-   *   + 기본 문자 토큰은 yytext[0] 반환
-   *   + subc.tab.h에 정의된 토큰과 일치해야 함
-   *
-   * - 와일드카드 처리를 위한 특별 규칙 구현:
-   *   + 미리 정의된 패턴에 매칭되지 않는 모든 문자 처리
-   */
 
   /* Rules Section */
   /* This section contains series of rules for recognizing tokens. */
@@ -141,8 +108,6 @@ char_const     '({escape}|[^\\'\n])'
                                                                                     BEGIN(INITIAL); 
                                                                                   }
 
-/* Order : Keyword - Operator - Constant - WhiteSpace - Anything */
-/* Keywords */
 "int"|"char"                   { yylval.ival = (strcmp(yytext, "int") == 0) ? 0 : 1; return TYPE; }
 "struct"                       { return STRUCT; }
 "NULL"                         { return SYM_NULL; }
@@ -155,15 +120,15 @@ char_const     '({escape}|[^\\'\n])'
 "continue"                     { return CONTINUE; }
 
   /* Operators */
-  "||"                           { yylval.sval = strdup(yytext); return LOGICAL_OR; }
-  "&&"                           { yylval.sval = strdup(yytext); return LOGICAL_AND; }
-  "<"|"<="|">"|">="              { yylval.sval = strdup(yytext); return RELOP; }
-  "=="|"!="                      { yylval.sval = strdup(yytext); return EQUOP; }
-"++"                           { return INCOP; }
-"--"                           { return DECOP; }
-"->"                           { return STRUCTOP; }
+"||"    { yylval.sval = strdup(yytext); return LOGICAL_OR; }
+"&&"    { yylval.sval = strdup(yytext); return LOGICAL_AND; }
+"<"|"<="|">"|">="    { yylval.sval = strdup(yytext); return RELOP; }
+"=="|"!="    { yylval.sval = strdup(yytext); return EQUOP; }
+"++"    { return INCOP; }
+"--"    { return DECOP; }
+"->"    { return STRUCTOP; }
 "+"|"-"|"*"|"/"|"%"|"="|"&"|"!"|"^"|"~"|"."|"["|"]"|"("|")"|"{"|"}"|";"|":" { return yytext[0]; }
-","                            { return yytext[0]; }
+","    { return yytext[0]; }
 
   /* Constants
   * - @TODO escape sequence 처리 필요 구현
@@ -188,14 +153,15 @@ char_const     '({escape}|[^\\'\n])'
                    }
 
   /* Whitespace */
-{whitespace}+                   { /* Skip whitespace */ }
-  \n                             { /* yylineno는 %option yylineno로 자동 증가 */ }
+{whitespace}+    { /* Skip whitespace */ }
+\n    { /* yylineno는 %option yylineno로 자동 증가 */ }
 
   /* Anything else */
-.  {
+.    {
     fprintf(stderr, "에러: %d행 - 잘못된 문자 '%c' (ASCII: %d)\n", yylineno, *yytext, *yytext); 
     return -1;  /* 오류 코드 반환 */
 }
+
 
 %%
 

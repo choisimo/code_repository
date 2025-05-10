@@ -45,6 +45,8 @@ void  reduce(char* s);
 11. 후위([], (), ., ->)
  **/
 
+%nonassoc LOWER_THAN_ELSE                             /* if-else 문법 */
+%nonassoc ELSE                                                            /* else 문법 */
 %left ','                                                                                /* 콤마 연산자 */
 %right '='                                                                             /* 대입 연산자 */
 %left LOGICAL_OR                                                          /* 논리 OR (||) */
@@ -55,8 +57,6 @@ void  reduce(char* s);
 %left '*' '/' '%'                                                                    /* 곱셈/나눗셈/나머지 */
 %right UMINUS '!' '&' INCOP DECOP                       /* 단항 연산자 */
 %left '[' '(' '.' STRUCTOP                                                /* 후위 연산자 */
-%nonassoc LOWER_THAN_ELSE                             /* if-else 문법 */
-%nonassoc ELSE                                                            /* else 문법 */
 
 /* @TODO: 필요한 토큰 선언 추가
  * - C 언어 키워드: TYPE, STRUCT, SYM_NULL, RETURN, IF, ELSE, WHILE, FOR, BREAK, CONTINUE
@@ -93,131 +93,202 @@ void  reduce(char* s);
 
 program
   : ext_def_list
-  {
-    reduce("program->ext_def_list");
-  }
+    { reduce("program->ext_def_list"); }
   ;
 
 ext_def_list
   : ext_def_list ext_def
-  {
-    reduce("ext_def_list->ext_def_list ext_def");
-  }
-  | %empty 
-  {
-    reduce("ext_def_list->epsilon");
-  }
+    { reduce("ext_def_list->ext_def_list ext_def"); }
+  | %empty
+    { reduce("ext_def_list->epsilon"); }
   ;
 
 ext_def
-: type_specifier pointers ID ';'
-| type_specifier pointers ID '[' INTEGER_CONST ']' ';'
-| STRUCT ID '{' def_list '}' ';'
-| func_decl compound_stmt
-;
+  : type_specifier pointers ID ';'
+    { reduce("ext_def->type_specifier pointers ID ';'"); }
+  | type_specifier pointers ID '[' INTEGER_CONST ']' ';'
+    { reduce("ext_def->type_specifier pointers ID '[' INTEGER_CONST ']' ';'"); }
+  | STRUCT ID '{' def_list '}' ';'
+    { reduce("ext_def->STRUCT ID '{' def_list '}' ';'"); }
+  | func_decl compound_stmt
+    { reduce("ext_def->func_decl compound_stmt"); }
+  ;
 
 type_specifier
   : TYPE
+    { reduce("type_specifier->TYPE"); }
   | struct_specifier
+    { reduce("type_specifier->struct_specifier"); }
   ;
 
 struct_specifier
   : STRUCT ID '{' def_list '}'
+    { reduce("struct_specifier->STRUCT ID '{' def_list '}'"); }
   | STRUCT ID
+    { reduce("struct_specifier->STRUCT ID"); }
   ;
 
 func_decl
   : type_specifier pointers ID '(' ')'
+    { reduce("func_decl->type_specifier pointers ID '(' ')'"); }
   | type_specifier pointers ID '(' param_list ')'
+    { reduce("func_decl->type_specifier pointers ID '(' param_list ')'"); }
   ;
 
 pointers
   : '*'
+    { reduce("pointers->'*'"); }
   | %empty
+    { reduce("pointers->epsilon"); }
   ;
 
-  param_list
-: param_decl
-| param_list ',' param_decl
-;
+param_list
+  : param_decl
+    { reduce("param_list->param_decl"); }
+  | param_list ',' param_decl
+    { reduce("param_list->param_list ',' param_decl"); }
+  ;
+
 param_decl
-: type_specifier pointers ID
-| type_specifier pointers ID '[' INTEGER_CONST ']'
-;
+  : type_specifier pointers ID
+    { reduce("param_decl->type_specifier pointers ID"); }
+  | type_specifier pointers ID '[' INTEGER_CONST ']'  
+    { reduce("param_decl->type_specifier pointers ID '[' INTEGER_CONST ']' "); }
+  ;
+
 def_list
-: def_list def
-| %empty
-;
+  : def_list def
+    { reduce("def_list->def_list def"); }
+  | %empty
+    { reduce("def_list->epsilon"); }
+  ;
+
 def
-: type_specifier pointers ID ';'
-| type_specifier pointers ID '[' INTEGER_CONST ']' ';'
-;
+  : type_specifier pointers ID ';'
+    { reduce("def->type_specifier pointers ID ';'"); }
+  | type_specifier pointers ID '[' INTEGER_CONST ']' ';'
+    { reduce("def->type_specifier pointers ID '[' INTEGER_CONST ']' ';'"); }
+  ;
+
 compound_stmt
-: '{' def_list stmt_list '}'
-;
+  : '{' def_list stmt_list '}'
+    { reduce("compound_stmt->'{' def_list stmt_list '}'"); }
+  ;
 
 stmt_list
-: stmt_list stmt
-| %empty
-;
+  : stmt_list stmt
+    { reduce("stmt_list->stmt_list stmt"); }
+  | %empty
+    { reduce("stmt_list->epsilon"); }
+  ;
+
 stmt
-: expr ';'
-| compound_stmt
-| RETURN expr ';'
-| ';'
-| IF '(' expr ')' stmt %prec LOWER_THAN_ELSE
-| IF '(' expr ')' stmt ELSE stmt
-| WHILE '(' expr ')' stmt
-| FOR '(' expr_e ';' expr_e ';' expr_e ')' stmt
-| BREAK ';'
-| CONTINUE ';'
-;
+  : expr ';'
+    { reduce("stmt->expr ';'"); }
+  | compound_stmt
+    { reduce("stmt->compound_stmt"); }
+  | RETURN expr ';'
+    { reduce("stmt->RETURN expr ';'"); }
+  | ';'
+    { reduce("stmt->;"); }
+  | IF '(' expr ')' stmt %prec LOWER_THAN_ELSE
+    { reduce("stmt->IF '(' expr ')' stmt"); }
+  | IF '(' expr ')' stmt ELSE stmt
+    { reduce("stmt->IF '(' expr ')' stmt ELSE stmt"); }
+  | WHILE '(' expr ')' stmt
+    { reduce("stmt->WHILE '(' expr ')' stmt"); }
+  | FOR '(' expr_e ';' expr_e ';' expr_e ')' stmt
+    { reduce("stmt->FOR '(' expr_e ';' expr_e ';' expr_e ')' stmt"); }
+  | BREAK ';'
+    { reduce("stmt->BREAK ';'"); }
+  | CONTINUE ';'
+    { reduce("stmt->CONTINUE ';'"); }
+  ;
+
 expr_e
-: expr
-| %empty
-;
+  : expr
+    { reduce("expr_e->expr"); }
+  | %empty
+    { reduce("expr_e->epsilon"); }
+  ;
+
 expr
-: unary '=' expr
-| binary
-;
+  : unary '=' expr
+    { reduce("expr->unary '=' expr"); }
+  | binary
+    { reduce("expr->binary"); }
+  ;
+
 binary
-: binary RELOP binary
-| binary EQUOP binary
-| binary '+' binary
-| binary '-' binary
-| binary '*' binary
-| binary '/' binary
-| binary '%' binary
-| unary %prec '='
-| binary LOGICAL_AND binary
-| binary LOGICAL_OR binary
-;
+  : binary RELOP binary
+    { reduce("binary->binary RELOP binary"); }
+  | binary EQUOP binary
+    { reduce("binary->binary EQUOP binary"); }
+  | binary '+' binary
+    { reduce("binary->binary '+' binary"); }
+  | binary '-' binary
+    { reduce("binary->binary '-' binary"); }
+  | binary '*' binary
+    { reduce("binary->binary '*' binary"); }
+  | binary '/' binary
+    { reduce("binary->binary '/' binary"); }
+  | binary '%' binary
+    { reduce("binary->binary '%' binary"); }
+  | unary %prec '='
+    { reduce("binary->unary"); }
+  | binary LOGICAL_AND binary
+    { reduce("binary->binary LOGICAL_AND binary"); }
+  | binary LOGICAL_OR binary
+    { reduce("binary->binary LOGICAL_OR binary"); }
+  ;
 
 unary
-: '(' expr ')'
-| INTEGER_CONST
-| CHAR_CONST
-| STRING
-| ID
-| '-' unary %prec UMINUS
-| '!' unary
-| unary INCOP %prec STRUCTOP
-| unary DECOP %prec STRUCTOP
-| INCOP unary %prec UMINUS
-| DECOP unary %prec UMINUS
-| '&' unary
-| '*' unary %prec UMINUS
-| unary '[' expr ']'
-| unary '.' ID
-| unary STRUCTOP ID
-| unary '(' args ')'
-| unary '(' ')'
-| SYM_NULL
-;
+  : '(' expr ')'
+    { reduce("unary->'(' expr ')'"); }
+  | INTEGER_CONST
+    { reduce("unary->INTEGER_CONST"); }
+  | CHAR_CONST
+    { reduce("unary->CHAR_CONST"); }
+  | STRING
+    { reduce("unary->STRING"); }
+  | ID
+    { reduce("unary->ID"); }
+  | '-' unary %prec UMINUS
+    { reduce("unary->'-' unary"); }
+  | '!' unary
+    { reduce("unary->'!' unary"); }
+  | unary INCOP %prec STRUCTOP
+    { reduce("unary->unary INCOP"); }
+  | unary DECOP %prec STRUCTOP
+    { reduce("unary->unary DECOP"); }
+  | INCOP unary %prec UMINUS
+    { reduce("unary->INCOP unary"); }
+  | DECOP unary %prec UMINUS
+    { reduce("unary->DECOP unary"); }
+  | '&' unary
+    { reduce("unary->'&' unary"); }
+  | '*' unary %prec UMINUS
+    { reduce("unary->'*' unary"); }
+  | unary '[' expr ']'  
+    { reduce("unary->unary '[' expr ']'"); }
+  | unary '.' ID
+    { reduce("unary->unary '.' ID"); }
+  | unary STRUCTOP ID
+    { reduce("unary->unary STRUCTOP ID"); }
+  | unary '(' args ')'  
+    { reduce("unary->unary '(' args ')' "); }
+  | unary '(' ')'
+    { reduce("unary->unary '(' ')' "); }
+  | SYM_NULL
+    { reduce("unary->SYM_NULL"); }
+  ;
+
 args
-: expr
-| args ',' expr
-;
+  : expr
+    { reduce("args->expr"); }
+  | args ',' expr
+    { reduce("args->args ',' expr"); }
+  ;
 
 %%
 
