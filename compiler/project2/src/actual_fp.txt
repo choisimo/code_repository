@@ -1,0 +1,48 @@
+ext_def_list->epsilon
+type_specifier->TYPE
+pointers->epsilon
+type_specifier->TYPE
+pointers->epsilon
+param_decl->type_specifier pointers ID
+param_list->param_decl
+type_specifier->TYPE
+pointers->epsilon
+param_decl->type_specifier pointers ID
+param_list->param_list ',' param_decl
+func_decl->type_specifier pointers ID '(' param_list ')'
+def_list->epsilon
+stmt_list->epsilon
+unary->ID
+binary->unary
+unary->ID
+binary->unary
+binary->binary '+' binary
+expr->binary
+stmt->RETURN expr ';'
+stmt_list->stmt_list stmt
+compound_stmt->'{' def_list stmt_list '}'
+ext_def->func_decl compound_stmt
+ext_def_list->ext_def_list ext_def
+type_specifier->TYPE
+pointers->epsilon
+func_decl->type_specifier pointers ID '(' ')'
+def_list->epsilon
+stmt_list->epsilon
+unary->ID
+unary->INTEGER_CONST
+binary->unary
+expr->binary
+args->expr
+unary->INTEGER_CONST
+binary->unary
+expr->binary
+args->args ',' expr
+unary->unary '(' args ')' 
+binary->unary
+expr->binary
+stmt->RETURN expr ';'
+stmt_list->stmt_list stmt
+compound_stmt->'{' def_list stmt_list '}'
+ext_def->func_decl compound_stmt
+ext_def_list->ext_def_list ext_def
+program->ext_def_list
