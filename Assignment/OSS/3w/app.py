@@ -6,12 +6,7 @@ import json
 import logging
 from datetime import datetime
 import os
-
-from log_processor import process_log, normalize_logs, process_text_logs
-from gpt_analyzer import GPTAnalyzer
-from visualization.charts import plot_log_frequency, plot_error_distribution
-from utils import format_timestamp, export_results
-from config import SIDEBAR_STYLE, THEME_COLORS, get_api_key, save_api_key_to_file
+import streamlit.components.v1 as components
 
 # 로깅 설정
 logging.basicConfig(
@@ -21,7 +16,7 @@ logging.basicConfig(
 
 # 세션 상태 초기화
 if "openai_api_key" not in st.session_state:
-    st.session_state.openai_api_key = get_api_key() or ""
+    st.session_state.openai_api_key = ""
 logger = logging.getLogger("log-analyzer-app")
 
 # 페이지 설정
@@ -33,7 +28,38 @@ st.set_page_config(
 )
 
 # CSS 스타일 적용
-st.markdown(SIDEBAR_STYLE, unsafe_allow_html=True)
+st.markdown("""
+    <style>
+    /* CSS 스타일 정의 */
+    </style>
+""", unsafe_allow_html=True)
+
+# --- 로컬스토리지에서 API 키 로드/저장용 JS 삽입 ---
+components.html(
+    '''<script>
+      const key = localStorage.getItem('OPENAI_API_KEY');
+      if (key) window.parent.postMessage({ type:'loadKey', key }, '*');
+      window.addEventListener('message', e => {
+        if (e.data?.type==='saveKey') localStorage.setItem('OPENAI_API_KEY', e.data.key);
+      });
+    </script>''',
+    height=0,
+)
+# 로드된 키를 세션에 반영
+msg = st.query_params.get('message')
+if msg:
+    try:
+        data = json.loads(msg[0])
+        if data.get('type')=='loadKey':
+            st.session_state.openai_api_key = data['key']
+    except:
+        pass
+
+from log_processor import process_log, normalize_logs, process_text_logs
+from gpt_analyzer import GPTAnalyzer
+from visualization.charts import plot_log_frequency, plot_error_distribution
+from utils import format_timestamp, export_results
+from config import SIDEBAR_STYLE, THEME_COLORS, get_api_key
 
 # 세션 상태 초기화
 if 'logs' not in st.session_state:
@@ -103,7 +129,13 @@ with st.sidebar:
     api_key_input = st.text_input("OpenAI API 키", type="password", value=st.session_state.openai_api_key)
     if api_key_input:
         st.session_state.openai_api_key = api_key_input
-        save_api_key_to_file(api_key_input)
+        # 브라우저 로컬스토리지에 저장 요청
+        components.html(
+            f'''<script>
+               window.parent.postMessage({{type:'saveKey',key:'{api_key_input}'}}, '*');
+             </script>''',
+            height=0,
+        )
     st.divider()
 
     if st.session_state.analysis_results:
