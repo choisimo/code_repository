@@ -16,9 +16,6 @@ logging.basicConfig(
 
 logger = logging.getLogger("gpt-analyzer")
 
-# OpenAI API 키 설정 (환경 변수에서 로드)
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY") or get_api_key()
-
 class GPTAnalyzer:
     """
     GPT API를 사용하여 로그 데이터를 분석하는 클래스
@@ -34,7 +31,8 @@ class GPTAnalyzer:
             language (str): 사용할 언어. 기본값은 '한국어'
         """
         self.language = language
-        self.api_key = api_key or OPENAI_API_KEY
+        # API 키: 인스턴스 인자로 전달된 값 우선, 없으면 config.get_api_key() 사용
+        self.api_key = api_key or get_api_key()
         if not self.api_key:
             logger.warning("OpenAI API 키가 설정되지 않았습니다. GPT 분석이 작동하지 않을 수 있습니다.")
         else:

@@ -23,17 +23,20 @@ THEME_COLORS = {
 def get_api_key() -> Optional[str]:
     """
     여러 소스에서 OpenAI API 키를 찾아 반환합니다.
-    우선순위: 세션 저장소 > 환경 변수 > 프로젝트 루트 로컬 설정 파일 > 로컬 설정 파일
+    우선순위: Streamlit secrets > 세션 저장소 > 환경 변수 > 프로젝트 루트 로컬 설정 파일 > 로컬 설정 파일
     """
-    # 1. 세션 변수에서 확인
+    # 1. Streamlit secrets에서 확인
+    if hasattr(st, 'secrets') and st.secrets.get("OPENAI_API_KEY"):
+        return st.secrets["OPENAI_API_KEY"]
+    # 2. 세션 변수에서 확인
     if "openai_api_key" in st.session_state and st.session_state.openai_api_key:
         return st.session_state.openai_api_key
 
-    # 2. 환경 변수에서 확인
+    # 3. 환경 변수에서 확인
     if os.getenv("OPENAI_API_KEY"):
         return os.getenv("OPENAI_API_KEY")
 
-    # 3. 프로젝트 루트 로컬 설정 파일 확인
+    # 4. 프로젝트 루트 로컬 설정 파일 확인
     local_config_path = pathlib.Path.cwd() / ".gptlogger_config.json"
     if local_config_path.exists():
         try:
@@ -44,7 +47,7 @@ def get_api_key() -> Optional[str]:
         except (json.JSONDecodeError, IOError):
             pass
 
-    # 4. 로컬 파일 확인 (암호화되지 않은 간단한 버전)
+    # 5. 사용자 홈 디렉토리 로컬 설정 파일 확인
     config_path = pathlib.Path.home() / ".gptlogger_config.json"
     if config_path.exists():
         try:
