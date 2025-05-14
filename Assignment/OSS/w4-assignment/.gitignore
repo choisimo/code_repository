@@ -1,0 +1,7 @@
+
+# Python venv
+Assignment/OSS/3w/venv/
+**/venv/
+
+# 대용량 바이너리
+**/*.so
