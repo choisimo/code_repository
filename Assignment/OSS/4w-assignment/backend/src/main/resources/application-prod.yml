@@ -1,0 +1,23 @@
+# 프로덕션 환경 설정
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/weatherdb}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:yourpassword}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+# 로깅 설정
+logging:
+  level:
+    root: INFO
+    com.example.weather: INFO
+    org.springframework: WARN
+    org.hibernate: WARN
