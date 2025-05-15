@@ -1,5 +1,0 @@
-rootProject.name = 'weather-project'
-include 'frontend'
-
-// 프론트엔드 프로젝트 경로 설정
-project(':frontend').projectDir = file('../frontend')
