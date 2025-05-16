@@ -39,8 +39,9 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useWeatherStore } from '@/stores/weather';
+import { useApiKeyStore } from '@/stores/apiKey';
 import WeatherMap from '@/components/WeatherMap.vue';
 import WeatherForecast from '@/components/WeatherForecast.vue';
 import ErrorAlert from '@/components/ErrorAlert.vue';
@@ -54,13 +55,14 @@ export default {
   },
   setup() {
     const weatherStore = useWeatherStore();
+    const apiKeyStore = useApiKeyStore();
     const searchQuery = ref('');
     const initialLocation = ref({
       lat: 37.5665, // 서울의 위도
       lng: 126.9780 // 서울의 경도
     });
     const zoom = ref(10);
-    const naverMapsClientId = process.env.VUE_APP_NAVER_MAPS_CLIENT_ID || '';
+    const naverMapsClientId = computed(() => apiKeyStore.naverMapsKey);
     
     const selectedLocation = ref(weatherStore.selectedLocation);
     const errorMessage = ref('');

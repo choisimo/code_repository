@@ -1,0 +1,52 @@
+"workbench.colorCustomizations": {
+    "editor.background": "#FCFCFC",
+    "editor.foreground": "#2E3440",
+    "editor.selectionBackground": "#88C0D080", // Nord Frost 파란색, 50% 알파
+    "editor.selectionForeground": "#2E3440",
+    "editor.inactiveSelectionBackground": "#88C0D040", // 비활성 편집기의 경우 더 밝게
+    "editor.selectionHighlightBackground": "#88C0D040", // 선택 항목의 다른 발생
+    "editor.lineHighlightBackground": "#ECEFF440", // Nord Snow Storm 가장 밝은 색, 25% 알파
+    "editorCursor.foreground": "#BF616A", // 높은 가시성을 위한 Nord Aurora 빨간색
+    // "editorCursor.background": "#FFFFFF", // 블록 커서를 사용하고 그 아래 문자에 특정 배경이 필요한 경우에만
+    "editor.wordHighlightBackground": "#8FBCBB40", // 읽기 액세스 기호 강조 (Nord Frost 청록색)
+    "editor.wordHighlightStrongBackground": "#A3BE8C40", // 쓰기 액세스 기호 강조 (Nord Frost 녹색)
+    "editor.findMatchBackground": "#EBCB8B", // 현재 검색 일치 (Nord Aurora 노란색)
+    "editor.findMatchHighlightBackground": "#EBCB8B66", // 기타 검색 일치 (Nord Aurora 노란색, 40% 알파)
+    "editor.findRangeHighlightBackground": "#D8DEE940", // 선택 영역에서 찾기 범위
+    "editorWhitespace.foreground": "#D8DEE9", // 미묘한 공백 문자
+    "editorIndentGuide.background": "#ECEFF4",
+    "editorIndentGuide.activeBackground": "#88C0D0",
+    "editorRuler.foreground": "#ECEFF4",
+    "activityBar.background": "#ECEFF4", // 더 밝은 액티비티 바
+    "activityBar.foreground": "#2E3440",
+    "activityBar.inactiveForeground": "#4C566A",
+    "sideBar.background": "#F8F9FA", // 약간 미색의 사이드바
+    "sideBar.foreground": "#3B4252",
+    "sideBarSectionHeader.background": "#ECEFF4",
+    "statusBar.background": "#ECEFF4", // 일관된 상태 표시줄
+    "statusBar.foreground": "#2E3440",
+    "statusBar.noFolderBackground": "#ECEFF4",
+    "titleBar.activeBackground": "#ECEFF4", // 일관된 제목 표시줄
+    "titleBar.activeForeground": "#2E3440",
+    "titleBar.inactiveBackground": "#F8F9FA",
+    "tab.activeBackground": "#FCFCFC", // 활성 탭이 편집기와 일치
+    "tab.inactiveBackground": "#ECEFF4",
+    "tab.activeForeground": "#2E3440",
+    "tab.inactiveForeground": "#4C566A",
+    "tab.border": "#D8DEE9",
+    "workbench.colorTheme": "Default Light Modern",
+    "git.openRepositoryInParentFolders": "always",
+    "workbench.iconTheme": "vs-minimal",
+    "remote.autoForwardPortsSource": "hybrid",
+    "editor.fontLigatures": "'calt', 'liga', 'ss01', 'cv01' 2, 'cv31' 1",
+    "editor.fontSize": 16,
+    "editor.lineHeight": 25,
+    "editor.fontFamily": "'Monaspace Neon', 'Monaspace Krypton', 'Monaspace Argon', 'Monaspace Xenon', 'Monaspace Radon', monospace",
+    "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
+    "editor.fontWeight": "500",
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "redhat.telemetry.enabled": true
+}

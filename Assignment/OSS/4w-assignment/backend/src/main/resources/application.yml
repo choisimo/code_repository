@@ -1,7 +1,5 @@
 server:
   port: 8080
-  servlet:
-    context-path: /
 
 cache:
   type: caffeine
@@ -10,6 +8,9 @@ weather:
   api:
     base-url: https://api.openweathermap.org/data/2.5
     key: ${WEATHER_API_KEY:your-default-key}
+  naver:
+    maps:
+      geocode-url: https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode
 
 logging:
   level:

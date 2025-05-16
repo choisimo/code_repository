@@ -10,6 +10,23 @@ const apiClient = axios.create({
   }
 });
 
+// Attach weather API Key from localStorage to each request
+apiClient.interceptors.request.use(
+  config => {
+    const key = localStorage.getItem('weatherApiKey');
+    if (key) {
+      config.headers['X-WEATHER-API-KEY'] = key;
+    }
+    // Attach Naver Maps API Key if available
+    const nKey = localStorage.getItem('naverMapsKey');
+    if (nKey) {
+      config.headers['X-NAVER-MAPS-API-KEY'] = nKey;
+    }
+    return config;
+  },
+  error => Promise.reject(error)
+);
+
 // 날씨 관련 API 호출
 export const weatherApi = {
   /**

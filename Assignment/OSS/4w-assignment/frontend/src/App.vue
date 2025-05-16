@@ -10,21 +10,25 @@
       </div>
     </header>
     
+    <ApiKeyManager />
     <main class="container mx-auto p-4 min-h-screen">
       <router-view />
     </main>
     
     <footer class="bg-gray-800 text-white p-4 mt-8">
       <div class="container mx-auto text-center">
-        <p>© 2023 Nodove 날씨 애플리케이션</p>
+        <p> 2023 Nodove 날씨 애플리케이션</p>
       </div>
     </footer>
   </div>
 </template>
 
 <script>
+import ApiKeyManager from '@/components/ApiKeyManager.vue';
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: { ApiKeyManager }
 }
 </script>
 
