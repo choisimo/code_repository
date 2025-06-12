@@ -9,9 +9,12 @@
 /* Any code placed inside the brackets will be literally copied into the generated C file. */
 
 #include "subc.h"
-#include "subc.tab.h"
+#include "subc.tab.h" // For yylval, token definitions
 #include "new_file/env.h"
-#include <stdlib.h>
+#include "new_file/type.h" // For ExtendedTypeInfo, TYPE_CHAR, TYPE_NULLPTR
+#include <stdlib.h>    // For malloc, atoi
+#include <string.h>    // For strdup
+
 static int lineno = 1;
 /* line counter already present; filename comes from env.c */
 
@@ -37,7 +40,13 @@ special_char  \\[nt]
   /* Keywords */
 "int"|"char"                    { return TYPE; }
 "struct"                        { return STRUCT; } 
-"NULL"                          { return SYM_NULL; }
+"NULL"                          {
+                                  ExtendedTypeInfo* et_info = (ExtendedTypeInfo*)malloc(sizeof(ExtendedTypeInfo));
+                                  et_info->type = TYPE_NULLPTR; // TYPE_NULLPTR is a global TypeInfo* from type.h
+                                  et_info->is_lvalue = 0;
+                                  yylval.type_val = et_info;
+                                  return SYM_NULL;
+                                }
 "return"                        { return RETURN; }
 "if"                            { return IF; }
 "else"                          { return ELSE; }
@@ -48,23 +57,31 @@ special_char  \\[nt]
 
   /* Identifiers */
 {id}                            {
-                                  yylval.stringVal = strdup(yytext);
+                                  yylval.str_val = strdup(yytext);
                                   return ID;
                                 }
 
   /* Integer constants */
 {integer_const}                 {
-                                  yylval.intVal = atoi(yytext);
+                                  yylval.int_val = atoi(yytext);
                                   return INTEGER_CONST;
                                 }
 
   /* String variables */
 \"({special_char}|[^\\\"\n])*\" {
+                                  // TODO: Implement proper unescaping and quote removal for yytext
+                                  yylval.str_val = strdup(yytext);
                                   return STRING;
                                 }
 
   /* Character variables */
 '({special_char}|[^\\'\n])'     {    
+                                  ExtendedTypeInfo* et_info = (ExtendedTypeInfo*)malloc(sizeof(ExtendedTypeInfo));
+                                  et_info->type = TYPE_CHAR; // TYPE_CHAR is a global TypeInfo* from type.h
+                                  et_info->is_lvalue = 0;
+                                  // The actual char value yytext[1] could be stored if ExtendedTypeInfo had a field for it.
+                                  // For now, the type itself is sufficient for type checking.
+                                  yylval.type_val = et_info;
                                   return CHAR_CONST;
                                 }
 

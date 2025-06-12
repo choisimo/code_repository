@@ -12,14 +12,9 @@ Scope *current_scope = NULL;
 TypeInfo *global_struct_definitions = NULL;
 
 // Global list for function definitions
-// We'll need a new structure for FuncInfo as described in the issue,
-// let's define a placeholder for now.
-// We'll define FuncInfo in type.h later or a new header e.g. funcinfo.h
-typedef struct FuncInfo {
-    char *name;
-    TypeInfo *return_type;
-    SymbolEntry *parameters; // Using SymbolEntry to list parameters (name and type)
-    struct FuncInfo *next;
-} FuncInfo;
-
+// FuncInfo is now defined in type.h
 FuncInfo *global_function_definitions = NULL;
+
+// For checking 'return' statements and setting up parameters in function scope
+TypeInfo *current_function_return_type = NULL;
+struct FuncInfo *current_processing_func_info = NULL;
