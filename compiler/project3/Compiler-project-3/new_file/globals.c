@@ -1,12 +1,6 @@
 #include "symtab.h" // For Scope and SymbolEntry
 #include "type.h"   // For TypeInfo
 
-// From env.h
-char *current_filename = NULL;
-
-// From symtab.h
-Scope *current_scope = NULL;
-
 // Global list for struct type definitions
 // We'll use a simple linked list of TypeInfo objects where kind is TYPE_KIND_STRUCT
 TypeInfo *global_struct_definitions = NULL;

@@ -44,7 +44,7 @@ special_char  \\[nt]
                                   ExtendedTypeInfo* et_info = (ExtendedTypeInfo*)malloc(sizeof(ExtendedTypeInfo));
                                   et_info->type = TYPE_NULLPTR; // TYPE_NULLPTR is a global TypeInfo* from type.h
                                   et_info->is_lvalue = 0;
-                                  yylval.type_val = et_info;
+                                  yylval.type_info_ptr = et_info;
                                   return SYM_NULL;
                                 }
 "return"                        { return RETURN; }
@@ -57,20 +57,20 @@ special_char  \\[nt]
 
   /* Identifiers */
 {id}                            {
-                                  yylval.str_val = strdup(yytext);
+                                  yylval.stringVal = strdup(yytext);
                                   return ID;
                                 }
 
   /* Integer constants */
 {integer_const}                 {
-                                  yylval.int_val = atoi(yytext);
+                                  yylval.intVal = atoi(yytext);
                                   return INTEGER_CONST;
                                 }
 
   /* String variables */
 \"({special_char}|[^\\\"\n])*\" {
                                   // TODO: Implement proper unescaping and quote removal for yytext
-                                  yylval.str_val = strdup(yytext);
+                                  yylval.stringVal = strdup(yytext);
                                   return STRING;
                                 }
 
@@ -81,7 +81,7 @@ special_char  \\[nt]
                                   et_info->is_lvalue = 0;
                                   // The actual char value yytext[1] could be stored if ExtendedTypeInfo had a field for it.
                                   // For now, the type itself is sufficient for type checking.
-                                  yylval.type_val = et_info;
+                                  yylval.type_info_ptr = et_info;
                                   return CHAR_CONST;
                                 }
 

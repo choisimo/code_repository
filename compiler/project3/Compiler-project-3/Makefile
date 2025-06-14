@@ -12,7 +12,7 @@ CFLAGS = -g -Inew_file
 LDFLAGS = -lfl 
 YACCFLAGCS = -vd
 
-OBJECTS = lex.yy.o subc.tab.o type.o symtab.o error.o
+OBJECTS = lex.yy.o subc.tab.o type.o symtab.o error.o env.o globals.o
 
 all : subc
 
@@ -44,3 +44,9 @@ symtab.o : new_file/symtab.c new_file/symtab.h new_file/type.h
 
 error.o : new_file/error.c new_file/error.h
 	${CC} -c ${CFLAGS} new_file/error.c -o $@
+
+env.o : new_file/env.c new_file/env.h new_file/type.h new_file/symtab.h
+	${CC} -c ${CFLAGS} new_file/env.c -o $@
+
+globals.o : new_file/globals.c new_file/type.h new_file/symtab.h
+	${CC} -c ${CFLAGS} new_file/globals.c -o $@

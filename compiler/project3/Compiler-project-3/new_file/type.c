@@ -4,13 +4,15 @@
  */
 
  #include "type.h"
+ #include "symtab.h"   // For SymbolEntry definitions used in deep_copy
  #include <assert.h>
+ #include "env.h"     // For current_filename maybe in deeper functions
  
  /* Built-in singleton type instances */
  TypeInfo *TYPE_INT      = NULL;
  TypeInfo *TYPE_CHAR     = NULL;
  TypeInfo *TYPE_NULLPTR  = NULL;
- +TypeInfo *TYPE_CHAR_POINTER = NULL;
+ TypeInfo *TYPE_CHAR_POINTER = NULL;
  
  static TypeInfo *alloc_type(TypeKind kind)
  {
@@ -27,12 +29,12 @@
  }
  
  // Helper function to perform a deep copy of a SymbolEntry list (e.g., for struct fields)
- static struct SymbolEntry* deep_copy_symbol_list(struct SymbolEntry *src_list) {
+ static SymbolEntry* deep_copy_symbol_list(SymbolEntry *src_list) {
      if (!src_list) return NULL;
-     struct SymbolEntry *new_head = NULL, *new_tail = NULL;
-     struct SymbolEntry* current_src_node = src_list;
+     SymbolEntry *new_head = NULL, *new_tail = NULL;
+     SymbolEntry* current_src_node = src_list;
      while (current_src_node) {
-         struct SymbolEntry* new_sym = (struct SymbolEntry*)malloc(sizeof(struct SymbolEntry));
+         SymbolEntry* new_sym = (SymbolEntry*)malloc(sizeof(SymbolEntry));
          if (!new_sym) {
              fprintf(stderr, "Out of memory in deep_copy_symbol_list for SymbolEntry\n");
              // Simplification: exit on critical memory failure. A real compiler might try to free partial list.
@@ -95,7 +97,7 @@
      return t;
  }
  
- TypeInfo *create_struct_type(const char *name, struct SymbolEntry *fields) {
+ TypeInfo *create_struct_type(const char *name, SymbolEntry *fields) {
      if (!name) { 
          fprintf(stderr, "Error: struct name is NULL in create_struct_type\n");
          return NULL;
@@ -116,7 +118,7 @@
      return t;
  }
  
- TypeInfo *create_function_type(TypeInfo *ret, struct SymbolEntry *params)
+ TypeInfo *create_function_type(TypeInfo *ret, SymbolEntry *params)
  {
      TypeInfo *t = alloc_type(TYPE_KIND_FUNCTION);
      t->info.function_info.return_type = ret;
@@ -124,8 +126,8 @@
      return t;
  }
  
- static int compare_param_lists(const struct SymbolEntry *a,
-                                const struct SymbolEntry *b);
+ static int compare_param_lists(const SymbolEntry *a,
+                                const SymbolEntry *b);
  
  int are_types_equal(const TypeInfo *a, const TypeInfo *b)
  {
@@ -163,8 +165,8 @@
  
  /* Helper to compare two linked parameter lists. We treat (void) function() as
   * zero parameters (NULL list). */
- static int compare_param_lists(const struct SymbolEntry *a,
-                                const struct SymbolEntry *b)
+ static int compare_param_lists(const SymbolEntry *a,
+                                const SymbolEntry *b)
  {
      while (a && b) {
          if (!are_types_equal(a->type, b->type)) return 0;
@@ -174,7 +176,7 @@
      return (a == NULL && b == NULL);
  }
  
- FuncInfo *create_func_info(const char *name, TypeInfo *return_type, struct SymbolEntry *params) {
+ FuncInfo *create_func_info(const char *name, TypeInfo *return_type, SymbolEntry *params) {
      if (!name) {
          fprintf(stderr, "Error: function name is NULL in create_func_info\n");
          return NULL;
@@ -200,9 +202,9 @@
      if (!fi) return;
      free(fi->name);
      
-     struct SymbolEntry *p = fi->parameters;
+     SymbolEntry *p = fi->parameters;
      while(p) {
-         struct SymbolEntry *next_p = p->next;
+         SymbolEntry *next_p = p->next;
          free(p->name); // Name was strdup'd by deep_copy_symbol_list
          // p->type is not freed here as types are typically shared
          free(p);

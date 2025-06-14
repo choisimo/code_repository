@@ -9,8 +9,11 @@
 
 #include <stdio.h> // For fprintf and stderr
 #include "subc.h"
+#include "new_file/error.h"
+#include "new_file/symtab.h"
 
 extern char *current_filename; // Declared in new_file/env.h, defined in new_file/globals.c
+extern char *yytext;
 
 int   yylex ();
 int   yyerror (char* s);
@@ -49,7 +52,7 @@ void  error_condition_type(void); // New error function
 /* Tokens and Types */
 %token STRUCT RETURN WHILE FOR BREAK CONTINUE SYM_NULL
 %token<intVal> INTEGER_CONST
-%token<stringVal> ID // identifier name
+%token<stringVal> ID TYPE CHAR_CONST STRING // identifier name
 
 %type <type_ptr> type_specifier struct_specifier
 %type <intVal> pointers
@@ -1097,7 +1100,8 @@ args /* $$ is SymbolEntry* list, where name can be null, type holds arg type */
 
 %%
 
-/* Epilogue section */
+/* Epilogue section - semantic error helpers are implemented in new_file/error.c */
+#if 0
 
 // Print the preamble of error message.
 void error_preamble(void) {
@@ -1209,3 +1213,4 @@ void error_condition_type(void) {
   error_preamble();
   fprintf(stderr, "condition expression must be of integer type\n");
 }
+#endif /* disable duplicate error helpers */

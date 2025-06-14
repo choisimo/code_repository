@@ -12,6 +12,7 @@
  
  /* Forward declaration to avoid circular dependency with symtab.h */
  struct SymbolEntry;
+typedef struct SymbolEntry SymbolEntry;
  
  /* Enumeration that represents every distinct kind of type handled by the
   * simplified C compiler used in Project-3. Keep the order stable because some
@@ -30,6 +31,17 @@
  struct TypeInfo;
  
  typedef struct TypeInfo TypeInfo;
+ 
+ /* ----------------------------------------------------------------------------
+ * Function Information Structure
+ * --------------------------------------------------------------------------*/
+ struct FuncInfo {
+     char        *name;                 /* Function identifier */
+     TypeInfo    *return_type;          /* Return type */
+     SymbolEntry *parameters;           /* Flat list of parameters (SymbolEntry linked list) */
+     struct FuncInfo *next_global_func_link; /* Link for global function list */
+ };
+ typedef struct FuncInfo FuncInfo;
  
  /* Primary data-structure that fully describes a type.  Depending on the
   * `kind` field different members of the anonymous union become valid. */
@@ -62,6 +74,8 @@
              struct SymbolEntry *parameters;
          } function_info;
      } info;
+     /* Link for global list of struct definitions (only meaningful when kind == TYPE_KIND_STRUCT) */
+     TypeInfo *next_global_struct_link;
  };
  
  /* ExtendedTypeInfo augments TypeInfo with the “l-value” property required by
@@ -81,10 +95,15 @@
  extern TypeInfo *TYPE_INT;
  extern TypeInfo *TYPE_CHAR;
  extern TypeInfo *TYPE_NULLPTR; /* special stand-in for NULL literal */
+ extern TypeInfo *TYPE_CHAR_POINTER; /* global static for char pointer type */
  
  /* Must be called once before any other type helper to populate the three
   * global built-in type objects above. */
  void init_builtin_types(void);
+
+/* Helpers for ExtendedTypeInfo ***********************************************/
+ExtendedTypeInfo *create_extended_type_info(TypeInfo *type, int is_lvalue);
+void free_extended_type_info(ExtendedTypeInfo *eti);
  
  /* Constructors *************************************************************/
  TypeInfo *create_type(TypeKind kind);
@@ -92,6 +111,8 @@
  TypeInfo *create_array_type(TypeInfo *element, int size);
  TypeInfo *create_struct_type(const char *name, struct SymbolEntry *fields);
  TypeInfo *create_function_type(TypeInfo *ret, struct SymbolEntry *params);
+ FuncInfo *create_func_info(const char *name, TypeInfo *return_type, SymbolEntry *params);
+ void free_func_info(FuncInfo *fi);
  
  /* Comparison ***************************************************************/
  /* Deep structural equality check compatible with Project-3 requirements.
@@ -100,4 +121,3 @@
  int are_types_equal(const TypeInfo *a, const TypeInfo *b);
  
  #endif /* __TYPE_H__ */
- 
