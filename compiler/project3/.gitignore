@@ -1,6 +1,34 @@
-**/*.tar.xz
-**/check-lists
-**/*.o
-**/*.out
-**/*.swp
-**/*.xz
+# Executables
+subc
+*.exe
+
+# Object files
+*.o
+*.obj
+
+# Generated source files from Lex/Yacc (Flex/Bison)
+lex.yy.c
+subc.tab.c
+subc.tab.h
+y.tab.c
+y.tab.h
+
+# Generated output files
+*.output
+*.myout
+*.out
+
+# Compressed files
+*.zip
+*.tar
+*.gz
+*.tar.gz
+*.tar.xz
+
+# Editor-specific files
+.history/
+*.swp
+
+# Other artifacts
+guide.pdf
+project3.zip
