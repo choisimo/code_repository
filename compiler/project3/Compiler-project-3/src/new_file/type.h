@@ -83,6 +83,7 @@ typedef struct SymbolEntry SymbolEntry;
  typedef struct ExtendedTypeInfo {
      TypeInfo *type;      /* can be NULL to signal previous error */
      int       is_lvalue; /* 1 if l-value, 0 if r-value */
+     int       is_error;  /* 1 if this node already triggered a semantic error */
  } ExtendedTypeInfo;
  
  /****************************************************************************
@@ -102,7 +103,7 @@ typedef struct SymbolEntry SymbolEntry;
  void init_builtin_types(void);
 
 /* Helpers for ExtendedTypeInfo ***********************************************/
-ExtendedTypeInfo *create_extended_type_info(TypeInfo *type, int is_lvalue);
+ExtendedTypeInfo *create_extended_type_info(TypeInfo *type, int is_lvalue); /* is_error initialised to 0 */
 void free_extended_type_info(ExtendedTypeInfo *eti);
  
  /* Constructors *************************************************************/

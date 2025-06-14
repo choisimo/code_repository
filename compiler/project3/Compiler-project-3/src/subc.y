@@ -11,6 +11,7 @@
 #include "subc.h"
 #include "new_file/error.h"
 #include "new_file/symtab.h"
+#include "new_file/env.h"
 
 extern char *current_filename; // Declared in new_file/env.h, defined in new_file/globals.c
 extern char *yytext;
@@ -144,7 +145,11 @@ type_specifier
 struct_specifier /* $$ is TypeInfo* (type_ptr) */
   : STRUCT ID /* $2 is ID token (name) */
     '{' 
-      { enter_scope(); } /* For struct fields */
+      {
+          /* Mark that we are now collecting struct fields */
+          building_struct_fields = 1;
+          enter_scope();
+        } /* For struct fields */
       def_list /* $5 is SymbolEntry* list of fields */
     '}'
     {
@@ -181,6 +186,7 @@ struct_specifier /* $$ is TypeInfo* (type_ptr) */
         }
       }
       leave_scope(); /* Pops the field scope. */
+      building_struct_fields = 0; /* Done collecting struct fields */
       free($2); /* Free ID strdup'd by lexer */
     }
   | STRUCT ID /* $2 is ID token (name) */
@@ -400,7 +406,19 @@ def
         if (!sym) {
           error_redeclaration(); // Uses error func from subc.y
         } else {
-          $$ = sym; // Return symbol if def_list needs it
+          /* Only build a field list when defining struct fields */
+          if (building_struct_fields) {
+            /* Create a shallow copy so that manipulating field list does not
+             * disturb the symbol table's 'next' links. */
+            SymbolEntry *copy = (SymbolEntry *)malloc(sizeof(SymbolEntry));
+            copy->name  = strdup(sym->name);
+            copy->type  = sym->type;
+            copy->level = sym->level;
+            copy->next  = NULL;
+            $$ = copy;
+          } else {
+            $$ = NULL; /* For ordinary variable declarations def_list is unused */
+          }
         }
       } else {
         // Error already signaled by type_specifier if base_type is NULL
@@ -423,7 +441,16 @@ def
         if (!sym) {
           error_redeclaration();
         } else {
-          $$ = sym;
+          if (building_struct_fields) {
+            SymbolEntry *copy = (SymbolEntry *)malloc(sizeof(SymbolEntry));
+            copy->name  = strdup(sym->name);
+            copy->type  = sym->type;
+            copy->level = sym->level;
+            copy->next  = NULL;
+            $$ = copy;
+          } else {
+            $$ = NULL;
+          }
         }
       } else {
         // Error already signaled
@@ -570,7 +597,7 @@ expr /* $$ is ExtendedTypeInfo* (type_info_ptr) */
         if ($1) free_extended_type_info($1);
         if ($3) free_extended_type_info($3);
         // No YYERROR, allow parsing to continue if possible with NULL ETI*
-      } else if (!$1->type || !$3->type) { // If types within ETI are NULL (error from sub-expression)
+      } else if ($1->is_error || $3->is_error || !$1->type || !$3->type) { /* propagate existing error */
         // Error already printed by sub-rules. Propagate error type.
         // $$ is already create_extended_type_info(NULL, 0)
         free_extended_type_info($1);
@@ -580,13 +607,13 @@ expr /* $$ is ExtendedTypeInfo* (type_info_ptr) */
         // 1. LHS must be lvalue
         if (!$1->is_lvalue) {
           error_assignable();
-          // $$->type is already NULL from initialization
+          $$->is_error = 1; /* mark propagated error */
         }
         // 2. NULL assignment check (RHS is NULL literal)
         else if ($3->type->kind == TYPE_KIND_NULL) {
           if ($1->type->kind != TYPE_KIND_POINTER && $1->type->kind != TYPE_KIND_ARRAY) { // Allow NULL to array pointer decay? For now, only pointer.
-            error_null(); // "cannot assign 'NULL' to non-pointer type"
-            // $$->type is already NULL
+            error_null();
+            $$->is_error = 1;
           } else { // Valid NULL assignment to pointer
             $$->type = $1->type; // Type of expression is type of LHS
             $$->is_lvalue = 0;   // Result of assignment is rvalue
@@ -595,7 +622,7 @@ expr /* $$ is ExtendedTypeInfo* (type_info_ptr) */
         // 3. Type equality check (excluding NULL case handled above)
         else if (!are_types_equal($1->type, $3->type)) {
           error_incompatible();
-          // $$->type is already NULL
+          $$->is_error = 1;
         }
         // 4. Valid assignment
         else {
@@ -766,7 +793,8 @@ unary
       SymbolEntry* sym = sym_lookup($1);
       if (!sym) {
         error_undeclared();
-        $$ = create_extended_type_info(NULL, 0); // Error case: type is NULL
+        $$ = create_extended_type_info(NULL, 0);
+        $$->is_error = 1;
       } else {
         int is_lvalue = 0;
         // Array names and function names are not lvalues.
@@ -777,6 +805,7 @@ unary
            is_lvalue = 1; // Variables (int, char, struct instance, pointer) are lvalues
         }
         $$ = create_extended_type_info(sym->type, is_lvalue);
+        $$->is_error = 0;
       }
       free($1); // Free the string from lexer's strdup
     }

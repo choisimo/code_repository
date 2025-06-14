@@ -222,6 +222,7 @@
      }
      eti->type = type;
      eti->is_lvalue = is_lvalue;
+     eti->is_error = 0;
      return eti;
  }
  
