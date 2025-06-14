@@ -1,2 +1,6 @@
 **/*.tar.xz
 **/check-lists
+**/*.o
+**/*.out
+**/*.swp
+**/*.xz
