@@ -27,6 +27,7 @@ y.tab.h
 
 # Editor-specific files
 .history/
+**/check-lists
 *.swp
 
 # Other artifacts
