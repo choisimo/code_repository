@@ -7,6 +7,7 @@
  #include <stdio.h>
  #include "env.h"
 #include "subc.h"
+extern int get_lineno(void);
  
 
 // Ensure we don't recompile duplicate definitions from subc.y epilogue.

@@ -10,8 +10,10 @@
 
 #include "subc.h"
 #include "subc.tab.h" // For yylval, token definitions
-#include "new_file/env.h"
-#include "new_file/type.h" // For ExtendedTypeInfo, TYPE_CHAR, TYPE_NULLPTR
+#include "env.h"
+#include "type.h" // For ExtendedTypeInfo, TYPE_CHAR, TYPE_NULLPTR
+
+
 #include <stdlib.h>    // For malloc, atoi
 #include <string.h>    // For strdup
 

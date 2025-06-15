@@ -93,6 +93,10 @@ typedef struct SymbolEntry SymbolEntry;
  /* Basic built-in types are exposed as singletons to avoid creating the same
   * immutable objects over and over again.  They are initialised by calling
   * `init_builtin_types()` exactly once at program start-up. */
+/* Cleanup functions */
+void free_global_types_and_functions(void); // Master cleanup
+void free_symbol_list_contents(SymbolEntry *head); // Helper for lists like fields/params
+
  extern TypeInfo *TYPE_INT;
  extern TypeInfo *TYPE_CHAR;
  extern TypeInfo *TYPE_NULLPTR; /* special stand-in for NULL literal */
@@ -103,7 +107,7 @@ typedef struct SymbolEntry SymbolEntry;
  void init_builtin_types(void);
 
 /* Helpers for ExtendedTypeInfo ***********************************************/
-ExtendedTypeInfo *create_extended_type_info(TypeInfo *type, int is_lvalue); /* is_error is initialised to 0 */
+ExtendedTypeInfo *create_extended_type_info(TypeInfo *type, int is_lvalue); /* is_error initialised to 0 */
 void free_extended_type_info(ExtendedTypeInfo *eti);
  
  /* Constructors *************************************************************/

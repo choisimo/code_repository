@@ -8,6 +8,10 @@
  #include <assert.h>
  #include "env.h"     // For current_filename maybe in deeper functions
  
+ /* Ensure globals.c content is accessible for global lists */
+ extern TypeInfo *global_struct_definitions;
+ extern FuncInfo *global_function_definitions;
+ 
  /* Built-in singleton type instances */
  TypeInfo *TYPE_INT      = NULL;
  TypeInfo *TYPE_CHAR     = NULL;
@@ -235,4 +239,47 @@
      // then it would need to be freed here. With TYPE_CHAR_POINTER, this is not an issue.
      free(eti);
  }
+ 
+/* Helper to free a list of SymbolEntry, including their names, but not their TypeInfo* type */
+void free_symbol_list_contents(SymbolEntry *head) {
+    SymbolEntry *current = head;
+    while (current) {
+        SymbolEntry *next = current->next;
+        if (current->name) {
+            free(current->name);
+        }
+        // Do NOT free current->type, as types are shared or managed globally
+        free(current);
+        current = next;
+    }
+}
+
+void free_global_types_and_functions(void) {
+    // Free global struct definitions
+    TypeInfo *current_struct = global_struct_definitions;
+    while (current_struct) {
+        TypeInfo *next_struct = current_struct->next_global_struct_link;
+        if (current_struct->info.struct_info.name) {
+            free(current_struct->info.struct_info.name);
+        }
+        // The fields list was created by deep_copy_symbol_list, so its SymbolEntry nodes and their names need freeing.
+        free_symbol_list_contents(current_struct->info.struct_info.fields);
+        free(current_struct);
+        current_struct = next_struct;
+    }
+    global_struct_definitions = NULL;
+
+    // Free global function definitions
+    FuncInfo *current_func = global_function_definitions;
+    while (current_func) {
+        FuncInfo *next_func = current_func->next_global_func_link;
+        free_func_info(current_func); // free_func_info handles name and its parameter list (deep copied)
+        current_func = next_func;
+    }
+    global_function_definitions = NULL;
+
+    // Note: This does not free TYPE_INT, TYPE_CHAR, TYPE_NULLPTR, TYPE_CHAR_POINTER
+    // as they are often considered permanent. If they also need freeing, add here.
+    // It also doesn't free dynamically created pointer/array TypeInfo objects not in these global lists.
+}
  

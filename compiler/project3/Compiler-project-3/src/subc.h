@@ -8,9 +8,12 @@
  
  #include <stdio.h>
  #include <string.h>
- #include "new_file/type.h"
- #include "new_file/symtab.h"
- #include "new_file/error.h"
+#include "type.h"
+#include "symtab.h"
+#include "error.h"
+ 
+ 
+ 
  
  // Global variable for storing defined struct types
  extern struct TypeInfo *global_struct_definitions;

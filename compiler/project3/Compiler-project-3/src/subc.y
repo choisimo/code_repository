@@ -9,11 +9,14 @@
 
 #include <stdio.h> // For fprintf and stderr
 #include "subc.h"
-#include "new_file/error.h"
-#include "new_file/symtab.h"
-#include "new_file/env.h"
+#include "error.h"
+#include "symtab.h"
+#include "env.h"
 
-extern char *current_filename; // Declared in new_file/env.h, defined in new_file/globals.c
+
+
+
+extern char *current_filename; // declared in env.h
 extern char *yytext;
 
 int   yylex ();
@@ -1129,7 +1132,7 @@ args /* $$ is SymbolEntry* list, where name can be null, type holds arg type */
 
 %%
 
-/* Epilogue section - semantic error helpers are implemented in new_file/error.c */
+/* Epilogue section - semantic error helpers are implemented in error.c */
 #if 0
 
 // Print the preamble of error message.
