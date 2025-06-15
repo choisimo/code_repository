@@ -7,7 +7,7 @@ CC = gcc
 LEX = flex
 YACC = bison
 
-CFLAGS = -g -Inew_file
+CFLAGS = -g
 #CFLAGS = -fsanitize=address -static-libasan -g
 LDFLAGS = -lfl 
 YACCFLAGCS = -vd
@@ -34,19 +34,19 @@ lex.yy.c : subc.l
 subc.tab.h subc.tab.c : subc.y
 	${YACC} ${YACCFLAGCS} subc.y
 
-# Build helper sources located in new_file directory
+# Build helper sources located in src directory
 
-type.o : new_file/type.c new_file/type.h
-	${CC} -c ${CFLAGS} new_file/type.c -o $@
+type.o : type.c type.h
+	${CC} -c ${CFLAGS} type.c -o $@
 
-symtab.o : new_file/symtab.c new_file/symtab.h new_file/type.h
-	${CC} -c ${CFLAGS} new_file/symtab.c -o $@
+symtab.o : symtab.c symtab.h type.h
+	${CC} -c ${CFLAGS} symtab.c -o $@
 
-error.o : new_file/error.c new_file/error.h
-	${CC} -c ${CFLAGS} new_file/error.c -o $@
+error.o : error.c error.h
+	${CC} -c ${CFLAGS} error.c -o $@
 
-env.o : new_file/env.c new_file/env.h new_file/type.h new_file/symtab.h
-	${CC} -c ${CFLAGS} new_file/env.c -o $@
+env.o : env.c env.h type.h symtab.h
+	${CC} -c ${CFLAGS} env.c -o $@
 
-globals.o : new_file/globals.c new_file/type.h new_file/symtab.h
-	${CC} -c ${CFLAGS} new_file/globals.c -o $@
+globals.o : globals.c type.h symtab.h
+	${CC} -c ${CFLAGS} globals.c -o $@

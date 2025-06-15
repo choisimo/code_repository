@@ -6,7 +6,8 @@
  #include "error.h"
  #include <stdio.h>
  #include "env.h"
- #include "../subc.h"
+#include "subc.h"
+ 
 
 // Ensure we don't recompile duplicate definitions from subc.y epilogue.
 // The parser's epilogue now defers to these implementations.

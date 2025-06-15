@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 char *current_filename = NULL;
+int  building_struct_fields = 0; /* flag used by parser to detect struct field context */
 
 void init_environment(void)
 {

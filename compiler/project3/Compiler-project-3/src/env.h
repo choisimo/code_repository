@@ -8,6 +8,7 @@
 
 /* Expose current source filename for error reporting */
 extern char *current_filename;
+extern int  building_struct_fields;
 
 /* Prepare built-in types and create global scope.  Must be called before
  * parsing begins (ideally from main()). */
